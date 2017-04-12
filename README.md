@@ -1,5 +1,10 @@
 ## Backend for Buka Lelang
 
+### Tech Stack
+- ExpressJS
+- Postgres
+- Sequelize
+
 ### Install Guide
 
 ```
