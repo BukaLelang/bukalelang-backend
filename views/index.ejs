@@ -4,6 +4,8 @@
   <title><%= title %></title>
   <link rel='stylesheet' href='/stylesheets/style.css' />
   <script src="/socket.io/socket.io.js"></script>
+  <script src="/javascripts/config.js"></script>
+  <script src="/javascripts/test.js"></script>
   <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 
 </head>
@@ -15,7 +17,8 @@
     <input id="new-message" type="text" /><button onclick="sendFunction()">Send</button>
   </form>
   <script>
-  var socket = io();
+
+  var socket = io(API_ENDPOINT);
   function sendFunction() {
     console.log('jalan');
     socket.emit('new message', $('#new-message').val());
