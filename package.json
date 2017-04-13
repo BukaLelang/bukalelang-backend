@@ -3,18 +3,23 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
-    "dev": "nodemon ./bin/www"
+    "start": "./node_modules/pm2/bin/pm2 start bin/www",
+    "dev": "nodemon ./bin/www",
+    "poststart": "./node_modules/pm2/bin/pm2 logs"
   },
   "dependencies": {
     "body-parser": "~1.16.0",
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.0",
     "dotenv": "^4.0.0",
     "ejs": "~2.5.5",
     "express": "~4.14.1",
+    "mocha": "^3.2.0",
     "morgan": "~1.7.0",
     "pg": "^6.1.5",
+    "pm2": "^2.4.4",
     "sequelize": "^3.30.4",
     "sequelize-cli": "^2.7.0",
     "serve-favicon": "~2.3.2",
