@@ -16,6 +16,18 @@ $ cp .env.example .env
 $ npm run dev
 ```
 
+### Usage
+```
+Create database on PgAdmin with name bukalelang-db
+Create login roles (Optional):
+  username: bukalelang,
+  password: bukalelang
+
+ON TERMINAL :
+$ Sequelize db:migrate
+$ Sequelize db:seed:all
+```
+
 ### Contributor
 - [Diky Arga Anggara](http://github.com/dikyarga)
 - [Eri Irawan](http://github.com/MrEi91)
