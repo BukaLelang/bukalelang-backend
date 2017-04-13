@@ -1,6 +1,50 @@
 [
   {
     "type": "get",
+    "url": "/ping",
+    "title": "Make sure server is runnig well",
+    "group": "Status",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>Status Server</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success",
+          "content": "HTTP/1.1 200 OK\n[{\n  \"status\": \"up\",\n}]",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "List error",
+          "content": "HTTP/1.1 500 Internal Server Error",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/index.js",
+    "groupTitle": "Status",
+    "name": "GetPing",
+    "sampleRequest": [
+      {
+        "url": "http://api.bukalelang.id/ping"
+      }
+    ]
+  },
+  {
+    "type": "get",
     "url": "/users",
     "title": "List all users",
     "group": "Users",
