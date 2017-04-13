@@ -1,11 +1,31 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+<head>
+  <title><%= title %></title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+
+</head>
+<body>
+  <h1><%= title %></h1>
+  <h3>Welcome to <%= title %></h3>
+  <ul id="messages-area"></ul>
+  <form id="form" onsubmit="return false;">
+    <input id="new-message" type="text" /><button onclick="sendFunction()">Send</button>
+  </form>
+  <script>
+  var socket = io();
+  function sendFunction() {
+    console.log('jalan');
+    socket.emit('new message', $('#new-message').val());
+    $('#new-message').val('');
+  }
+  socket.on('chat message', function(msg){
+    console.log('dapaet', msg);
+    $('#messages-area').append($('<li>').text(msg));
+  });
+  </script>
+</body>
+
 </html>

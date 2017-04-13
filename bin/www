@@ -8,6 +8,8 @@ var app = require('../app');
 var debug = require('debug')('bukalelang-backend:server');
 var http = require('http');
 
+
+
 /**
  * Get port from environment and store in Express.
  */
@@ -22,12 +24,23 @@ app.set('port', port);
 var server = http.createServer(app);
 
 /**
+ * Socket.io
+ */
+var socketApi = require('../socketApi');
+var io = socketApi.io;
+
+
+/**
  * Listen on provided port, on all network interfaces.
  */
+
+
 
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
+
+io.attach(server);
 
 /**
  * Normalize a port into a number, string, or false.
