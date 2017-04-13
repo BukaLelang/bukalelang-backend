@@ -1,10 +1,10 @@
 module.exports =
 {
   "development": {
-    "username": "bukalelang",
-    "password": "bukalelang",
-    "database": "bukalelang-db",
-    "host": "127.0.0.1",
+    "username": process.env.USERNAME_LOCAL || '',
+    "password": process.env.PASSWORD_LOCAL || '',
+    "database": process.env.DATABSE_NAME || 'bukalelang',
+    "host": process.env.HOSTNAME || '',
     "dialect": "postgres"
   },
   "test": {
