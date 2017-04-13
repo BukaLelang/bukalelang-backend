@@ -2,7 +2,7 @@ define({ "api": [
   {
     "type": "get",
     "url": "/ping",
-    "title": "Make sure server is runnig well",
+    "title": "Ping server",
     "group": "Status",
     "success": {
       "fields": {

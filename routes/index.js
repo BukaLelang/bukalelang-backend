@@ -3,11 +3,15 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  res.json('http://api.bukalelang.id/docs')
+});
+
+router.get('/test/websocket', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
 /**
- * @api {get} /ping Make sure server is runnig well
+ * @api {get} /ping Ping server
  * @apiGroup Status
  * @apiSuccess {String} status Status Server
  * @apiSuccessExample {json} Success
