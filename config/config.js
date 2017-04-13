@@ -3,8 +3,8 @@ module.exports =
   "development": {
     "username": process.env.USERNAME_LOCAL || '',
     "password": process.env.PASSWORD_LOCAL || '',
-    "database": process.env.DATABSE_NAME || 'bukalelang',
-    "host": process.env.HOSTNAME || '',
+    "database": process.env.DATABSE_NAME || 'bukalelang-db',
+    "host": process.env.DB_HOSTNAME || '',
     "dialect": "postgres"
   },
   "test": {
