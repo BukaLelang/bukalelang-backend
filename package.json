@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "./node_modules/pm2/bin/pm2 start bin/www",
-    "dev": "nodemon ./bin/www"
+    "dev": "nodemon ./bin/www",
+    "poststart": "./node_modules/pm2/bin/pm2 logs"
   },
   "dependencies": {
     "body-parser": "~1.16.0",
