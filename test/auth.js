@@ -7,13 +7,18 @@ chai.use(chaiHttp)
 
 let serverHost = 'http://localhost:3000'
 
-describe('Server is running test', () => {
-    it('Should be return {status: "up"} when try to access /ping', (done) => {
-        chai.request(serverHost).get('/ping').end((err, res) => {
+describe('Auth Test', () => {
+    it('Should be return status Success when trying to login', (done) => {
+        chai.request(serverHost).post('/auth/login').send({
+          username: 'dikytesting',
+          password: 'bukabukaan'
+        }).end((err, res) => {
             if (err) {
                 done(err)
             } else {
-                res.body.status.should.to.equal('up')
+                res.should.have.status(200);
+                res.should.be.json;
+                res.body.success.should.to.equal(true)
                 done()
             }
         });
