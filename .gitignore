@@ -1,6 +1,7 @@
 node_modules
 .env
 public/javascript/config.js
+DS_Store
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
