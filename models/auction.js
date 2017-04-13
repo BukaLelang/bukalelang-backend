@@ -13,8 +13,8 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        Auction.hasMany(models.Bid)
-        Auction.belongsTo(models.Category)
+        // Auction.hasMany(models.Bid)
+        // Auction.belongsTo(models.Category)
       }
     }
   });

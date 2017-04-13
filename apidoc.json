@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "Dokumentasi API BukaLelang",
     "url" : "http://api.bukalelang.id",
-    "sampleUrl": "http://api.bukalelang.id",
+    "sampleUrl": "http://localhost:3000",
     "template": {
         "forceLanguage": "en"
     }

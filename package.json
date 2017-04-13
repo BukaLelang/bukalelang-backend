@@ -8,6 +8,7 @@
     "poststart": "./node_modules/pm2/bin/pm2 logs"
   },
   "dependencies": {
+    "axios": "^0.16.1",
     "body-parser": "~1.16.0",
     "chai": "^3.5.0",
     "chai-http": "^3.0.0",
