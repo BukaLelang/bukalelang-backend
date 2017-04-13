@@ -19,13 +19,15 @@ describe('Server healthy test', () => {
         }
       });
     })
+  })
+  describe('Database connection', () => {
 
-    it('Should be return {status : "up"}', (done) => {
+    it('Should be return {status : "connected"} when trying to access /test/database', (done) => {
       chai.request(serverHost).get('/test/database').end((err, res) => {
         if (err) {
           done(err)
         } else {
-          res.body.status.should.to.equal('up')
+          res.body.status.should.to.equal('connected')
           done()
         }
       });
