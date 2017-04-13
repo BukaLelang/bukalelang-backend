@@ -1,0 +1,10 @@
+{
+    "name": "BukaLelang API Docs",
+    "version": "1.0.0",
+    "description": "Dokumentasi API BukaLelang",
+    "url" : "http://api.bukalelang.id",
+    "sampleUrl": "http://api.bukalelang.id",
+    "template": {
+        "forceLanguage": "en"
+    }
+}
