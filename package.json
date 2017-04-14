@@ -6,7 +6,7 @@
     "start": "./node_modules/pm2/bin/pm2 start bin/www",
     "dev": "nodemon ./bin/www",
     "poststart": "./node_modules/pm2/bin/pm2 logs",
-    "prestart": "./node_modules/pm2/bin/pm2 stop bin/www && ./node_modules/.bin/sequelize db:migrate && ./node_modules/.bin/sequelize db:seed:all"
+    "prestart": "./node_modules/pm2/bin/pm2 stop all  && ./node_modules/.bin/sequelize db:migrate && ./node_modules/.bin/sequelize db:seed:all"
   },
   "dependencies": {
     "axios": "^0.16.1",
