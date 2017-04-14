@@ -98,7 +98,12 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "./routes/auth.js",
     "groupTitle": "Auth",
-    "name": "PostAuthLogin"
+    "name": "PostAuthLogin",
+    "sampleRequest": [
+      {
+        "url": "http://localhost:3000/auth/login"
+      }
+    ]
   },
   {
     "type": "post",
@@ -213,7 +218,12 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "./routes/auth.js",
     "groupTitle": "Auth",
-    "name": "PostAuthRegister"
+    "name": "PostAuthRegister",
+    "sampleRequest": [
+      {
+        "url": "http://localhost:3000/auth/register"
+      }
+    ]
   },
   {
     "type": "get",
@@ -252,7 +262,12 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "./routes/index.js",
     "groupTitle": "Status",
-    "name": "GetPing"
+    "name": "GetPing",
+    "sampleRequest": [
+      {
+        "url": "http://localhost:3000/ping"
+      }
+    ]
   },
   {
     "type": "get",
@@ -305,6 +320,11 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "./routes/users.js",
     "groupTitle": "Users",
-    "name": "GetUsers"
+    "name": "GetUsers",
+    "sampleRequest": [
+      {
+        "url": "http://localhost:3000/users"
+      }
+    ]
   }
 ] });
