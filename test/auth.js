@@ -42,6 +42,8 @@ describe('Auth Test', () => {
           res.body.should.have.property('username')
           res.body.should.have.property('saldo')
           res.body.should.have.property('token')
+          res.body.should.have.property('success')
+          res.body.should.have.property('message')
           done()
         }
       });
@@ -76,6 +78,30 @@ describe('Auth Test', () => {
         }
       });
     })
-
+  })
+  describe('Register', () => {
+    it('Should be return all field / property when trying to register', (done) => {
+      chai.request(serverHost).post('/auth/register').send({
+        username: process.env.BUKALAPAK_ACCOUNT_USERNAME_DEV,
+        password: process.env.BUKALAPAK_ACCOUNT_PASSWORD_DEV
+      }).end((err, res) => {
+        if (err) {
+          done(err)
+        } else {
+          res.should.have.status(200);
+          res.should.be.json;
+          res.body.should.have.property('id')
+          res.body.should.have.property('bukalapakId')
+          res.body.should.have.property('name')
+          res.body.should.have.property('email')
+          res.body.should.have.property('username')
+          res.body.should.have.property('saldo')
+          res.body.should.have.property('token')
+          res.body.should.have.property('success')
+          res.body.should.have.property('message')
+          done()
+        }
+      });
+    })
   })
 })
