@@ -10,12 +10,13 @@ module.exports = function(sequelize, DataTypes) {
     fb_token: DataTypes.STRING,
     bl_token: DataTypes.STRING,
     bukalapakId:DataTypes.INTEGER,
-    confirmed:DataTypes.BOOLEAN
+    confirmed:DataTypes.BOOLEAN,
+    omnikey:DataTypes.STRING
   }, {
     classMethods: {
       associate: function(models) {
-        // User.hasMany(models.Bid)
-        // User.hasMany(models.Auction)
+        User.hasMany(models.Bid)
+        User.hasMany(models.Auction)
       }
     }
   });
