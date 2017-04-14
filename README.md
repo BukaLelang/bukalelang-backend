@@ -4,6 +4,7 @@
 - ExpressJS
 - Postgres
 - Sequelize
+- WebSocket using Socket.IO
 
 ### Install Guide
 
