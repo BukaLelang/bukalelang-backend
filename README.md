@@ -29,6 +29,16 @@ $ Sequelize db:migrate
 $ Sequelize db:seed:all
 ```
 
+### Run Test
+```
+mocha
+```
+
+install mocha globally first, if you don't have it :
+```
+npm install -g mocha
+```
+
 ### Contributor
 - [Diky Arga Anggara](http://github.com/dikyarga)
 - [Eri Irawan](http://github.com/MrEi91)
