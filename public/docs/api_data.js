@@ -111,7 +111,7 @@ define({ "api": [
       "examples": [
         {
           "title": "List error",
-          "content": "HTTP/1.1 500 Internal Server Error",
+          "content": "HTTP/1.1 500 Internal Server Error\n[{\n  \"id\": null,\n  \"bukalapakId\": null,\n  \"name\": null,\n  \"username\": null,\n  \"email\": null,\n  \"saldo\": null,\n  \"token\": null,\n  \"success\": false,\n  \"message\": 'email atau password salah',\n}]",
           "type": "json"
         }
       ]
@@ -179,8 +179,15 @@ define({ "api": [
             "group": "Success 200",
             "type": "Integer",
             "optional": false,
-            "field": "userId",
-            "description": "<p>userId of user</p>"
+            "field": "id",
+            "description": "<p>id of user</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "bukalapakId",
+            "description": "<p>id of user in BukaLapak</p>"
           },
           {
             "group": "Success 200",
@@ -212,17 +219,31 @@ define({ "api": [
           },
           {
             "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Success or not ?</p>"
+          },
+          {
+            "group": "Success 200",
             "type": "String",
             "optional": false,
             "field": "token",
             "description": "<p>token for authorization</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>message from server</p>"
           }
         ]
       },
       "examples": [
         {
           "title": "Success",
-          "content": "HTTP/1.1 200 OK\n[{\n  id: 1,\n  bukalapakId: 23113,\n  name: \"Diky Arga\",\n  username: \"dikyarga\",\n  email: 'dikyarga.id@gmail.com',\n  saldo: 123000,\n  token: 'lalalalululululolololo',\n  success: true,\n}]",
+          "content": "HTTP/1.1 200 OK\n[{\n  \"id\": 1,\n  \"bukalapakId\": 123121,\n  \"name\": \"Diky Arga\",\n  \"username\": \"dikyarga\",\n  \"email\": 'dikyarga.id@gmail.com',\n  \"saldo\": 123000,\n  \"token\": 'lalalalululululolololo',\n  \"success\": true,\n  \"message\": 'login success',\n}]",
           "type": "json"
         }
       ]
@@ -231,7 +252,7 @@ define({ "api": [
       "examples": [
         {
           "title": "List error",
-          "content": "HTTP/1.1 500 Internal Server Error",
+          "content": "HTTP/1.1 500 Internal Server Error\n[{\n  \"id\": null,\n  \"bukalapakId\": null,\n  \"name\": null,\n  \"username\": null,\n  \"email\": null,\n  \"saldo\": null,\n  \"token\": null,\n  \"success\": false,\n  \"message\": 'email sudah terdaftar',\n}]",
           "type": "json"
         }
       ]

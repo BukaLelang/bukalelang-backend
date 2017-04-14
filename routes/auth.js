@@ -18,26 +18,41 @@ let authController = require('../controllers/authController')
  * @apiParam {String} email Email of user
  * @apiParam {String} username Username of user
  * @apiParam {String} password Password of user
- * @apiSuccess {Integer} userId userId of user
+ * @apiSuccess {Integer} id id of user
+ * @apiSuccess {Integer} bukalapakId id of user in BukaLapak
  * @apiSuccess {String} name Full Name of user
  * @apiSuccess {String} username Username of user
  * @apiSuccess {String} email Email of user
  * @apiSuccess {String} saldo Balance of user
+ * @apiSuccess {Boolean} success Success or not ?
  * @apiSuccess {String} token token for authorization
+ * @apiSuccess {String} message message from server
  * @apiSuccessExample {json} Success
  *    HTTP/1.1 200 OK
  *    [{
- *      id: 1,
- *      bukalapakId: 23113,
- *      name: "Diky Arga",
- *      username: "dikyarga",
- *      email: 'dikyarga.id@gmail.com',
- *      saldo: 123000,
- *      token: 'lalalalululululolololo',
- *      success: true,
+ *      "id": 1,
+ *      "bukalapakId": 123121,
+ *      "name": "Diky Arga",
+ *      "username": "dikyarga",
+ *      "email": 'dikyarga.id@gmail.com',
+ *      "saldo": 123000,
+ *      "token": 'lalalalululululolololo',
+ *      "success": true,
+ *      "message": 'login success',
  *    }]
  * @apiErrorExample {json} List error
  *    HTTP/1.1 500 Internal Server Error
+ *    [{
+ *      "id": null,
+ *      "bukalapakId": null,
+ *      "name": null,
+ *      "username": null,
+ *      "email": null,
+ *      "saldo": null,
+ *      "token": null,
+ *      "success": false,
+ *      "message": 'email sudah terdaftar',
+ *    }]
  */
 router.post('/register', authController.register)
 
@@ -76,6 +91,17 @@ router.post('/register', authController.register)
  *    }]
  * @apiErrorExample {json} List error
  *    HTTP/1.1 500 Internal Server Error
+ *    [{
+ *      "id": null,
+ *      "bukalapakId": null,
+ *      "name": null,
+ *      "username": null,
+ *      "email": null,
+ *      "saldo": null,
+ *      "token": null,
+ *      "success": false,
+ *      "message": 'email atau password salah',
+ *    }]
  */
 router.post('/login', authController.login)
 
