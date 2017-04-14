@@ -5,6 +5,18 @@ blEndPoint = 'https://api.bukalapak.com/v2/'
 
 module.exports = {
   register: (req, res) => {
+    let finalResult = {
+      id: null,
+      bukalapakId: null,
+      name: null,
+      username: null,
+      email: null,
+      saldo: null,
+      token: null,
+      success: false,
+      message: ''
+    }
+
     // register to BL
     axios.post(blEndPoint + '/users.json', {
       name: req.body.name,
@@ -13,60 +25,71 @@ module.exports = {
       password_confirmation: req.body.password,
       username: req.body.username,
       policy: '1'
-    }).then((response) => {
-      console.log('berhasil kah : ', response.data);
+    }).then((responseAfterRegisterToBukaLapak) => {
+      console.log('berhasil kah : ', responseAfterRegisterToBukaLapak.data);
       // cek respon dari BL
-      switch (response.data.status) {
+      switch (responseAfterRegisterToBukaLapak.data.status) {
         // teruskan pesan error dari BL
         case 'ERROR':
-          res.json({
-              userId: null,
-              name: null,
-              username: null,
-              email: null,
-              saldo: null,
-              token: null,
-              success: false,
-              message: response.data.message
-            })
+              finalResult.message = responseAfterRegisterToBukaLapak.data.message
+              res.json(finalResult)
           break;
         case 'OK':
           // buat user baru di DB
-          models.User.create({
-            name: req.body.name,
-            email: req.body.email,
-            password: req.body.password,
-            username: req.body.username,
-            bukalapakId: response.data.user_id,
-            bl_token: response.data.token,
-            confirmed: false,
-          }).then(user => {
-            // get saldo
-            let saldo = 1230000
-            // teruskan info user dari BL
-            res.json({
-              userId: user.id,
-              name: user.name,
-              username: user.username,
-              email: user.email,
-              saldo: saldo,
-              token: response.data.token,
-              success: true,
-              message: response.data.message
+          axios({
+            method:'post',
+            url: blEndPoint + 'authenticate.json',
+            auth: {
+              username: req.body.username,
+              password: req.body.password
+            }
+          }).then((responseAfterLogin) => {
+            models.User.create({
+              name: req.body.name,
+              username: req.body.username,
+              password: req.body.password,
+              bukalapakId: responseAfterRegisterToBukaLapak.data.user_id,
+              confirmed: false,
+              email: req.body.email,
+              omnikey: responseAfterLogin.data.omnikey,
+              bl_token: responseAfterRegisterToBukaLapak.data.token
+            }).then(newRegisteredUser => {
+              // dari data register kita cek dompetnya
+              axios({
+                method: 'get',
+                url: blEndPoint + 'dompet/history.json',
+                auth: {
+                  username: responseAfterLogin.data.user_id,
+                  password: responseAfterLogin.data.token
+                }
+              }).then((responseGetBalance) => {
+                // console.log('isi responseGetBalance : ', responseGetBalance.data);
+                  finalResult.id = newRegisteredUser.id,
+                  finalResult.bukalapakId = responseAfterLogin.data.user_id,
+                  finalResult.name = responseAfterLogin.data.user_name,
+                  finalResult.username = req.body.username,
+                  finalResult.email = responseAfterLogin.data.email,
+                  finalResult.saldo = responseGetBalance.data.balance,
+                  finalResult.token = responseAfterLogin.data.token,
+                  finalResult.success = true,
+                  finalResult.message = 'login success'
+                  res.json(finalResult)
+              }).catch((err) => {
+                console.log('isi error saat ambil saldo : ', err);
+                finalResult.message = 'Error saat ambil saldo di Buka Dompet'
+                res.json(finalResult)
+
+              })
+            }).catch(err => {
+              console.log('error when trying to create a new user : ', err);
+              // jika saat query error
+              finalResult.message = 'Register new user at local DB fail'
+              res.json(finalResult)
             })
-          }).catch(err => {
-            console.log('error when trying to register : ', err);
-            // jika saat query error
-            res.json({
-              userId: null,
-              name: null,
-              username: null,
-              email: null,
-              saldo: null,
-              token: null,
-              success: false,
-              message: 'error when trying to register : ' + err
-            })
+          }).catch((err) => {
+            console.log('Error when trying to login to BukaLapak', err);
+            finalResult.message = 'Error when trying to login to BukaLapak'
+            res.json(finalResult)
           })
           break;
         default:
