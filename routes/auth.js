@@ -27,7 +27,8 @@ let authController = require('../controllers/authController')
  * @apiSuccessExample {json} Success
  *    HTTP/1.1 200 OK
  *    [{
- *      userId: 1,
+ *      id: 1,
+ *      bukalapakId: 23113,
  *      name: "Diky Arga",
  *      username: "dikyarga",
  *      email: 'dikyarga.id@gmail.com',
@@ -51,22 +52,27 @@ router.post('/register', authController.register)
  *     }
  * @apiParam {String} username Username of user
  * @apiParam {String} password Password of user
- * @apiSuccess {Integer} userId userId of user
+ * @apiSuccess {Integer} id id of user
+ * @apiSuccess {Integer} bukalapakId id of user in BukaLapak
  * @apiSuccess {String} name Full Name of user
  * @apiSuccess {String} username Username of user
  * @apiSuccess {String} email Email of user
  * @apiSuccess {String} saldo Balance of user
+ * @apiSuccess {Boolean} success Success or not ?
  * @apiSuccess {String} token token for authorization
+ * @apiSuccess {String} message message from server
  * @apiSuccessExample {json} Success
  *    HTTP/1.1 200 OK
  *    [{
- *      "userId": 1,
+ *      "id": 1,
+ *      "bukalapakId": 123121,
  *      "name": "Diky Arga",
  *      "username": "dikyarga",
  *      "email": 'dikyarga.id@gmail.com',
  *      "saldo": 123000,
  *      "token": 'lalalalululululolololo',
  *      "success": true,
+ *      "message": 'login success',
  *    }]
  * @apiErrorExample {json} List error
  *    HTTP/1.1 500 Internal Server Error
