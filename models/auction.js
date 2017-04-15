@@ -9,7 +9,10 @@ module.exports = function(sequelize, DataTypes) {
     start_date: DataTypes.DATE,
     end_date: DataTypes.DATE,
     CategoryId: DataTypes.INTEGER,
-    UserId: DataTypes.INTEGER
+    UserId: DataTypes.INTEGER,
+    new:DataTypes.BOOLEAN,
+    description:DataTypes.STRING,
+    weight:DataTypes.INTEGER
   }, {
     classMethods: {
       associate: function(models) {
