@@ -17,6 +17,13 @@ $ cp .env.example .env
 $ npm run dev
 ```
 
+note :
+
+to run npm run dev, you need nodemon, if you don't it, install it globally :
+```
+npm install -g nodemon
+```
+
 ### Usage
 ```
 Create database on PgAdmin with name bukalelang-db
@@ -29,9 +36,15 @@ $ Sequelize db:migrate
 $ Sequelize db:seed:all
 ```
 
+to use sequelize command, you need sequelize-cli,
+```
+npm install -g sequelize-cli
+```
+
 ### Run Test
 ```
-mocha
+$ mocha               <- to run all Test
+$ mocha test/auth.js  <- to run a test
 ```
 
 install mocha globally first, if you don't have it :
