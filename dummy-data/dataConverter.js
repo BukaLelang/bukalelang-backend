@@ -6,7 +6,7 @@ let result = []
 
 let categoriesLength = categoriesJson.categories.length
 console.log('dapet :', categoriesLength);
-
+let summer = 0
 for (var i = 0; i < categoriesLength; i++) {
   result.push({
     bl_categoryId:categoriesJson.categories[i].id,
@@ -15,8 +15,20 @@ for (var i = 0; i < categoriesLength; i++) {
     createdAt:new Date(),
     updatedAt: new Date()
   })
+  console.log('isinya apa ya : ', categoriesJson.categories[i].children);
+  for (var j= 0; j < categoriesJson.categories[i].children.length; j++) {
+    result.push({
+      bl_categoryId:categoriesJson.categories[i].children[j].id,
+      name:categoriesJson.categories[i].children[j].name,
+      url:categoriesJson.categories[i].children[j].url,
+      createdAt:new Date(),
+      updatedAt: new Date()
+    })
+  }
+  summer += categoriesJson.categories[i].children.length
+
 }
-console.log(result);
+console.log(summer);
 
 
 fs.writeFileSync('dummy-data/categories-converted.json', JSON.stringify(result))

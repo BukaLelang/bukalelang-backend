@@ -2,120 +2,1470 @@
     "bl_categoryId": 2266,
     "name": "Perawatan & Kecantikan",
     "url": "/c/perawatan-kecantikan",
-    "createdAt": "2017-04-14T15:56:19.742Z",
-    "updatedAt": "2017-04-14T15:56:19.742Z"
+    "createdAt": "2017-04-15T14:32:41.980Z",
+    "updatedAt": "2017-04-15T14:32:41.980Z"
+}, {
+    "bl_categoryId": 2650,
+    "name": "Softlens",
+    "url": "/c/perawatan-kecantikan/softlens",
+    "createdAt": "2017-04-15T14:32:41.985Z",
+    "updatedAt": "2017-04-15T14:32:41.985Z"
+}, {
+    "bl_categoryId": 2269,
+    "name": "Perawatan Wajah",
+    "url": "/c/perawatan-kecantikan/perawatan-wajah",
+    "createdAt": "2017-04-15T14:32:41.985Z",
+    "updatedAt": "2017-04-15T14:32:41.985Z"
+}, {
+    "bl_categoryId": 2290,
+    "name": "Makeup",
+    "url": "/c/perawatan-kecantikan/makeup",
+    "createdAt": "2017-04-15T14:32:41.985Z",
+    "updatedAt": "2017-04-15T14:32:41.985Z"
+}, {
+    "bl_categoryId": 2311,
+    "name": "Perawatan Tubuh",
+    "url": "/c/perawatan-kecantikan/perawatan-tubuh-2311",
+    "createdAt": "2017-04-15T14:32:41.985Z",
+    "updatedAt": "2017-04-15T14:32:41.985Z"
+}, {
+    "bl_categoryId": 2332,
+    "name": "Parfum",
+    "url": "/c/perawatan-kecantikan/parfum",
+    "createdAt": "2017-04-15T14:32:41.985Z",
+    "updatedAt": "2017-04-15T14:32:41.985Z"
+}, {
+    "bl_categoryId": 2344,
+    "name": "Pelangsing",
+    "url": "/c/perawatan-kecantikan/pelangsing",
+    "createdAt": "2017-04-15T14:32:41.985Z",
+    "updatedAt": "2017-04-15T14:32:41.985Z"
+}, {
+    "bl_categoryId": 2356,
+    "name": "Produk Kecantikan Lainnya",
+    "url": "/c/perawatan-kecantikan/produk-kecantikan-lainnya",
+    "createdAt": "2017-04-15T14:32:41.985Z",
+    "updatedAt": "2017-04-15T14:32:41.985Z"
+}, {
+    "bl_categoryId": 218,
+    "name": "Hair Care",
+    "url": "/c/perawatan-kecantikan/hair-care",
+    "createdAt": "2017-04-15T14:32:41.985Z",
+    "updatedAt": "2017-04-15T14:32:41.985Z"
 }, {
     "bl_categoryId": 2359,
     "name": "Kesehatan",
     "url": "/c/kesehatan-2359",
-    "createdAt": "2017-04-14T15:56:19.742Z",
-    "updatedAt": "2017-04-14T15:56:19.742Z"
+    "createdAt": "2017-04-15T14:32:41.985Z",
+    "updatedAt": "2017-04-15T14:32:41.985Z"
+}, {
+    "bl_categoryId": 2666,
+    "name": "Kesehatan Mulut & Gigi",
+    "url": "/c/kesehatan-2359/kesehatan-mulut-gigi",
+    "createdAt": "2017-04-15T14:32:41.987Z",
+    "updatedAt": "2017-04-15T14:32:41.987Z"
+}, {
+    "bl_categoryId": 2671,
+    "name": "Kesehatan Mata",
+    "url": "/c/kesehatan-2359/kesehatan-mata",
+    "createdAt": "2017-04-15T14:32:41.987Z",
+    "updatedAt": "2017-04-15T14:32:41.987Z"
+}, {
+    "bl_categoryId": 2676,
+    "name": "Kesehatan Telinga",
+    "url": "/c/kesehatan-2359/kesehatan-telinga",
+    "createdAt": "2017-04-15T14:32:41.987Z",
+    "updatedAt": "2017-04-15T14:32:41.987Z"
+}, {
+    "bl_categoryId": 2681,
+    "name": "Kesehatan Wanita",
+    "url": "/c/kesehatan-2359/kesehatan-wanita",
+    "createdAt": "2017-04-15T14:32:41.987Z",
+    "updatedAt": "2017-04-15T14:32:41.987Z"
+}, {
+    "bl_categoryId": 2362,
+    "name": "Obat & Suplemen",
+    "url": "/c/kesehatan-2359/obat-suplemen",
+    "createdAt": "2017-04-15T14:32:41.987Z",
+    "updatedAt": "2017-04-15T14:32:41.987Z"
+}, {
+    "bl_categoryId": 2374,
+    "name": "Alat Kesehatan",
+    "url": "/c/kesehatan-2359/alat-kesehatan",
+    "createdAt": "2017-04-15T14:32:41.987Z",
+    "updatedAt": "2017-04-15T14:32:41.987Z"
+}, {
+    "bl_categoryId": 2386,
+    "name": "Produk Kesehatan Lainnya",
+    "url": "/c/kesehatan-2359/produk-kesehatan-lainnya",
+    "createdAt": "2017-04-15T14:32:41.987Z",
+    "updatedAt": "2017-04-15T14:32:41.987Z"
 }, {
     "bl_categoryId": 159,
     "name": "Fashion Wanita",
     "url": "/c/fashion-wanita",
-    "createdAt": "2017-04-14T15:56:19.742Z",
-    "updatedAt": "2017-04-14T15:56:19.742Z"
+    "createdAt": "2017-04-15T14:32:41.987Z",
+    "updatedAt": "2017-04-15T14:32:41.987Z"
+}, {
+    "bl_categoryId": 2038,
+    "name": "Sandal",
+    "url": "/c/fashion-wanita/sandal-2038",
+    "createdAt": "2017-04-15T14:32:41.990Z",
+    "updatedAt": "2017-04-15T14:32:41.990Z"
+}, {
+    "bl_categoryId": 2654,
+    "name": "Piyama/Baju Tidur",
+    "url": "/c/fashion-wanita/piyama-baju-tidur",
+    "createdAt": "2017-04-15T14:32:41.990Z",
+    "updatedAt": "2017-04-15T14:32:41.990Z"
+}, {
+    "bl_categoryId": 2726,
+    "name": "Jumpsuit",
+    "url": "/c/fashion-wanita/jumpsuit",
+    "createdAt": "2017-04-15T14:32:41.990Z",
+    "updatedAt": "2017-04-15T14:32:41.990Z"
+}, {
+    "bl_categoryId": 2571,
+    "name": "Jilbab",
+    "url": "/c/fashion-wanita/jilbab-2571",
+    "createdAt": "2017-04-15T14:32:41.990Z",
+    "updatedAt": "2017-04-15T14:32:41.990Z"
+}, {
+    "bl_categoryId": 561,
+    "name": "Bahan & Kain",
+    "url": "/c/fashion-wanita/bahan-kain",
+    "createdAt": "2017-04-15T14:32:41.990Z",
+    "updatedAt": "2017-04-15T14:32:41.990Z"
+}, {
+    "bl_categoryId": 163,
+    "name": "Kacamata",
+    "url": "/c/fashion-wanita/kacamata",
+    "createdAt": "2017-04-15T14:32:41.990Z",
+    "updatedAt": "2017-04-15T14:32:41.990Z"
+}, {
+    "bl_categoryId": 1096,
+    "name": "Topi",
+    "url": "/c/fashion-wanita/topi-1096",
+    "createdAt": "2017-04-15T14:32:41.990Z",
+    "updatedAt": "2017-04-15T14:32:41.990Z"
+}, {
+    "bl_categoryId": 281,
+    "name": "Kaos",
+    "url": "/c/fashion-wanita/kaos",
+    "createdAt": "2017-04-15T14:32:41.990Z",
+    "updatedAt": "2017-04-15T14:32:41.990Z"
+}, {
+    "bl_categoryId": 1099,
+    "name": "Polo Shirt",
+    "url": "/c/fashion-wanita/polo-shirt-1099",
+    "createdAt": "2017-04-15T14:32:41.990Z",
+    "updatedAt": "2017-04-15T14:32:41.990Z"
+}, {
+    "bl_categoryId": 282,
+    "name": "Kemeja, Blouse",
+    "url": "/c/fashion-wanita/kemeja-blouse",
+    "createdAt": "2017-04-15T14:32:41.990Z",
+    "updatedAt": "2017-04-15T14:32:41.990Z"
+}, {
+    "bl_categoryId": 14,
+    "name": "Dress",
+    "url": "/c/fashion-wanita/dress",
+    "createdAt": "2017-04-15T14:32:41.990Z",
+    "updatedAt": "2017-04-15T14:32:41.990Z"
+}, {
+    "bl_categoryId": 2555,
+    "name": "Baju Muslim & Perlengkapan Sholat",
+    "url": "/c/fashion-wanita/baju-muslim-perlengkapan-sholat-2555",
+    "createdAt": "2017-04-15T14:32:41.990Z",
+    "updatedAt": "2017-04-15T14:32:41.990Z"
+}, {
+    "bl_categoryId": 283,
+    "name": "Sweater",
+    "url": "/c/fashion-wanita/sweater",
+    "createdAt": "2017-04-15T14:32:41.990Z",
+    "updatedAt": "2017-04-15T14:32:41.990Z"
+}, {
+    "bl_categoryId": 284,
+    "name": "Jaket",
+    "url": "/c/fashion-wanita/jaket-284",
+    "createdAt": "2017-04-15T14:32:41.990Z",
+    "updatedAt": "2017-04-15T14:32:41.990Z"
+}, {
+    "bl_categoryId": 285,
+    "name": "Bolero, Cardigan",
+    "url": "/c/fashion-wanita/bolero-cardigan",
+    "createdAt": "2017-04-15T14:32:41.990Z",
+    "updatedAt": "2017-04-15T14:32:41.990Z"
+}, {
+    "bl_categoryId": 286,
+    "name": "Kebaya",
+    "url": "/c/fashion-wanita/kebaya",
+    "createdAt": "2017-04-15T14:32:41.990Z",
+    "updatedAt": "2017-04-15T14:32:41.990Z"
+}, {
+    "bl_categoryId": 287,
+    "name": "Rok",
+    "url": "/c/fashion-wanita/rok",
+    "createdAt": "2017-04-15T14:32:41.990Z",
+    "updatedAt": "2017-04-15T14:32:41.990Z"
+}, {
+    "bl_categoryId": 938,
+    "name": "Legging & Stocking",
+    "url": "/c/fashion-wanita/legging-stocking",
+    "createdAt": "2017-04-15T14:32:41.990Z",
+    "updatedAt": "2017-04-15T14:32:41.990Z"
+}, {
+    "bl_categoryId": 292,
+    "name": "Baju Hamil",
+    "url": "/c/fashion-wanita/baju-hamil",
+    "createdAt": "2017-04-15T14:32:41.990Z",
+    "updatedAt": "2017-04-15T14:32:41.990Z"
+}, {
+    "bl_categoryId": 998,
+    "name": "Bikini",
+    "url": "/c/fashion-wanita/bikini",
+    "createdAt": "2017-04-15T14:32:41.990Z",
+    "updatedAt": "2017-04-15T14:32:41.990Z"
+}, {
+    "bl_categoryId": 289,
+    "name": "Pakaian Dalam, Lingerie",
+    "url": "/c/fashion-wanita/pakaian-dalam-lingerie",
+    "createdAt": "2017-04-15T14:32:41.990Z",
+    "updatedAt": "2017-04-15T14:32:41.990Z"
+}, {
+    "bl_categoryId": 80,
+    "name": "Tas Wanita",
+    "url": "/c/fashion-wanita/tas-wanita",
+    "createdAt": "2017-04-15T14:32:41.990Z",
+    "updatedAt": "2017-04-15T14:32:41.990Z"
+}, {
+    "bl_categoryId": 15,
+    "name": "Jam Tangan",
+    "url": "/c/fashion-wanita/jam-tangan",
+    "createdAt": "2017-04-15T14:32:41.990Z",
+    "updatedAt": "2017-04-15T14:32:41.990Z"
+}, {
+    "bl_categoryId": 1093,
+    "name": "Jeans",
+    "url": "/c/fashion-wanita/jeans-1093",
+    "createdAt": "2017-04-15T14:32:41.990Z",
+    "updatedAt": "2017-04-15T14:32:41.990Z"
+}, {
+    "bl_categoryId": 288,
+    "name": "Celana",
+    "url": "/c/fashion-wanita/celana",
+    "createdAt": "2017-04-15T14:32:41.990Z",
+    "updatedAt": "2017-04-15T14:32:41.990Z"
+}, {
+    "bl_categoryId": 16,
+    "name": "Sepatu",
+    "url": "/c/fashion-wanita/sepatu-16",
+    "createdAt": "2017-04-15T14:32:41.990Z",
+    "updatedAt": "2017-04-15T14:32:41.990Z"
+}, {
+    "bl_categoryId": 293,
+    "name": "Dompet",
+    "url": "/c/fashion-wanita/dompet",
+    "createdAt": "2017-04-15T14:32:41.990Z",
+    "updatedAt": "2017-04-15T14:32:41.990Z"
+}, {
+    "bl_categoryId": 935,
+    "name": "Sarung Tangan",
+    "url": "/c/fashion-wanita/sarung-tangan-935",
+    "createdAt": "2017-04-15T14:32:41.990Z",
+    "updatedAt": "2017-04-15T14:32:41.990Z"
+}, {
+    "bl_categoryId": 1087,
+    "name": "Ikat Pinggang",
+    "url": "/c/fashion-wanita/ikat-pinggang",
+    "createdAt": "2017-04-15T14:32:41.990Z",
+    "updatedAt": "2017-04-15T14:32:41.990Z"
+}, {
+    "bl_categoryId": 17,
+    "name": "Perhiasan & Aksesoris",
+    "url": "/c/fashion-wanita/perhiasan-aksesoris",
+    "createdAt": "2017-04-15T14:32:41.990Z",
+    "updatedAt": "2017-04-15T14:32:41.990Z"
+}, {
+    "bl_categoryId": 1116,
+    "name": "Kaus Kaki",
+    "url": "/c/fashion-wanita/kaus-kaki-1116",
+    "createdAt": "2017-04-15T14:32:41.990Z",
+    "updatedAt": "2017-04-15T14:32:41.990Z"
 }, {
     "bl_categoryId": 164,
     "name": "Fashion Pria",
     "url": "/c/fashion-pria",
-    "createdAt": "2017-04-14T15:56:19.742Z",
-    "updatedAt": "2017-04-14T15:56:19.742Z"
+    "createdAt": "2017-04-15T14:32:41.990Z",
+    "updatedAt": "2017-04-15T14:32:41.990Z"
+}, {
+    "bl_categoryId": 2002,
+    "name": "Bahan & Kain",
+    "url": "/c/fashion-pria/bahan-kain-2002",
+    "createdAt": "2017-04-15T14:32:41.992Z",
+    "updatedAt": "2017-04-15T14:32:41.992Z"
+}, {
+    "bl_categoryId": 2657,
+    "name": "Piyama/Baju Tidur",
+    "url": "/c/fashion-pria/piyama-baju-tidur-2657",
+    "createdAt": "2017-04-15T14:32:41.992Z",
+    "updatedAt": "2017-04-15T14:32:41.992Z"
+}, {
+    "bl_categoryId": 172,
+    "name": "Kacamata",
+    "url": "/c/fashion-pria/kacamata-172",
+    "createdAt": "2017-04-15T14:32:41.992Z",
+    "updatedAt": "2017-04-15T14:32:41.992Z"
+}, {
+    "bl_categoryId": 304,
+    "name": "Topi",
+    "url": "/c/fashion-pria/topi",
+    "createdAt": "2017-04-15T14:32:41.992Z",
+    "updatedAt": "2017-04-15T14:32:41.992Z"
+}, {
+    "bl_categoryId": 165,
+    "name": "Kaos",
+    "url": "/c/fashion-pria/kaos-165",
+    "createdAt": "2017-04-15T14:32:41.992Z",
+    "updatedAt": "2017-04-15T14:32:41.992Z"
+}, {
+    "bl_categoryId": 167,
+    "name": "Polo Shirt",
+    "url": "/c/fashion-pria/polo-shirt",
+    "createdAt": "2017-04-15T14:32:41.992Z",
+    "updatedAt": "2017-04-15T14:32:41.992Z"
+}, {
+    "bl_categoryId": 296,
+    "name": "Kemeja",
+    "url": "/c/fashion-pria/kemeja",
+    "createdAt": "2017-04-15T14:32:41.992Z",
+    "updatedAt": "2017-04-15T14:32:41.992Z"
+}, {
+    "bl_categoryId": 564,
+    "name": "Jas",
+    "url": "/c/fashion-pria/jas",
+    "createdAt": "2017-04-15T14:32:41.992Z",
+    "updatedAt": "2017-04-15T14:32:41.992Z"
+}, {
+    "bl_categoryId": 297,
+    "name": "Sweater",
+    "url": "/c/fashion-pria/sweater-297",
+    "createdAt": "2017-04-15T14:32:41.992Z",
+    "updatedAt": "2017-04-15T14:32:41.992Z"
+}, {
+    "bl_categoryId": 298,
+    "name": "Jaket",
+    "url": "/c/fashion-pria/jaket",
+    "createdAt": "2017-04-15T14:32:41.992Z",
+    "updatedAt": "2017-04-15T14:32:41.992Z"
+}, {
+    "bl_categoryId": 301,
+    "name": "Pakaian Dalam",
+    "url": "/c/fashion-pria/pakaian-dalam",
+    "createdAt": "2017-04-15T14:32:41.992Z",
+    "updatedAt": "2017-04-15T14:32:41.992Z"
+}, {
+    "bl_categoryId": 168,
+    "name": "Tas Pria",
+    "url": "/c/fashion-pria/tas-pria",
+    "createdAt": "2017-04-15T14:32:41.992Z",
+    "updatedAt": "2017-04-15T14:32:41.992Z"
+}, {
+    "bl_categoryId": 171,
+    "name": "Jam Tangan",
+    "url": "/c/fashion-pria/jam-tangan-171",
+    "createdAt": "2017-04-15T14:32:41.992Z",
+    "updatedAt": "2017-04-15T14:32:41.992Z"
+}, {
+    "bl_categoryId": 300,
+    "name": "Jeans",
+    "url": "/c/fashion-pria/jeans",
+    "createdAt": "2017-04-15T14:32:41.992Z",
+    "updatedAt": "2017-04-15T14:32:41.992Z"
+}, {
+    "bl_categoryId": 299,
+    "name": "Celana",
+    "url": "/c/fashion-pria/celana-299",
+    "createdAt": "2017-04-15T14:32:41.992Z",
+    "updatedAt": "2017-04-15T14:32:41.992Z"
+}, {
+    "bl_categoryId": 169,
+    "name": "Sepatu",
+    "url": "/c/fashion-pria/sepatu-169",
+    "createdAt": "2017-04-15T14:32:41.992Z",
+    "updatedAt": "2017-04-15T14:32:41.992Z"
+}, {
+    "bl_categoryId": 303,
+    "name": "Sandal",
+    "url": "/c/fashion-pria/sandal",
+    "createdAt": "2017-04-15T14:32:41.992Z",
+    "updatedAt": "2017-04-15T14:32:41.992Z"
+}, {
+    "bl_categoryId": 302,
+    "name": "Dompet",
+    "url": "/c/fashion-pria/dompet-302",
+    "createdAt": "2017-04-15T14:32:41.992Z",
+    "updatedAt": "2017-04-15T14:32:41.992Z"
+}, {
+    "bl_categoryId": 932,
+    "name": "Sarung Tangan",
+    "url": "/c/fashion-pria/sarung-tangan",
+    "createdAt": "2017-04-15T14:32:41.992Z",
+    "updatedAt": "2017-04-15T14:32:41.992Z"
+}, {
+    "bl_categoryId": 1089,
+    "name": "Ikat Pinggang",
+    "url": "/c/fashion-pria/ikat-pinggang-1089",
+    "createdAt": "2017-04-15T14:32:41.992Z",
+    "updatedAt": "2017-04-15T14:32:41.992Z"
+}, {
+    "bl_categoryId": 170,
+    "name": "Perhiasan & Aksesoris",
+    "url": "/c/fashion-pria/perhiasan-aksesoris-170",
+    "createdAt": "2017-04-15T14:32:41.992Z",
+    "updatedAt": "2017-04-15T14:32:41.992Z"
+}, {
+    "bl_categoryId": 1117,
+    "name": "Kaus Kaki",
+    "url": "/c/fashion-pria/kaus-kaki",
+    "createdAt": "2017-04-15T14:32:41.992Z",
+    "updatedAt": "2017-04-15T14:32:41.992Z"
+}, {
+    "bl_categoryId": 2407,
+    "name": "Baju Muslim & Perlengkapan Sholat",
+    "url": "/c/fashion-pria/baju-muslim-perlengkapan-sholat",
+    "createdAt": "2017-04-15T14:32:41.992Z",
+    "updatedAt": "2017-04-15T14:32:41.992Z"
 }, {
     "bl_categoryId": 7,
     "name": "Handphone",
     "url": "/c/handphone",
-    "createdAt": "2017-04-14T15:56:19.742Z",
-    "updatedAt": "2017-04-14T15:56:19.742Z"
+    "createdAt": "2017-04-15T14:32:41.992Z",
+    "updatedAt": "2017-04-15T14:32:41.992Z"
+}, {
+    "bl_categoryId": 1707,
+    "name": "Spare Part & Tools Handphone",
+    "url": "/c/handphone/spare-part-tools-handphone",
+    "createdAt": "2017-04-15T14:32:42.000Z",
+    "updatedAt": "2017-04-15T14:32:42.000Z"
+}, {
+    "bl_categoryId": 1918,
+    "name": "Virtual Reality",
+    "url": "/c/handphone/virtual-reality",
+    "createdAt": "2017-04-15T14:32:42.000Z",
+    "updatedAt": "2017-04-15T14:32:42.000Z"
+}, {
+    "bl_categoryId": 1921,
+    "name": "Smartwatch",
+    "url": "/c/handphone/smartwatch",
+    "createdAt": "2017-04-15T14:32:42.000Z",
+    "updatedAt": "2017-04-15T14:32:42.000Z"
+}, {
+    "bl_categoryId": 8,
+    "name": "HP & Smartphone",
+    "url": "/c/handphone/hp-smartphone",
+    "createdAt": "2017-04-15T14:32:42.000Z",
+    "updatedAt": "2017-04-15T14:32:42.000Z"
+}, {
+    "bl_categoryId": 156,
+    "name": "Tablet",
+    "url": "/c/handphone/tablet",
+    "createdAt": "2017-04-15T14:32:42.000Z",
+    "updatedAt": "2017-04-15T14:32:42.000Z"
+}, {
+    "bl_categoryId": 184,
+    "name": "Power Bank",
+    "url": "/c/handphone/power-bank",
+    "createdAt": "2017-04-15T14:32:42.000Z",
+    "updatedAt": "2017-04-15T14:32:42.000Z"
+}, {
+    "bl_categoryId": 178,
+    "name": "Headset (Earphone)",
+    "url": "/c/handphone/headset-earphone",
+    "createdAt": "2017-04-15T14:32:42.000Z",
+    "updatedAt": "2017-04-15T14:32:42.000Z"
+}, {
+    "bl_categoryId": 180,
+    "name": "Memory Card",
+    "url": "/c/handphone/memory-card",
+    "createdAt": "2017-04-15T14:32:42.000Z",
+    "updatedAt": "2017-04-15T14:32:42.000Z"
+}, {
+    "bl_categoryId": 183,
+    "name": "Kartu Perdana",
+    "url": "/c/handphone/kartu-perdana",
+    "createdAt": "2017-04-15T14:32:42.000Z",
+    "updatedAt": "2017-04-15T14:32:42.000Z"
+}, {
+    "bl_categoryId": 185,
+    "name": "Aksesoris Handphone",
+    "url": "/c/handphone/aksesoris-handphone",
+    "createdAt": "2017-04-15T14:32:42.000Z",
+    "updatedAt": "2017-04-15T14:32:42.000Z"
 }, {
     "bl_categoryId": 1,
     "name": "Komputer",
     "url": "/c/komputer",
-    "createdAt": "2017-04-14T15:56:19.742Z",
-    "updatedAt": "2017-04-14T15:56:19.742Z"
+    "createdAt": "2017-04-15T14:32:42.000Z",
+    "updatedAt": "2017-04-15T14:32:42.000Z"
+}, {
+    "bl_categoryId": 1510,
+    "name": "Hardware",
+    "url": "/c/komputer/hardware",
+    "createdAt": "2017-04-15T14:32:42.000Z",
+    "updatedAt": "2017-04-15T14:32:42.000Z"
+}, {
+    "bl_categoryId": 1639,
+    "name": "Mini PC",
+    "url": "/c/komputer/mini-pc",
+    "createdAt": "2017-04-15T14:32:42.000Z",
+    "updatedAt": "2017-04-15T14:32:42.000Z"
+}, {
+    "bl_categoryId": 2,
+    "name": "Desktop",
+    "url": "/c/komputer/desktop",
+    "createdAt": "2017-04-15T14:32:42.000Z",
+    "updatedAt": "2017-04-15T14:32:42.000Z"
+}, {
+    "bl_categoryId": 3,
+    "name": "Laptop",
+    "url": "/c/komputer/laptop",
+    "createdAt": "2017-04-15T14:32:42.000Z",
+    "updatedAt": "2017-04-15T14:32:42.000Z"
+}, {
+    "bl_categoryId": 157,
+    "name": "Server",
+    "url": "/c/komputer/server",
+    "createdAt": "2017-04-15T14:32:42.000Z",
+    "updatedAt": "2017-04-15T14:32:42.000Z"
+}, {
+    "bl_categoryId": 4,
+    "name": "Printer",
+    "url": "/c/komputer/printer",
+    "createdAt": "2017-04-15T14:32:42.000Z",
+    "updatedAt": "2017-04-15T14:32:42.000Z"
+}, {
+    "bl_categoryId": 5,
+    "name": "Software Original",
+    "url": "/c/komputer/software-original",
+    "createdAt": "2017-04-15T14:32:42.000Z",
+    "updatedAt": "2017-04-15T14:32:42.000Z"
+}, {
+    "bl_categoryId": 224,
+    "name": "Scanner",
+    "url": "/c/komputer/scanner",
+    "createdAt": "2017-04-15T14:32:42.000Z",
+    "updatedAt": "2017-04-15T14:32:42.000Z"
+}, {
+    "bl_categoryId": 225,
+    "name": "Monitor",
+    "url": "/c/komputer/monitor",
+    "createdAt": "2017-04-15T14:32:42.000Z",
+    "updatedAt": "2017-04-15T14:32:42.000Z"
+}, {
+    "bl_categoryId": 226,
+    "name": "Aksesoris",
+    "url": "/c/komputer/aksesoris-226",
+    "createdAt": "2017-04-15T14:32:42.000Z",
+    "updatedAt": "2017-04-15T14:32:42.000Z"
 }, {
     "bl_categoryId": 510,
     "name": "Elektronik",
     "url": "/c/elektronik",
-    "createdAt": "2017-04-14T15:56:19.742Z",
-    "updatedAt": "2017-04-14T15:56:19.742Z"
+    "createdAt": "2017-04-15T14:32:42.000Z",
+    "updatedAt": "2017-04-15T14:32:42.000Z"
+}, {
+    "bl_categoryId": 1534,
+    "name": "Walkie Talkie",
+    "url": "/c/elektronik/walkie-talkie",
+    "createdAt": "2017-04-15T14:32:42.003Z",
+    "updatedAt": "2017-04-15T14:32:42.003Z"
+}, {
+    "bl_categoryId": 1537,
+    "name": "Media Player & Set Top Box",
+    "url": "/c/elektronik/media-player-set-top-box",
+    "createdAt": "2017-04-15T14:32:42.003Z",
+    "updatedAt": "2017-04-15T14:32:42.003Z"
+}, {
+    "bl_categoryId": 1540,
+    "name": "Komponen Elektronik",
+    "url": "/c/elektronik/komponen-elektronik",
+    "createdAt": "2017-04-15T14:32:42.003Z",
+    "updatedAt": "2017-04-15T14:32:42.003Z"
+}, {
+    "bl_categoryId": 1543,
+    "name": "Aksesoris TV & Video",
+    "url": "/c/elektronik/aksesoris-tv-video",
+    "createdAt": "2017-04-15T14:32:42.003Z",
+    "updatedAt": "2017-04-15T14:32:42.003Z"
+}, {
+    "bl_categoryId": 2648,
+    "name": "Voice Recorder",
+    "url": "/c/elektronik/voice-recorder",
+    "createdAt": "2017-04-15T14:32:42.003Z",
+    "updatedAt": "2017-04-15T14:32:42.003Z"
+}, {
+    "bl_categoryId": 200,
+    "name": "Televisi",
+    "url": "/c/elektronik/televisi",
+    "createdAt": "2017-04-15T14:32:42.003Z",
+    "updatedAt": "2017-04-15T14:32:42.003Z"
+}, {
+    "bl_categoryId": 202,
+    "name": "CD, VCD, DVD, Blu-Ray Player  ",
+    "url": "/c/elektronik/cd-vcd-dvd-blu-ray-player",
+    "createdAt": "2017-04-15T14:32:42.003Z",
+    "updatedAt": "2017-04-15T14:32:42.003Z"
+}, {
+    "bl_categoryId": 204,
+    "name": "Home Theater",
+    "url": "/c/elektronik/home-theater",
+    "createdAt": "2017-04-15T14:32:42.003Z",
+    "updatedAt": "2017-04-15T14:32:42.003Z"
+}, {
+    "bl_categoryId": 205,
+    "name": "Portable Audio Player",
+    "url": "/c/elektronik/portable-audio-player",
+    "createdAt": "2017-04-15T14:32:42.003Z",
+    "updatedAt": "2017-04-15T14:32:42.003Z"
+}, {
+    "bl_categoryId": 206,
+    "name": "Headphone",
+    "url": "/c/elektronik/headphone",
+    "createdAt": "2017-04-15T14:32:42.003Z",
+    "updatedAt": "2017-04-15T14:32:42.003Z"
+}, {
+    "bl_categoryId": 203,
+    "name": "Speaker",
+    "url": "/c/elektronik/speaker",
+    "createdAt": "2017-04-15T14:32:42.003Z",
+    "updatedAt": "2017-04-15T14:32:42.003Z"
+}, {
+    "bl_categoryId": 207,
+    "name": "Proyektor",
+    "url": "/c/elektronik/proyektor",
+    "createdAt": "2017-04-15T14:32:42.003Z",
+    "updatedAt": "2017-04-15T14:32:42.003Z"
+}, {
+    "bl_categoryId": 201,
+    "name": "Radio & Tape",
+    "url": "/c/elektronik/radio-tape",
+    "createdAt": "2017-04-15T14:32:42.003Z",
+    "updatedAt": "2017-04-15T14:32:42.003Z"
+}, {
+    "bl_categoryId": 681,
+    "name": "Baterai",
+    "url": "/c/elektronik/baterai-681",
+    "createdAt": "2017-04-15T14:32:42.003Z",
+    "updatedAt": "2017-04-15T14:32:42.003Z"
+}, {
+    "bl_categoryId": 678,
+    "name": "GPS",
+    "url": "/c/elektronik/gps",
+    "createdAt": "2017-04-15T14:32:42.003Z",
+    "updatedAt": "2017-04-15T14:32:42.003Z"
+}, {
+    "bl_categoryId": 208,
+    "name": "Lain-lain",
+    "url": "/c/elektronik/lain-lain-208",
+    "createdAt": "2017-04-15T14:32:42.003Z",
+    "updatedAt": "2017-04-15T14:32:42.003Z"
 }, {
     "bl_categoryId": 10,
     "name": "Kamera",
     "url": "/c/kamera",
-    "createdAt": "2017-04-14T15:56:19.742Z",
-    "updatedAt": "2017-04-14T15:56:19.742Z"
+    "createdAt": "2017-04-15T14:32:42.003Z",
+    "updatedAt": "2017-04-15T14:32:42.003Z"
+}, {
+    "bl_categoryId": 1635,
+    "name": "Action Camera",
+    "url": "/c/kamera/action-camera",
+    "createdAt": "2017-04-15T14:32:42.004Z",
+    "updatedAt": "2017-04-15T14:32:42.004Z"
+}, {
+    "bl_categoryId": 2642,
+    "name": "Drone",
+    "url": "/c/kamera/drone",
+    "createdAt": "2017-04-15T14:32:42.004Z",
+    "updatedAt": "2017-04-15T14:32:42.004Z"
+}, {
+    "bl_categoryId": 186,
+    "name": "Kamera Digital",
+    "url": "/c/kamera/kamera-digital",
+    "createdAt": "2017-04-15T14:32:42.004Z",
+    "updatedAt": "2017-04-15T14:32:42.004Z"
+}, {
+    "bl_categoryId": 122,
+    "name": "Handycam",
+    "url": "/c/kamera/handycam",
+    "createdAt": "2017-04-15T14:32:42.004Z",
+    "updatedAt": "2017-04-15T14:32:42.004Z"
+}, {
+    "bl_categoryId": 350,
+    "name": "Kamera Analog",
+    "url": "/c/kamera/kamera-analog",
+    "createdAt": "2017-04-15T14:32:42.004Z",
+    "updatedAt": "2017-04-15T14:32:42.004Z"
+}, {
+    "bl_categoryId": 612,
+    "name": "CCTV",
+    "url": "/c/kamera/cctv",
+    "createdAt": "2017-04-15T14:32:42.004Z",
+    "updatedAt": "2017-04-15T14:32:42.004Z"
+}, {
+    "bl_categoryId": 618,
+    "name": "Spy Cam ",
+    "url": "/c/kamera/spy-cam",
+    "createdAt": "2017-04-15T14:32:42.004Z",
+    "updatedAt": "2017-04-15T14:32:42.004Z"
+}, {
+    "bl_categoryId": 123,
+    "name": "Lensa",
+    "url": "/c/kamera/lensa",
+    "createdAt": "2017-04-15T14:32:42.004Z",
+    "updatedAt": "2017-04-15T14:32:42.004Z"
+}, {
+    "bl_categoryId": 187,
+    "name": "Flash",
+    "url": "/c/kamera/flash",
+    "createdAt": "2017-04-15T14:32:42.004Z",
+    "updatedAt": "2017-04-15T14:32:42.004Z"
+}, {
+    "bl_categoryId": 189,
+    "name": "Baterai",
+    "url": "/c/kamera/baterai",
+    "createdAt": "2017-04-15T14:32:42.004Z",
+    "updatedAt": "2017-04-15T14:32:42.004Z"
+}, {
+    "bl_categoryId": 197,
+    "name": "Filter",
+    "url": "/c/kamera/filter",
+    "createdAt": "2017-04-15T14:32:42.004Z",
+    "updatedAt": "2017-04-15T14:32:42.004Z"
+}, {
+    "bl_categoryId": 351,
+    "name": "Hood & Cap",
+    "url": "/c/kamera/hood-cap",
+    "createdAt": "2017-04-15T14:32:42.004Z",
+    "updatedAt": "2017-04-15T14:32:42.004Z"
+}, {
+    "bl_categoryId": 190,
+    "name": "Charger",
+    "url": "/c/kamera/charger",
+    "createdAt": "2017-04-15T14:32:42.004Z",
+    "updatedAt": "2017-04-15T14:32:42.004Z"
+}, {
+    "bl_categoryId": 194,
+    "name": "Memory Card",
+    "url": "/c/kamera/memory-card-194",
+    "createdAt": "2017-04-15T14:32:42.004Z",
+    "updatedAt": "2017-04-15T14:32:42.004Z"
+}, {
+    "bl_categoryId": 195,
+    "name": "Monopod, Tripod, & Rig",
+    "url": "/c/kamera/monopod-tripod-rig",
+    "createdAt": "2017-04-15T14:32:42.004Z",
+    "updatedAt": "2017-04-15T14:32:42.004Z"
+}, {
+    "bl_categoryId": 192,
+    "name": "Converter & Adapter",
+    "url": "/c/kamera/converter-adapter",
+    "createdAt": "2017-04-15T14:32:42.004Z",
+    "updatedAt": "2017-04-15T14:32:42.004Z"
+}, {
+    "bl_categoryId": 196,
+    "name": "Remote & Trigger",
+    "url": "/c/kamera/remote-trigger",
+    "createdAt": "2017-04-15T14:32:42.004Z",
+    "updatedAt": "2017-04-15T14:32:42.004Z"
+}, {
+    "bl_categoryId": 188,
+    "name": "Tas & Case",
+    "url": "/c/kamera/tas-case",
+    "createdAt": "2017-04-15T14:32:42.004Z",
+    "updatedAt": "2017-04-15T14:32:42.004Z"
+}, {
+    "bl_categoryId": 854,
+    "name": "Strap",
+    "url": "/c/kamera/strap",
+    "createdAt": "2017-04-15T14:32:42.004Z",
+    "updatedAt": "2017-04-15T14:32:42.004Z"
+}, {
+    "bl_categoryId": 125,
+    "name": "Perlengkapan Studio",
+    "url": "/c/kamera/perlengkapan-studio",
+    "createdAt": "2017-04-15T14:32:42.004Z",
+    "updatedAt": "2017-04-15T14:32:42.004Z"
+}, {
+    "bl_categoryId": 199,
+    "name": "Aksesoris Kamera",
+    "url": "/c/kamera/aksesoris-kamera",
+    "createdAt": "2017-04-15T14:32:42.004Z",
+    "updatedAt": "2017-04-15T14:32:42.004Z"
+}, {
+    "bl_categoryId": 884,
+    "name": "Sparepart Kamera",
+    "url": "/c/kamera/sparepart-kamera",
+    "createdAt": "2017-04-15T14:32:42.004Z",
+    "updatedAt": "2017-04-15T14:32:42.004Z"
 }, {
     "bl_categoryId": 58,
     "name": "Hobi & Koleksi",
     "url": "/c/hobi-koleksi",
-    "createdAt": "2017-04-14T15:56:19.742Z",
-    "updatedAt": "2017-04-14T15:56:19.742Z"
+    "createdAt": "2017-04-15T14:32:42.004Z",
+    "updatedAt": "2017-04-15T14:32:42.004Z"
+}, {
+    "bl_categoryId": 12,
+    "name": "Video Game",
+    "url": "/c/hobi-koleksi/video-game",
+    "createdAt": "2017-04-15T14:32:42.006Z",
+    "updatedAt": "2017-04-15T14:32:42.006Z"
+}, {
+    "bl_categoryId": 173,
+    "name": "Mainan",
+    "url": "/c/hobi-koleksi/mainan",
+    "createdAt": "2017-04-15T14:32:42.006Z",
+    "updatedAt": "2017-04-15T14:32:42.006Z"
+}, {
+    "bl_categoryId": 63,
+    "name": "Koleksi",
+    "url": "/c/hobi-koleksi/koleksi",
+    "createdAt": "2017-04-15T14:32:42.006Z",
+    "updatedAt": "2017-04-15T14:32:42.006Z"
+}, {
+    "bl_categoryId": 1032,
+    "name": "Berkebun",
+    "url": "/c/hobi-koleksi/berkebun",
+    "createdAt": "2017-04-15T14:32:42.006Z",
+    "updatedAt": "2017-04-15T14:32:42.006Z"
+}, {
+    "bl_categoryId": 365,
+    "name": "Pet Food & Stuff",
+    "url": "/c/hobi-koleksi/pet-food-stuff",
+    "createdAt": "2017-04-15T14:32:42.006Z",
+    "updatedAt": "2017-04-15T14:32:42.006Z"
+}, {
+    "bl_categoryId": 62,
+    "name": "Musik",
+    "url": "/c/hobi-koleksi/musik",
+    "createdAt": "2017-04-15T14:32:42.006Z",
+    "updatedAt": "2017-04-15T14:32:42.006Z"
+}, {
+    "bl_categoryId": 1123,
+    "name": "Batu Cincin",
+    "url": "/c/hobi-koleksi/batu-cincin",
+    "createdAt": "2017-04-15T14:32:42.006Z",
+    "updatedAt": "2017-04-15T14:32:42.006Z"
+}, {
+    "bl_categoryId": 60,
+    "name": "Buku",
+    "url": "/c/hobi-koleksi/buku",
+    "createdAt": "2017-04-15T14:32:42.006Z",
+    "updatedAt": "2017-04-15T14:32:42.006Z"
 }, {
     "bl_categoryId": 61,
     "name": "Olahraga",
     "url": "/c/olahraga",
-    "createdAt": "2017-04-14T15:56:19.742Z",
-    "updatedAt": "2017-04-14T15:56:19.742Z"
+    "createdAt": "2017-04-15T14:32:42.006Z",
+    "updatedAt": "2017-04-15T14:32:42.006Z"
+}, {
+    "bl_categoryId": 1945,
+    "name": "Surfing & Diving",
+    "url": "/c/olahraga/surfing-diving",
+    "createdAt": "2017-04-15T14:32:42.008Z",
+    "updatedAt": "2017-04-15T14:32:42.008Z"
+}, {
+    "bl_categoryId": 576,
+    "name": "Lari",
+    "url": "/c/olahraga/lari",
+    "createdAt": "2017-04-15T14:32:42.008Z",
+    "updatedAt": "2017-04-15T14:32:42.008Z"
+}, {
+    "bl_categoryId": 573,
+    "name": "Badminton",
+    "url": "/c/olahraga/badminton",
+    "createdAt": "2017-04-15T14:32:42.008Z",
+    "updatedAt": "2017-04-15T14:32:42.008Z"
+}, {
+    "bl_categoryId": 472,
+    "name": "Renang",
+    "url": "/c/olahraga/renang",
+    "createdAt": "2017-04-15T14:32:42.008Z",
+    "updatedAt": "2017-04-15T14:32:42.008Z"
+}, {
+    "bl_categoryId": 579,
+    "name": "Pancing",
+    "url": "/c/olahraga/pancing",
+    "createdAt": "2017-04-15T14:32:42.008Z",
+    "updatedAt": "2017-04-15T14:32:42.008Z"
+}, {
+    "bl_categoryId": 582,
+    "name": "Tenis",
+    "url": "/c/olahraga/tenis",
+    "createdAt": "2017-04-15T14:32:42.008Z",
+    "updatedAt": "2017-04-15T14:32:42.008Z"
+}, {
+    "bl_categoryId": 585,
+    "name": "Tenis Meja",
+    "url": "/c/olahraga/tenis-meja",
+    "createdAt": "2017-04-15T14:32:42.008Z",
+    "updatedAt": "2017-04-15T14:32:42.008Z"
+}, {
+    "bl_categoryId": 323,
+    "name": "Sepakbola & Futsal",
+    "url": "/c/olahraga/sepakbola-futsal",
+    "createdAt": "2017-04-15T14:32:42.008Z",
+    "updatedAt": "2017-04-15T14:32:42.008Z"
+}, {
+    "bl_categoryId": 324,
+    "name": "Basket",
+    "url": "/c/olahraga/basket",
+    "createdAt": "2017-04-15T14:32:42.008Z",
+    "updatedAt": "2017-04-15T14:32:42.008Z"
+}, {
+    "bl_categoryId": 325,
+    "name": "Golf",
+    "url": "/c/olahraga/golf",
+    "createdAt": "2017-04-15T14:32:42.008Z",
+    "updatedAt": "2017-04-15T14:32:42.008Z"
+}, {
+    "bl_categoryId": 326,
+    "name": "Outdoor",
+    "url": "/c/olahraga/outdoor",
+    "createdAt": "2017-04-15T14:32:42.008Z",
+    "updatedAt": "2017-04-15T14:32:42.008Z"
+}, {
+    "bl_categoryId": 327,
+    "name": "Hunting",
+    "url": "/c/olahraga/hunting",
+    "createdAt": "2017-04-15T14:32:42.008Z",
+    "updatedAt": "2017-04-15T14:32:42.008Z"
+}, {
+    "bl_categoryId": 328,
+    "name": "Exercise & Fitness",
+    "url": "/c/olahraga/exercise-fitness",
+    "createdAt": "2017-04-15T14:32:42.008Z",
+    "updatedAt": "2017-04-15T14:32:42.008Z"
+}, {
+    "bl_categoryId": 974,
+    "name": "Skateboard",
+    "url": "/c/olahraga/skateboard",
+    "createdAt": "2017-04-15T14:32:42.008Z",
+    "updatedAt": "2017-04-15T14:32:42.008Z"
+}, {
+    "bl_categoryId": 977,
+    "name": "Roller Skate",
+    "url": "/c/olahraga/roller-skate",
+    "createdAt": "2017-04-15T14:32:42.008Z",
+    "updatedAt": "2017-04-15T14:32:42.008Z"
+}, {
+    "bl_categoryId": 329,
+    "name": "Lain-lain",
+    "url": "/c/olahraga/lain-lain-329",
+    "createdAt": "2017-04-15T14:32:42.008Z",
+    "updatedAt": "2017-04-15T14:32:42.008Z"
 }, {
     "bl_categoryId": 64,
     "name": "Sepeda",
     "url": "/c/sepeda",
-    "createdAt": "2017-04-14T15:56:19.742Z",
-    "updatedAt": "2017-04-14T15:56:19.742Z"
+    "createdAt": "2017-04-15T14:32:42.008Z",
+    "updatedAt": "2017-04-15T14:32:42.008Z"
+}, {
+    "bl_categoryId": 242,
+    "name": "Fullbike",
+    "url": "/c/sepeda/fullbike",
+    "createdAt": "2017-04-15T14:32:42.010Z",
+    "updatedAt": "2017-04-15T14:32:42.010Z"
+}, {
+    "bl_categoryId": 85,
+    "name": "Frame",
+    "url": "/c/sepeda/frame",
+    "createdAt": "2017-04-15T14:32:42.010Z",
+    "updatedAt": "2017-04-15T14:32:42.010Z"
+}, {
+    "bl_categoryId": 243,
+    "name": "Fork & Suspension",
+    "url": "/c/sepeda/fork-suspension",
+    "createdAt": "2017-04-15T14:32:42.010Z",
+    "updatedAt": "2017-04-15T14:32:42.010Z"
+}, {
+    "bl_categoryId": 244,
+    "name": "Steering",
+    "url": "/c/sepeda/steering",
+    "createdAt": "2017-04-15T14:32:42.010Z",
+    "updatedAt": "2017-04-15T14:32:42.010Z"
+}, {
+    "bl_categoryId": 245,
+    "name": "Brake",
+    "url": "/c/sepeda/brake",
+    "createdAt": "2017-04-15T14:32:42.010Z",
+    "updatedAt": "2017-04-15T14:32:42.010Z"
+}, {
+    "bl_categoryId": 624,
+    "name": "Saddle & Seatpost",
+    "url": "/c/sepeda/saddle-seatpost",
+    "createdAt": "2017-04-15T14:32:42.010Z",
+    "updatedAt": "2017-04-15T14:32:42.010Z"
+}, {
+    "bl_categoryId": 135,
+    "name": "Drivetrain",
+    "url": "/c/sepeda/drivetrain",
+    "createdAt": "2017-04-15T14:32:42.010Z",
+    "updatedAt": "2017-04-15T14:32:42.010Z"
+}, {
+    "bl_categoryId": 260,
+    "name": "Wheel (Hub, Rims, dll)",
+    "url": "/c/sepeda/wheel-hub-rims-dll",
+    "createdAt": "2017-04-15T14:32:42.010Z",
+    "updatedAt": "2017-04-15T14:32:42.010Z"
+}, {
+    "bl_categoryId": 274,
+    "name": "Outwear",
+    "url": "/c/sepeda/outwear",
+    "createdAt": "2017-04-15T14:32:42.010Z",
+    "updatedAt": "2017-04-15T14:32:42.010Z"
+}, {
+    "bl_categoryId": 92,
+    "name": "Equipment & Tools",
+    "url": "/c/sepeda/equipment-tools",
+    "createdAt": "2017-04-15T14:32:42.010Z",
+    "updatedAt": "2017-04-15T14:32:42.010Z"
+}, {
+    "bl_categoryId": 138,
+    "name": "Part Generik",
+    "url": "/c/sepeda/part-generik",
+    "createdAt": "2017-04-15T14:32:42.010Z",
+    "updatedAt": "2017-04-15T14:32:42.010Z"
+}, {
+    "bl_categoryId": 621,
+    "name": "Nutrition & Energy",
+    "url": "/c/sepeda/nutrition-energy",
+    "createdAt": "2017-04-15T14:32:42.010Z",
+    "updatedAt": "2017-04-15T14:32:42.010Z"
 }, {
     "bl_categoryId": 13,
     "name": "Fashion Anak",
     "url": "/c/fashion-anak",
-    "createdAt": "2017-04-14T15:56:19.742Z",
-    "updatedAt": "2017-04-14T15:56:19.742Z"
+    "createdAt": "2017-04-15T14:32:42.010Z",
+    "updatedAt": "2017-04-15T14:32:42.010Z"
+}, {
+    "bl_categoryId": 941,
+    "name": "Couple",
+    "url": "/c/fashion-anak/couple",
+    "createdAt": "2017-04-15T14:32:42.010Z",
+    "updatedAt": "2017-04-15T14:32:42.010Z"
+}, {
+    "bl_categoryId": 1363,
+    "name": "Anak Laki-laki",
+    "url": "/c/fashion-anak/anak-laki-laki",
+    "createdAt": "2017-04-15T14:32:42.010Z",
+    "updatedAt": "2017-04-15T14:32:42.010Z"
+}, {
+    "bl_categoryId": 1366,
+    "name": "Anak Perempuan",
+    "url": "/c/fashion-anak/anak-perempuan",
+    "createdAt": "2017-04-15T14:32:42.010Z",
+    "updatedAt": "2017-04-15T14:32:42.010Z"
+}, {
+    "bl_categoryId": 1369,
+    "name": "Anak (Unisex)",
+    "url": "/c/fashion-anak/anak-unisex",
+    "createdAt": "2017-04-15T14:32:42.010Z",
+    "updatedAt": "2017-04-15T14:32:42.010Z"
+}, {
+    "bl_categoryId": 1049,
+    "name": "Busana Muslim",
+    "url": "/c/fashion-anak/busana-muslim",
+    "createdAt": "2017-04-15T14:32:42.010Z",
+    "updatedAt": "2017-04-15T14:32:42.010Z"
 }, {
     "bl_categoryId": 68,
     "name": "Perlengkapan Bayi",
     "url": "/c/perlengkapan-bayi",
-    "createdAt": "2017-04-14T15:56:19.742Z",
-    "updatedAt": "2017-04-14T15:56:19.742Z"
+    "createdAt": "2017-04-15T14:32:42.010Z",
+    "updatedAt": "2017-04-15T14:32:42.010Z"
+}, {
+    "bl_categoryId": 306,
+    "name": "Pakaian Bayi",
+    "url": "/c/perlengkapan-bayi/pakaian-bayi",
+    "createdAt": "2017-04-15T14:32:42.011Z",
+    "updatedAt": "2017-04-15T14:32:42.011Z"
+}, {
+    "bl_categoryId": 639,
+    "name": "Perlengkapan Makan",
+    "url": "/c/perlengkapan-bayi/perlengkapan-makan",
+    "createdAt": "2017-04-15T14:32:42.011Z",
+    "updatedAt": "2017-04-15T14:32:42.011Z"
+}, {
+    "bl_categoryId": 642,
+    "name": "Perlengkapan Mandi",
+    "url": "/c/perlengkapan-bayi/perlengkapan-mandi",
+    "createdAt": "2017-04-15T14:32:42.011Z",
+    "updatedAt": "2017-04-15T14:32:42.011Z"
+}, {
+    "bl_categoryId": 645,
+    "name": "Perlengkapan Tidur",
+    "url": "/c/perlengkapan-bayi/perlengkapan-tidur",
+    "createdAt": "2017-04-15T14:32:42.011Z",
+    "updatedAt": "2017-04-15T14:32:42.011Z"
+}, {
+    "bl_categoryId": 648,
+    "name": "Perawatan Tubuh",
+    "url": "/c/perlengkapan-bayi/perawatan-tubuh",
+    "createdAt": "2017-04-15T14:32:42.011Z",
+    "updatedAt": "2017-04-15T14:32:42.011Z"
+}, {
+    "bl_categoryId": 651,
+    "name": "Diapering",
+    "url": "/c/perlengkapan-bayi/diapering",
+    "createdAt": "2017-04-15T14:32:42.011Z",
+    "updatedAt": "2017-04-15T14:32:42.011Z"
+}, {
+    "bl_categoryId": 654,
+    "name": "Feeding & Nursing",
+    "url": "/c/perlengkapan-bayi/feeding-nursing",
+    "createdAt": "2017-04-15T14:32:42.011Z",
+    "updatedAt": "2017-04-15T14:32:42.011Z"
+}, {
+    "bl_categoryId": 657,
+    "name": "Stroller & Walker",
+    "url": "/c/perlengkapan-bayi/stroller-walker",
+    "createdAt": "2017-04-15T14:32:42.011Z",
+    "updatedAt": "2017-04-15T14:32:42.011Z"
+}, {
+    "bl_categoryId": 660,
+    "name": "Baby Carrier",
+    "url": "/c/perlengkapan-bayi/baby-carrier",
+    "createdAt": "2017-04-15T14:32:42.011Z",
+    "updatedAt": "2017-04-15T14:32:42.011Z"
+}, {
+    "bl_categoryId": 666,
+    "name": "Bouncer & Chair",
+    "url": "/c/perlengkapan-bayi/bouncer-chair",
+    "createdAt": "2017-04-15T14:32:42.011Z",
+    "updatedAt": "2017-04-15T14:32:42.011Z"
+}, {
+    "bl_categoryId": 663,
+    "name": "Mainan",
+    "url": "/c/perlengkapan-bayi/mainan-663",
+    "createdAt": "2017-04-15T14:32:42.011Z",
+    "updatedAt": "2017-04-15T14:32:42.011Z"
+}, {
+    "bl_categoryId": 699,
+    "name": "Furniture",
+    "url": "/c/perlengkapan-bayi/furniture",
+    "createdAt": "2017-04-15T14:32:42.011Z",
+    "updatedAt": "2017-04-15T14:32:42.011Z"
+}, {
+    "bl_categoryId": 711,
+    "name": "Makanan",
+    "url": "/c/perlengkapan-bayi/makanan-711",
+    "createdAt": "2017-04-15T14:32:42.011Z",
+    "updatedAt": "2017-04-15T14:32:42.011Z"
+}, {
+    "bl_categoryId": 741,
+    "name": "Lain-lain",
+    "url": "/c/perlengkapan-bayi/lain-lain-741",
+    "createdAt": "2017-04-15T14:32:42.011Z",
+    "updatedAt": "2017-04-15T14:32:42.011Z"
 }, {
     "bl_categoryId": 65,
     "name": "Rumah Tangga",
     "url": "/c/rumah-tangga",
-    "createdAt": "2017-04-14T15:56:19.742Z",
-    "updatedAt": "2017-04-14T15:56:19.742Z"
+    "createdAt": "2017-04-15T14:32:42.011Z",
+    "updatedAt": "2017-04-15T14:32:42.011Z"
+}, {
+    "bl_categoryId": 1111,
+    "name": "Elektronik",
+    "url": "/c/rumah-tangga/elektronik-1111",
+    "createdAt": "2017-04-15T14:32:42.011Z",
+    "updatedAt": "2017-04-15T14:32:42.011Z"
+}, {
+    "bl_categoryId": 174,
+    "name": "Home Stuff",
+    "url": "/c/rumah-tangga/home-stuff",
+    "createdAt": "2017-04-15T14:32:42.011Z",
+    "updatedAt": "2017-04-15T14:32:42.011Z"
+}, {
+    "bl_categoryId": 66,
+    "name": "Furniture & Interior",
+    "url": "/c/rumah-tangga/furniture-interior",
+    "createdAt": "2017-04-15T14:32:42.011Z",
+    "updatedAt": "2017-04-15T14:32:42.011Z"
+}, {
+    "bl_categoryId": 67,
+    "name": "Dapur",
+    "url": "/c/rumah-tangga/dapur",
+    "createdAt": "2017-04-15T14:32:42.011Z",
+    "updatedAt": "2017-04-15T14:32:42.011Z"
+}, {
+    "bl_categoryId": 534,
+    "name": "Kamar Tidur",
+    "url": "/c/rumah-tangga/kamar-tidur",
+    "createdAt": "2017-04-15T14:32:42.011Z",
+    "updatedAt": "2017-04-15T14:32:42.011Z"
+}, {
+    "bl_categoryId": 537,
+    "name": "Kamar Mandi",
+    "url": "/c/rumah-tangga/kamar-mandi",
+    "createdAt": "2017-04-15T14:32:42.011Z",
+    "updatedAt": "2017-04-15T14:32:42.011Z"
+}, {
+    "bl_categoryId": 983,
+    "name": "Ruang Makan",
+    "url": "/c/rumah-tangga/ruang-makan",
+    "createdAt": "2017-04-15T14:32:42.011Z",
+    "updatedAt": "2017-04-15T14:32:42.011Z"
+}, {
+    "bl_categoryId": 1064,
+    "name": "Perlengkapan Kebersihan",
+    "url": "/c/rumah-tangga/perlengkapan-kebersihan",
+    "createdAt": "2017-04-15T14:32:42.011Z",
+    "updatedAt": "2017-04-15T14:32:42.011Z"
+}, {
+    "bl_categoryId": 1083,
+    "name": "Tempat Penyimpanan & Organizer",
+    "url": "/c/rumah-tangga/tempat-penyimpanan-organizer",
+    "createdAt": "2017-04-15T14:32:42.011Z",
+    "updatedAt": "2017-04-15T14:32:42.011Z"
+}, {
+    "bl_categoryId": 541,
+    "name": "Perkakas Rumah Tangga",
+    "url": "/c/rumah-tangga/perkakas-rumah-tangga",
+    "createdAt": "2017-04-15T14:32:42.011Z",
+    "updatedAt": "2017-04-15T14:32:42.011Z"
+}, {
+    "bl_categoryId": 1081,
+    "name": "Gembok & Kunci Pengaman",
+    "url": "/c/rumah-tangga/gembok-kunci-pengaman",
+    "createdAt": "2017-04-15T14:32:42.011Z",
+    "updatedAt": "2017-04-15T14:32:42.011Z"
+}, {
+    "bl_categoryId": 1105,
+    "name": "Payung",
+    "url": "/c/rumah-tangga/payung",
+    "createdAt": "2017-04-15T14:32:42.011Z",
+    "updatedAt": "2017-04-15T14:32:42.011Z"
+}, {
+    "bl_categoryId": 1114,
+    "name": "Jam",
+    "url": "/c/rumah-tangga/jam",
+    "createdAt": "2017-04-15T14:32:42.011Z",
+    "updatedAt": "2017-04-15T14:32:42.011Z"
 }, {
     "bl_categoryId": 139,
     "name": "Food",
     "url": "/c/food",
-    "createdAt": "2017-04-14T15:56:19.742Z",
-    "updatedAt": "2017-04-14T15:56:19.742Z"
+    "createdAt": "2017-04-15T14:32:42.011Z",
+    "updatedAt": "2017-04-15T14:32:42.011Z"
+}, {
+    "bl_categoryId": 464,
+    "name": "Makanan",
+    "url": "/c/food/makanan",
+    "createdAt": "2017-04-15T14:32:42.011Z",
+    "updatedAt": "2017-04-15T14:32:42.011Z"
+}, {
+    "bl_categoryId": 465,
+    "name": "Minuman",
+    "url": "/c/food/minuman",
+    "createdAt": "2017-04-15T14:32:42.011Z",
+    "updatedAt": "2017-04-15T14:32:42.011Z"
+}, {
+    "bl_categoryId": 466,
+    "name": "Cemilan / Snack",
+    "url": "/c/food/cemilan-snack",
+    "createdAt": "2017-04-15T14:32:42.011Z",
+    "updatedAt": "2017-04-15T14:32:42.011Z"
+}, {
+    "bl_categoryId": 1017,
+    "name": "Dairy Products",
+    "url": "/c/food/dairy-products",
+    "createdAt": "2017-04-15T14:32:42.011Z",
+    "updatedAt": "2017-04-15T14:32:42.011Z"
+}, {
+    "bl_categoryId": 549,
+    "name": "Bumbu",
+    "url": "/c/food/bumbu",
+    "createdAt": "2017-04-15T14:32:42.011Z",
+    "updatedAt": "2017-04-15T14:32:42.011Z"
+}, {
+    "bl_categoryId": 552,
+    "name": "Bahan Mentah",
+    "url": "/c/food/bahan-mentah",
+    "createdAt": "2017-04-15T14:32:42.011Z",
+    "updatedAt": "2017-04-15T14:32:42.011Z"
 }, {
     "bl_categoryId": 19,
     "name": "Mobil, Part dan Aksesoris",
     "url": "/c/mobil-part-dan-aksesoris",
-    "createdAt": "2017-04-14T15:56:19.742Z",
-    "updatedAt": "2017-04-14T15:56:19.742Z"
+    "createdAt": "2017-04-15T14:32:42.011Z",
+    "updatedAt": "2017-04-15T14:32:42.011Z"
+}, {
+    "bl_categoryId": 389,
+    "name": "Aksesoris Mobil",
+    "url": "/c/mobil-part-dan-aksesoris/aksesoris-mobil",
+    "createdAt": "2017-04-15T14:32:42.012Z",
+    "updatedAt": "2017-04-15T14:32:42.012Z"
+}, {
+    "bl_categoryId": 392,
+    "name": "Audio Mobil",
+    "url": "/c/mobil-part-dan-aksesoris/audio-mobil",
+    "createdAt": "2017-04-15T14:32:42.012Z",
+    "updatedAt": "2017-04-15T14:32:42.012Z"
+}, {
+    "bl_categoryId": 397,
+    "name": "Exhaust System Mobil",
+    "url": "/c/mobil-part-dan-aksesoris/exhaust-system-mobil",
+    "createdAt": "2017-04-15T14:32:42.012Z",
+    "updatedAt": "2017-04-15T14:32:42.012Z"
+}, {
+    "bl_categoryId": 403,
+    "name": "Eksterior Mobil",
+    "url": "/c/mobil-part-dan-aksesoris/eksterior-mobil",
+    "createdAt": "2017-04-15T14:32:42.012Z",
+    "updatedAt": "2017-04-15T14:32:42.012Z"
+}, {
+    "bl_categoryId": 410,
+    "name": "Interior Mobil",
+    "url": "/c/mobil-part-dan-aksesoris/interior-mobil",
+    "createdAt": "2017-04-15T14:32:42.012Z",
+    "updatedAt": "2017-04-15T14:32:42.012Z"
+}, {
+    "bl_categoryId": 415,
+    "name": "Kaki-kaki Mobil",
+    "url": "/c/mobil-part-dan-aksesoris/kaki-kaki-mobil",
+    "createdAt": "2017-04-15T14:32:42.012Z",
+    "updatedAt": "2017-04-15T14:32:42.012Z"
+}, {
+    "bl_categoryId": 419,
+    "name": "Mesin Mobil",
+    "url": "/c/mobil-part-dan-aksesoris/mesin-mobil",
+    "createdAt": "2017-04-15T14:32:42.012Z",
+    "updatedAt": "2017-04-15T14:32:42.012Z"
+}, {
+    "bl_categoryId": 424,
+    "name": "Produk Perawatan Mobil",
+    "url": "/c/mobil-part-dan-aksesoris/produk-perawatan-mobil",
+    "createdAt": "2017-04-15T14:32:42.012Z",
+    "updatedAt": "2017-04-15T14:32:42.012Z"
+}, {
+    "bl_categoryId": 20,
+    "name": "Mobil",
+    "url": "/c/mobil-part-dan-aksesoris/mobil",
+    "createdAt": "2017-04-15T14:32:42.012Z",
+    "updatedAt": "2017-04-15T14:32:42.012Z"
 }, {
     "bl_categoryId": 471,
     "name": "Motor",
     "url": "/c/motor-471",
-    "createdAt": "2017-04-14T15:56:19.742Z",
-    "updatedAt": "2017-04-14T15:56:19.742Z"
+    "createdAt": "2017-04-15T14:32:42.012Z",
+    "updatedAt": "2017-04-15T14:32:42.012Z"
+}, {
+    "bl_categoryId": 1545,
+    "name": "Motor",
+    "url": "/c/motor-471/motor",
+    "createdAt": "2017-04-15T14:32:42.012Z",
+    "updatedAt": "2017-04-15T14:32:42.012Z"
+}, {
+    "bl_categoryId": 390,
+    "name": "Sparepart Motor",
+    "url": "/c/motor-471/sparepart-motor",
+    "createdAt": "2017-04-15T14:32:42.012Z",
+    "updatedAt": "2017-04-15T14:32:42.012Z"
+}, {
+    "bl_categoryId": 434,
+    "name": "Aksesoris Motor",
+    "url": "/c/motor-471/aksesoris-motor",
+    "createdAt": "2017-04-15T14:32:42.012Z",
+    "updatedAt": "2017-04-15T14:32:42.012Z"
+}, {
+    "bl_categoryId": 453,
+    "name": "Produk Perawatan Motor",
+    "url": "/c/motor-471/produk-perawatan-motor",
+    "createdAt": "2017-04-15T14:32:42.012Z",
+    "updatedAt": "2017-04-15T14:32:42.012Z"
+}, {
+    "bl_categoryId": 391,
+    "name": "Outwear Motor",
+    "url": "/c/motor-471/outwear-motor",
+    "createdAt": "2017-04-15T14:32:42.012Z",
+    "updatedAt": "2017-04-15T14:32:42.012Z"
 }, {
     "bl_categoryId": 1648,
     "name": "Industrial",
     "url": "/c/industrial",
-    "createdAt": "2017-04-14T15:56:19.742Z",
-    "updatedAt": "2017-04-14T15:56:19.742Z"
+    "createdAt": "2017-04-15T14:32:42.012Z",
+    "updatedAt": "2017-04-15T14:32:42.012Z"
+}, {
+    "bl_categoryId": 1674,
+    "name": "Tools",
+    "url": "/c/industrial/tools",
+    "createdAt": "2017-04-15T14:32:42.013Z",
+    "updatedAt": "2017-04-15T14:32:42.013Z"
+}, {
+    "bl_categoryId": 1677,
+    "name": "Mesin",
+    "url": "/c/industrial/mesin",
+    "createdAt": "2017-04-15T14:32:42.013Z",
+    "updatedAt": "2017-04-15T14:32:42.013Z"
+}, {
+    "bl_categoryId": 1680,
+    "name": "Safety ",
+    "url": "/c/industrial/safety",
+    "createdAt": "2017-04-15T14:32:42.013Z",
+    "updatedAt": "2017-04-15T14:32:42.013Z"
+}, {
+    "bl_categoryId": 1717,
+    "name": "Peralatan Medis-Laboratori",
+    "url": "/c/industrial/peralatan-medis-laboratori",
+    "createdAt": "2017-04-15T14:32:42.013Z",
+    "updatedAt": "2017-04-15T14:32:42.013Z"
+}, {
+    "bl_categoryId": 2389,
+    "name": "Lain-lain",
+    "url": "/c/industrial/lain-lain-2389",
+    "createdAt": "2017-04-15T14:32:42.013Z",
+    "updatedAt": "2017-04-15T14:32:42.013Z"
 }, {
     "bl_categoryId": 70,
     "name": "Perlengkapan Kantor",
     "url": "/c/perlengkapan-kantor",
-    "createdAt": "2017-04-14T15:56:19.742Z",
-    "updatedAt": "2017-04-14T15:56:19.742Z"
+    "createdAt": "2017-04-15T14:32:42.013Z",
+    "updatedAt": "2017-04-15T14:32:42.013Z"
+}, {
+    "bl_categoryId": 1686,
+    "name": "Alat Tulis Kantor",
+    "url": "/c/perlengkapan-kantor/alat-tulis-kantor",
+    "createdAt": "2017-04-15T14:32:42.013Z",
+    "updatedAt": "2017-04-15T14:32:42.013Z"
+}, {
+    "bl_categoryId": 1689,
+    "name": "Alat Kantor",
+    "url": "/c/perlengkapan-kantor/alat-kantor",
+    "createdAt": "2017-04-15T14:32:42.013Z",
+    "updatedAt": "2017-04-15T14:32:42.013Z"
 }, {
     "bl_categoryId": 1695,
     "name": "Tiket & Voucher",
     "url": "/c/tiket-voucher",
-    "createdAt": "2017-04-14T15:56:19.742Z",
-    "updatedAt": "2017-04-14T15:56:19.742Z"
+    "createdAt": "2017-04-15T14:32:42.013Z",
+    "updatedAt": "2017-04-15T14:32:42.013Z"
+}, {
+    "bl_categoryId": 1698,
+    "name": "Makanan & Minuman",
+    "url": "/c/tiket-voucher/makanan-minuman",
+    "createdAt": "2017-04-15T14:32:42.013Z",
+    "updatedAt": "2017-04-15T14:32:42.013Z"
+}, {
+    "bl_categoryId": 1701,
+    "name": "Travel & Hiburan",
+    "url": "/c/tiket-voucher/travel-hiburan",
+    "createdAt": "2017-04-15T14:32:42.013Z",
+    "updatedAt": "2017-04-15T14:32:42.013Z"
+}, {
+    "bl_categoryId": 1704,
+    "name": "Tiket & Voucher Lainnya",
+    "url": "/c/tiket-voucher/tiket-voucher-lainnya",
+    "createdAt": "2017-04-15T14:32:42.013Z",
+    "updatedAt": "2017-04-15T14:32:42.013Z"
 }]
