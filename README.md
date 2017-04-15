@@ -41,6 +41,14 @@ to use sequelize command, you need sequelize-cli,
 npm install -g sequelize-cli
 ```
 
+### Generate API Docs
+```
+install apidoc
+$ npm install apidoc -g
+generate api Doc
+$ apidoc -e "(node_modules|public)" -o public/docs
+```
+
 ### Run Test
 ```
 $ mocha               <- to run all Test
