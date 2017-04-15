@@ -1,10 +1,13 @@
 let axios = require('axios')
+
 const models = require('../models')
 
 blEndPoint = 'https://api.bukalapak.com/v2/'
 
 module.exports = {
   create: (req, res) => {
+    console.log('isi request : ', req.body);
+    // init repsonse
     let finalResult = {
       id: null,
       title: null,
@@ -22,6 +25,44 @@ module.exports = {
       message: 'Buat lelang gagal ):',
     }
 
-    res.json(finalResult)
+    // creat product to BL
+    axios({
+      method: 'post',
+      url: blEndPoint + 'products.json',
+      auth: {
+        username: req.body.bukalapakId,
+        password: req.body.token
+      },
+      data: {
+        product: {
+          category_id: req.body.categoryId,
+          name: req.body.title,
+          new: req.body.new,
+          price: req.body.max_price,
+          negotiable: true,
+          weight: req.body.weight,
+          stock: 1,
+          description_bb: req.body.description,
+          images: ['https://500.co/wp-content/uploads/2016/05/Logo-Bukalapak_Red.png']
+        }
+      }
+    }).then((responseAfterCreateProduct) => {
+      switch (responseAfterCreateProduct.data.status) {
+        case 'ERROR':
+          if (responseAfterCreateProduct.data.message = 'No HP belum dikonfirmasi') {
+            finalResult.message = responseAfterCreateProduct.data.message + ', silahkan lengkapi nomor HP Anda di BukaLapak.com'
+          } else {
+            finalResult.message = responseAfterCreateProduct.data.message
+          }
+          res.json(finalResult)
+          break;
+        default:
+
+      }
+      console.log('isi repsonse : ', responseAfterCreateProduct.data);
+    }).catch((err) => {
+      console.log('error when trying to create product to BL : ', err);
+      res.json(finalResult)
+    })
   }
 }
