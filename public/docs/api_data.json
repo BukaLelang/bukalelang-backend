@@ -1,6 +1,203 @@
 [
   {
     "type": "post",
+    "url": "/auctions",
+    "title": "create auctions",
+    "group": "Auction",
+    "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n  \"title\": \"Lelang Gundam Langka & Istimewa\",\n  \"categoryId\": 145,\n  \"new\": false,\n  \"weight\": 5000,\n  \"description\": \"Gundam dapet dari pembuatnya langsung lho\",\n  \"min_price\": 50000,\n  \"max_price\": 200000,\n  \"kelipatan_bid\": 10000,\n  \"start_date\": 2017-07-14T00:00:00Z,\n  \"end_date\": 2017-09-14T00:00:00Z,\n  \"creator_id\": 2,\n}",
+          "type": "json"
+        }
+      ],
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "title",
+            "description": "<p>Title of auction</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "categoryId",
+            "description": "<p>category ID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Boolean",
+            "optional": false,
+            "field": "new",
+            "description": "<p>product is new or second ?</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "weight",
+            "description": "<p>weight of the product using gram</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "description",
+            "description": "<p>description of product</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "min_price",
+            "description": "<p>minimal / start price of auctions</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "max_price",
+            "description": "<p>maximal / buy now price of auctions</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "kelipatan_bid",
+            "description": "<p>nominal lipatan of next bidding</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Date",
+            "optional": false,
+            "field": "start_date",
+            "description": "<p>date of auction start, default is after published</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Date",
+            "optional": false,
+            "field": "end_date",
+            "description": "<p>date end of auction, default is one week</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "id",
+            "description": "<p>id of the auction</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "title",
+            "description": "<p>Title of auction</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "categoryId",
+            "description": "<p>category ID</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "new",
+            "description": "<p>product is new or second ?</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "weight",
+            "description": "<p>weight of the product using gram</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "description",
+            "description": "<p>description of product</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "min_price",
+            "description": "<p>minimal / start price of auctions</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "max_price",
+            "description": "<p>maximal / buy now price of auctions</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "kelipatan_bid",
+            "description": "<p>nominal lipatan of next bidding</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "start_date",
+            "description": "<p>date of auction start, default is after published</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "end_date",
+            "description": "<p>date end of auction, default is one week</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success",
+          "content": "HTTP/1.1 200 OK\n[{\n  \"id\": 23,\n  \"title\": \"Lelang Gundam Langka & Istimewa\",\n  \"categoryId\": 145,\n  \"new\": false,\n  \"weight\": 5000,\n  \"description\": \"Gundam dapet dari pembuatnya langsung lho\",\n  \"min_price\": 50000,\n  \"max_price\": 200000,\n  \"kelipatan_bid\": 10000,\n  \"start_date\": 2017-07-14T00:00:00Z,\n  \"end_date\": 2017-09-14T00:00:00Z,\n  \"creator_id\": 2,\n  \"success\": true,\n  \"message\": 'buat lelang berhasil',\n}]",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "List error",
+          "content": "HTTP/1.1 500 Internal Server Error\n[{\n   \"id\": null,\n  \"title\": null,\n  \"categoryId\": null,\n  \"new\": false,\n  \"weight\": 0,\n  \"description\": null,\n  \"min_price\": 0,\n  \"max_price\": 0,\n  \"kelipatan_bid\": 0,\n  \"start_date\": null,\n  \"end_date\": null,\n  \"creator_id\": null,\n  \"success\": false,\n  \"message\": 'Buat lelang gagal ):',\n}]",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/auctions.js",
+    "groupTitle": "Auction",
+    "name": "PostAuctions",
+    "sampleRequest": [
+      {
+        "url": "http://localhost:3000/auctions"
+      }
+    ]
+  },
+  {
+    "type": "post",
     "url": "/auth/login",
     "title": "login",
     "group": "Auth",
