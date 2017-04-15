@@ -204,6 +204,14 @@ module.exports = {
             password: req.body.password
           }
         }).then((responseAfterLogin) => {
+          //Update token
+          models.User.update({
+            bl_token:responseAfterLogin.data.token
+          },{
+            where:{
+              id:user.id
+            }})
+
           axios({
             method: 'get',
             url: blEndPoint + 'dompet/history.json',
