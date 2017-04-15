@@ -16,6 +16,20 @@ define({ "api": [
         "Parameter": [
           {
             "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "bukalapakId",
+            "description": "<p>bukalapakId of user</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "token",
+            "description": "<p>token of logged in user</p>"
+          },
+          {
+            "group": "Parameter",
             "type": "String",
             "optional": false,
             "field": "title",
