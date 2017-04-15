@@ -1,4 +1,7 @@
 'use strict';
+const crypto = require('crypto');
+require('dotenv').config()
+
 module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define('User', {
     username: DataTypes.STRING,
@@ -17,6 +20,14 @@ module.exports = function(sequelize, DataTypes) {
       associate: function(models) {
         User.hasMany(models.Bid)
         User.hasMany(models.Auction)
+      }
+    },
+    hooks:{
+      beforeCreate:function(value, option){
+        let cipher = crypto.createCipher('aes-256-ctr', process.env.SECRET_KEY)
+        let crypted = cipher.update(value.password,'utf8','hex')
+        crypted += cipher.final('hex');
+        value.password = crypted
       }
     }
   });
