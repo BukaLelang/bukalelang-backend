@@ -21,6 +21,8 @@ let auctionController = require('../controllers/auctionController')
  *       "end_date": 2017-09-14T00:00:00Z,
  *       "creator_id": 2,
  *     }
+ * @apiParam {Integer} bukalapakId bukalapakId of user
+ * @apiParam {String} token token of logged in user
  * @apiParam {String} title Title of auction
  * @apiParam {Integer} categoryId category ID
  * @apiParam {Boolean} new product is new or second ?
