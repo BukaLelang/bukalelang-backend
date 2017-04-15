@@ -10,7 +10,7 @@ let serverHost = 'http://localhost:3000'
 describe('Auction Test', () => {
   describe('Create Auction', () => {
     it('Should be return status Success when trying to create new Auction', (done) => {
-      chai.request(serverHost).post('/auctions/create').send({
+      chai.request(serverHost).post('/auctions').send({
         username: process.env.BUKALAPAK_ACCOUNT_USERNAME_DEV,
         password: process.env.BUKALAPAK_ACCOUNT_PASSWORD_DEV
       }).end((err, res) => {
@@ -25,7 +25,7 @@ describe('Auction Test', () => {
       });
     })
     it('Should be return all field / property when trying to create new Auction', (done) => {
-      chai.request(serverHost).post('/auctions/create').send({
+      chai.request(serverHost).post('/auctions').send({
         username: process.env.BUKALAPAK_ACCOUNT_USERNAME_DEV,
         password: process.env.BUKALAPAK_ACCOUNT_PASSWORD_DEV
       }).end((err, res) => {
@@ -38,10 +38,13 @@ describe('Auction Test', () => {
           res.body.should.have.property('id')
           res.body.should.have.property('category')
           res.body.should.have.property('title')
+          res.body.should.have.property('new')
+          res.body.should.have.property('description')
           res.body.should.have.property('min_price')
           res.body.should.have.property('max_price')
           res.body.should.have.property('kelipatan_bid')
-          res.body.should.have.property('location')
+          res.body.should.have.property('city')
+          res.body.should.have.property('province')
           res.body.should.have.property('start_date')
           res.body.should.have.property('end_date')
           res.body.should.have.property('creator_id')
@@ -53,7 +56,7 @@ describe('Auction Test', () => {
       });
     })
     it('Should be return status false when trying to create Auction with wrong paramater', (done) => {
-      chai.request(serverHost).post('/auctions/create').send({
+      chai.request(serverHost).post('/auctions').send({
         username: process.env.BUKALAPAK_ACCOUNT_USERNAME_DEV,
         password: process.env.BUKALAPAK_ACCOUNT_PASSWORD_DEV
       }).end((err, res) => {
@@ -67,8 +70,8 @@ describe('Auction Test', () => {
         }
       });
     })
-    it('Should be return token null when trying to create Auction with wrong paramater', (done) => {
-      chai.request(serverHost).post('/auctions/create').send({
+    it('Should be return min_price = null when trying to create Auction with wrong paramater', (done) => {
+      chai.request(serverHost).post('/auctions').send({
         username: process.env.BUKALAPAK_ACCOUNT_USERNAME_DEV,
         password: process.env.BUKALAPAK_ACCOUNT_PASSWORD_DEV
       }).end((err, res) => {
