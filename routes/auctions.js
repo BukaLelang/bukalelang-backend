@@ -1,5 +1,9 @@
 var express = require('express');
+var multer  = require('multer')
+
 var router = express.Router();
+
+var upload = multer({ dest: 'uploads/' })
 
 let auctionController = require('../controllers/auctionController')
 
@@ -17,6 +21,7 @@ let auctionController = require('../controllers/auctionController')
  *       "min_price": 50000,
  *       "max_price": 200000,
  *       "kelipatan_bid": 10000,
+ *       "imagesId": 11122121,
  *       "start_date": 2017-07-14T00:00:00Z,
  *       "end_date": 2017-09-14T00:00:00Z,
  *       "creator_id": 2,
@@ -31,6 +36,7 @@ let auctionController = require('../controllers/auctionController')
  * @apiParam {Integer} min_price minimal / start price of auctions
  * @apiParam {Integer} max_price maximal / buy now price of auctions
  * @apiParam {Integer} kelipatan_bid nominal lipatan of next bidding
+ * @apiParam {Integer} imagesId image_id after upload image to BL
  * @apiParam {Date} start_date date of auction start, default is after published
  * @apiParam {Date} end_date date end of auction, default is one week
 

@@ -1,12 +1,14 @@
 let axios = require('axios')
 
 const models = require('../models')
+let imageUploader = require('../helpers/imageUploader')
 
 blEndPoint = 'https://api.bukalapak.com/v2/'
 
 module.exports = {
   create: (req, res) => {
     console.log('isi request : ', req.body);
+
     // init repsonse
     let finalResult = {
       id: null,
@@ -24,6 +26,9 @@ module.exports = {
       success: false,
       message: 'Buat lelang gagal ):',
     }
+
+    // upload image first
+    // imageUploader.uploadToBukaLapak(req, res)
 
     // creat product to BL
     axios({
@@ -43,8 +48,8 @@ module.exports = {
           weight: req.body.weight,
           stock: 1,
           description_bb: req.body.description,
-          images: ['https://500.co/wp-content/uploads/2016/05/Logo-Bukalapak_Red.png']
-        }
+        },
+        imagesId: '1172556276'
       }
     }).then((responseAfterCreateProduct) => {
       switch (responseAfterCreateProduct.data.status) {
