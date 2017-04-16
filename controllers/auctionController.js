@@ -119,14 +119,31 @@ module.exports = {
     }).then(auction => {
       res.json(auction)
     }).catch(err => {
-      console.log('error whe try list auction in localdb', err);
+      console.log('error when try list auction in localdb', err);
       res.json(finalResult.message = err)
     })
   },
 
   getOneAuction: (req, res) => {
-    models.Auction.findOne({
-
+    models.Auction.findById(req.params.id).then(auction => {
+      finalResult.id = auction.id
+      finalResult.productId = auction.productId
+      finalResult.title = auction.title
+      finalResult.categoryId = auction.categoryId
+      finalResult.new = auction.new
+      finalResult.weight = auction.weight
+      finalResult.description = auction.description
+      finalResult.min_price = auction.min_price
+      finalResult.max_price = auction.max_price
+      finalResult.kelipatan_bid = auction.kelipatan_bid
+      finalResult.start_date = auction.start_date
+      finalResult.end_date = auction.end_date
+      finalResult.success = true
+      finalResult.userId = auction.userId
+      finalResult.message = 'Sukses ngambil satu auction'
+    }).catch(err => {
+      console.log('error when try get one auction in localdb', err);
+      res.json(finalResult.message = err)
     })
   }
 }
