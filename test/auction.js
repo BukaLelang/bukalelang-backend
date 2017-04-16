@@ -4,6 +4,7 @@ require('dotenv').config()
 let moment = require('moment')
 var should = chai.should()
 var axios = require('axios')
+var faker = require('faker');
 chai.use(chaiHttp)
 
 let imageUploader = require('../helpers/imageUploader')
@@ -13,6 +14,11 @@ let serverHost = 'http://localhost:3000'
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
+
+let min_price = 50000
+let max_price = 2000000
+let end_date = moment().add(5, 'days').format()
+var randomName = faker.name.findName();
 
 describe('Auction Test', () => {
   describe('Create Auction', () => {
@@ -25,16 +31,16 @@ describe('Auction Test', () => {
           userId: '1',
           bukalapakId: process.env.BUKALAPAK_ID,
           token: process.env.BUKALAPAK_TOKEN,
-          title: 'Ini cuma testing aja asdjasdkjsadka',
+          title: 'Ini cuma testing aja  fsafs fsaasdjasdkjsadkadsdsaa sd sad a ',
           categoryId: 241,
           new: false,
           weight: 4000,
           description: 'Ini cuma contoh deskripsi minimal 30 karakter lho, jika kurang akan error, maka nya saya banyak banyakain, masih kurang juga ?',
-          min_price: 500000,
-          max_price: 2000000,
+          min_price: min_price,
+          max_price: max_price,
           kelipatan_bid: 10000,
           imagesId: responseAfterUpload.id,
-          end_date: '2017-04-21T18:33:07+08:00'
+          end_date: end_date
         }).end((err, res) => {
           if (err) {
             done(err)
@@ -43,6 +49,8 @@ describe('Auction Test', () => {
             res.should.have.status(200);
             res.should.be.json;
             res.body.success.should.to.equal(true)
+
+            
             done()
           }
         });
