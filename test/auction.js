@@ -50,7 +50,7 @@ describe('Auction Test', () => {
             res.should.have.status(200);
             res.should.be.json;
             res.body.success.should.to.equal(true)
-
+            // after created we need to delete it
             if (res.body.success) {
               axios({
                 method: 'patch',
@@ -59,19 +59,27 @@ describe('Auction Test', () => {
                   username: process.env.BUKALAPAK_ID,
                   password: process.env.BUKALAPAK_TOKEN
                 }
-              })
+              }).then((responseAfterRemoveProduct) => {
+                // console.log('responseAfterRemoveProduct : ', responseAfterRemoveProduct.data);
+                models.Auction.findById(res.body.id).then(auction => {
+                  console.log('a auction : ', auction);
+                  auction.destroy({
+                    where: {
+                      id: auction.id
+                    }
+                  }).then((afterDeleteProductInLocal) => {
+                    // console.log('After delete product in local : ', afterDeleteProductInLocal);
+                    done()
 
-              models.Auction.findById(res.body.id).then(auction => {
-                auction.destroy({
-                  where: {
-                    id: auction.id
-                  }
+                  }).catch(err => {
+                    console.log('error when trying to delete product in local : ', errr);
+                  })
                 })
+
+              }).catch((err) => {
+                console.log('error when trying to remove product : ', err);
               })
             }
-
-            done()
-
           }
         });
       }).catch((err) => {
