@@ -669,6 +669,119 @@
     ]
   },
   {
+    "type": "post",
+    "url": "/bids",
+    "title": "bid the auction",
+    "group": "Bids",
+    "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n  \"userId\": 2,\n  \"token\": \"AngapAjaIniToken\",\n  \"auctionId\": 101,\n}",
+          "type": "json"
+        }
+      ],
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "userId",
+            "description": "<p>userId of user</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "token",
+            "description": "<p>token of logged in user</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "auctionId",
+            "description": "<p>id of the auction</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "id",
+            "description": "<p>id of the bid</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "auctionId",
+            "description": "<p>id of the auction bided</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>message from server</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "success",
+            "description": "<p>is bidding process success ?</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "current_price",
+            "description": "<p>currently highest bid</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "minimum_next_bidding",
+            "description": "<p>minimum nominal for the next bidding</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success",
+          "content": "HTTP/1.1 200 OK\n[{\n  \"message\": 'bidding success',\n  \"success\": true,\n  \"id\": 2345,\n  \"auctionId\": 101,\n  \"current_price\": 40000,\n  \"minimum_next_bidding\": 50000,\n}]",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "List error",
+          "content": "HTTP/1.1 500 Internal Server Error\n[{\n  \"message\": 'bidding fail',\n  \"success\": false,\n  \"id\": null,\n  \"auctionId\": null,\n  \"current_price\": null,\n  \"minimum_next_bidding\": null,\n}]",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/bids.js",
+    "groupTitle": "Bids",
+    "name": "PostBids",
+    "sampleRequest": [
+      {
+        "url": "http://localhost:3000/bids"
+      }
+    ]
+  },
+  {
     "type": "get",
     "url": "/ping",
     "title": "Ping server",
