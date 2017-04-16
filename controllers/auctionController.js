@@ -5,28 +5,27 @@ let imageUploader = require('../helpers/imageUploader')
 
 blEndPoint = 'https://api.bukalapak.com/v2/'
 
+// init repsonse
+var finalResult = {
+  id: null,
+  title: null,
+  categoryId: null,
+  new: false,
+  weight: 0,
+  description: null,
+  min_price: 0,
+  max_price: 0,
+  kelipatan_bid: 0,
+  start_date: null,
+  end_date: null,
+  userId: null,
+  success: false,
+  message: 'Buat lelang gagal ):',
+}
+
 module.exports = {
   create: (req, res) => {
     console.log('isi request : ', req.body);
-
-    // init repsonse
-    let finalResult = {
-      id: null,
-      title: null,
-      categoryId: null,
-      new: false,
-      weight: 0,
-      description: null,
-      min_price: 0,
-      max_price: 0,
-      kelipatan_bid: 0,
-      start_date: null,
-      end_date: null,
-      userId: null,
-      success: false,
-      message: 'Buat lelang gagal ):',
-    }
-
     // upload image first
     // imageUploader.uploadToBukaLapak(req, res)
 
@@ -104,6 +103,21 @@ module.exports = {
     }).catch((err) => {
       console.log('error when trying to create product to BL : ', err);
       res.json(finalResult)
+    })
+  },
+
+  getAllAuctions: (req, res) => {
+    models.Auction.findAll({
+      include:[{
+        model: models.Category,
+      },{
+        model: models.User
+      }]
+    }).then(auction => {
+      res.json(auction)
+    }).catch(err => {
+      console.log('error whe try list auction in localdb', err);
+      res.json(finalResult.message = err)
     })
   }
 }
