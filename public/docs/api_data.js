@@ -1,5 +1,181 @@
 define({ "api": [
   {
+    "type": "get",
+    "url": "/auctions",
+    "title": "get all auctions",
+    "group": "Auction",
+    "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n  \"userId\": 2,\n  \"token\": \"IniToken\",\n}",
+          "type": "json"
+        }
+      ],
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "userId",
+            "description": "<p>userId of user</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "token",
+            "description": "<p>token of logged in user</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>message from server</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "success",
+            "description": "<p>is request success ?</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "auctions",
+            "description": "<p>List of auctions.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "auctions.id",
+            "description": "<p>id of the auction</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "auctions.productId",
+            "description": "<p>id of the product at BL</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "auctions.title",
+            "description": "<p>Title of auction</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "auctions.category",
+            "description": "<p>category of auction</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "auctions.new",
+            "description": "<p>product is new or second ?</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "auctions.weight",
+            "description": "<p>weight of the product using gram</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "auctions.description",
+            "description": "<p>description of product</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "auctions.min_price",
+            "description": "<p>minimal / start price of auction</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "auctions.current_price",
+            "description": "<p>current price of the auction</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "auctions.max_price",
+            "description": "<p>maximal / buy now price of auction</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "auctions.kelipatan_bid",
+            "description": "<p>nominal lipatan of next bidding</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "auctions.start_date",
+            "description": "<p>date of auction start, default is after published</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "auctions.end_date",
+            "description": "<p>date end of auction, default is one week</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success",
+          "content": "HTTP/1.1 200 OK\n[{\n  \"success\": true,\n  \"message\": 'Success load list of auctions',\n  \"auctions\": [\n        {\n         id: 23,\n         productId: '31fsa21',\n         title: 'Tamiya super cepat',\n         category: 'Mainan',\n         new: false,\n         weight: 1000,\n         description: 'Tamiya ini di rakit oleh ahli fisika, dengan memperhatikan dengan seksama gaya gesek dan kelembaman sehigga mengurangi kaya gesek dengan lintasan membuanya super cepat.',\n         min_price: 200000,\n         max_price: 3000000,\n         current_price: 600000,\n         kelipatan_bid: 20000,\n         start_date: '2017-04-16T18:22:54.846+07:00',\n         end_date: '2017-05-16T18:22:54.846+07:00'\n       }\n     ]\n}]",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "List error",
+          "content": "HTTP/1.1 500 Internal Server Error\n[{\n  \"success\": false,\n  \"message\": 'Fail load list of auctions',\n  \"auctions\": []\n}]",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/auctions.js",
+    "groupTitle": "Auction",
+    "name": "GetAuctions",
+    "sampleRequest": [
+      {
+        "url": "http://localhost:3000/auctions"
+      }
+    ]
+  },
+  {
     "type": "post",
     "url": "/auctions",
     "title": "create auctions",
@@ -8,7 +184,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\n  \"userId\": 2,\n \"bukalapakId\": 231232131,\n  \"token\": \"IniToken\",\n  \"title\": \"Lelang Gundam Langka & Istimewa\",\n  \"categoryId\": 145,\n  \"new\": false,\n  \"weight\": 5000,\n  \"description\": \"Gundam dapet dari pembuatnya langsung lho\",\n  \"min_price\": 50000,\n  \"max_price\": 200000,\n  \"kelipatan_bid\": 10000,\n  \"imagesId\": 11122121,\n  \"end_date\": 2017-09-14T00:00:00Z,\n}",
+          "content": "{\n  \"userId\": 2,\n  \"bukalapakId\": 231232131,\n  \"token\": \"IniToken\",\n  \"title\": \"Lelang Gundam Langka & Istimewa\",\n  \"categoryId\": 145,\n  \"new\": false,\n  \"weight\": 5000,\n  \"description\": \"Gundam dapet dari pembuatnya langsung lho\",\n  \"min_price\": 50000,\n  \"max_price\": 200000,\n  \"kelipatan_bid\": 10000,\n  \"imagesId\": 11122121,\n  \"end_date\": 2017-09-14T00:00:00Z,\n}",
           "type": "json"
         }
       ],
@@ -120,6 +296,13 @@ define({ "api": [
           },
           {
             "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "productId",
+            "description": "<p>id of the product at BL</p>"
+          },
+          {
+            "group": "Success 200",
             "type": "String",
             "optional": false,
             "field": "title",
@@ -193,7 +376,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success",
-          "content": "HTTP/1.1 200 OK\n[{\n  \"id\": 23,\n  \"title\": \"Lelang Gundam Langka & Istimewa\",\n  \"categoryId\": 145,\n  \"new\": false,\n  \"weight\": 5000,\n  \"description\": \"Gundam dapet dari pembuatnya langsung lho\",\n  \"min_price\": 50000,\n  \"max_price\": 200000,\n  \"kelipatan_bid\": 10000,\n  \"end_date\": 2017-09-14T00:00:00Z,\n  \"userId\": 2,\n  \"success\": true,\n  \"message\": 'buat lelang berhasil',\n}]",
+          "content": "HTTP/1.1 200 OK\n[{\n  \"id\": 23,\n  \"productId\": '42dfs34',\n  \"title\": \"Lelang Gundam Langka & Istimewa\",\n  \"categoryId\": 145,\n  \"new\": false,\n  \"weight\": 5000,\n  \"description\": \"Gundam dapet dari pembuatnya langsung lho\",\n  \"min_price\": 50000,\n  \"max_price\": 200000,\n  \"kelipatan_bid\": 10000,\n  \"end_date\": 2017-09-14T00:00:00Z,\n  \"userId\": 2,\n  \"success\": true,\n  \"message\": 'buat lelang berhasil',\n}]",
           "type": "json"
         }
       ]
@@ -202,7 +385,7 @@ define({ "api": [
       "examples": [
         {
           "title": "List error",
-          "content": "HTTP/1.1 500 Internal Server Error\n[{\n   \"id\": null,\n  \"title\": null,\n  \"categoryId\": null,\n  \"new\": false,\n  \"weight\": 0,\n  \"description\": null,\n  \"min_price\": 0,\n  \"max_price\": 0,\n  \"kelipatan_bid\": 0,\n  \"end_date\": null,\n  \"userId\": null,\n  \"success\": false,\n  \"message\": 'Buat lelang gagal ):',\n}]",
+          "content": "HTTP/1.1 500 Internal Server Error\n[{\n   \"id\": null,\n  \"productId\": null,\n  \"title\": null,\n  \"categoryId\": null,\n  \"new\": false,\n  \"weight\": 0,\n  \"description\": null,\n  \"min_price\": 0,\n  \"max_price\": 0,\n  \"kelipatan_bid\": 0,\n  \"end_date\": null,\n  \"userId\": null,\n  \"success\": false,\n  \"message\": 'Buat lelang gagal ):',\n}]",
           "type": "json"
         }
       ]
