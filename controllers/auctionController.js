@@ -3,7 +3,7 @@ let axios = require('axios')
 const models = require('../models')
 let imageUploader = require('../helpers/imageUploader')
 
-blEndPoint = 'https://api.bukalapak.com/v2/'
+let blEndPoint = 'https://api.bukalapak.com/v2/'
 
 // init repsonse
 var finalResult = {
@@ -52,13 +52,10 @@ module.exports = {
         images: req.body.imagesId
       }
     }).then((responseAfterCreateProduct) => {
+      console.log('response dari BL setelah coba create product : ', responseAfterCreateProduct.data);
       switch (responseAfterCreateProduct.data.status) {
         case 'ERROR':
-          if (responseAfterCreateProduct.data.message = 'No HP belum dikonfirmasi') {
-            finalResult.message = responseAfterCreateProduct.data.message + ', silahkan lengkapi nomor HP Anda di BukaLapak.com'
-          } else {
-            finalResult.message = responseAfterCreateProduct.data.message
-          }
+          finalResult.message = responseAfterCreateProduct.data.message
           res.json(finalResult)
           break;
         case 'OK':
@@ -102,7 +99,6 @@ module.exports = {
         default:
 
       }
-      console.log('isi repsonse : ', responseAfterCreateProduct.data);
     }).catch((err) => {
       console.log('error when trying to create product to BL : ', err);
       res.json(finalResult)
