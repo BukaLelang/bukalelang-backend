@@ -42,6 +42,7 @@ let auctionController = require('../controllers/auctionController')
  * @apiParam {Date} end_date date end of auction, default is one week
 
  * @apiSuccess {Integer} id id of the auction
+ * @apiSuccess {Integer} productId id of the product at BL
  * @apiSuccess {String} title Title of auction
  * @apiSuccess {Integer} categoryId category ID
  * @apiSuccess {Boolean} new product is new or second ?
@@ -58,6 +59,7 @@ let auctionController = require('../controllers/auctionController')
  *    HTTP/1.1 200 OK
  *    [{
  *      "id": 23,
+ *      "productId": '42dfs34',
  *      "title": "Lelang Gundam Langka & Istimewa",
  *      "categoryId": 145,
  *      "new": false,

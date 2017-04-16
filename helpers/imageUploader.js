@@ -6,6 +6,7 @@ let blEndPoint = 'https://api.bukalapak.com/v2/images.json'
 
 module.exports = {
   uploadToBukaLapak: (bukalapakId, token) => {
+    // console.log('isi bukalapakId ', bukalapakId, token);
     return new Promise((resolve, reject) => {
 
       var username = bukalapakId,

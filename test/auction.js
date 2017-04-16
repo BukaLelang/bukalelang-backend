@@ -31,7 +31,7 @@ describe('Auction Test', () => {
           userId: '1',
           bukalapakId: process.env.BUKALAPAK_ID,
           token: process.env.BUKALAPAK_TOKEN,
-          title: 'Ini cuma testing aja  fsafs fsaasdjasdkjsadkadsdsaa sd sad a ',
+          title: 'Ini cuma testing ajsfsfaa  fsafs fsaasdjasdkjsadkadsdsaa sd saddfsdf sfafdfasf a ',
           categoryId: 241,
           new: false,
           weight: 4000,
@@ -50,8 +50,19 @@ describe('Auction Test', () => {
             res.should.be.json;
             res.body.success.should.to.equal(true)
 
-            
+            // if (res.body.success) {
+            //   axios({
+            //     method: 'patch',
+            //     url: 'https://api.bukalapak.com/v2/products/' + res.body.productId + '/remove.json',
+            //     auth: {
+            //       username: process.env.BUKALAPAK_ID,
+            //       password: process.env.BUKALAPAK_TOKEN
+            //     }
+            //   })
+            // }
+
             done()
+
           }
         });
       }).catch((err) => {

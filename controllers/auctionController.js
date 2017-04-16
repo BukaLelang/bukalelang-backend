@@ -8,6 +8,7 @@ blEndPoint = 'https://api.bukalapak.com/v2/'
 // init repsonse
 var finalResult = {
   id: null,
+  productId: null,
   title: null,
   categoryId: null,
   new: false,
@@ -63,6 +64,7 @@ module.exports = {
         case 'OK':
           // create auction in local
           models.Auction.create({
+            productId: responseAfterCreateProduct.data.product_detail.id,
             title: req.body.title,
             categoryId: req.body.categoryId,
             min_price: req.body.min_price,
@@ -77,6 +79,7 @@ module.exports = {
             userId: req.body.userId
           }).then((auction) => {
             finalResult.id = auction.id
+            finalResult.productId = auction.productId
             finalResult.title = auction.title
             finalResult.categoryId = auction.categoryId
             finalResult.new = auction.new
@@ -118,6 +121,12 @@ module.exports = {
     }).catch(err => {
       console.log('error whe try list auction in localdb', err);
       res.json(finalResult.message = err)
+    })
+  },
+
+  getOneAuction: (req, res) => {
+    models.Auction.findOne({
+
     })
   }
 }
