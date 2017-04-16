@@ -29,10 +29,10 @@ module.exports = {
       end_date: {
         type: Sequelize.DATE
       },
-      CategoryId: {
+      categoryId: {
         type: Sequelize.INTEGER
       },
-      UserId: {
+      userId: {
         type: Sequelize.INTEGER
       },
       createdAt: {
