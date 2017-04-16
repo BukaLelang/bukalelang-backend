@@ -1,22 +1,40 @@
 var chai = require('chai')
 var chaiHttp = require('chai-http')
 require('dotenv').config()
+let moment = require('moment')
 
 var should = chai.should()
 chai.use(chaiHttp)
 
 let serverHost = 'http://localhost:3000'
 
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+
+
 describe('Auction Test', () => {
   describe('Create Auction', () => {
     it('Should be return status Success when trying to create new Auction', (done) => {
+      console.log('moment : ', moment().format().add(5, 'days'));
       chai.request(serverHost).post('/auctions').send({
-        username: process.env.BUKALAPAK_ACCOUNT_USERNAME_DEV,
-        password: process.env.BUKALAPAK_ACCOUNT_PASSWORD_DEV
+        userId: 1,
+        bukalapakId: process.env.BUKALAPAK_ID,
+        token: process.env.BUKALAPAK_TOKEN,
+        title: 'Ini cuma testing aja ' + getRandomInt(1, 300),
+        categoryId: 241,
+        new: false,
+        weight: getRandomInt(1000, 5000),
+        description: 'Ini cuma contoh deskripsi minimal 30 karakter lho, jika kurang akan error, maka nya saya banyak banyakain',
+        min_price: getRandomInt(50000, 1000000),
+        max_price: getRandomInt(1000002, 2000000),
+        kelipatan_bid: 10000,
+        imagesId: 2132132131,
+        end_date: moment().format().add(5, 'days')
       }).end((err, res) => {
         if (err) {
           done(err)
         } else {
+
           res.should.have.status(200);
           res.should.be.json;
           res.body.success.should.to.equal(true)

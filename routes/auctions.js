@@ -39,7 +39,6 @@ let auctionController = require('../controllers/auctionController')
  * @apiParam {Integer} max_price maximal / buy now price of auctions
  * @apiParam {Integer} kelipatan_bid nominal lipatan of next bidding
  * @apiParam {Integer} imagesId image_id after upload image to BL
- * @apiParam {Date} start_date date of auction start, default is after published
  * @apiParam {Date} end_date date end of auction, default is one week
 
  * @apiSuccess {Integer} id id of the auction
