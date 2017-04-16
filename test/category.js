@@ -5,7 +5,7 @@ describe('Category Test',() => {
   it('should be return length category equal 20',() => {
     models.Category.findAll().then((categories) => {
       let result = categories.length
-      result.should.equal(20)
+      result.should.equal(225)
     })
   })
 })
