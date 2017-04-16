@@ -154,5 +154,6 @@ router.post('/', auctionController.create)
  *    }]
  */
 router.get('/', auctionController.getAllAuctions)
+router.get('/:id', auctionController.getOneAuction)
 
 module.exports = router;
