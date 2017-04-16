@@ -33,7 +33,7 @@ describe('Auction Test', () => {
           bukalapakId: process.env.BUKALAPAK_ID,
           token: process.env.BUKALAPAK_TOKEN,
           title: 'Ini cuma testing ajsfsfaa  fsafs fsaasdjasdkjsadkadsdsaa sd saddfsdf sfafdfasf a ',
-          categoryId: 241,
+          categoryId: 2,
           new: false,
           weight: 4000,
           description: 'Ini cuma contoh deskripsi minimal 30 karakter lho, jika kurang akan error, maka nya saya banyak banyakain, masih kurang juga ?',
