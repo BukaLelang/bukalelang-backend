@@ -7,6 +7,7 @@ var axios = require('axios')
 var faker = require('faker');
 chai.use(chaiHttp)
 
+let models = require('../models')
 let imageUploader = require('../helpers/imageUploader')
 
 let serverHost = 'http://localhost:3000'
@@ -50,16 +51,24 @@ describe('Auction Test', () => {
             res.should.be.json;
             res.body.success.should.to.equal(true)
 
-            // if (res.body.success) {
-            //   axios({
-            //     method: 'patch',
-            //     url: 'https://api.bukalapak.com/v2/products/' + res.body.productId + '/remove.json',
-            //     auth: {
-            //       username: process.env.BUKALAPAK_ID,
-            //       password: process.env.BUKALAPAK_TOKEN
-            //     }
-            //   })
-            // }
+            if (res.body.success) {
+              axios({
+                method: 'patch',
+                url: 'https://api.bukalapak.com/v2/products/' + res.body.productId + '/remove.json',
+                auth: {
+                  username: process.env.BUKALAPAK_ID,
+                  password: process.env.BUKALAPAK_TOKEN
+                }
+              })
+
+              models.Auction.findById(res.body.id).then(auction => {
+                auction.destroy({
+                  where: {
+                    id: auction.id
+                  }
+                })
+              })
+            }
 
             done()
 
