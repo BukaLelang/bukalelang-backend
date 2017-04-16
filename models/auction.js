@@ -8,8 +8,8 @@ module.exports = function(sequelize, DataTypes) {
     location: DataTypes.STRING,
     start_date: DataTypes.DATE,
     end_date: DataTypes.DATE,
-    CategoryId: DataTypes.INTEGER,
-    UserId: DataTypes.INTEGER,
+    categoryId: DataTypes.INTEGER,
+    userId: DataTypes.INTEGER,
     new:DataTypes.BOOLEAN,
     description:DataTypes.STRING,
     weight:DataTypes.INTEGER

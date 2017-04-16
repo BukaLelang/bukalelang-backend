@@ -13,6 +13,9 @@ let auctionController = require('../controllers/auctionController')
  * @apiGroup Auction
  * @apiParamExample {json} Request-Example:
  *     {
+ *       "userId": 2,
+ *      "bukalapakId": 231232131,
+ *       "token": "IniToken",
  *       "title": "Lelang Gundam Langka & Istimewa",
  *       "categoryId": 145,
  *       "new": false,
@@ -22,17 +25,16 @@ let auctionController = require('../controllers/auctionController')
  *       "max_price": 200000,
  *       "kelipatan_bid": 10000,
  *       "imagesId": 11122121,
- *       "start_date": 2017-07-14T00:00:00Z,
  *       "end_date": 2017-09-14T00:00:00Z,
- *       "creator_id": 2,
  *     }
+ * @apiParam {Integer} userId userId of user
  * @apiParam {Integer} bukalapakId bukalapakId of user
  * @apiParam {String} token token of logged in user
  * @apiParam {String} title Title of auction
  * @apiParam {Integer} categoryId category ID
  * @apiParam {Boolean} new product is new or second ?
  * @apiParam {Integer} weight weight of the product using gram
- * @apiParam {String} description description of product
+ * @apiParam {String} description description of product (minimal 30 char)
  * @apiParam {Integer} min_price minimal / start price of auctions
  * @apiParam {Integer} max_price maximal / buy now price of auctions
  * @apiParam {Integer} kelipatan_bid nominal lipatan of next bidding
@@ -65,9 +67,8 @@ let auctionController = require('../controllers/auctionController')
  *      "min_price": 50000,
  *      "max_price": 200000,
  *      "kelipatan_bid": 10000,
- *      "start_date": 2017-07-14T00:00:00Z,
  *      "end_date": 2017-09-14T00:00:00Z,
- *      "creator_id": 2,
+ *      "userId": 2,
  *      "success": true,
  *      "message": 'buat lelang berhasil',
  *    }]
@@ -83,9 +84,8 @@ let auctionController = require('../controllers/auctionController')
  *      "min_price": 0,
  *      "max_price": 0,
  *      "kelipatan_bid": 0,
- *      "start_date": null,
  *      "end_date": null,
- *      "creator_id": null,
+ *      "userId": null,
  *      "success": false,
  *      "message": 'Buat lelang gagal ):',
  *    }]

@@ -22,7 +22,7 @@ module.exports = {
       kelipatan_bid: 0,
       start_date: null,
       end_date: null,
-      creator_id: null,
+      userId: null,
       success: false,
       message: 'Buat lelang gagal ):',
     }
@@ -49,7 +49,7 @@ module.exports = {
           stock: 1,
           description_bb: req.body.description,
         },
-        imagesId: '1172556276'
+        images: req.body.imagesId
       }
     }).then((responseAfterCreateProduct) => {
       switch (responseAfterCreateProduct.data.status) {
@@ -60,6 +60,42 @@ module.exports = {
             finalResult.message = responseAfterCreateProduct.data.message
           }
           res.json(finalResult)
+          break;
+        case 'OK':
+          // create auction in local
+          models.Auction.create({
+            title: req.body.title,
+            categoryId: req.body.categoryId,
+            min_price: req.body.min_price,
+            max_price: req.body.max_price,
+            description: req.body.description,
+            new: req.body.new,
+            weight: req.body.weight,
+            kelipatan_bid: req.body.kelipatan_bid,
+            location: responseAfterCreateProduct.data.product_detail.city,
+            start_date: new Date(),
+            end_date: req.body.end_date,
+            userId: req.body.userId
+          }).then((auction) => {
+            finalResult.id = auction.id
+            finalResult.title = auction.title
+            finalResult.categoryId = auction.categoryId
+            finalResult.new = auction.new
+            finalResult.weight = auction.weight
+            finalResult.description = auction.description
+            finalResult.min_price = auction.min_price
+            finalResult.max_price = auction.max_price
+            finalResult.kelipatan_bid = auction.kelipatan_bid
+            finalResult.start_date = auction.start_date
+            finalResult.end_date = auction.end_date
+            finalResult.success = true
+            finalResult.userId = auction.userId
+            finalResult.message = 'Sukses buat lelang!'
+            res.json(finalResult)
+          }).catch(err => {
+            console.log('error when try create auction in localdb', err);
+            res.json(finalResult)
+          })
           break;
         default:
 
