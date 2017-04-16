@@ -8,13 +8,6 @@ let categoriesLength = categoriesJson.categories.length
 console.log('dapet :', categoriesLength);
 let summer = 0
 for (var i = 0; i < categoriesLength; i++) {
-  result.push({
-    bl_categoryId:categoriesJson.categories[i].id,
-    name:categoriesJson.categories[i].name,
-    url:categoriesJson.categories[i].url,
-    createdAt:new Date(),
-    updatedAt: new Date()
-  })
   console.log('isinya apa ya : ', categoriesJson.categories[i].children);
   for (var j= 0; j < categoriesJson.categories[i].children.length; j++) {
     result.push({

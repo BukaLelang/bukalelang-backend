@@ -10,6 +10,9 @@ module.exports = {
     return model.Category.find({}).then((categories) => {
       if (categories == null) {
         return queryInterface.bulkInsert('Categories', categoriesJson)
+      }else {
+        queryInterface.bulkDelete('Categories', null, {});
+        return queryInterface.bulkInsert('Categories', categoriesJson)
       }
     })
   },
