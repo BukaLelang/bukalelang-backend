@@ -7,7 +7,7 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        Category.hasMany(models.Auction)
+        Category.hasMany(models.Auction, {foreignKey: 'categoryId'})
       }
     }
   });

@@ -18,8 +18,8 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        User.hasMany(models.Bid)
-        User.hasMany(models.Auction)
+        User.hasMany(models.Bid, {foreignKey: 'userId'})
+        User.hasMany(models.Auction, {foreignKey: 'userId'})
       }
     },
     hooks:{
