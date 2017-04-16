@@ -6,6 +6,10 @@
 - Sequelize
 - WebSocket using Socket.IO
 
+### Minimum Requirement
+- node v. 6.9.1
+- Postgres v. 9
+
 ### Install Guide
 
 ```
