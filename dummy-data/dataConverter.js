@@ -11,6 +11,7 @@ for (var i = 0; i < categoriesLength; i++) {
   console.log('isinya apa ya : ', categoriesJson.categories[i].children);
   for (var j= 0; j < categoriesJson.categories[i].children.length; j++) {
     result.push({
+      id: categoriesJson.categories[i].children[j].id,
       bl_categoryId:categoriesJson.categories[i].children[j].id,
       name:categoriesJson.categories[i].children[j].name,
       url:categoriesJson.categories[i].children[j].url,
