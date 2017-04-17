@@ -4,6 +4,7 @@ let moment = require('moment')
 
 const models = require('../models')
 let imageUploader = require('../helpers/imageUploader')
+let auctionWinnerJob = require('../helpers/auctionWinnerJob')
 
 let blEndPoint = 'https://api.bukalapak.com/v2/'
 
@@ -116,6 +117,8 @@ module.exports = {
               finalResult.success = true
               finalResult.userId = auction.userId
               finalResult.message = 'Sukses buat lelang!'
+
+              auctionWinnerJob.auctionWinnerJob(auction.id, auction.end_date) //Check winner every auction
               res.json(finalResult)
             }).catch(err => {
               console.log('error when try create auction in localdb', err);
