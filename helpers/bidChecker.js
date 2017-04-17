@@ -1,53 +1,58 @@
 let _ = require('lodash')
 let axios = require('axios')
+require('dotenv').config()
+
+
 let models = require('../models')
 
 let blEndPoint = 'https://api.bukalapak.com/v2/'
 
 module.exports = {
-  isMoreThanHighestBid: (auctionId, nextBid) => {
+  isMoreThanHighestBid: (highestBidOfTheAuction, nextBid) => {
     return new Promise((resolve, reject) => {
-      models.Bid.findAll({
-        where: {
-          auctionId: auctionId
-        }
-      }).then(bids => {
-        console.log('bids dengan id sekian : ', bids );
-        if (!bids) {
-          let highestBid = _.maxBy(bids, 'current_bid')
-          switch (true) {
-            case (nextBid > highestBid.current_bid):
-              resolve({
-                status: true,
-                message: 'Yap, tawaran lebih tinggi dari sebelumnya'
-              })
-              break;
-            case (nextBid == highestBid.current_bid):
-              reject('Anda bid sama dengan yang di bid orang lain')
-              break;
-            case (nextBid < highestBid.current_bid):
-              reject('Jumlah bid anda lebih kecil ketimbang bid tertingg sekarang')
-              break;
-            default:
-          }
-        } else {
-          reject('tidak auction dengan id ' + auctionId)
-        }
-      })
+      switch (true) {
+        case (nextBid > highestBidOfTheAuction):
+          resolve({
+            status: true,
+            message: 'Yap, tawaran lebih tinggi dari sebelumnya'
+          })
+        break;
+        case (nextBid == highestBidOfTheAuction):
+          resolve({
+            status: false,
+            message: 'Anda bid sama dengan yang di bid orang lain'
+          })
+        break;
+        case (nextBid < highestBidOfTheAuction):
+          resolve({
+            status: false,
+            message: 'Jumlah bid anda lebih kecil ketimbang bid tertingg sekarang'
+          })
+        break;
+        default:
+      }
+
     })
+
   },
   checkBalance: (bukalapakId, token) => {
     return new Promise((resolve, reject) => {
       // cek saldo nya
+      let urlGetBalance = blEndPoint + 'dompet/history.json'
+      // for development purposed only, biar saldonya ngak kosong
+      if (process.env.NODE_ENV == 'development') {
+        urlGetBalance = 'http://localhost:3000/fake/get-fake-balance'
+      }
+
       axios({
         method: 'get',
-        url: blEndPoint + 'dompet/history.json',
+        url: urlGetBalance,
         auth: {
           username: bukalapakId,
           password: token
         }
       }).then((responseGetBalance) => {
-        console.log('isi setelah get balance : ', responseGetBalance.data.balance);
+        // console.log('isi setelah get balance : ', responseGetBalance.data);
         resolve({
           status: true,
           balance: responseGetBalance.data.balance,
@@ -59,6 +64,32 @@ module.exports = {
           status: false,
           message: 'error when trying to get balance in bidChacker : ', err
         })
+      })
+    })
+  },
+  highestBidOfTheAuction: (auctionId) => {
+    return new Promise((resolve, reject) => {
+      models.Bid.findAll({
+        where: {
+          auctionId: auctionId
+        }
+      }).then(bids => {
+        console.log(' isi bids : ', bids);
+        let bidsLength = bids.length
+        if (bidsLength == 0) {
+          models.Auction.findById(auctionId).then(auction => {
+            if (auction) {
+              resolve(auction.min_price)
+            } else {
+              reject('auction dengan id ' + auctionId + ' tidak ditemukan, posisi bidChacker.js')
+            }
+          }).catch(err => {
+            reject('error ketika ambil data auction di highestBidOfTheAuction')
+          })
+        } else {
+          let highestBid = _.maxBy(bids, 'current_bid')
+          resolve(highestBid.current_bid)
+        }
       })
     })
   }
