@@ -12,10 +12,12 @@ let bidController = require('../controllers/bidController')
  *       "userId": 2,
  *       "token": "AngapAjaIniToken",
  *       "auctionId": 101,
+ *       "nextBid": 120000,
  *     }
  * @apiParam {Integer} userId userId of user
  * @apiParam {String} token token of logged in user
  * @apiParam {Integer} auctionId id of the auction
+ * @apiParam {Integer} nextBid nominal of bidding offered
 
  * @apiSuccess {Integer} id id of the bid
  * @apiSuccess {Integer} auctionId id of the auction bided
