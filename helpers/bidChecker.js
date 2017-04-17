@@ -50,7 +50,7 @@ module.exports = {
         console.log('isi setelah get balance : ', responseGetBalance.data.balance);
         resolve({
           status: true,
-          balance: responseGetBalance.data.balance
+          balance: responseGetBalance.data.balance,
           message: 'get balance success'
         })
       }).catch(err => {
