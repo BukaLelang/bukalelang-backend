@@ -318,6 +318,84 @@ define({ "api": [
     ]
   },
   {
+    "type": "get",
+    "url": "/auctions/:id/bid-history",
+    "title": "get bid history",
+    "group": "Auction",
+    "header": {
+      "examples": [
+        {
+          "title": "Header-Example:",
+          "content": "{\n  \"userid\": 2,\n  \"token\": \"IniToken\",\n}",
+          "type": "json"
+        }
+      ],
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "Integer",
+            "optional": false,
+            "field": "userid",
+            "description": "<p>userId of user</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "token",
+            "description": "<p>token of logged in user</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>message from server</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "success",
+            "description": "<p>is request success ?</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success",
+          "content": "HTTP/1.1 200 OK\n[{\n   success: true,\n   message: 'Success load list of bid history',\n   bid_history: [\n           {\n             name_of_bidder: 'Diky Arga',\n             bid_nominal: 70000,\n             bidding_time: '2017-05-17T18:22:54.846+07:00'\n           },\n           {\n             name_of_bidder: 'Eri Selalu',\n             bid_nominal: 60000,s\n             bidding_time: '2017-05-16T18:22:54.846+07:00'\n           }\n         ]\n}]",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "List error",
+          "content": "HTTP/1.1 500 Internal Server Error\n[{\n   success: false,\n   message: 'Auction with id 3 doesnt exist',\n   bid_history: []\n}]",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/auctions.js",
+    "groupTitle": "Auction",
+    "name": "GetAuctionsIdBidHistory",
+    "sampleRequest": [
+      {
+        "url": "http://localhost:3000/auctions/:id/bid-history"
+      }
+    ]
+  },
+  {
     "type": "post",
     "url": "/auctions",
     "title": "create auctions",

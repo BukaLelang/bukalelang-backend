@@ -216,4 +216,48 @@ router.get('/', auctionController.getAllAuctions)
  */
 router.get('/:id', applyMidleware.authentication, auctionController.show)
 
+/**
+ * @api {get} /auctions/:id/bid-history get bid history
+ * @apiGroup Auction
+ * @apiHeaderExample {json} Header-Example:
+ *     {
+ *       "userid": 2,
+ *       "token": "IniToken",
+ *     }
+ * @apiHeader {Integer} userid userId of user
+ * @apiHeader {String} token token of logged in user
+
+ * @apiSuccess {String} message message from server
+ * @apiSuccess {Boolean} success is request success ?
+
+
+
+ * @apiSuccessExample {json} Success
+ *    HTTP/1.1 200 OK
+ *    [{
+ *       success: true,
+ *       message: 'Success load list of bid history',
+ *       bid_history: [
+              {
+                name_of_bidder: 'Diky Arga',
+                bid_nominal: 70000,
+                bidding_time: '2017-05-17T18:22:54.846+07:00'
+              },
+              {
+                name_of_bidder: 'Eri Selalu',
+                bid_nominal: 60000,s
+                bidding_time: '2017-05-16T18:22:54.846+07:00'
+              }
+            ]
+ *    }]
+ * @apiErrorExample {json} List error
+ *    HTTP/1.1 500 Internal Server Error
+ *    [{
+ *       success: false,
+ *       message: 'Auction with id 3 doesnt exist',
+ *       bid_history: []
+ *    }]
+ */
+router.get('/:id', applyMidleware.authentication, auctionController.show)
+
 module.exports = router;
