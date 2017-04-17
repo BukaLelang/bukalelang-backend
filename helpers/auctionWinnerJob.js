@@ -1,18 +1,31 @@
 'use strict'
 const CronJob = require('cron').CronJob;
+let _ = require('lodash')
 
-// module.exports = {
-//   auctionWinnerJob: (auctionId, endDate) =>{
-//     new CronJob('* * * * * *', function() {
-//       console.log('You will see this message every second');
-//     }, null, true, 'Asia/Jakarta');
-//   }
-// }
+let models = require('../models')
 
-function test(){
-  new CronJob('* * * * * *', function() {
-    console.log('You will see this message every second');
-  }, null, true, 'Asia/Jakarta');
+module.exports = {
+  auctionWinnerJob: (auctionId, endDate) =>{
+    new CronJob(endDate, function() {
+      console.log('Node cron untuk cek pemenang jalan');
+      theWinnerIs(auctionId)
+    }, null, true, 'Asia/Jakarta');
+  }
 }
 
-test()
+function theWinnerIs(auctionId) {
+  console.log('jalan sesuai waktu');
+  models.Bid.findAll({
+    where: {
+      auctionId: auctionId
+    }
+  }).then(auctions => {
+    let auctionsLength = auctions.length
+    if (auctionsLength != 0) {
+      let highestBidOfTheAuction = _.maxBy(auctions, 'current_bid')
+      console.log('the winner of this auction is : ', highestBidOfTheAuction);
+    } else {
+      console.log('tidak ada bid untuk lelang ini');
+    }
+  })
+}
