@@ -32,7 +32,7 @@ describe('Auction Test', () => {
           userId: '1',
           bukalapakId: process.env.BUKALAPAK_ID,
           token: process.env.BUKALAPAK_TOKEN,
-          title: 'Ini cuma testing ajsfsfaa  fsafs fsaasdjasdkjsadkadsdsaa sd saddfsdf sfafdfasf a ',
+          title: 'Ini cuma testing ajsfsfaa  fsafs fsaasdjasdkjsadkadsdsaa sd saddfsdf sfafdfasf a ' + randomName,
           categoryId: 2,
           new: false,
           weight: 4000,
@@ -100,6 +100,7 @@ describe('Auction Test', () => {
           res.body.should.have.property('id')
           res.body.should.have.property('category')
           res.body.should.have.property('title')
+          res.body.should.have.property('images')
           res.body.should.have.property('new')
           res.body.should.have.property('description')
           res.body.should.have.property('min_price')

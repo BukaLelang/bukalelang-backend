@@ -16,6 +16,7 @@ module.exports = {
       id: null,
       productId: null,
       title: null,
+      images: null,
       categoryId: null,
       new: false,
       weight: 0,
@@ -80,7 +81,7 @@ module.exports = {
         switch (responseAfterCreateProduct.data.status) {
           case 'ERROR':
             finalResult.message = responseAfterCreateProduct.data.message
-            console.log('kesini pak');
+            // console.log('kesini pak');
             res.json(finalResult)
             break;
           case 'OK':
@@ -88,6 +89,7 @@ module.exports = {
             models.Auction.create({
               productId: responseAfterCreateProduct.data.product_detail.id,
               title: req.body.title,
+              images: responseAfterCreateProduct.data.product_detail.images[0],
               categoryId: req.body.categoryId,
               min_price: req.body.min_price,
               max_price: req.body.max_price,
@@ -103,6 +105,7 @@ module.exports = {
               finalResult.id = auction.id
               finalResult.productId = auction.productId
               finalResult.title = auction.title
+              finalResult.images = auction.images
               finalResult.categoryId = auction.categoryId
               finalResult.new = auction.new
               finalResult.weight = auction.weight
@@ -189,6 +192,7 @@ module.exports = {
       id: null,
       productId: null,
       title: null,
+      images: null,
       categoryId: null,
       new: false,
       weight: 0,
@@ -207,6 +211,7 @@ module.exports = {
       finalResult.id = auction.id
       finalResult.productId = auction.productId
       finalResult.title = auction.title
+      finalResult.images = auction.images
       finalResult.categoryId = auction.categoryId
       finalResult.new = auction.new
       finalResult.weight = auction.weight
@@ -224,5 +229,8 @@ module.exports = {
       console.log('error when try get one auction in localdb', err);
       res.json(finalResult)
     })
+  },
+  bidHistory: (req, res) => {
+
   }
 }

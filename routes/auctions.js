@@ -42,6 +42,7 @@ const applyMidleware = require('../helpers/authentication')
  * @apiSuccess {Integer} id id of the auction
  * @apiSuccess {Integer} productId id of the product at BL
  * @apiSuccess {String} title Title of auction
+ * @apiSuccess {String} images Url of image of auction
  * @apiSuccess {Integer} categoryId category ID
  * @apiSuccess {Boolean} new product is new or second ?
  * @apiSuccess {Integer} weight weight of the product using gram
@@ -59,6 +60,7 @@ const applyMidleware = require('../helpers/authentication')
  *      "id": 23,
  *      "productId": '42dfs34',
  *      "title": "Lelang Gundam Langka & Istimewa",
+ *      "images": "https://s0.bukalapak.com/system/images/1/6/7/6/6/8/0/large/IMG00475-20121105-1431.jpg?1352105447",
  *      "categoryId": 145,
  *      "new": false,
  *      "weight": 5000,
@@ -75,8 +77,9 @@ const applyMidleware = require('../helpers/authentication')
  *    HTTP/1.1 500 Internal Server Error
  *    [{
 *       "id": null,
-*      "productId": null,
+*       "productId": null,
  *      "title": null,
+ *      "images": null,
  *      "categoryId": null,
  *      "new": false,
  *      "weight": 0,
@@ -102,6 +105,7 @@ router.post('/', auctionController.create)
  * @apiSuccess {Integer} auctions.id id of the auction
  * @apiSuccess {Integer} auctions.productId id of the product at BL
  * @apiSuccess {String} auctions.title Title of auction
+ * @apiSuccess {String} auctions.images URL of images of auction
  * @apiSuccess {Integer} auctions.category category of auction
  * @apiSuccess {Boolean} auctions.new product is new or second ?
  * @apiSuccess {Integer} auctions.weight weight of the product using gram
@@ -124,6 +128,7 @@ router.post('/', auctionController.create)
  *             id: 23,
  *             productId: '31fsa21',
  *             title: 'Tamiya super cepat',
+ *             images: 'https://s0.bukalapak.com/system/images/1/6/7/6/6/8/0/large/IMG00475-20121105-1431.jpg?1352105447',
  *             category: 'Mainan',
  *             new: false,
  *             weight: 1000,
@@ -163,6 +168,7 @@ router.get('/', auctionController.getAllAuctions)
  * @apiSuccess {Integer} id id of the auction
  * @apiSuccess {Integer} productId id of the product at BL
  * @apiSuccess {String} title Title of auction
+ * @apiSuccess {String} images URL of image of auction
  * @apiSuccess {Integer} category category of auction
  * @apiSuccess {Boolean} new product is new or second ?
  * @apiSuccess {Integer} weight weight of the product using gram
@@ -183,6 +189,7 @@ router.get('/', auctionController.getAllAuctions)
 *        id: 23,
 *        productId: '31fsa21',
 *        title: 'Tamiya super cepat',
+*        images: 'https://s0.bukalapak.com/system/images/1/6/7/6/6/8/0/large/IMG00475-20121105-1431.jpg?1352105447',
 *        category: 'Mainan',
 *        new: false,
 *        weight: 1000,
@@ -202,6 +209,7 @@ router.get('/', auctionController.getAllAuctions)
 *        id: null,
 *        productId: null,
 *        title: null,
+*        images: null,
 *        category: null,
 *        new: false,
 *        weight: 0,
