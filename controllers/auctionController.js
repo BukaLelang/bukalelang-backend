@@ -151,10 +151,12 @@ module.exports = {
       }]
     }).then(auctions => {
       auctionsArr = JSON.parse(JSON.stringify(auctions));
+
+      console.log(auctionsArr);
       const newAuctions = auctionsArr.map(auction => {
         return Object.assign({}, auction, {
           categoryName: auction.Category.name,
-          current_price: _.maxBy(auction.Bids, 'current_bid').current_bid,
+          current_price: auction.Bids.length == 0 ? auction.min_price : _.maxBy(auction.Bids, 'current_bid').current_bid,
           name: auction.User.name
         })
       });
