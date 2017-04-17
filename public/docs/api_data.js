@@ -4,33 +4,6 @@ define({ "api": [
     "url": "/auctions",
     "title": "get all auctions",
     "group": "Auction",
-    "parameter": {
-      "examples": [
-        {
-          "title": "Request-Example:",
-          "content": "{\n  \"userId\": 2,\n  \"token\": \"IniToken\",\n}",
-          "type": "json"
-        }
-      ],
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "Integer",
-            "optional": false,
-            "field": "userId",
-            "description": "<p>userId of user</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "token",
-            "description": "<p>token of logged in user</p>"
-          }
-        ]
-      }
-    },
     "success": {
       "fields": {
         "Success 200": [
@@ -677,7 +650,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\n  \"userId\": 2,\n  \"token\": \"AngapAjaIniToken\",\n  \"auctionId\": 101,\n}",
+          "content": "{\n  \"userId\": 2,\n  \"token\": \"AngapAjaIniToken\",\n  \"auctionId\": 101,\n  \"nextBid\": 120000,\n}",
           "type": "json"
         }
       ],
@@ -703,6 +676,13 @@ define({ "api": [
             "optional": false,
             "field": "auctionId",
             "description": "<p>id of the auction</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "nextBid",
+            "description": "<p>nominal of bidding offered</p>"
           }
         ]
       }

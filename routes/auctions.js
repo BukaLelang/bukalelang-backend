@@ -95,13 +95,6 @@ router.post('/', auctionController.create)
 /**
  * @api {get} /auctions get all auctions
  * @apiGroup Auction
- * @apiParamExample {json} Request-Example:
- *     {
- *       "userId": 2,
- *       "token": "IniToken",
- *     }
- * @apiParam {Integer} userId userId of user
- * @apiParam {String} token token of logged in user
 
  * @apiSuccess {String} message message from server
  * @apiSuccess {Boolean} success is request success ?
