@@ -1,11 +1,10 @@
-var express = require('express');
-var multer  = require('multer')
+const express = require('express');
+const router = express.Router();
+const multer  = require('multer')
+const upload = multer({ dest: 'uploads/' })
 
-var router = express.Router();
-
-var upload = multer({ dest: 'uploads/' })
-
-let auctionController = require('../controllers/auctionController')
+const auctionController = require('../controllers/auctionController')
+const applyMidleware = require('../helpers/authentication')
 
 /**
  * @api {post} /auctions create auctions
@@ -154,6 +153,6 @@ router.post('/', auctionController.create)
  *    }]
  */
 router.get('/', auctionController.getAllAuctions)
-router.get('/:id', auctionController.getOneAuction)
+router.get('/:id', applyMidleware.authentication, auctionController.getOneAuction)
 
 module.exports = router;
