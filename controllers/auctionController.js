@@ -1,5 +1,6 @@
 let axios = require('axios')
 let _ = require('lodash')
+let moment = require('moment')
 
 const models = require('../models')
 let imageUploader = require('../helpers/imageUploader')
@@ -155,6 +156,7 @@ module.exports = {
       console.log(auctionsArr);
       const newAuctions = auctionsArr.map(auction => {
         return Object.assign({}, auction, {
+          running: moment(auction.end_date).format() >= moment().format() ? true : false,
           categoryName: auction.Category.name,
           current_price: auction.Bids.length == 0 ? auction.min_price : _.maxBy(auction.Bids, 'current_bid').current_bid,
           name: auction.User.name
