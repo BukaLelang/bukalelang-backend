@@ -151,7 +151,7 @@ module.exports = {
       }]
     }).then(auctions => {
       let auctionsArr = JSON.parse(JSON.stringify(auctions));
-          auctionsArr = _.sortBy(auctionsArr, ['createdAt'])
+          auctionsArr = _.orderBy(auctionsArr, ['id'], ['desc'])
       const newAuctions = auctionsArr.map(auction => {
         return Object.assign({}, auction, {
           running: moment(auction.end_date).format() >= moment().format() ? true : false,
