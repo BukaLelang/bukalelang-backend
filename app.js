@@ -11,6 +11,8 @@ var users = require('./routes/users');
 var auth = require('./routes/auth');
 var auctions = require('./routes/auctions');
 var bids = require('./routes/bids');
+// for development purpose only
+var fakeRoute = require('./routes/fake/');
 
 var app = express();
 
@@ -33,6 +35,7 @@ app.use('/users', users);
 app.use('/auth', auth);
 app.use('/auctions/', auctions);
 app.use('/bids/', bids);
+app.use('/fake/', fakeRoute);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
