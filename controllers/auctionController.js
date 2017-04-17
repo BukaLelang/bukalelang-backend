@@ -164,6 +164,7 @@ module.exports = {
       finalResult.success = true
       finalResult.userId = auction.userId
       finalResult.message = 'Sukses ngambil satu auction'
+      res.json(finalResult)
     }).catch(err => {
       console.log('error when try get one auction in localdb', err);
       res.json(finalResult.message = err)
