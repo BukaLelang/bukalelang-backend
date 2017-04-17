@@ -6,6 +6,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+
+
 var index = require('./routes/index');
 var users = require('./routes/users');
 var auth = require('./routes/auth');
@@ -15,6 +17,23 @@ var bids = require('./routes/bids');
 var fakeRoute = require('./routes/fake/');
 
 var app = express();
+
+// call socket.io to the app
+app.io = require('socket.io')();
+
+
+global.io = app.io;
+
+// start listen with socket.io
+app.io.on('connection', function(socket){
+  console.log('a user connected');
+  socket.on('new message', function(msg){
+    console.log('new message: ' + msg);
+    socket.broadcast.emit('chat message', msg);
+    socket.emit('chat message', msg);
+  });
+});
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

@@ -72,10 +72,11 @@ module.exports = {
           message: 'get balance success'
         })
       }).catch(err => {
-        console.log('error when trying to get balance in bidChacker : ', err);
-        reject({
+        // console.log('error when trying to get balance in bidChacker : ', err);
+        resolve({
           status: false,
-          message: 'error when trying to get balance in bidChacker : ', err
+          balance: 0,
+          message: 'error when trying to get balance in bidChacker :'
         })
       })
     })
@@ -103,6 +104,20 @@ module.exports = {
           let highestBid = _.maxBy(bids, 'current_bid')
           resolve(highestBid.current_bid)
         }
+      })
+    })
+  },
+  isAuctionRunning: (auctionId) => {
+    return new Promise((resolve, reject) => {
+      models.Auction.findById(auctionId).then(auction => {
+        if (auction) {
+          resolve(true)
+        } else {
+          resolve(false)
+        }
+      }).catch(err => {
+        console.log('error when try to check isAuctionRunning ? ', err);
+        reject('error when try to check isAuctionRunning ? '+ err)
       })
     })
   }

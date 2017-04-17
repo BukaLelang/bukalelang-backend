@@ -27,43 +27,52 @@ module.exports = {
         // cari dulu auctionId nya ada ngak
         models.Auction.findById(req.body.auctionId).then(auction => {
           if (auction) {
-            // kalo ada, baru cek saldonya
-            bidChacker.checkBalance(user.bukalapakId, user.bl_token).then(balance => {
-              // console.log('isi saldo pengguna : ', balance);
-              // cek saldonya lebih tinggi dari bid yang udah ada belum
-              bidChacker.highestBidOfTheAuction(req.body.auctionId).then(highestBidOfTheAuction => {
-                // console.log('highestBidOfTheAuction : ', highestBidOfTheAuction);
-                bidChacker.isMoreThanHighestBid(highestBidOfTheAuction, req.body.nextBid).then(responseAfterIsMoreThanHighestBid => {
-                  // console.log('responseAfterIsMoreThanHighestBid : ', responseAfterIsMoreThanHighestBid);
-                  // ketika oke, lebih besar dari yang lain
-                  if (responseAfterIsMoreThanHighestBid.status) {
-                    models.Bid.create({
-                      userId: req.body.userId,
-                      auctionId: req.body.auctionId,
-                      current_bid: req.body.nextBid
-                    }).then(bid => {
-                      console.log('bid sukses');
-                      finalResult.message = 'sukses nge-bid'
-                      finalResult.success = true
-                      finalResult.id = bid.id
-                      finalResult.auctionId = bid.auctionId
-                      finalResult.categoryId = auction.categoryId
-                      finalResult.current_price = bid.current_bid
-                      finalResult.minimum_next_bidding = bid.current_bid + auction.kelipatan_bid
+            // cek auction nya masih running ngak
+            bidChacker.isAuctionRunning(req.body.auctionId).then(responseAfterCheckIsAuctionRunning => {
+              if (responseAfterCheckIsAuctionRunning) {
 
-                      res.json(finalResult)
+                // kalo ada dan masih running, baru cek saldonya
+                bidChacker.checkBalance(user.bukalapakId, user.bl_token).then(balance => {
+                  // console.log('isi saldo pengguna : ', balance);
+                  // cek saldonya lebih tinggi dari bid yang udah ada belum
+                  bidChacker.highestBidOfTheAuction(req.body.auctionId).then(highestBidOfTheAuction => {
+                    // console.log('highestBidOfTheAuction : ', highestBidOfTheAuction);
+                    bidChacker.isMoreThanHighestBid(highestBidOfTheAuction, req.body.nextBid).then(responseAfterIsMoreThanHighestBid => {
+                      // console.log('responseAfterIsMoreThanHighestBid : ', responseAfterIsMoreThanHighestBid);
+                      // ketika oke, lebih besar dari yang lain
+                      if (responseAfterIsMoreThanHighestBid.status) {
+                        models.Bid.create({
+                          userId: req.body.userId,
+                          auctionId: req.body.auctionId,
+                          current_bid: req.body.nextBid
+                        }).then(bid => {
+                          console.log('bid sukses');
+                          finalResult.message = 'sukses nge-bid'
+                          finalResult.success = true
+                          finalResult.id = bid.id
+                          finalResult.auctionId = bid.auctionId
+                          finalResult.categoryId = auction.categoryId
+                          finalResult.current_price = bid.current_bid
+                          finalResult.minimum_next_bidding = bid.current_bid + auction.kelipatan_bid
+                          global.io.emit('auction-' + req.body.auctionId, finalResult);
+
+                          res.json(finalResult)
+                        })
+                      } else {
+                        //  ketika sama dengan atau lebih kecil
+                        finalResult.message = responseAfterIsMoreThanHighestBid.message
+                        res.json(finalResult)
+                      }
+                    }).catch(err => {
+                      console.log('got error from bidChacker.isMoreThanHighestBid -----', err);
                     })
-                  } else {
-                    //  ketika sama dengan atau lebih kecil
-                    finalResult.message = responseAfterIsMoreThanHighestBid.message
-                    res.json(finalResult)
-                  }
-                }).catch(err => {
-                  console.log('got error from bidChacker.isMoreThanHighestBid -----', err);
+                  })
+                }).catch((err) => {
+                  console.log('got error from bidChacker.checkBalance() --- ', err);
                 })
-              })
-            }).catch((err) => {
-              console.log('got error from bidChacker.checkBalance() --- ', err);
+              } else {
+                finalResult.message = 'Auction already ended'
+              }
             })
           } else {
             finalResult.message = 'bid fail, auction dengan id : ' + req.body.auctionId + ' tidak ditemukan'
