@@ -50,6 +50,7 @@ module.exports = {
                       finalResult.categoryId = auction.categoryId
                       finalResult.current_price = bid.current_bid
                       finalResult.minimum_next_bidding = bid.current_bid + auction.kelipatan_bid
+                      global.io.emit('auction-12', finalResult);
 
                       res.json(finalResult)
                     })
