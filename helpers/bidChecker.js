@@ -73,9 +73,10 @@ module.exports = {
         })
       }).catch(err => {
         console.log('error when trying to get balance in bidChacker : ', err);
-        reject({
+        resolve({
           status: false,
-          message: 'error when trying to get balance in bidChacker : ', err
+          balance: 0,
+          message: 'error when trying to get balance in bidChacker :'
         })
       })
     })
