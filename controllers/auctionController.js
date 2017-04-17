@@ -154,7 +154,7 @@ module.exports = {
         model: models.Bid
       }]
     }).then(auctions => {
-      auctionsArr = JSON.parse(JSON.stringify(auctions));
+      let auctionsArr = JSON.parse(JSON.stringify(auctions));
 
       console.log(auctionsArr);
       const newAuctions = auctionsArr.map(auction => {
@@ -231,6 +231,56 @@ module.exports = {
     })
   },
   bidHistory: (req, res) => {
+    console.log('isi request params', req.params);
+    let finalResult = {
+      success: false,
+      message: 'Fail to get list of bid history',
+      auction_detail: {
+        id: null,
+        title: null,
+        bid_count: 0
+      },
+      bid_history: []
+    }
+
+    models.Auction.findById(req.params.id).then(auction => {
+      if (auction) {
+        models.Bid.findAll({
+          where: {
+            auctionId: req.params.id
+          },
+          include: [{
+            model: models.User
+          }]
+        }).then(bids => {
+          let bidsLength = bids.length
+          if (bidsLength != 0) {
+            let sortedBids = _.sortBy(bids, ['current_bid'])
+            console.log('isi bids sebelum : ', bids);
+            let bidHistoryArr = JSON.parse(JSON.stringify(bids)
+
+            finalResult.message = 'success get bid history'
+            finalResult.success = true
+            finalResult.auction_detail.id = auction.id
+            finalResult.auction_detail.bid_count = bidsLength
+            finalResult.auction_detail.title = auction.title
+            finalResult.bid_history = bids
+            res.json(finalResult)
+            console.log('isi bids sesudah : ', sortedBids);
+          } else {
+            finalResult.success = true
+            finalResult.message = 'No bid history for this auction yet'
+            res.json(finalResult)
+          }
+        })
+      } else {
+        finalResult.message = 'auction dengan id ' + req.params.id + ' tidak di temukan'
+        res.json(finalResult)
+      }
+    }).catch(err => {
+      console.log('Error when try to get auction by id : ', err);
+    })
+
 
   }
 }

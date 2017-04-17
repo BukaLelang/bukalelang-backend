@@ -245,6 +245,11 @@ router.get('/:id', applyMidleware.authentication, auctionController.show)
  *    [{
  *       success: true,
  *       message: 'Success load list of bid history',
+         auction_detail: {
+           id: 3,
+           title: 'Tamiya tanpa gaya gravitasi',
+           bid_count: 2
+         },
  *       bid_history: [
               {
                 name_of_bidder: 'Diky Arga',
@@ -263,9 +268,14 @@ router.get('/:id', applyMidleware.authentication, auctionController.show)
  *    [{
  *       success: false,
  *       message: 'Auction with id 3 doesnt exist',
+         auction_detail: {
+           id: null,
+           title: null,
+           bid_count: 0
+         },
  *       bid_history: []
  *    }]
  */
-router.get('/:id', applyMidleware.authentication, auctionController.show)
+router.get('/:id/bid-history', applyMidleware.authentication, auctionController.bidHistory)
 
 module.exports = router;

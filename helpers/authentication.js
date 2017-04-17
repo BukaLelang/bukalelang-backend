@@ -11,7 +11,6 @@ module.exports = {
 
     models.User.findById(req.headers.userid)
       .then(user => {
-        console.log('user : ======= ', user);
         if (user) {
           if (user.bl_token == req.headers.token) {
             next()

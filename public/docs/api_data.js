@@ -385,7 +385,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success",
-          "content": "HTTP/1.1 200 OK\n[{\n   success: true,\n   message: 'Success load list of bid history',\n   bid_history: [\n           {\n             name_of_bidder: 'Diky Arga',\n             bid_nominal: 70000,\n             bidding_time: '2017-05-17T18:22:54.846+07:00'\n           },\n           {\n             name_of_bidder: 'Eri Selalu',\n             bid_nominal: 60000,s\n             bidding_time: '2017-05-16T18:22:54.846+07:00'\n           }\n         ]\n}]",
+          "content": "HTTP/1.1 200 OK\n[{\n   success: true,\n   message: 'Success load list of bid history',\n      auction_detail: {\n        id: 3,\n        title: 'Tamiya tanpa gaya gravitasi',\n        bid_count: 2\n      },\n   bid_history: [\n           {\n             name_of_bidder: 'Diky Arga',\n             bid_nominal: 70000,\n             bidding_time: '2017-05-17T18:22:54.846+07:00'\n           },\n           {\n             name_of_bidder: 'Eri Selalu',\n             bid_nominal: 60000,s\n             bidding_time: '2017-05-16T18:22:54.846+07:00'\n           }\n         ]\n}]",
           "type": "json"
         }
       ]
@@ -394,7 +394,7 @@ define({ "api": [
       "examples": [
         {
           "title": "List error",
-          "content": "HTTP/1.1 500 Internal Server Error\n[{\n   success: false,\n   message: 'Auction with id 3 doesnt exist',\n   bid_history: []\n}]",
+          "content": "HTTP/1.1 500 Internal Server Error\n[{\n   success: false,\n   message: 'Auction with id 3 doesnt exist',\n      auction_detail: {\n        id: null,\n        title: null,\n        bid_count: 0\n      },\n   bid_history: []\n}]",
           "type": "json"
         }
       ]
