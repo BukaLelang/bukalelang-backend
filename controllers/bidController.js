@@ -6,19 +6,19 @@ let bidChacker = require('../helpers/bidChecker')
 
 let blEndPoint = 'https://api.bukalapak.com/v2/'
 
-// init repsonse
-var finalResult = {
-  message: 'bidding fail',
-  success: false,
-  id: null,
-  auctionId: null,
-  categoryId: null,
-  current_price: null,
-  minimum_next_bidding: null,
-}
 
 module.exports = {
   bid: (req, res) => {
+    // init repsonse
+    var finalResult = {
+      message: 'bidding fail',
+      success: false,
+      id: null,
+      auctionId: null,
+      categoryId: null,
+      current_price: null,
+      minimum_next_bidding: null,
+    }
     console.log('isi request : ', req.body);
     // cek user nya ada ngak ?
     models.User.findById(req.body.userId).then(user => {
@@ -67,6 +67,7 @@ module.exports = {
             })
           } else {
             finalResult.message = 'bid fail, auction dengan id : ' + req.body.auctionId + ' tidak ditemukan'
+            console.log("FINAL RESULT: ", finalResult)
             res.json(finalResult)
           }
         }).catch(err => {

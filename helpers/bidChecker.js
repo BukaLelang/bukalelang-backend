@@ -41,7 +41,7 @@ module.exports = {
       let urlGetBalance = blEndPoint + 'dompet/history.json'
       // for development purposed only, biar saldonya ngak kosong
       if (process.env.NODE_ENV == 'development') {
-        urlGetBalance = 'http://localhost:3000/fake/get-fake-balance'
+        // urlGetBalance = 'http://localhost:3000/fake/get-fake-balance'
       }
 
       axios({
@@ -53,9 +53,22 @@ module.exports = {
         }
       }).then((responseGetBalance) => {
         // console.log('isi setelah get balance : ', responseGetBalance.data);
+
+        let balance = ''
+        if (process.env.NODE_ENV == 'development') {
+          balance = { status: 'OK',
+              balance: 1500000,
+              topup_history: [],
+              withdrawal_history: [],
+              mutation_history: [],
+              message: null
+            }
+        } else {
+          balance = responseGetBalance.data.balance
+        }
         resolve({
           status: true,
-          balance: responseGetBalance.data.balance,
+          balance: balance,
           message: 'get balance success'
         })
       }).catch(err => {
@@ -74,7 +87,7 @@ module.exports = {
           auctionId: auctionId
         }
       }).then(bids => {
-        console.log(' isi bids : ', bids);
+        // console.log(' isi bids : ', bids);
         let bidsLength = bids.length
         if (bidsLength == 0) {
           models.Auction.findById(auctionId).then(auction => {
