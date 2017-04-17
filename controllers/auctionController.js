@@ -1,31 +1,33 @@
 let axios = require('axios')
+let _ = require('lodash')
 
 const models = require('../models')
 let imageUploader = require('../helpers/imageUploader')
 
 let blEndPoint = 'https://api.bukalapak.com/v2/'
 
-// init repsonse
-var finalResult = {
-  id: null,
-  productId: null,
-  title: null,
-  categoryId: null,
-  new: false,
-  weight: 0,
-  description: null,
-  min_price: 0,
-  max_price: 0,
-  kelipatan_bid: 0,
-  start_date: null,
-  end_date: null,
-  userId: null,
-  success: false,
-  message: 'Buat lelang gagal ):',
-}
+
 
 module.exports = {
   create: (req, res) => {
+    // init repsonse
+    var finalResult = {
+      id: null,
+      productId: null,
+      title: null,
+      categoryId: null,
+      new: false,
+      weight: 0,
+      description: null,
+      min_price: 0,
+      max_price: 0,
+      kelipatan_bid: 0,
+      start_date: null,
+      end_date: null,
+      userId: null,
+      success: false,
+      message: 'Buat lelang gagal ):',
+    }
     console.log('isi request : ', req.body);
     // upload image first
     // imageUploader.uploadToBukaLapak(req, res)
@@ -133,21 +135,70 @@ module.exports = {
   },
 
   getAllAuctions: (req, res) => {
+    let finalResult = {
+      status: false,
+      message: 'Fail get list of auctions',
+      auctions: []
+    }
+
     models.Auction.findAll({
       include:[{
-        model: models.Category,
+        model: models.Category
       },{
         model: models.User
+      },{
+        model: models.Bid
       }]
-    }).then(auction => {
-      res.json(auction)
+    }).then(auctions => {
+      auctionsArr = JSON.parse(JSON.stringify(auctions));
+      const newAuctions = auctionsArr.map(auction => {
+        return Object.assign({}, auction, {
+          categoryName: auction.Category.name,
+          current_price: _.maxBy(auction.Bids, 'current_bid').current_bid,
+          name: auction.User.name
+        })
+      });
+
+      for (var i = 0; i < newAuctions.length; i++) {
+        delete newAuctions[i].Category
+        delete newAuctions[i].User
+        delete newAuctions[i].Bids
+        delete newAuctions[i].categoryId
+        delete newAuctions[i].userId
+        delete newAuctions[i].createdAt
+        delete newAuctions[i].updatedAt
+      }
+
+      finalResult.status = true
+      finalResult.message = 'success load list of auctions'
+      finalResult.auctions = newAuctions
+      res.json(finalResult)
     }).catch(err => {
       console.log('error when try list auction in localdb', err);
-      res.json(finalResult.message = err)
+      res.json(finalResult)
     })
   },
 
   getOneAuction: (req, res) => {
+    // init repsonse
+    var finalResult = {
+      id: null,
+      productId: null,
+      title: null,
+      categoryId: null,
+      new: false,
+      weight: 0,
+      description: null,
+      min_price: 0,
+      max_price: 0,
+      kelipatan_bid: 0,
+      start_date: null,
+      end_date: null,
+      userId: null,
+      success: false,
+      message: 'Buat lelang gagal ):',
+    }
+
     models.Auction.findById(req.params.id).then(auction => {
       finalResult.id = auction.id
       finalResult.productId = auction.productId
