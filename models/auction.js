@@ -13,7 +13,8 @@ module.exports = function(sequelize, DataTypes) {
     new:DataTypes.BOOLEAN,
     description:DataTypes.STRING,
     weight:DataTypes.INTEGER,
-    productId:DataTypes.STRING
+    productId:DataTypes.STRING,
+    images:DataTypes.STRING
   }, {
     classMethods: {
       associate: function(models) {
