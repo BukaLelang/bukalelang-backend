@@ -7,8 +7,6 @@ let imageUploader = require('../helpers/imageUploader')
 
 let blEndPoint = 'https://api.bukalapak.com/v2/'
 
-
-
 module.exports = {
   create: (req, res) => {
     // init repsonse
@@ -125,7 +123,7 @@ module.exports = {
             })
             break;
           default:
-
+          res.json(finalResult)
         }
       }).catch((err) => {
         console.log('error when trying to create product to BL : ', err);
@@ -134,8 +132,6 @@ module.exports = {
     }).catch((err) => {
       console.log('error when try to get attributes : ', err);
     })
-
-
   },
 
   getAllAuctions: (req, res) => {
@@ -155,8 +151,7 @@ module.exports = {
       }]
     }).then(auctions => {
       let auctionsArr = JSON.parse(JSON.stringify(auctions));
-
-      console.log(auctionsArr);
+          auctionsArr = _.sortBy(auctionsArr, ['createdAt'])
       const newAuctions = auctionsArr.map(auction => {
         return Object.assign({}, auction, {
           running: moment(auction.end_date).format() >= moment().format() ? true : false,
@@ -230,6 +225,7 @@ module.exports = {
       res.json(finalResult)
     })
   },
+
   bidHistory: (req, res) => {
     console.log('isi request params', req.params);
     let finalResult = {
@@ -256,17 +252,34 @@ module.exports = {
           let bidsLength = bids.length
           if (bidsLength != 0) {
             let sortedBids = _.sortBy(bids, ['current_bid'])
-            console.log('isi bids sebelum : ', bids);
-            let bidHistoryArr = JSON.parse(JSON.stringify(bids)
+            let bidHistoryArr = JSON.parse(JSON.stringify(bids))
+            const newBidHistory = bidHistoryArr.map(bid => {
+              return Object.assign({}, bid, {
+                name_of_bidder: bid.User.name,
+                bid_nominal: bid.current_bid,
+                bidding_time: bid.createdAt
+              })
+            })
+
+            for (var i = 0; i < newBidHistory.length; i++) {
+              delete newBidHistory[i].User
+              delete newBidHistory[i].id
+              delete newBidHistory[i].userId
+              delete newBidHistory[i].auctionId
+              delete newBidHistory[i].updatedAt
+              delete newBidHistory[i].createdAt
+              delete newBidHistory[i].current_bid
+              delete newBidHistory[i].User
+            }
 
             finalResult.message = 'success get bid history'
             finalResult.success = true
             finalResult.auction_detail.id = auction.id
             finalResult.auction_detail.bid_count = bidsLength
             finalResult.auction_detail.title = auction.title
-            finalResult.bid_history = bids
+            finalResult.bid_history = newBidHistory
+
             res.json(finalResult)
-            console.log('isi bids sesudah : ', sortedBids);
           } else {
             finalResult.success = true
             finalResult.message = 'No bid history for this auction yet'
@@ -280,7 +293,5 @@ module.exports = {
     }).catch(err => {
       console.log('Error when try to get auction by id : ', err);
     })
-
-
   }
 }
