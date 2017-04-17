@@ -146,6 +146,74 @@ router.post('/', auctionController.create)
  *    }]
  */
 router.get('/', auctionController.getAllAuctions)
-router.get('/:id', applyMidleware.authentication, auctionController.getOneAuction)
+
+/**
+ * @api {get} /auctions/:id get auction
+ * @apiGroup Auction
+ * @apiHeaderExample {json} Header-Example:
+ *     {
+ *       "userid": 2,
+ *       "token": "IniToken",
+ *     }
+ * @apiHeader {Integer} userid userId of user
+ * @apiHeader {String} token token of logged in user
+
+ * @apiSuccess {String} message message from server
+ * @apiSuccess {Boolean} success is request success ?
+ * @apiSuccess {Integer} id id of the auction
+ * @apiSuccess {Integer} productId id of the product at BL
+ * @apiSuccess {String} title Title of auction
+ * @apiSuccess {Integer} category category of auction
+ * @apiSuccess {Boolean} new product is new or second ?
+ * @apiSuccess {Integer} weight weight of the product using gram
+ * @apiSuccess {String} description description of product
+ * @apiSuccess {Integer} min_price minimal / start price of auction
+ * @apiSuccess {Integer} current_price current price of the auction
+ * @apiSuccess {Integer} max_price maximal / buy now price of auction
+ * @apiSuccess {Integer} kelipatan_bid nominal lipatan of next bidding
+ * @apiSuccess {Date} start_date date of auction start, default is after published
+ * @apiSuccess {Date} end_date date end of auction, default is one week
+
+
+ * @apiSuccessExample {json} Success
+ *    HTTP/1.1 200 OK
+ *    [{
+ *       success: true,
+ *       message: 'Success load list of auctions',
+*        id: 23,
+*        productId: '31fsa21',
+*        title: 'Tamiya super cepat',
+*        category: 'Mainan',
+*        new: false,
+*        weight: 1000,
+*        description: 'Tamiya ini di rakit oleh ahli fisika, dengan memperhatikan dengan seksama gaya gesek dan kelembaman sehigga mengurangi kaya gesek dengan lintasan membuanya super cepat.',
+*        min_price: 200000,
+*        max_price: 3000000,
+*        current_price: 600000,
+*        kelipatan_bid: 20000,
+*        start_date: '2017-04-16T18:22:54.846+07:00',
+*        end_date: '2017-05-16T18:22:54.846+07:00'
+ *    }]
+ * @apiErrorExample {json} List error
+ *    HTTP/1.1 500 Internal Server Error
+ *    [{
+ *       success: false,
+ *       message: 'Auction with id 3 doesnt exist',
+*        id: null,
+*        productId: null,
+*        title: null,
+*        category: null,
+*        new: false,
+*        weight: 0,
+*        description: null,
+*        min_price: 0,
+*        max_price: 0,
+*        current_price: 0,
+*        kelipatan_bid: 0,
+*        start_date: null,
+*        end_date: null
+ *    }]
+ */
+router.get('/:id', applyMidleware.authentication, auctionController.show)
 
 module.exports = router;

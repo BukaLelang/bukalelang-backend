@@ -181,7 +181,7 @@ module.exports = {
     })
   },
 
-  getOneAuction: (req, res) => {
+  show: (req, res) => {
     // init repsonse
     var finalResult = {
       id: null,
@@ -198,7 +198,7 @@ module.exports = {
       end_date: null,
       userId: null,
       success: false,
-      message: 'Buat lelang gagal ):',
+      message: 'Ambil satu auction gagal ):',
     }
 
     models.Auction.findById(req.params.id).then(auction => {
@@ -220,7 +220,7 @@ module.exports = {
       res.json(finalResult)
     }).catch(err => {
       console.log('error when try get one auction in localdb', err);
-      res.json(finalResult.message = err)
+      res.json(finalResult)
     })
   }
 }
