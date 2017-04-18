@@ -54,6 +54,7 @@ module.exports = {
                           finalResult.id = bid.id
                           finalResult.auctionId = bid.auctionId
                           finalResult.username = user.username
+                          finalResult.name = user.name
                           finalResult.bidding_time = bid.createdAt
                           finalResult.categoryId = auction.categoryId
                           finalResult.current_price = bid.current_bid
