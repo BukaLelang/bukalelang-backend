@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 });
 
 /**
- * @api {get} /:id/auctions-joined get list of auctions joined
+ * @api {get} /users/:id/auctions-joined get list of auctions joined
  * @apiGroup Users
  * @apiHeaderExample {json} Header-Example:
  *     {
