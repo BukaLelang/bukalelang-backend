@@ -3,13 +3,17 @@ const CronJob = require('cron').CronJob;
 let _ = require('lodash')
 
 let models = require('../models')
+let emailSender = require('./emailSender')
 
 module.exports = {
   auctionWinnerJob: (auctionId, endDate) =>{
     new CronJob(endDate, function() {
-      console.log('Node cron untuk cek pemenang jalan');
+      console.log('Node cron untuk cek pemenang = jalan');
       theWinnerIs(auctionId)
     }, null, true, 'Asia/Jakarta');
+  },
+  theWinnerIs: (auctionId) => {
+    theWinnerIs(auctionId)
   }
 }
 
