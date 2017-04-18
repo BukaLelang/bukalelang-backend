@@ -23,12 +23,7 @@ module.exports = {
         }
       }]
     }).then(user => {
-        let count = _.uniqBy(user.Bids, 'auctionId')
-        let wonCount = _.uniqBy(user.Bids, 'current_bid')
-            wonCount = _.maxBy(wonCount, 'current_bid')
-        let arrWonCount = []
-            arrWonCount.push(wonCount.current_bid)
-
+        let auctionsJoinedCount = _.uniqBy(user.Bids, 'auctionId')
         let AuctionsJoined = JSON.parse(JSON.stringify(user.Bids))
             AuctionsJoined = _.uniqBy(AuctionsJoined, 'auctionId')
 
@@ -36,11 +31,12 @@ module.exports = {
           return Object.assign({}, data, {
             auctionId: data.Auction.id,
             title: data.Auction.title,
-            running: 19 < 18 ? true : false
+            running: new Date(data.Auction.end_date) > new Date() ? true : false
           })
         })
 
         for (var i = 0; i < newAuctionsJoined.length; i++) {
+          // wonCount = isThisUserTheWinnerOfThisAuction(user.id, newAuctionsJoined[i].id)
           delete newAuctionsJoined[i].id
           delete newAuctionsJoined[i].userId
           delete newAuctionsJoined[i].current_bid
@@ -52,10 +48,10 @@ module.exports = {
 
         finalResult.success = true
         finalResult.message = 'Success load list of auction joined'
-        finalResult.user_detail.auctionsJoinedCount = count.length
+        finalResult.user_detail.auctionsJoinedCount = auctionsJoinedCount.length
         finalResult.user_detail.id = user.id
         finalResult.user_detail.name = user.name
-        finalResult.user_detail.wonAuctionsCount = arrWonCount.length
+        finalResult.user_detail.wonAuctionsCount = wonCount
         finalResult.auctionsJoined = newAuctionsJoined
 
         res.json(finalResult)
@@ -66,6 +62,23 @@ module.exports = {
   }
 }
 
-function isThisUserTheWinnerOfThisAuction(userId) {
-
+function isThisUserTheWinnerOfThisAuction(userId, auctionId) {
+  console.log('ja');
+  models.Bid.findAll({
+    where: {
+      auctionId: auctionId
+    }
+  }).then(bids => {
+    if (bids.length > 0) {
+      let winner = _.maxBy(bids, 'current_bid')
+      if (winner.userId == userId) {
+        console.log('lan');
+        return 1
+      } else {
+        return 0
+      }
+    } else {
+      return 0
+    }
+  })
 }
