@@ -21,7 +21,10 @@ let bidController = require('../controllers/bidController')
 
  * @apiSuccess {Integer} id id of the bid
  * @apiSuccess {Integer} auctionId id of the auction bided
+ * @apiSuccess {String} username username of user
+ * @apiSuccess {String} name name of user
  * @apiSuccess {String} message message from server
+ * @apiSuccess {Date} bidding_time time of bidding
  * @apiSuccess {Boolean} success is bidding process success ?
  * @apiSuccess {Integer} current_price currently highest bid
  * @apiSuccess {Integer} minimum_next_bidding minimum nominal for the next bidding
@@ -34,6 +37,7 @@ let bidController = require('../controllers/bidController')
  *      "id": 2345,
  *      "auctionId": 101,
  *      "username": 'dikyarga',
+ *      "name": 'Diky Arga',
  *      "bidding_time": '2017-04-16 17:12:40.126+08',
  *      "current_price": 40000,
  *      "minimum_next_bidding": 50000,
@@ -45,6 +49,7 @@ let bidController = require('../controllers/bidController')
  *      "success": false,
  *      "id": null,
  *      "username": null,
+ *      "name": null,
  *      "id": null,
  *      "bidding_time": null,
  *      "current_price": null,

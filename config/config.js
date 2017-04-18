@@ -6,7 +6,8 @@ module.exports =
     "password": process.env.PASSWORD_LOCAL || '',
     "database": process.env.DATABSE_NAME || 'bukalelang-db',
     "host": process.env.DB_HOSTNAME || '',
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "logging": false
   },
   "test": {
     "username": "bukalelang",

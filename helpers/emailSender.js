@@ -18,9 +18,9 @@ module.exports = {
        , message: 'Kamu berhasil memenangkan lelang : ' + auction.title + '! Pelelang langsung membukuskan barang lelang mu, klik disini untuk berkomunikasi dengan Pelelang'
        , altText: 'plain text'
       }, function (err, data, res) {
-        console.log('ada err ? -=', err);
-        console.log('ngak tau isi datanya apa ? ', data);
-        console.log('res nya isinya apa ya kalo berhasil ', res);
+        // console.log('ada err ? -=', err.Message);
+        // console.log('ngak tau isi datanya apa ? ', data.Message);
+        // console.log('res nya isinya apa ya kalo berhasil ', res.Message);
       });
     },
     sendEmailToUserAfterBidLose: (listOfBidder, highestBidDetail) => {
@@ -35,9 +35,9 @@ module.exports = {
             , message: 'Gawat! ' + highestBidDetail.User.name + ' menawar lebih tinggi dari kamu, yaitu : ' + highestBidDetail.current_bid + ', jangan biarkan dia memenangkan barang yang kamu incar, bid lebih tinggi lagi dengan cara klik link ini'
             , altText: 'plain text'
            }, function (err, data, res) {
-             console.log('ada err ? -=', err);
-             console.log('ngak tau isi datanya apa ? ', data);
-             console.log('res nya isinya apa ya kalo berhasil ', res);
+            //  console.log('ada err ? -=', err);
+            //  console.log('ngak tau isi datanya apa ? ', data);
+            //  console.log('res nya isinya apa ya kalo berhasil ', res);
            });
         }
       }
