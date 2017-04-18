@@ -33,6 +33,8 @@ let bidController = require('../controllers/bidController')
  *      "success": true,
  *      "id": 2345,
  *      "auctionId": 101,
+ *      "username": 'dikyarga',
+ *      "bidding_time": '2017-04-16 17:12:40.126+08',
  *      "current_price": 40000,
  *      "minimum_next_bidding": 50000,
  *    }]
@@ -42,7 +44,9 @@ let bidController = require('../controllers/bidController')
  *      "message": 'bidding fail',
  *      "success": false,
  *      "id": null,
- *      "auctionId": null,
+ *      "username": null,
+ *      "id": null,
+ *      "bidding_time": null,
  *      "current_price": null,
  *      "minimum_next_bidding": null,
  *    }]
