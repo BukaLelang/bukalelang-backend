@@ -31,7 +31,8 @@ module.exports = {
           return Object.assign({}, data, {
             auctionId: data.Auction.id,
             title: data.Auction.title,
-            running: new Date(data.Auction.end_date) > new Date() ? true : false
+            running: new Date(data.Auction.end_date) > new Date() ? true : false,
+            images: data.Auction.images
           })
         })
 
@@ -51,7 +52,7 @@ module.exports = {
         finalResult.user_detail.auctionsJoinedCount = auctionsJoinedCount.length
         finalResult.user_detail.id = user.id
         finalResult.user_detail.name = user.name
-        finalResult.user_detail.wonAuctionsCount = wonCount
+        finalResult.user_detail.wonAuctionsCount = 0
         finalResult.auctionsJoined = newAuctionsJoined
 
         res.json(finalResult)
