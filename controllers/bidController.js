@@ -15,6 +15,8 @@ module.exports = {
       success: false,
       id: null,
       auctionId: null,
+      username: null,
+      bidding_time: null,
       categoryId: null,
       current_price: null,
       minimum_next_bidding: null,
@@ -51,11 +53,15 @@ module.exports = {
                           finalResult.success = true
                           finalResult.id = bid.id
                           finalResult.auctionId = bid.auctionId
+                          finalResult.username = user.username
+                          finalResult.bidding_time = bid.createdAt
                           finalResult.categoryId = auction.categoryId
                           finalResult.current_price = bid.current_bid
                           finalResult.minimum_next_bidding = bid.current_bid + auction.kelipatan_bid
                           global.io.emit('auction-' + req.body.auctionId, finalResult);
 
+                          // notify other auction participant
+                          bidChacker.notifyOtherAuctionParticipant(req.body.auctionId, req.body.userId)
                           res.json(finalResult)
                         })
                       } else {
