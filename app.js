@@ -6,8 +6,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-
-
 var index = require('./routes/index');
 var users = require('./routes/users');
 var auth = require('./routes/auth');
@@ -21,8 +19,11 @@ var app = express();
 // call socket.io to the app
 app.io = require('socket.io')();
 
-
+// define socket IO globally
 global.io = app.io;
+
+// cron for auctions winner checker
+let auctionsWinnerChecker = require('./helpers/auctionsWinnerChecker')()
 
 // start listen with socket.io
 app.io.on('connection', function(socket){
