@@ -2,7 +2,7 @@ let _ = require('lodash')
 let axios = require('axios')
 require('dotenv').config()
 
-
+let emailSender = require('./emailSender')
 let models = require('../models')
 
 let blEndPoint = 'https://api.bukalapak.com/v2/'
@@ -119,6 +119,49 @@ module.exports = {
         console.log('error when try to check isAuctionRunning ? ', err);
         reject('error when try to check isAuctionRunning ? '+ err)
       })
+    })
+  },
+  notifyOtherAuctionParticipant: (auctionId, bidderId) => {
+    models.Bid.findAll({
+      where: {
+        auctionId: auctionId
+      },
+      include: {
+        model: models.User
+      }
+    }).then(bids => {
+      let bidsLength = bids.length
+      if (bidsLength != 0) {
+        console.log('before sored : ', JSON.parse(JSON.stringify(bids)));
+        let sortedBidsByHighestPrice = _.orderBy(JSON.parse(JSON.stringify(bids)), ['current_bid'], ['desc'])
+        console.log('-----------------------', sortedBidsByHighestPrice);
+        // remove highest bids from list
+        sortedBidsByHighestPrice.pop()
+        console.log('+++++++++++++++++++++++', sortedBidsByHighestPrice);
+        // remove same user with that bidder, supaya ngak kasih notif ke diri sendiri
+        let removedThatBidder = _.remove(sortedBidsByHighestPrice, function(bid){
+          return bid.userId != bidderId
+        })
+        console.log('removedThatBidder : ', removedThatBidder);
+
+        // make sure bidder uniq
+        let uniqBidder = _.uniqBy(removedThatBidder, 'userId')
+        console.log('Uniq bidder : ', uniqBidder);
+
+        let bidderArr = []
+        for (var i = 0; i < uniqBidder.length; i++) {
+          console.log('isi tiap bid : ', uniqBidder[i]);
+          bidderArr.push({
+            name: uniqBidder[i].User.name,
+            email: uniqBidder[i].User.email,
+
+          })
+        }
+
+        emailSender.sendEmailToUserAfterBidLose(bidderArr, sortedBidsByHighestPrice[0])
+      } else {
+        console.log('no bids with id ' + auctionId + ' and do nothing');
+      }
     })
   }
 }
