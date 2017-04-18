@@ -132,7 +132,6 @@ module.exports = {
     }).then(bids => {
       let bidsLength = bids.length
       if (bidsLength != 0) {
-        console.log('before sored : ', JSON.parse(JSON.stringify(bids)));
         let sortedBidsByHighestPrice = _.orderBy(JSON.parse(JSON.stringify(bids)), ['current_bid'], ['desc'])
         console.log('-----------------------', sortedBidsByHighestPrice);
         // remove highest bids from list

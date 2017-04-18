@@ -8,14 +8,14 @@ var client = ses.createClient({
 });
 
 module.exports = {
-    sendEmailToWinner: (detailWinner) => {
+    sendEmailToWinner: (detailWinner, auction) => {
       console.log('send email jalan, detail user : ', detailWinner);
       // Give SES the details and let it construct the message for you.
       client.sendEmail({
          to: detailWinner.email
        , from: 'bukalelang@gmail.com'
        , subject: 'Selamat ' + detailWinner.name + ', kamu memenangkan lelang!'
-       , message: 'Selamat ' + detailWinner.name + ', kamu memenangkan lelang ini, selanjutnya ini itu'
+       , message: 'Kamu berhasil memenangkan lelang : ' + auction.title + '! Pelelang langsung membukuskan barang lelang mu, klik disini untuk berkomunikasi dengan Pelelang'
        , altText: 'plain text'
       }, function (err, data, res) {
         console.log('ada err ? -=', err);
