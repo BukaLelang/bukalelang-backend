@@ -266,8 +266,9 @@ module.exports = {
         }).then(bids => {
           let bidsLength = bids.length
           if (bidsLength != 0) {
-            let sortedBids = _.sortBy(bids, ['current_bid'])
-            let bidHistoryArr = JSON.parse(JSON.stringify(bids))
+            let sortedBids = _.orderBy(bids, ['id'], ['desc'])
+            let lastestTenBids = _.take(sortedBids, 10)
+            let bidHistoryArr = JSON.parse(JSON.stringify(lastestTenBids))
             const newBidHistory = bidHistoryArr.map(bid => {
               return Object.assign({}, bid, {
                 name_of_bidder: bid.User.name,
