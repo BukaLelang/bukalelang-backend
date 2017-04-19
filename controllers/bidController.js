@@ -59,6 +59,7 @@ module.exports = {
                             finalResult.current_price = bid.current_bid
                             finalResult.minimum_next_bidding = bid.current_bid + auction.kelipatan_bid
                             global.io.emit('auction-' + req.body.auctionId, finalResult);
+                            global.io.emit('auctions', finalResult);
 
                             // notify other auction participant
                             bidChacker.notifyOtherAuctionParticipant(req.body.auctionId, req.body.userId)
