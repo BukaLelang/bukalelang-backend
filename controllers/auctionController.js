@@ -17,9 +17,11 @@ module.exports = {
       title: null,
       images: null,
       categoryId: null,
+      category: null,
       new: false,
       weight: 0,
       description: null,
+      location: null,
       min_price: 0,
       max_price: 0,
       kelipatan_bid: 0,
@@ -80,7 +82,6 @@ module.exports = {
         switch (responseAfterCreateProduct.data.status) {
           case 'ERROR':
             finalResult.message = responseAfterCreateProduct.data.message
-            // console.log('kesini pak');
             res.json(finalResult)
             break;
           case 'OK':
@@ -101,25 +102,36 @@ module.exports = {
               end_date: req.body.end_date,
               userId: req.body.userId
             }).then((auction) => {
-              finalResult.id = auction.id
-              finalResult.productId = auction.productId
-              finalResult.title = auction.title
-              finalResult.images = auction.images
-              finalResult.categoryId = auction.categoryId
-              finalResult.new = auction.new
-              finalResult.weight = auction.weight
-              finalResult.description = auction.description
-              finalResult.min_price = auction.min_price
-              finalResult.max_price = auction.max_price
-              finalResult.kelipatan_bid = auction.kelipatan_bid
-              finalResult.start_date = auction.start_date
-              finalResult.end_date = auction.end_date
-              finalResult.success = true
-              finalResult.userId = auction.userId
-              finalResult.message = 'Sukses buat lelang!'
 
-              auctionWinnerJob.auctionWinnerJob(auction.id, auction.end_date) //Check winner every auction
-              res.json(finalResult)
+              // ambil nama category nya
+              models.Category.findById(auction.categoryId).then(category => {
+                if (category) {
+                  finalResult.id = auction.id
+                  finalResult.productId = auction.productId
+                  finalResult.title = auction.title
+                  finalResult.images = auction.images
+                  finalResult.categoryId = auction.categoryId
+                  finalResult.category = category.name
+                  finalResult.new = auction.new
+                  finalResult.weight = auction.weight
+                  finalResult.description = auction.description
+                  finalResult.location = responseAfterCreateProduct.data.product_detail.city
+                  finalResult.min_price = auction.min_price
+                  finalResult.max_price = auction.max_price
+                  finalResult.kelipatan_bid = auction.kelipatan_bid
+                  finalResult.start_date = auction.start_date
+                  finalResult.end_date = auction.end_date
+                  finalResult.success = true
+                  finalResult.userId = auction.userId
+                  finalResult.message = 'Sukses buat lelang!'
+
+                  auctionWinnerJob.auctionWinnerJob(auction.id, auction.end_date) //Check winner every auction
+                  res.json(finalResult)
+
+                } else {
+                  console.log('tidak ada category dengan id : ', auction.categoryId);
+                }
+              })
             }).catch(err => {
               console.log('error when try create auction in localdb', err);
               res.json(finalResult)
