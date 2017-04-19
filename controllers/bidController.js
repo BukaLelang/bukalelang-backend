@@ -21,7 +21,7 @@ module.exports = {
       current_price: null,
       minimum_next_bidding: null,
     }
-    console.log('isi request : ', req.body);
+    // console.log('isi request : ', req.body);
     // cek user nya ada ngak ?
     models.User.findById(req.body.userId).then(user => {
       // console.log('dapet user : ', user);
@@ -83,7 +83,6 @@ module.exports = {
             })
           } else {
             finalResult.message = 'bid fail, auction dengan id : ' + req.body.auctionId + ' tidak ditemukan'
-            console.log("FINAL RESULT: ", finalResult)
             res.json(finalResult)
           }
         }).catch(err => {
