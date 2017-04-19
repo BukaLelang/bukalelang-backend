@@ -35,6 +35,11 @@ module.exports = {
   },
   checkBalance: (bukalapakId, token) => {
     return new Promise((resolve, reject) => {
+      let finalResult = {
+        status: false,
+        balance: 0,
+        message: 'error when trying to get balance in bidChacker :'
+      }
       // cek saldo nya
       let urlGetBalance = blEndPoint + 'dompet/history.json'
       axios({
@@ -45,30 +50,30 @@ module.exports = {
           password: token
         }
       }).then((responseGetBalance) => {
-        // console.log('isi setelah get balance : ', responseGetBalance.data);
+        if (responseGetBalance.data.status == 'OK') {
 
-        let balance = 0
-        // for development purposed only, biar saldonya ngak kosong
-        if (process.env.NODE_ENV != 'development') {
-          balance = responseGetBalance.data.balance
-          // for demo only i set again
-          balance = 1000000
+          // for development purposed only, biar saldonya ngak kosong
+          if (process.env.NODE_ENV != 'development') {
+            finalResult.balance = responseGetBalance.data.balance
+            // for demo only, i'll disable after the demo
+            finalResult.balance = 1000000
+          } else {
+            // development
+            finalResult.balance = 1500000
+          }
+
+          finalResult.message = 'get balance success'
+          finalResult.status = true
+          resolve(finalResult)
         } else {
-          // development
-          balance = 1500000
+          finalResult.message = responseGetBalance.data.message
+          resolve(finalResult)
         }
-        resolve({
-          status: true,
-          balance: balance,
-          message: 'get balance success'
-        })
+
       }).catch(err => {
-        // console.log('error when trying to get balance in bidChacker : ', err);
-        resolve({
-          status: false,
-          balance: 0,
-          message: 'error when trying to get balance in bidChacker :'
-        })
+        console.log('error when trying to get balance in bidChacker : ', err);
+        finalResult.message = 'error when trying to get balance in bidChacker :'
+        reject(finalResult)
       })
     })
   },
