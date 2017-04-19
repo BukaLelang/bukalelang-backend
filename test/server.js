@@ -1,11 +1,12 @@
 var chai = require('chai')
 var chaiHttp = require('chai-http')
 require('dotenv').config()
+let app = require('../app')
 
 var should = chai.should()
 chai.use(chaiHttp)
 
-let serverHost = process.env.SERVER_HOST
+let serverHost = app
 
 describe('Server healthy test', () => {
   describe('Express - httpServer running', () => {
