@@ -15,12 +15,22 @@ let serverHost = app
 describe('Bid Test', () => {
   describe('Bidding', () => {
     it('Should be return status Success when trying to bid a auction', (done) => {
+      let userId = process.env.USER_ID_IN_LOCAL
       models.Auction.findAll().then(auctions => {
         let convertedAuctions = JSON.parse(JSON.stringify(auctions))
         let auctionsLength = convertedAuctions.length
         if (auctionsLength > 0) {
           // find the highest bid for last auction
           let lastAuction = convertedAuctions[auctionsLength - 1]
+          // ketika auction di buat oleh user id yang sama, maka cari auction lain
+          if (lastAuction.userId == userId) {
+            for (var i = 0; i < convertedAuctions.length; i++) {
+              if (convertedAuctions[i].userId != userId) {
+                lastAuction = convertedAuctions[i]
+                break
+              }
+            }
+          }
           models.Bid.findAll({
             where: {
               auctionId: lastAuction.id
@@ -37,7 +47,7 @@ describe('Bid Test', () => {
               // console.log('ambil auction terakhir : ', convertedAuctions);
               // console.log('id terakhir ? ', convertedAuctions[auctionsLength - 1].id);
               chai.request(serverHost).post('/bids/')
-              .set('userid', process.env.USER_ID_IN_LOCAL)
+              .set('userid', userId)
               .set('token', process.env.BUKALAPAK_TOKEN)
               .send({
                 auctionId: lastAuction.id,
@@ -74,13 +84,14 @@ describe('Bid Test', () => {
         }
       })
     })
-    it('Should be return all field / property when trying to bid a auction', (done) => {
+    it('Should be return all field / property when trying to bid an auction', (done) => {
       models.Auction.findAll().then(auctions => {
         let convertedAuctions = JSON.parse(JSON.stringify(auctions))
         let auctionsLength = convertedAuctions.length
         if (auctionsLength > 0) {
           // find the highest bid for last auction
           let lastAuction = convertedAuctions[auctionsLength - 1]
+
           models.Bid.findAll({
             where: {
               auctionId: lastAuction.id
@@ -106,32 +117,51 @@ describe('Bid Test', () => {
                 if (err) {
                   done(err)
                 } else {
-                  // console.log('isi res di test : ', res.body);
-                  res.should.have.status(200);
-                  res.should.be.json;
-                  res.body.should.have.property('id')
-                  res.body.should.have.property('auctionId')
-                  res.body.should.have.property('username')
-                  res.body.should.have.property('name')
-                  res.body.should.have.property('bidding_time')
-                  res.body.should.have.property('current_price')
-                  res.body.should.have.property('minimum_next_bidding')
-                  res.body.should.have.property('success')
-                  res.body.should.have.property('message')
-                  // delete bid after test
-                  models.Bid.findById(res.body.id).then(bid => {
-                    if (bid) {
-                      bid.destroy({
-                        where: {
-                          id : bid.id
-                        }
-                      }).then(() => {
-                        console.log('delete bid after test success');
-                        done()
+                  if (lastAuction.userId == process.env.USER_ID_IN_LOCAL) {
+                    console.log('kesini kan ? ');
+                    res.should.have.status(200);
+                    res.should.be.json;
+                    res.body.should.have.property('id')
+                    res.body.should.have.property('auctionId')
+                    res.body.should.have.property('username')
+                    res.body.should.have.property('name')
+                    res.body.should.have.property('bidding_time')
+                    res.body.should.have.property('current_price')
+                    res.body.should.have.property('minimum_next_bidding')
+                    res.body.should.have.property('success')
+                    res.body.should.have.property('message')
+                    res.body.message.should.to.equal('Anda tidak dapat nge-bid auction anda sendiri.')
+                    done()
+                  } else {
+                    res.should.have.status(200);
+                    res.should.be.json;
+                    res.body.should.have.property('id')
+                    res.body.should.have.property('auctionId')
+                    res.body.should.have.property('username')
+                    res.body.should.have.property('name')
+                    res.body.should.have.property('bidding_time')
+                    res.body.should.have.property('current_price')
+                    res.body.should.have.property('minimum_next_bidding')
+                    res.body.should.have.property('success')
+                    res.body.should.have.property('message')
+                    res.body.success.should.to.equal(true)
+                    // delete bid after test
+                    models.Bid.findById(res.body.id).then(bid => {
+                      if (bid) {
+                        bid.destroy({
+                          where: {
+                            id : bid.id
+                          }
+                        }).then(() => {
+                          console.log('delete bid after test success');
+                          done()
 
-                      })
-                    }
-                  })
+                        })
+                      }
+                    })
+
+                  }
+
                 }
               });
 
@@ -174,10 +204,10 @@ describe('Bid Test', () => {
         const auctionsLength = auctions.length
         if (auctionsLength != 0) {
           chai.request(serverHost).post('/bids/')
-          .set('userid', 1)
+          .set('userid', process.env.USER_ID_IN_LOCAL)
           .set('token', process.env.BUKALAPAK_TOKEN)
           .send({
-            auctionId: 28891331983,
+            auctionId: 2889,
             nextBid: 140000
           }).end((err, res) => {
             if (err) {
