@@ -101,11 +101,8 @@ module.exports = {
   isAuctionRunning: (auctionId) => {
     return new Promise((resolve, reject) => {
       models.Auction.findById(auctionId).then(auction => {
-        if (auction) {
-          resolve(true)
-        } else {
-          resolve(false)
-        }
+        let isStillRunning = new Date(auction.end_date) > new Date() ? true : false
+        resolve(isStillRunning)
       }).catch(err => {
         console.log('error when try to check isAuctionRunning ? ', err);
         reject('error when try to check isAuctionRunning ? '+ err)

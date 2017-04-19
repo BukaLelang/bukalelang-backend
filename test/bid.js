@@ -31,6 +31,11 @@ describe('Bid Test', () => {
               }
             }
           }
+
+          if (lastAuction.userId == userId) {
+            console.log('--------- still no auctions with diferent user --------');
+            console.log('--------- u need to create one --------');
+          }
           models.Bid.findAll({
             where: {
               auctionId: lastAuction.id
@@ -57,23 +62,31 @@ describe('Bid Test', () => {
                   done(err)
                 } else {
                   // console.log('isi res di test : ', res.body);
-                  res.should.have.status(200);
-                  res.should.be.json;
-                  res.body.success.should.to.equal(true)
-                  // delete bid after test
-                  models.Bid.findById(res.body.id).then(bid => {
-                    if (bid) {
-                      bid.destroy({
-                        where: {
-                          id : bid.id
-                        }
-                      }).then(() => {
-                        console.log('delete bid after test success');
-                        done()
+                  if (res.body.message == 'Auction already ended') {
+                    res.should.have.status(200);
+                    res.should.be.json;
+                    res.body.success.should.to.equal(false)
+                    done()
+                  } else {
+                    res.should.have.status(200);
+                    res.should.be.json;
+                    res.body.success.should.to.equal(true)
+                    // delete bid after test
+                    models.Bid.findById(res.body.id).then(bid => {
+                      if (bid) {
+                        bid.destroy({
+                          where: {
+                            id : bid.id
+                          }
+                        }).then(() => {
+                          console.log('delete bid after test success');
+                          done()
 
-                      })
-                    }
-                  })
+                        })
+                      }
+                    })
+
+                  }
                 }
               });
 

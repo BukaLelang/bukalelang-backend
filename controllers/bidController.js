@@ -22,7 +22,7 @@ module.exports = {
       current_price: null,
       minimum_next_bidding: null,
     }
-    // console.log('isi request : ', req.body);
+    console.log('isi request : ', req.body, req.headers);
     // cari dulu auctionId nya ada ngak
     models.Auction.findById(req.body.auctionId).then(auction => {
       if (auction) {
@@ -31,6 +31,7 @@ module.exports = {
           finalResult.message = 'Anda tidak dapat nge-bid auction anda sendiri.'
           res.json(finalResult)
         } else {
+          // console.log('masuk sini kan dengan auction : ', auction);
           // cek auction nya masih running ngak
           bidChacker.isAuctionRunning(req.body.auctionId).then(responseAfterCheckIsAuctionRunning => {
             if (responseAfterCheckIsAuctionRunning) {
@@ -96,6 +97,7 @@ module.exports = {
 
             } else {
               finalResult.message = 'Auction already ended'
+              res.json(finalResult)
             }
           })
         }
