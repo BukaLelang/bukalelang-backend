@@ -3,7 +3,7 @@ const chai = require('chai').should()
 const decryptor = require('../helpers/decryptor')
 require('dotenv').config()
 
-let password = '89b8e54a0bd2304acc19f0b6a995ae7ffb8f00'
+let password = process.env.ENCRYPTED_PASSWORD_IN_LOCAL
 
 describe('Decrypt Test',() => {
   it('Should be return hash password', (done) => {
