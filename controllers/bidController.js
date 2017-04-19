@@ -43,7 +43,7 @@ module.exports = {
                         // ketika oke, lebih besar dari yang lain
                         if (responseAfterIsMoreThanHighestBid.status) {
                           models.Bid.create({
-                            userId: req.body.userId,
+                            userId: req.headers.userid,
                             auctionId: req.body.auctionId,
                             current_bid: req.body.nextBid
                           }).then(bid => {
