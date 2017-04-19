@@ -26,7 +26,7 @@ module.exports = {
       username: req.body.username,
       policy: '1'
     }).then((responseAfterRegisterToBukaLapak) => {
-      console.log('berhasil kah : ', responseAfterRegisterToBukaLapak.data);
+      // console.log('berhasil kah : ', responseAfterRegisterToBukaLapak.data);
       // cek respon dari BL
       switch (responseAfterRegisterToBukaLapak.data.status) {
         // teruskan pesan error dari BL
@@ -75,7 +75,7 @@ module.exports = {
                   finalResult.message = 'login success'
                   res.json(finalResult)
               }).catch((err) => {
-                console.log('isi error saat ambil saldo : ', err);
+                // console.log('isi error saat ambil saldo : ', err);
                 finalResult.message = 'Error saat ambil saldo di Buka Dompet'
                 res.json(finalResult)
 
@@ -180,7 +180,7 @@ module.exports = {
                   res.json(finalResult)
 
               }).catch((err) => {
-                console.log('isi error saat ambil saldo : ', err);
+                // console.log('isi error saat ambil saldo : ', err);
                 finalResult.message = 'Error saat ambil saldo di Buka Dompet'
                 res.json(finalResult)
 
@@ -195,7 +195,7 @@ module.exports = {
         })
       } else {
         // di tempat kita udah ada
-        console.log('udah ada cuy!');
+        // console.log('udah ada cuy!');
         axios({
           method:'post',
           url: blEndPoint + 'authenticate.json',
@@ -233,7 +233,7 @@ module.exports = {
               res.json(finalResult)
 
           }).catch((err) => {
-            console.log('isi error saat ambil saldo : ', err);
+            // console.log('isi error saat ambil saldo : ', err);
             finalResult.message = 'Error saat ambil saldo di Buka Dompet'
             res.json(finalResult)
 

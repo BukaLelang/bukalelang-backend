@@ -1,11 +1,12 @@
 var chai = require('chai')
 var chaiHttp = require('chai-http')
 require('dotenv').config()
+let app = require('../app')
 
 var should = chai.should()
 chai.use(chaiHttp)
 
-let serverHost = 'http://localhost:3000'
+let serverHost = app
 
 describe('Auth Test', () => {
   describe('Login', () => {
