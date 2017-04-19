@@ -36,6 +36,8 @@ function theWinnerIs(auctionId) {
           models.Auction.findById(highestBidOfTheAuction.auctionId).then(auction => {
             if (auction) {
               emailSender.sendEmailToWinner(user, auction)
+              // global.io.emit('auction-winner-' + auction.id, user);
+
             } else {
               console.log('auction with id : ' + highestBidOfTheAuction.auctionId + ' not found');
             }
