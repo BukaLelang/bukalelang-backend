@@ -25,7 +25,7 @@ var randomName = faker.name.findName();
 
 describe('Auction Test', () => {
   describe('Create Auction', () => {
-    xit('Should be return status Success when trying to create new Auction', (done) => {
+    it('Should be return status Success when trying to create new Auction', (done) => {
       imageUploader.uploadToBukaLapak(
         process.env.BUKALAPAK_ID,
         process.env.BUKALAPAK_TOKEN).then((responseAfterUpload) => {
@@ -169,14 +169,26 @@ describe('Auction Test', () => {
         console.log('error di image uploader : ', err);
       })
     })
-    xit('Should be return status false when trying to create Auction with wrong paramater', (done) => {
+    it('Should be return status false when trying to create Auction with wrong paramater', (done) => {
       chai.request(serverHost).post('/auctions').send({
-        username: process.env.BUKALAPAK_ACCOUNT_USERNAME_DEV,
-        password: process.env.BUKALAPAK_ACCOUNT_PASSWORD_DEV
+        userId: '1',
+        bukalapakId: process.env.BUKALAPAK_ID,
+        token: process.env.BUKALAPAK_TOKEN,
+        title: 'Ini cuma testing ajsfsfaa  fsafs fsaasdjasdkjsadkadsdsaa sd saddfsdf sfafdfasf a ' + randomName,
+        categoryId: 2,
+        new: false,
+        weight: 4000,
+        description: 'Ini cuma contoh deskripsi minimal 30 karakter lho, jika kurang akan error, maka nya saya banyak banyakain, masih kurang juga ?',
+        min_price: -10000,
+        max_price: 9000000,
+        kelipatan_bid: 10000,
+        imagesId: 3333333333,
+        end_date: end_date
       }).end((err, res) => {
         if (err) {
           done(err)
         } else {
+          console.log('isi res : ', res.body);
           res.should.have.status(200);
           res.should.be.json;
           res.body.success.should.to.equal(false)
@@ -184,17 +196,30 @@ describe('Auction Test', () => {
         }
       });
     })
-    xit('Should be return min_price = null when trying to create Auction with wrong paramater', (done) => {
+    it('Should be return min_price = null when trying to create Auction with wrong paramater', (done) => {
       chai.request(serverHost).post('/auctions').send({
-        username: process.env.BUKALAPAK_ACCOUNT_USERNAME_DEV,
-        password: process.env.BUKALAPAK_ACCOUNT_PASSWORD_DEV
+        userId: '1',
+        bukalapakId: process.env.BUKALAPAK_ID,
+        token: process.env.BUKALAPAK_TOKEN,
+        title: 'Ini cuma testing ajsfsfaa  fsafs fsaasdjasdkjsadkadsdsaa sd saddfsdf sfafdfasf a ' + randomName,
+        categoryId: 2,
+        new: false,
+        weight: 4000,
+        description: 'Ini cuma contoh deskripsi minimal 30 karakter lho, jika kurang akan error, maka nya saya banyak banyakain, masih kurang juga ?',
+        min_price: -10000,
+        max_price: 9000000,
+        kelipatan_bid: 10000,
+        imagesId: 3333333333,
+        end_date: end_date
       }).end((err, res) => {
         if (err) {
           done(err)
         } else {
+          console.log('isi res : ', res.body);
           res.should.have.status(200);
           res.should.be.json;
-          should.equal(res.body.min_price, null);
+          should.equal(res.body.min_price, 0);
+          res.body.success.should.to.equal(false)
           done()
         }
       });

@@ -99,16 +99,8 @@ module.exports = {
     }).catch((err) => {
       console.log('error when trying to register to bukalapak :', err);
       // jika error saat register ke BL
-      res.json({
-        userId: null,
-        name: null,
-        username: null,
-        email: null,
-        saldo: null,
-        token: null,
-        success: false,
-        message: 'error when trying to register to bukalapak :' + err
-      })
+      finalResult.message = 'Error when try to register to BL : ' + err
+      res.json(finalResult)
     })
   },
 
@@ -204,40 +196,52 @@ module.exports = {
             password: req.body.password
           }
         }).then((responseAfterLogin) => {
-          //Update token
-          models.User.update({
-            bl_token:responseAfterLogin.data.token
-          },{
-            where:{
-              id:user.id
-            }})
+          switch (responseAfterLogin.data.status) {
+            case 'OK':
+              //Update token
+              models.User.update({
+                bl_token:responseAfterLogin.data.token
+              },{
+                where:{
+                  id:user.id
+              }})
 
-          axios({
-            method: 'get',
-            url: blEndPoint + 'dompet/history.json',
-            auth: {
-              username: responseAfterLogin.data.user_id,
-              password: responseAfterLogin.data.token
-            }
-          }).then((responseGetBalance) => {
-            // console.log('isi responseGetBalance : ', responseGetBalance.data);
-              finalResult.id = user.id,
-              finalResult.bukalapakId = responseAfterLogin.data.user_id,
-              finalResult.name = user.name,
-              finalResult.username = user.username,
-              finalResult.email = user.email,
-              finalResult.saldo = responseGetBalance.data.balance,
-              finalResult.token = responseAfterLogin.data.token,
-              finalResult.success = true,
-              finalResult.message = 'login success'
+              axios({
+                method: 'get',
+                url: blEndPoint + 'dompet/history.json',
+                auth: {
+                  username: responseAfterLogin.data.user_id,
+                  password: responseAfterLogin.data.token
+                }
+              }).then((responseGetBalance) => {
+                // console.log('isi responseGetBalance : ', responseGetBalance.data);
+                  finalResult.id = user.id,
+                  finalResult.bukalapakId = responseAfterLogin.data.user_id,
+                  finalResult.name = user.name,
+                  finalResult.username = user.username,
+                  finalResult.email = user.email,
+                  finalResult.saldo = responseGetBalance.data.balance,
+                  finalResult.token = responseAfterLogin.data.token,
+                  finalResult.success = true,
+                  finalResult.message = 'login success'
+                  res.json(finalResult)
+
+              }).catch((err) => {
+                // console.log('isi error saat ambil saldo : ', err);
+                finalResult.message = 'Error saat ambil saldo di Buka Dompet'
+                res.json(finalResult)
+              })
+              break;
+            case 'ERROR':
+              finalResult.message = responseAfterLogin.data.message
               res.json(finalResult)
+              break;
+            default:
+              res.json(finalResult)
+          }
 
-          }).catch((err) => {
-            // console.log('isi error saat ambil saldo : ', err);
-            finalResult.message = 'Error saat ambil saldo di Buka Dompet'
-            res.json(finalResult)
 
-          })
+
         }).catch((err) => {
           console.log('isi error saat authenticate : ', err);
           finalResult.message = 'Error saat otentikasi'

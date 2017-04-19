@@ -60,6 +60,7 @@ describe('Auth Test', () => {
           res.should.have.status(200);
           res.should.be.json;
           res.body.success.should.to.equal(false)
+          res.body.message.should.be.a('string')
           done()
         }
       });
@@ -83,8 +84,8 @@ describe('Auth Test', () => {
   describe('Register', () => {
     it('Should be return all field / property when trying to register', (done) => {
       chai.request(serverHost).post('/auth/register').send({
-        username: process.env.BUKALAPAK_ACCOUNT_USERNAME_DEV,
-        password: process.env.BUKALAPAK_ACCOUNT_PASSWORD_DEV
+        username: 'IniAsalAsalan',
+        password: 'SeriusIniAsalAsalan'
       }).end((err, res) => {
         if (err) {
           done(err)

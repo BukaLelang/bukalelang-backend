@@ -31,7 +31,7 @@ module.exports = {
       success: false,
       message: 'Buat lelang gagal ):',
     }
-    console.log('isi request : ', req.body);
+    // console.log('isi request : ', req.body);
     // upload image first
     // imageUploader.uploadToBukaLapak(req, res)
 
@@ -44,7 +44,7 @@ module.exports = {
         password: req.body.token
       }
     }).then((attributes) => {
-      console.log('isi attributes : ', attributes.data);
+      // console.log('isi attributes : ', attributes.data);
       let productData = {
         product: {
           category_id: req.body.categoryId,
@@ -78,7 +78,7 @@ module.exports = {
         },
         data: productData
       }).then((responseAfterCreateProduct) => {
-        console.log('response dari BL setelah coba create product : ', responseAfterCreateProduct.data);
+        // console.log('response dari BL setelah coba create product : ', responseAfterCreateProduct.data);
         switch (responseAfterCreateProduct.data.status) {
           case 'ERROR':
             finalResult.message = responseAfterCreateProduct.data.message
