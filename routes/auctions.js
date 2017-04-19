@@ -16,6 +16,7 @@ const applyMidleware = require('../helpers/authentication')
  *       "token": "IniToken",
  *       "title": "Lelang Gundam Langka & Istimewa",
  *       "categoryId": 145,
+ *       "category": 'Mainan',
  *       "new": false,
  *       "weight": 5000,
  *       "description": "Gundam dapet dari pembuatnya langsung lho",
@@ -30,6 +31,7 @@ const applyMidleware = require('../helpers/authentication')
  * @apiParam {String} token token of logged in user
  * @apiParam {String} title Title of auction
  * @apiParam {Integer} categoryId category ID
+ * @apiParam {String} category category name of the auction
  * @apiParam {Boolean} new product is new or second ?
  * @apiParam {Integer} weight weight of the product using gram
  * @apiParam {String} description description of product (minimal 30 char)
@@ -44,6 +46,7 @@ const applyMidleware = require('../helpers/authentication')
  * @apiSuccess {String} title Title of auction
  * @apiSuccess {String} images Url of image of auction
  * @apiSuccess {Integer} categoryId category ID
+ * @apiSuccess {String} category category of the auction
  * @apiSuccess {Boolean} new product is new or second ?
  * @apiSuccess {Integer} weight weight of the product using gram
  * @apiSuccess {String} description description of product
@@ -62,6 +65,7 @@ const applyMidleware = require('../helpers/authentication')
  *      "title": "Lelang Gundam Langka & Istimewa",
  *      "images": "https://s0.bukalapak.com/system/images/1/6/7/6/6/8/0/large/IMG00475-20121105-1431.jpg?1352105447",
  *      "categoryId": 145,
+ *      "category": 'Mainan',
  *      "new": false,
  *      "weight": 5000,
  *      "description": "Gundam dapet dari pembuatnya langsung lho",
@@ -81,6 +85,7 @@ const applyMidleware = require('../helpers/authentication')
  *      "title": null,
  *      "images": null,
  *      "categoryId": null,
+ *      "category": null,
  *      "new": false,
  *      "weight": 0,
  *      "description": null,
