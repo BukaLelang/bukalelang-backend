@@ -3,19 +3,24 @@ var express = require('express');
 var router = express.Router();
 
 let bidController = require('../controllers/bidController')
+let auth = require('../helpers/authentication')
 
 /**
  * @api {post} /bids bid the auction
  * @apiGroup Bids
+ * @apiHeaderExample {json} Header-Example:
+ *     {
+ *       "userid": 2,
+ *       "token": "IniToken",
+ *     }
  * @apiParamExample {json} Request-Example:
  *     {
- *       "userId": 2,
- *       "token": "AngapAjaIniToken",
  *       "auctionId": 101,
  *       "nextBid": 120000,
  *     }
- * @apiParam {Integer} userId userId of user
- * @apiParam {String} token token of logged in user
+ * @apiHeader {Integer} userid userId of user
+ * @apiHeader {String} token token of logged in user
+
  * @apiParam {Integer} auctionId id of the auction
  * @apiParam {Integer} nextBid nominal of bidding offered
 
@@ -56,6 +61,6 @@ let bidController = require('../controllers/bidController')
  *      "minimum_next_bidding": null,
  *    }]
  */
-router.post('/', bidController.bid)
+router.post('/', auth.authentication, bidController.bid)
 
 module.exports = router;
