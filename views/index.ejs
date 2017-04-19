@@ -27,6 +27,10 @@
     console.log('dapaet', msg);
     $('#messages-area').append($('<li>').text(msg));
   });
+  socket.on('connected', function(msg){
+    console.log('dapaet', msg);
+    $('#messages-area').append($('<li>').text(msg));
+  });
   socket.on('auction-14', function(msg){
     console.log('dapaet', msg);
     $('#messages-area').append($('<li>').text(msg.current_price));

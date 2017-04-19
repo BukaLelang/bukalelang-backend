@@ -28,6 +28,8 @@ let auctionsWinnerChecker = require('./helpers/auctionsWinnerChecker')()
 // start listen with socket.io
 app.io.on('connection', function(socket){
   console.log('a user connected');
+  socket.broadcast.emit('connected', 'YEY! connected!');
+  socket.emit('connected', 'YEY! connected!');
   socket.on('new message', function(msg){
     console.log('new message: ' + msg);
     socket.broadcast.emit('chat message', msg);
