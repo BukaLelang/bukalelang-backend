@@ -14,9 +14,9 @@ describe('Authentication Test', () => {
     it('Should be return status false with error message when trying to access route that need authentication', (done) => {
           let fakeId = 2312312
           chai.request(serverHost).post('/bids/')
+          .set('userid', fakeId)
+          .set('token', process.env.BUKALAPAK_TOKEN)
           .send({
-            userId: fakeId,
-            token: process.env.BUKALAPAK_TOKEN,
             auctionId: 20170420,
             nextBid: 20170420
           })
@@ -26,33 +26,32 @@ describe('Authentication Test', () => {
             } else {
               res.should.have.status(200);
               res.should.be.json;
-              res.headers.success.should.to.equal(false)
-              res.body.message.should.to.equal('bidding fail, user with id '+ fakeId +' not found')
+              res.body.success.should.to.equal(false)
+              res.body.message.should.to.equal('authentication failed user not found')
               done()
             }
           });
       })
     it('Should be return status false with error message when trying to access route that need authentication', (done) => {
-      let fakeToken = 'sdadasdasdwrwr'
-      let fakeId = process.env.BUKALAPAK_ID
+      let fakeId = 1
       chai.request(serverHost).post('/bids/')
+      .set('userid', fakeId)
+      .set('token', 'initokensalah')
       .send({
-        userId : fakeId,
-        token : fakeToken,
-        auctionId : 20170420,
-        nextBid : 20170420
+        auctionId: 20170420,
+        nextBid: 20170420
       })
       .end((err, res) => {
         if (err) {
           done(err)
-        }else {
-          res.should.have.status(200)
-          res.should.be.json
+        } else {
+          res.should.have.status(200);
+          res.should.be.json;
           res.body.success.should.to.equal(false)
-          res.body.message.should.to.equal('token is not valid')
+          res.body.message.should.to.equal('authentication failed token is not valid')
           done()
         }
-      })
+      });
     })
   })
 })
