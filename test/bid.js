@@ -18,7 +18,7 @@ describe('Bid Test', () => {
       models.Auction.findAll().then(auctions => {
         let convertedAuctions = JSON.parse(JSON.stringify(auctions))
         let auctionsLength = convertedAuctions.length
-        if (auctionsLength != 0) {
+        if (auctionsLength > 0) {
           // find the highest bid for last auction
           let lastAuction = convertedAuctions[auctionsLength - 1]
           models.Bid.findAll({
@@ -26,14 +26,20 @@ describe('Bid Test', () => {
               auctionId: lastAuction.id
             }
           }).then(bids => {
+            let highestBid = {}
+            let nextBid = 0
             if (bids.length > 0) {
-              let highestBid = _.maxBy(JSON.parse(JSON.stringify(bids)), 'current_bid')
-              let nextBid = highestBid.current_bid + lastAuction.kelipatan_bid
+              highestBid = _.maxBy(JSON.parse(JSON.stringify(bids)), 'current_bid')
+              nextBid = highestBid.current_bid + lastAuction.kelipatan_bid
+            } else {
+              nextBid = lastAuction.min_price + lastAuction.kelipatan_bid
+            }
               // console.log('ambil auction terakhir : ', convertedAuctions);
               // console.log('id terakhir ? ', convertedAuctions[auctionsLength - 1].id);
-              chai.request(serverHost).post('/bids/').send({
-                userId: 1,
-                token: process.env.BUKALAPAK_TOKEN,
+              chai.request(serverHost).post('/bids/')
+              .set('userid', process.env.USER_ID_IN_LOCAL)
+              .set('token', process.env.BUKALAPAK_TOKEN)
+              .send({
                 auctionId: lastAuction.id,
                 nextBid: nextBid
               }).end((err, res) => {
@@ -60,7 +66,7 @@ describe('Bid Test', () => {
                   })
                 }
               });
-            }
+
           })
 
         } else {
@@ -72,7 +78,7 @@ describe('Bid Test', () => {
       models.Auction.findAll().then(auctions => {
         let convertedAuctions = JSON.parse(JSON.stringify(auctions))
         let auctionsLength = convertedAuctions.length
-        if (auctionsLength != 0) {
+        if (auctionsLength > 0) {
           // find the highest bid for last auction
           let lastAuction = convertedAuctions[auctionsLength - 1]
           models.Bid.findAll({
@@ -80,14 +86,20 @@ describe('Bid Test', () => {
               auctionId: lastAuction.id
             }
           }).then(bids => {
+            let highestBid = {}
+            let nextBid = 0
             if (bids.length > 0) {
-              let highestBid = _.maxBy(JSON.parse(JSON.stringify(bids)), 'current_bid')
-              let nextBid = highestBid.current_bid + lastAuction.kelipatan_bid
+              highestBid = _.maxBy(JSON.parse(JSON.stringify(bids)), 'current_bid')
+              nextBid = highestBid.current_bid + lastAuction.kelipatan_bid
+            } else {
+              nextBid = lastAuction.min_price + lastAuction.kelipatan_bid
+            }
               // console.log('ambil auction terakhir : ', convertedAuctions);
               // console.log('id terakhir ? ', convertedAuctions[auctionsLength - 1].id);
-              chai.request(serverHost).post('/bids/').send({
-                userId: 1,
-                token: process.env.BUKALAPAK_TOKEN,
+              chai.request(serverHost).post('/bids/')
+              .set('userid', process.env.USER_ID_IN_LOCAL)
+              .set('token', process.env.BUKALAPAK_TOKEN)
+              .send({
                 auctionId: lastAuction.id,
                 nextBid: nextBid
               }).end((err, res) => {
@@ -122,7 +134,7 @@ describe('Bid Test', () => {
                   })
                 }
               });
-            }
+
           })
 
         } else {
@@ -136,16 +148,16 @@ describe('Bid Test', () => {
         if (auctionsLengthFour != 0) {
           // console.log('ambil auction terakhir : ', auctions);
           // console.log('id terakhir ? ', auctions[auctionsLength - 1].id);
-          chai.request(serverHost).post('/bids/').send({
-            userId: 1,
-            token: process.env.BUKALAPAK_TOKEN,
+          chai.request(serverHost).post('/bids/')
+          .set('userid', 1)
+          .set('token', process.env.BUKALAPAK_TOKEN)
+          .send({
             auctionId: 2831983,
             nextBid: 140000
           }).end((err, hasil) => {
             if (err) {
               done(err)
             } else {
-
               hasil.should.have.status(200);
               hasil.should.be.json;
               hasil.body.success.should.to.equal(false)
@@ -161,9 +173,10 @@ describe('Bid Test', () => {
       models.Auction.findAll().then(auctions => {
         const auctionsLength = auctions.length
         if (auctionsLength != 0) {
-          chai.request(serverHost).post('/bids/').send({
-            userId: 1,
-            token: process.env.BUKALAPAK_TOKEN,
+          chai.request(serverHost).post('/bids/')
+          .set('userid', 1)
+          .set('token', process.env.BUKALAPAK_TOKEN)
+          .send({
             auctionId: 28891331983,
             nextBid: 140000
           }).end((err, res) => {
