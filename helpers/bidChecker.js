@@ -119,8 +119,9 @@ module.exports = {
       }
     }).then(bids => {
       let bidsLength = bids.length
-      if (bidsLength != 0) {
+      if (bidsLength > 0) {
         let sortedBidsByHighestPrice = _.orderBy(JSON.parse(JSON.stringify(bids)), ['current_bid'], ['desc'])
+        let theWinnerDetail = sortedBidsByHighestPrice[0]
         // remove highest bids from list
         sortedBidsByHighestPrice.pop()
         // remove same user with that bidder, supaya ngak kasih notif ke diri sendiri
@@ -139,8 +140,12 @@ module.exports = {
 
           })
         }
+        // gak perlu kirim email kalo ngak ada
+        if (bidderArr.length > 0) {
+          emailSender.sendEmailToUserAfterBidLose(bidderArr, theWinnerDetail)
 
-        emailSender.sendEmailToUserAfterBidLose(bidderArr, sortedBidsByHighestPrice[0])
+        }
+
       } else {
         console.log('no bids with id ' + auctionId + ' and do nothing');
       }

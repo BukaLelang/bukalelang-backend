@@ -25,14 +25,14 @@ module.exports = {
     },
     sendEmailToUserAfterBidLose: (listOfBidder, highestBidDetail) => {
       // listOfBidder isi nya musti nya array
-      console.log('kasih tau yang lain kalo ada yang nge-bid dengan nominal yang lebih tinggi');
+      console.log('kasih tau yang lain kalo ada yang nge-bid dengan nominal yang lebih tinggi : ', highestBidDetail.User.name);
       let listOfBidderLength = listOfBidder.length
       for (var i = 0; i < listOfBidderLength; i++) {
             client.sendEmail({
               to: listOfBidder[i].email
             , from: 'bukalelang@gmail.com'
             , subject: 'Gawat nih ' + listOfBidder[i].name + '! Ada yang nge-bid lebih tinggi dari kamu!'
-            , message: 'Gawat! ' + highestBidDetail.User.name + ' menawar lebih tinggi dari kamu, yaitu : ' + highestBidDetail.current_bid + ', jangan biarkan dia memenangkan barang yang kamu incar, bid lebih tinggi lagi dengan cara klik link ini'
+            , message: 'Gawat! ' + highestBidDetail.User.name + ' menawar lebih tinggi dari kamu, yaitu : ' + highestBidDetail.current_bid + ', jangan biarkan dia memenangkan barang yang kamu incar, Ayo bid lebih tinggi lagi!'
             , altText: 'plain text'
            }, function (err, data, res) {
             //  console.log('ada err ? -=', err);
