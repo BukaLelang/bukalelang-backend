@@ -3,9 +3,8 @@ const models = require('../models')
 
 module.exports = {
   authentication: (req, res, next) => {
-    console.log(req.headers.userid);
     let finalResult = {
-      status: false,
+      success: false,
       message: 'authentication failed'
     }
 
