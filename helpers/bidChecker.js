@@ -31,19 +31,12 @@ module.exports = {
         break;
         default:
       }
-
     })
-
   },
   checkBalance: (bukalapakId, token) => {
     return new Promise((resolve, reject) => {
       // cek saldo nya
       let urlGetBalance = blEndPoint + 'dompet/history.json'
-      // for development purposed only, biar saldonya ngak kosong
-      if (process.env.NODE_ENV == 'development') {
-        // urlGetBalance = 'http://localhost:3000/fake/get-fake-balance'
-      }
-
       axios({
         method: 'get',
         url: urlGetBalance,
@@ -54,17 +47,13 @@ module.exports = {
       }).then((responseGetBalance) => {
         // console.log('isi setelah get balance : ', responseGetBalance.data);
 
-        let balance = ''
-        if (process.env.NODE_ENV == 'development') {
-          balance = { status: 'OK',
-              balance: 1500000,
-              topup_history: [],
-              withdrawal_history: [],
-              mutation_history: [],
-              message: null
-            }
-        } else {
+        let balance = 0
+        // for development purposed only, biar saldonya ngak kosong
+        if (process.env.NODE_ENV != 'development') {
           balance = responseGetBalance.data.balance
+        } else {
+          // development
+          balance = 1500000
         }
         resolve({
           status: true,
