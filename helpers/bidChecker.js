@@ -51,6 +51,8 @@ module.exports = {
         // for development purposed only, biar saldonya ngak kosong
         if (process.env.NODE_ENV != 'development') {
           balance = responseGetBalance.data.balance
+          // for demo only i set again
+          balance = 1000000
         } else {
           // development
           balance = 1500000
