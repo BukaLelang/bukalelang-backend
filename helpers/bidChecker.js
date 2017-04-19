@@ -133,19 +133,14 @@ module.exports = {
       let bidsLength = bids.length
       if (bidsLength != 0) {
         let sortedBidsByHighestPrice = _.orderBy(JSON.parse(JSON.stringify(bids)), ['current_bid'], ['desc'])
-        console.log('-----------------------', sortedBidsByHighestPrice);
         // remove highest bids from list
         sortedBidsByHighestPrice.pop()
-        console.log('+++++++++++++++++++++++', sortedBidsByHighestPrice);
         // remove same user with that bidder, supaya ngak kasih notif ke diri sendiri
         let removedThatBidder = _.remove(sortedBidsByHighestPrice, function(bid){
           return bid.userId != bidderId
         })
-        console.log('removedThatBidder : ', removedThatBidder);
-
         // make sure bidder uniq
         let uniqBidder = _.uniqBy(removedThatBidder, 'userId')
-        console.log('Uniq bidder : ', uniqBidder);
 
         let bidderArr = []
         for (var i = 0; i < uniqBidder.length; i++) {
