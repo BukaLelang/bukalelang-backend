@@ -32,7 +32,9 @@ module.exports = {
             auctionId: data.Auction.id,
             title: data.Auction.title,
             running: new Date(data.Auction.end_date) > new Date() ? true : false,
-            images: data.Auction.images
+            images: data.Auction.images,
+            description: data.Auction.description,
+            end_date: data.Auction.end_date
           })
         })
 
@@ -40,10 +42,8 @@ module.exports = {
           // wonCount = isThisUserTheWinnerOfThisAuction(user.id, newAuctionsJoined[i].id)
           delete newAuctionsJoined[i].id
           delete newAuctionsJoined[i].userId
-          delete newAuctionsJoined[i].current_bid
           delete newAuctionsJoined[i].updatedAt
           delete newAuctionsJoined[i].createdAt
-          delete newAuctionsJoined[i].current_bid
           delete newAuctionsJoined[i].Auction
         }
 
