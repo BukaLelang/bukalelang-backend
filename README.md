@@ -69,3 +69,6 @@ npm install -g mocha
 - [Eri Irawan](http://github.com/MrEi91)
 - [Bambang Handoko](https://github.com/mrhandoko)
 - [Endy](https://github.com/pisanggoreng)
+
+### Build Status 
+[![Build Status](https://travis-ci.org/BukaLelang/bukalelang-backend.svg?branch=master)](https://travis-ci.org/BukaLelang/bukalelang-backend)
