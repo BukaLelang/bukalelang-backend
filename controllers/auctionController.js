@@ -166,8 +166,9 @@ module.exports = {
       }]
     }).then(auctions => {
       let auctionsArr = JSON.parse(JSON.stringify(auctions));
-          auctionsArr = _.orderBy(auctionsArr, ['id'], ['desc'])
-      const newAuctions = auctionsArr.map(auction => {
+      auctionsArr = _.orderBy(auctionsArr, ['id'], ['desc'])
+      let takeLatestAuction = _.take(auctionsArr, 15)
+      const newAuctions = takeLatestAuction.map(auction => {
         return Object.assign({}, auction, {
           running: moment(auction.end_date).format() >= moment().format() ? true : false,
           categoryName: auction.Category.name,
@@ -181,7 +182,6 @@ module.exports = {
         delete newAuctions[i].User
         delete newAuctions[i].Bids
         delete newAuctions[i].categoryId
-        delete newAuctions[i].userId
         delete newAuctions[i].createdAt
         delete newAuctions[i].updatedAt
       }
