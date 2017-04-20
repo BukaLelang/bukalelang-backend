@@ -63,13 +63,13 @@ module.exports = {
                   password: responseAfterLogin.data.token
                 }
               }).then((responseGetBalance) => {
-                // console.log('isi responseGetBalance : ', responseGetBalance.data);
+                // console.log('isi responseGetBalance : ', responseGetBalance.data, pindah sementara disini : responseGetBalance.data.balance);
                   finalResult.id = newRegisteredUser.id,
                   finalResult.bukalapakId = responseAfterLogin.data.user_id,
                   finalResult.name = responseAfterLogin.data.user_name,
                   finalResult.username = req.body.username,
                   finalResult.email = responseAfterLogin.data.email,
-                  finalResult.saldo = responseGetBalance.data.balance,
+                  finalResult.saldo = 250000,
                   finalResult.token = responseAfterLogin.data.token,
                   finalResult.success = true,
                   finalResult.message = 'login success'
@@ -165,7 +165,7 @@ module.exports = {
                   finalResult.name = responseAfterLogin.data.user_name,
                   finalResult.username = req.body.username,
                   finalResult.email = responseAfterLogin.data.email,
-                  finalResult.saldo = responseGetBalance.data.balance,
+                  finalResult.saldo = 250000,
                   finalResult.token = responseAfterLogin.data.token,
                   finalResult.success = true,
                   finalResult.message = 'login success'
@@ -220,7 +220,7 @@ module.exports = {
                   finalResult.name = user.name,
                   finalResult.username = user.username,
                   finalResult.email = user.email,
-                  finalResult.saldo = responseGetBalance.data.balance,
+                  finalResult.saldo = 250000,
                   finalResult.token = responseAfterLogin.data.token,
                   finalResult.success = true,
                   finalResult.message = 'login success'
