@@ -1,4 +1,6 @@
 let fs = require('fs')
+let _ = require('lodash')
+
 let readFile = fs.readFileSync('dummy-data/categories.json').toString()
 let categoriesJson = JSON.parse(readFile)
 
@@ -41,3 +43,9 @@ console.log(result.length);
 
 
 fs.writeFileSync('dummy-data/categories-converted.json', JSON.stringify(result))
+
+for (var i = 0; i < result.length; i++) {
+  delete result[i].updatedAt
+  delete result[i].createdAt
+}
+fs.writeFileSync('dummy-data/categories-converted-for-mobile.json', JSON.stringify(result))
