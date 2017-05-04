@@ -45,7 +45,7 @@ to use sequelize command, you need sequelize-cli,
 npm install -g sequelize-cli
 ```
 
-### Generate API Docs
+### Generate API Docs - [apidocjs](http://apidocjs.com/)
 ```
 install apidoc
 $ npm install apidoc -g
