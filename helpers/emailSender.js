@@ -41,14 +41,14 @@ module.exports = {
            });
         }
       },
-    testEmail: (name, emailTo) => {
+    testEmail: (name, emailTo, content) => {
       // listOfBidder isi nya musti nya array
-        console.log('test email jalan : ', name);
+        console.log('test email jalan : ', name + 'to ', emailTo);
         client.sendEmail({
           to: emailTo
         , from: 'bukalelang@gmail.com'
         , subject: 'Hanya mencoba ' + name + '!'
-        , message: '<b>ini bold</b>'
+        , message: content
         , altText: 'plain text'
        }, function (err, data, res) {
         //  console.log('ada err ? -=', err);
