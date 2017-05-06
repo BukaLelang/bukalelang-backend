@@ -34,6 +34,7 @@
     "sequelize": "^3.30.4",
     "sequelize-cli": "^2.7.0",
     "serve-favicon": "~2.3.2",
+    "slug": "^0.9.1",
     "socket.io": "^1.7.3"
   },
   "devDependencies": {

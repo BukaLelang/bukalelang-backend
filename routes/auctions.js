@@ -31,7 +31,6 @@ const applyMidleware = require('../helpers/authentication')
  * @apiParam {String} token token of logged in user
  * @apiParam {String} title Title of auction
  * @apiParam {Integer} categoryId category ID
- * @apiParam {String} category category name of the auction
  * @apiParam {Boolean} new product is new or second ?
  * @apiParam {Integer} weight weight of the product using gram
  * @apiParam {String} description description of product (minimal 30 char)
@@ -59,7 +58,7 @@ const applyMidleware = require('../helpers/authentication')
 
  * @apiSuccessExample {json} Success
  *    HTTP/1.1 200 OK
- *    [{
+ *    {
  *      "id": 23,
  *      "productId": '42dfs34',
  *      "title": "Lelang Gundam Langka & Istimewa",
@@ -76,10 +75,10 @@ const applyMidleware = require('../helpers/authentication')
  *      "userId": 2,
  *      "success": true,
  *      "message": 'buat lelang berhasil',
- *    }]
+ *    }
  * @apiErrorExample {json} List error
  *    HTTP/1.1 500 Internal Server Error
- *    [{
+ *    {
 *       "id": null,
 *       "productId": null,
  *      "title": null,
@@ -96,7 +95,7 @@ const applyMidleware = require('../helpers/authentication')
  *      "userId": null,
  *      "success": false,
  *      "message": 'Buat lelang gagal ):',
- *    }]
+ *    }
  */
 router.post('/', auctionController.create)
 
@@ -106,7 +105,7 @@ router.post('/', auctionController.create)
 
  * @apiSuccess {String} message message from server
  * @apiSuccess {Boolean} success is request success ?
- * @apiSuccess {Object[]} auctions       List of auctions.
+ * @apiSuccess {Object[]} auctions List of auctions.
  * @apiSuccess {Integer} auctions.id id of the auction
  * @apiSuccess {Integer} auctions.productId id of the product at BL
  * @apiSuccess {String} auctions.title Title of auction
@@ -125,7 +124,7 @@ router.post('/', auctionController.create)
 
  * @apiSuccessExample {json} Success
  *    HTTP/1.1 200 OK
- *    [{
+ *    {
  *      "success": true,
  *      "message": 'Success load list of auctions',
  *      "auctions": [
@@ -146,14 +145,14 @@ router.post('/', auctionController.create)
  *             end_date: '2017-05-16T18:22:54.846+07:00'
  *           }
  *         ]
- *    }]
+ *    }
  * @apiErrorExample {json} List error
  *    HTTP/1.1 500 Internal Server Error
- *    [{
+ *    {
  *      "success": false,
  *      "message": 'Fail load list of auctions',
  *      "auctions": []
- *    }]
+ *    }
  */
 router.get('/', auctionController.getAllAuctions)
 
@@ -188,7 +187,7 @@ router.get('/', auctionController.getAllAuctions)
 
  * @apiSuccessExample {json} Success
  *    HTTP/1.1 200 OK
- *    [{
+ *    {
  *       success: true,
  *       message: 'Success load list of auctions',
 *        id: 23,
@@ -205,10 +204,10 @@ router.get('/', auctionController.getAllAuctions)
 *        kelipatan_bid: 20000,
 *        start_date: '2017-04-16T18:22:54.846+07:00',
 *        end_date: '2017-05-16T18:22:54.846+07:00'
- *    }]
+ *    }
  * @apiErrorExample {json} List error
  *    HTTP/1.1 500 Internal Server Error
- *    [{
+ *    {
  *       success: false,
  *       message: 'Auction with id 3 doesnt exist',
 *        id: null,
@@ -225,7 +224,7 @@ router.get('/', auctionController.getAllAuctions)
 *        kelipatan_bid: 0,
 *        start_date: null,
 *        end_date: null
- *    }]
+ *    }
  */
 router.get('/:id', applyMidleware.authentication, auctionController.show)
 
@@ -247,7 +246,7 @@ router.get('/:id', applyMidleware.authentication, auctionController.show)
 
  * @apiSuccessExample {json} Success
  *    HTTP/1.1 200 OK
- *    [{
+ *    {
  *       success: true,
  *       message: 'Success load list of bid history',
          auction_detail: {
@@ -267,10 +266,10 @@ router.get('/:id', applyMidleware.authentication, auctionController.show)
                 bidding_time: '2017-05-16T18:22:54.846+07:00'
               }
             ]
- *    }]
+ *    }
  * @apiErrorExample {json} List error
  *    HTTP/1.1 500 Internal Server Error
- *    [{
+ *    {
  *       success: false,
  *       message: 'Auction with id 3 doesnt exist',
          auction_detail: {
@@ -279,7 +278,7 @@ router.get('/:id', applyMidleware.authentication, auctionController.show)
            bid_count: 0
          },
  *       bid_history: []
- *    }]
+ *    }
  */
 router.get('/:id/bid-history', applyMidleware.authentication, auctionController.bidHistory)
 

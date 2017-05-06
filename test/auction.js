@@ -119,6 +119,7 @@ describe('Auction Test', () => {
             res.body.should.have.property('category')
             res.body.should.have.property('categoryId')
             res.body.should.have.property('title')
+            res.body.should.have.property('slug')
             res.body.should.have.property('images')
             res.body.should.have.property('new')
             res.body.should.have.property('description')

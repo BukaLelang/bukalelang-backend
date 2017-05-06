@@ -1,6 +1,7 @@
 let axios = require('axios')
 let _ = require('lodash')
 let moment = require('moment')
+var slug = require('slug')
 
 const models = require('../models')
 let imageUploader = require('../helpers/imageUploader')
@@ -15,6 +16,7 @@ module.exports = {
       id: null,
       productId: null,
       title: null,
+      slug: null,
       images: null,
       categoryId: null,
       category: null,
@@ -54,7 +56,7 @@ module.exports = {
           negotiable: true,
           weight: req.body.weight,
           stock: 1,
-          description_bb: req.body.description,
+          description_bb: req.body.title + ' ini sedang di lelang di BukaLelang App, silahkan unduh aplikasi BukaLelang untuk mengikuti lelang sekarang! Deskripsi barang : ' + req.body.description,
           product_detail_attributes: {
           }
         },
@@ -86,9 +88,11 @@ module.exports = {
             break;
           case 'OK':
             // create auction in local
+            console.log('isi slug : ',  slug(req.body.title + ' ' +responseAfterCreateProduct.data.product_detail.id, {lower: true}));
             models.Auction.create({
               productId: responseAfterCreateProduct.data.product_detail.id,
               title: req.body.title,
+              slug: slug(req.body.title + ' ' +responseAfterCreateProduct.data.product_detail.id, {lower: true}) ,
               images: responseAfterCreateProduct.data.product_detail.images[0],
               categoryId: req.body.categoryId,
               min_price: req.body.min_price,
@@ -109,6 +113,7 @@ module.exports = {
                   finalResult.id = auction.id
                   finalResult.productId = auction.productId
                   finalResult.title = auction.title
+                  finalResult.slug = auction.slug
                   finalResult.images = auction.images
                   finalResult.categoryId = auction.categoryId
                   finalResult.category = category.name

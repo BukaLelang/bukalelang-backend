@@ -2,6 +2,7 @@
 module.exports = function(sequelize, DataTypes) {
   var Auction = sequelize.define('Auction', {
     title: DataTypes.STRING,
+    slug: DataTypes.STRING,
     min_price: DataTypes.INTEGER,
     max_price: DataTypes.INTEGER,
     kelipatan_bid: DataTypes.INTEGER,
