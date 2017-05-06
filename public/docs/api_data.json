@@ -131,7 +131,7 @@
       "examples": [
         {
           "title": "Success",
-          "content": "HTTP/1.1 200 OK\n[{\n  \"success\": true,\n  \"message\": 'Success load list of auctions',\n  \"auctions\": [\n        {\n         id: 23,\n         productId: '31fsa21',\n         title: 'Tamiya super cepat',\n         images: 'https://s0.bukalapak.com/system/images/1/6/7/6/6/8/0/large/IMG00475-20121105-1431.jpg?1352105447',\n         category: 'Mainan',\n         new: false,\n         weight: 1000,\n         description: 'Tamiya ini di rakit oleh ahli fisika, dengan memperhatikan dengan seksama gaya gesek dan kelembaman sehigga mengurangi kaya gesek dengan lintasan membuanya super cepat.',\n         min_price: 200000,\n         max_price: 3000000,\n         current_price: 600000,\n         kelipatan_bid: 20000,\n         start_date: '2017-04-16T18:22:54.846+07:00',\n         end_date: '2017-05-16T18:22:54.846+07:00'\n       }\n     ]\n}]",
+          "content": "HTTP/1.1 200 OK\n{\n  \"success\": true,\n  \"message\": 'Success load list of auctions',\n  \"auctions\": [\n        {\n         id: 23,\n         productId: '31fsa21',\n         title: 'Tamiya super cepat',\n         images: 'https://s0.bukalapak.com/system/images/1/6/7/6/6/8/0/large/IMG00475-20121105-1431.jpg?1352105447',\n         category: 'Mainan',\n         new: false,\n         weight: 1000,\n         description: 'Tamiya ini di rakit oleh ahli fisika, dengan memperhatikan dengan seksama gaya gesek dan kelembaman sehigga mengurangi kaya gesek dengan lintasan membuanya super cepat.',\n         min_price: 200000,\n         max_price: 3000000,\n         current_price: 600000,\n         kelipatan_bid: 20000,\n         start_date: '2017-04-16T18:22:54.846+07:00',\n         end_date: '2017-05-16T18:22:54.846+07:00'\n       }\n     ]\n}",
           "type": "json"
         }
       ]
@@ -140,7 +140,7 @@
       "examples": [
         {
           "title": "List error",
-          "content": "HTTP/1.1 500 Internal Server Error\n[{\n  \"success\": false,\n  \"message\": 'Fail load list of auctions',\n  \"auctions\": []\n}]",
+          "content": "HTTP/1.1 500 Internal Server Error\n{\n  \"success\": false,\n  \"message\": 'Fail load list of auctions',\n  \"auctions\": []\n}",
           "type": "json"
         }
       ]
@@ -307,7 +307,7 @@
       "examples": [
         {
           "title": "Success",
-          "content": "HTTP/1.1 200 OK\n[{\n   success: true,\n   message: 'Success load list of auctions',\n    id: 23,\n    productId: '31fsa21',\n    title: 'Tamiya super cepat',\n    images: 'https://s0.bukalapak.com/system/images/1/6/7/6/6/8/0/large/IMG00475-20121105-1431.jpg?1352105447',\n    category: 'Mainan',\n    new: false,\n    weight: 1000,\n    description: 'Tamiya ini di rakit oleh ahli fisika, dengan memperhatikan dengan seksama gaya gesek dan kelembaman sehigga mengurangi kaya gesek dengan lintasan membuanya super cepat.',\n    min_price: 200000,\n    max_price: 3000000,\n    current_price: 600000,\n    kelipatan_bid: 20000,\n    start_date: '2017-04-16T18:22:54.846+07:00',\n    end_date: '2017-05-16T18:22:54.846+07:00'\n}]",
+          "content": "HTTP/1.1 200 OK\n{\n   success: true,\n   message: 'Success load list of auctions',\n    id: 23,\n    productId: '31fsa21',\n    title: 'Tamiya super cepat',\n    images: 'https://s0.bukalapak.com/system/images/1/6/7/6/6/8/0/large/IMG00475-20121105-1431.jpg?1352105447',\n    category: 'Mainan',\n    new: false,\n    weight: 1000,\n    description: 'Tamiya ini di rakit oleh ahli fisika, dengan memperhatikan dengan seksama gaya gesek dan kelembaman sehigga mengurangi kaya gesek dengan lintasan membuanya super cepat.',\n    min_price: 200000,\n    max_price: 3000000,\n    current_price: 600000,\n    kelipatan_bid: 20000,\n    start_date: '2017-04-16T18:22:54.846+07:00',\n    end_date: '2017-05-16T18:22:54.846+07:00'\n}",
           "type": "json"
         }
       ]
@@ -316,7 +316,7 @@
       "examples": [
         {
           "title": "List error",
-          "content": "HTTP/1.1 500 Internal Server Error\n[{\n   success: false,\n   message: 'Auction with id 3 doesnt exist',\n    id: null,\n    productId: null,\n    title: null,\n    images: null,\n    category: null,\n    new: false,\n    weight: 0,\n    description: null,\n    min_price: 0,\n    max_price: 0,\n    current_price: 0,\n    kelipatan_bid: 0,\n    start_date: null,\n    end_date: null\n}]",
+          "content": "HTTP/1.1 500 Internal Server Error\n{\n   success: false,\n   message: 'Auction with id 3 doesnt exist',\n    id: null,\n    productId: null,\n    title: null,\n    images: null,\n    category: null,\n    new: false,\n    weight: 0,\n    description: null,\n    min_price: 0,\n    max_price: 0,\n    current_price: 0,\n    kelipatan_bid: 0,\n    start_date: null,\n    end_date: null\n}",
           "type": "json"
         }
       ]
@@ -385,7 +385,7 @@
       "examples": [
         {
           "title": "Success",
-          "content": "HTTP/1.1 200 OK\n[{\n   success: true,\n   message: 'Success load list of bid history',\n      auction_detail: {\n        id: 3,\n        title: 'Tamiya tanpa gaya gravitasi',\n        bid_count: 2\n      },\n   bid_history: [\n           {\n             name_of_bidder: 'Diky Arga',\n             bid_nominal: 70000,\n             bidding_time: '2017-05-17T18:22:54.846+07:00'\n           },\n           {\n             name_of_bidder: 'Eri Selalu',\n             bid_nominal: 60000,s\n             bidding_time: '2017-05-16T18:22:54.846+07:00'\n           }\n         ]\n}]",
+          "content": "HTTP/1.1 200 OK\n{\n   success: true,\n   message: 'Success load list of bid history',\n      auction_detail: {\n        id: 3,\n        title: 'Tamiya tanpa gaya gravitasi',\n        bid_count: 2\n      },\n   bid_history: [\n           {\n             name_of_bidder: 'Diky Arga',\n             bid_nominal: 70000,\n             bidding_time: '2017-05-17T18:22:54.846+07:00'\n           },\n           {\n             name_of_bidder: 'Eri Selalu',\n             bid_nominal: 60000,s\n             bidding_time: '2017-05-16T18:22:54.846+07:00'\n           }\n         ]\n}",
           "type": "json"
         }
       ]
@@ -394,7 +394,7 @@
       "examples": [
         {
           "title": "List error",
-          "content": "HTTP/1.1 500 Internal Server Error\n[{\n   success: false,\n   message: 'Auction with id 3 doesnt exist',\n      auction_detail: {\n        id: null,\n        title: null,\n        bid_count: 0\n      },\n   bid_history: []\n}]",
+          "content": "HTTP/1.1 500 Internal Server Error\n{\n   success: false,\n   message: 'Auction with id 3 doesnt exist',\n      auction_detail: {\n        id: null,\n        title: null,\n        bid_count: 0\n      },\n   bid_history: []\n}",
           "type": "json"
         }
       ]
@@ -458,13 +458,6 @@
             "optional": false,
             "field": "categoryId",
             "description": "<p>category ID</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "category",
-            "description": "<p>category name of the auction</p>"
           },
           {
             "group": "Parameter",
@@ -631,7 +624,7 @@
       "examples": [
         {
           "title": "Success",
-          "content": "HTTP/1.1 200 OK\n[{\n  \"id\": 23,\n  \"productId\": '42dfs34',\n  \"title\": \"Lelang Gundam Langka & Istimewa\",\n  \"images\": \"https://s0.bukalapak.com/system/images/1/6/7/6/6/8/0/large/IMG00475-20121105-1431.jpg?1352105447\",\n  \"categoryId\": 145,\n  \"category\": 'Mainan',\n  \"new\": false,\n  \"weight\": 5000,\n  \"description\": \"Gundam dapet dari pembuatnya langsung lho\",\n  \"min_price\": 50000,\n  \"max_price\": 200000,\n  \"kelipatan_bid\": 10000,\n  \"end_date\": 2017-09-14T00:00:00Z,\n  \"userId\": 2,\n  \"success\": true,\n  \"message\": 'buat lelang berhasil',\n}]",
+          "content": "HTTP/1.1 200 OK\n{\n  \"id\": 23,\n  \"productId\": '42dfs34',\n  \"title\": \"Lelang Gundam Langka & Istimewa\",\n  \"images\": \"https://s0.bukalapak.com/system/images/1/6/7/6/6/8/0/large/IMG00475-20121105-1431.jpg?1352105447\",\n  \"categoryId\": 145,\n  \"category\": 'Mainan',\n  \"new\": false,\n  \"weight\": 5000,\n  \"description\": \"Gundam dapet dari pembuatnya langsung lho\",\n  \"min_price\": 50000,\n  \"max_price\": 200000,\n  \"kelipatan_bid\": 10000,\n  \"end_date\": 2017-09-14T00:00:00Z,\n  \"userId\": 2,\n  \"success\": true,\n  \"message\": 'buat lelang berhasil',\n}",
           "type": "json"
         }
       ]
@@ -640,7 +633,7 @@
       "examples": [
         {
           "title": "List error",
-          "content": "HTTP/1.1 500 Internal Server Error\n[{\n   \"id\": null,\n   \"productId\": null,\n  \"title\": null,\n  \"images\": null,\n  \"categoryId\": null,\n  \"category\": null,\n  \"new\": false,\n  \"weight\": 0,\n  \"description\": null,\n  \"min_price\": 0,\n  \"max_price\": 0,\n  \"kelipatan_bid\": 0,\n  \"end_date\": null,\n  \"userId\": null,\n  \"success\": false,\n  \"message\": 'Buat lelang gagal ):',\n}]",
+          "content": "HTTP/1.1 500 Internal Server Error\n{\n   \"id\": null,\n   \"productId\": null,\n  \"title\": null,\n  \"images\": null,\n  \"categoryId\": null,\n  \"category\": null,\n  \"new\": false,\n  \"weight\": 0,\n  \"description\": null,\n  \"min_price\": 0,\n  \"max_price\": 0,\n  \"kelipatan_bid\": 0,\n  \"end_date\": null,\n  \"userId\": null,\n  \"success\": false,\n  \"message\": 'Buat lelang gagal ):',\n}",
           "type": "json"
         }
       ]
@@ -758,7 +751,7 @@
       "examples": [
         {
           "title": "Success",
-          "content": "HTTP/1.1 200 OK\n[{\n  \"id\": 1,\n  \"bukalapakId\": 123121,\n  \"name\": \"Diky Arga\",\n  \"username\": \"dikyarga\",\n  \"email\": 'dikyarga.id@gmail.com',\n  \"saldo\": 123000,\n  \"token\": 'lalalalululululolololo',\n  \"success\": true,\n  \"message\": 'login success',\n}]",
+          "content": "HTTP/1.1 200 OK\n{\n  \"id\": 1,\n  \"bukalapakId\": 123121,\n  \"name\": \"Diky Arga\",\n  \"username\": \"dikyarga\",\n  \"email\": 'dikyarga.id@gmail.com',\n  \"saldo\": 123000,\n  \"token\": 'lalalalululululolololo',\n  \"success\": true,\n  \"message\": 'login success',\n}",
           "type": "json"
         }
       ]
@@ -767,7 +760,7 @@
       "examples": [
         {
           "title": "List error",
-          "content": "HTTP/1.1 500 Internal Server Error\n[{\n  \"id\": null,\n  \"bukalapakId\": null,\n  \"name\": null,\n  \"username\": null,\n  \"email\": null,\n  \"saldo\": null,\n  \"token\": null,\n  \"success\": false,\n  \"message\": 'email atau password salah',\n}]",
+          "content": "HTTP/1.1 500 Internal Server Error\n{\n  \"id\": null,\n  \"bukalapakId\": null,\n  \"name\": null,\n  \"username\": null,\n  \"email\": null,\n  \"saldo\": null,\n  \"token\": null,\n  \"success\": false,\n  \"message\": 'email atau password salah',\n}",
           "type": "json"
         }
       ]
@@ -899,7 +892,7 @@
       "examples": [
         {
           "title": "Success",
-          "content": "HTTP/1.1 200 OK\n[{\n  \"id\": 1,\n  \"bukalapakId\": 123121,\n  \"name\": \"Diky Arga\",\n  \"username\": \"dikyarga\",\n  \"email\": 'dikyarga.id@gmail.com',\n  \"saldo\": 123000,\n  \"token\": 'lalalalululululolololo',\n  \"success\": true,\n  \"message\": 'login success',\n}]",
+          "content": "HTTP/1.1 200 OK\n{\n  \"id\": 1,\n  \"bukalapakId\": 123121,\n  \"name\": \"Diky Arga\",\n  \"username\": \"dikyarga\",\n  \"email\": 'dikyarga.id@gmail.com',\n  \"saldo\": 123000,\n  \"token\": 'lalalalululululolololo',\n  \"success\": true,\n  \"message\": 'login success',\n}",
           "type": "json"
         }
       ]
@@ -908,7 +901,7 @@
       "examples": [
         {
           "title": "List error",
-          "content": "HTTP/1.1 500 Internal Server Error\n[{\n  \"id\": null,\n  \"bukalapakId\": null,\n  \"name\": null,\n  \"username\": null,\n  \"email\": null,\n  \"saldo\": null,\n  \"token\": null,\n  \"success\": false,\n  \"message\": 'email sudah terdaftar',\n}]",
+          "content": "HTTP/1.1 500 Internal Server Error\n{\n  \"id\": null,\n  \"bukalapakId\": null,\n  \"name\": null,\n  \"username\": null,\n  \"email\": null,\n  \"saldo\": null,\n  \"token\": null,\n  \"success\": false,\n  \"message\": 'email sudah terdaftar',\n}",
           "type": "json"
         }
       ]
@@ -1053,7 +1046,7 @@
       "examples": [
         {
           "title": "Success",
-          "content": "HTTP/1.1 200 OK\n[{\n  \"message\": 'bidding success',\n  \"success\": true,\n  \"id\": 2345,\n  \"auctionId\": 101,\n  \"username\": 'dikyarga',\n  \"name\": 'Diky Arga',\n  \"bidding_time\": '2017-04-16 17:12:40.126+08',\n  \"current_price\": 40000,\n  \"minimum_next_bidding\": 50000,\n}]",
+          "content": "HTTP/1.1 200 OK\n{\n  \"message\": 'bidding success',\n  \"success\": true,\n  \"id\": 2345,\n  \"auctionId\": 101,\n  \"username\": 'dikyarga',\n  \"name\": 'Diky Arga',\n  \"bidding_time\": '2017-04-16 17:12:40.126+08',\n  \"current_price\": 40000,\n  \"minimum_next_bidding\": 50000,\n}",
           "type": "json"
         }
       ]
@@ -1062,7 +1055,7 @@
       "examples": [
         {
           "title": "List error",
-          "content": "HTTP/1.1 500 Internal Server Error\n[{\n  \"message\": 'bidding fail',\n  \"success\": false,\n  \"id\": null,\n  \"username\": null,\n  \"name\": null,\n  \"id\": null,\n  \"bidding_time\": null,\n  \"current_price\": null,\n  \"minimum_next_bidding\": null,\n}]",
+          "content": "HTTP/1.1 500 Internal Server Error\n{\n  \"message\": 'bidding fail',\n  \"success\": false,\n  \"id\": null,\n  \"username\": null,\n  \"name\": null,\n  \"id\": null,\n  \"bidding_time\": null,\n  \"current_price\": null,\n  \"minimum_next_bidding\": null,\n}",
           "type": "json"
         }
       ]
@@ -1175,7 +1168,7 @@
       "examples": [
         {
           "title": "Success",
-          "content": "HTTP/1.1 200 OK\n[{\n   success: true,\n   message: 'Success load list of auction joined',\n      user_detail: {\n        id: 3,\n        name: 'Diky Arga',\n        auctionsJoinedCount: 5,\n        wonAuctionsCount: 2\n      },\n   auctionsJoined: [\n           {\n             auctionId: 2,\n             running: true,\n             title: 'Gundam ukuran asli'\n           },\n           {\n             auctionId: 3,\n             running: false,\n             title: 'Tamiya tanp gravitasi'\n           },\n         ]\n}]",
+          "content": "HTTP/1.1 200 OK\n{\n   success: true,\n   message: 'Success load list of auction joined',\n      user_detail: {\n        id: 3,\n        name: 'Diky Arga',\n        auctionsJoinedCount: 5,\n        wonAuctionsCount: 2\n      },\n   auctionsJoined: [\n           {\n             auctionId: 2,\n             running: true,\n             title: 'Gundam ukuran asli'\n           },\n           {\n             auctionId: 3,\n             running: false,\n             title: 'Tamiya tanp gravitasi'\n           },\n         ]\n}",
           "type": "json"
         }
       ]
@@ -1184,7 +1177,7 @@
       "examples": [
         {
           "title": "List error",
-          "content": "HTTP/1.1 500 Internal Server Error\n[{\n   success: false,\n   message: 'User with id 3 not found',\n      user_detail: {\n        id: null,\n        name: null,\n        auctionsJoinedCount: 0,\n        wonAuctionsCount: 0\n      },\n   auctionsJoined: []\n}]",
+          "content": "HTTP/1.1 500 Internal Server Error\n{\n   success: false,\n   message: 'User with id 3 not found',\n      user_detail: {\n        id: null,\n        name: null,\n        auctionsJoinedCount: 0,\n        wonAuctionsCount: 0\n      },\n   auctionsJoined: []\n}",
           "type": "json"
         }
       ]

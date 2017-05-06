@@ -24,7 +24,7 @@ router.get('/', function(req, res, next) {
 
  * @apiSuccessExample {json} Success
  *    HTTP/1.1 200 OK
- *    [{
+ *    {
  *       success: true,
  *       message: 'Success load list of auction joined',
          user_detail: {
@@ -45,10 +45,10 @@ router.get('/', function(req, res, next) {
                 title: 'Tamiya tanp gravitasi'
               },
             ]
- *    }]
+ *    }
  * @apiErrorExample {json} List error
  *    HTTP/1.1 500 Internal Server Error
- *    [{
+ *    {
  *       success: false,
  *       message: 'User with id 3 not found',
          user_detail: {
@@ -58,7 +58,7 @@ router.get('/', function(req, res, next) {
            wonAuctionsCount: 0
          },
  *       auctionsJoined: []
- *    }]
+ *    }
  */
 router.get('/:id/auctions-joined', applyMidleware.authentication, userController.auctionsJoined)
 

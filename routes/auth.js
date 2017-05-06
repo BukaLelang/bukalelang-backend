@@ -29,7 +29,7 @@ let authController = require('../controllers/authController')
  * @apiSuccess {String} message message from server
  * @apiSuccessExample {json} Success
  *    HTTP/1.1 200 OK
- *    [{
+ *    {
  *      "id": 1,
  *      "bukalapakId": 123121,
  *      "name": "Diky Arga",
@@ -39,10 +39,10 @@ let authController = require('../controllers/authController')
  *      "token": 'lalalalululululolololo',
  *      "success": true,
  *      "message": 'login success',
- *    }]
+ *    }
  * @apiErrorExample {json} List error
  *    HTTP/1.1 500 Internal Server Error
- *    [{
+ *    {
  *      "id": null,
  *      "bukalapakId": null,
  *      "name": null,
@@ -52,7 +52,7 @@ let authController = require('../controllers/authController')
  *      "token": null,
  *      "success": false,
  *      "message": 'email sudah terdaftar',
- *    }]
+ *    }
  */
 router.post('/register', authController.register)
 
@@ -78,7 +78,7 @@ router.post('/register', authController.register)
  * @apiSuccess {String} message message from server
  * @apiSuccessExample {json} Success
  *    HTTP/1.1 200 OK
- *    [{
+ *    {
  *      "id": 1,
  *      "bukalapakId": 123121,
  *      "name": "Diky Arga",
@@ -88,10 +88,10 @@ router.post('/register', authController.register)
  *      "token": 'lalalalululululolololo',
  *      "success": true,
  *      "message": 'login success',
- *    }]
+ *    }
  * @apiErrorExample {json} List error
  *    HTTP/1.1 500 Internal Server Error
- *    [{
+ *    {
  *      "id": null,
  *      "bukalapakId": null,
  *      "name": null,
@@ -101,7 +101,7 @@ router.post('/register', authController.register)
  *      "token": null,
  *      "success": false,
  *      "message": 'email atau password salah',
- *    }]
+ *    }
  */
 router.post('/login', authController.login)
 

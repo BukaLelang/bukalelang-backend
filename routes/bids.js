@@ -36,7 +36,7 @@ let auth = require('../helpers/authentication')
 
  * @apiSuccessExample {json} Success
  *    HTTP/1.1 200 OK
- *    [{
+ *    {
  *      "message": 'bidding success',
  *      "success": true,
  *      "id": 2345,
@@ -46,10 +46,10 @@ let auth = require('../helpers/authentication')
  *      "bidding_time": '2017-04-16 17:12:40.126+08',
  *      "current_price": 40000,
  *      "minimum_next_bidding": 50000,
- *    }]
+ *    }
  * @apiErrorExample {json} List error
  *    HTTP/1.1 500 Internal Server Error
- *    [{
+ *    {
  *      "message": 'bidding fail',
  *      "success": false,
  *      "id": null,
@@ -59,7 +59,7 @@ let auth = require('../helpers/authentication')
  *      "bidding_time": null,
  *      "current_price": null,
  *      "minimum_next_bidding": null,
- *    }]
+ *    }
  */
 router.post('/', auth.authentication, bidController.bid)
 
