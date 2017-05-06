@@ -40,6 +40,22 @@ module.exports = {
             //  console.log('res nya isinya apa ya kalo berhasil ', res);
            });
         }
+      },
+    testEmail: (name, emailTo) => {
+      // listOfBidder isi nya musti nya array
+        console.log('test email jalan : ', name);
+        client.sendEmail({
+          to: emailTo
+        , from: 'bukalelang@gmail.com'
+        , subject: 'Hanya mencoba ' + name + '!'
+        , message: '<b>ini bold</b>'
+        , altText: 'plain text'
+       }, function (err, data, res) {
+        //  console.log('ada err ? -=', err);
+        //  console.log('ngak tau isi datanya apa ? ', data);
+        //  console.log('res nya isinya apa ya kalo berhasil ', res);
+       });
+
       }
 
-    }
+  }

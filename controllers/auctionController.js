@@ -88,7 +88,6 @@ module.exports = {
             break;
           case 'OK':
             // create auction in local
-            console.log('isi slug : ',  slug(req.body.title + ' ' +responseAfterCreateProduct.data.product_detail.id, {lower: true}));
             models.Auction.create({
               productId: responseAfterCreateProduct.data.product_detail.id,
               title: req.body.title,
