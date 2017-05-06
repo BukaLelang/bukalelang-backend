@@ -13,7 +13,7 @@ var user = {name: 'Diky', auction: {
     id: 23,
     productId: '31fsa21',
     title: 'Tamiya super cepat',
-    images: 'https://s1.bukalapak.com/img/6626679021/large/13335540_1748161672066785_8938462743476190986_n.png',
+    images: 'http://mini4wd.web.id/wp-content/uploads/2015/08/mini-4WD-tamiya-japan-style.jpg',
     category: 'Mainan',
     new: false,
     weight: 1000,
