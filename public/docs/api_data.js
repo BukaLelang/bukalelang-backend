@@ -158,7 +158,7 @@ define({ "api": [
   {
     "type": "get",
     "url": "/auctions/:id",
-    "title": "get auction",
+    "title": "get auction by id",
     "group": "Auction",
     "header": {
       "examples": [
@@ -406,6 +406,189 @@ define({ "api": [
     "sampleRequest": [
       {
         "url": "http://localhost:3000/auctions/:id/bid-history"
+      }
+    ]
+  },
+  {
+    "type": "get",
+    "url": "/auctions/slug/:slug",
+    "title": "get auction by slug",
+    "group": "Auction",
+    "header": {
+      "examples": [
+        {
+          "title": "Header-Example:",
+          "content": "{\n  \"userid\": 2,\n  \"token\": \"IniToken\",\n}",
+          "type": "json"
+        }
+      ],
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "Integer",
+            "optional": false,
+            "field": "userid",
+            "description": "<p>userId of user</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "token",
+            "description": "<p>token of logged in user</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>message from server</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "success",
+            "description": "<p>is request success ?</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "id",
+            "description": "<p>id of the auction</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "productId",
+            "description": "<p>id of the product at BL</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "title",
+            "description": "<p>Title of auction</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "slug",
+            "description": "<p>Slug URL of auction</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "images",
+            "description": "<p>URL of image of auction</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "category",
+            "description": "<p>category of auction</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "new",
+            "description": "<p>product is new or second ?</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "weight",
+            "description": "<p>weight of the product using gram</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "description",
+            "description": "<p>description of product</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "min_price",
+            "description": "<p>minimal / start price of auction</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "current_price",
+            "description": "<p>current price of the auction</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "max_price",
+            "description": "<p>maximal / buy now price of auction</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "kelipatan_bid",
+            "description": "<p>nominal lipatan of next bidding</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "start_date",
+            "description": "<p>date of auction start, default is after published</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "end_date",
+            "description": "<p>date end of auction, default is one week</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success",
+          "content": "HTTP/1.1 200 OK\n{\n   success: true,\n   message: 'Success load list of auctions',\n    id: 23,\n    productId: '31fsa21',\n    title: 'Tamiya super cepat',\n    slug: 'kamera-antik-jaman-belanda-8853e3',\n    images: 'https://s0.bukalapak.com/system/images/1/6/7/6/6/8/0/large/IMG00475-20121105-1431.jpg?1352105447',\n    category: 'Mainan',\n    new: false,\n    weight: 1000,\n    description: 'Tamiya ini di rakit oleh ahli fisika, dengan memperhatikan dengan seksama gaya gesek dan kelembaman sehigga mengurangi kaya gesek dengan lintasan membuanya super cepat.',\n    min_price: 200000,\n    max_price: 3000000,\n    current_price: 600000,\n    kelipatan_bid: 20000,\n    start_date: '2017-04-16T18:22:54.846+07:00',\n    end_date: '2017-05-16T18:22:54.846+07:00'\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "List error",
+          "content": "HTTP/1.1 500 Internal Server Error\n{\n   success: false,\n   message: 'Auction with id 3 doesnt exist',\n    id: null,\n    productId: null,\n    title: null,\n    slug: null,\n    images: null,\n    category: null,\n    new: false,\n    weight: 0,\n    description: null,\n    min_price: 0,\n    max_price: 0,\n    current_price: 0,\n    kelipatan_bid: 0,\n    start_date: null,\n    end_date: null\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/auctions.js",
+    "groupTitle": "Auction",
+    "name": "GetAuctionsSlugSlug",
+    "sampleRequest": [
+      {
+        "url": "http://localhost:3000/auctions/slug/:slug"
       }
     ]
   },
