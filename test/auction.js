@@ -18,10 +18,14 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-let min_price = 50000
-let max_price = 2000000
-let end_date = moment().add(5, 'days').format()
-var randomName = faker.name.findName();
+function roundHundred(value){
+   return Math.round(value/100)*100
+}
+
+let min_price = roundHundred(getRandomInt(10000, 900000))
+let max_price = roundHundred(getRandomInt(1000000, 5000000))
+let end_date = moment().add(getRandomInt(1, 7), 'days').format()
+var randomName = faker.commerce.productName();
 
 describe('Auction Test', () => {
   describe('Create Auction', () => {
@@ -34,7 +38,7 @@ describe('Auction Test', () => {
           userId: '1',
           bukalapakId: process.env.BUKALAPAK_ID,
           token: process.env.BUKALAPAK_TOKEN,
-          title: 'Ini cuma testing ajsfsfaa  fsafs fsaasdjasdkjsadkadsdsaa sd saddfsdf sfafdfasf a ' + randomName,
+          title: 'Ini cuma testing buat Lelang ' + randomName,
           categoryId: 2,
           new: false,
           weight: 4000,
@@ -48,7 +52,7 @@ describe('Auction Test', () => {
           if (err) {
             done(err)
           } else {
-            console.log('isi res : ', res.body);
+            // console.log('isi res : ', res.body);
             res.should.have.status(200);
             res.should.be.json;
             res.body.success.should.to.equal(true)
@@ -64,7 +68,7 @@ describe('Auction Test', () => {
               }).then((responseAfterRemoveProduct) => {
                 // console.log('responseAfterRemoveProduct : ', responseAfterRemoveProduct.data);
                 models.Auction.findById(res.body.id).then(auction => {
-                  console.log('a auction : ', auction);
+                  // console.log('a auction : ', auction);
                   auction.destroy({
                     where: {
                       id: auction.id
@@ -97,7 +101,7 @@ describe('Auction Test', () => {
           userId: '1',
           bukalapakId: process.env.BUKALAPAK_ID,
           token: process.env.BUKALAPAK_TOKEN,
-          title: 'Ini cuma testing ajsfsfaa  fsafs fsaasdjasdkjsadkadsdsaa sd saddfsdf sfafdfasf a ' + randomName,
+          title: 'Ini cuma testing ' + randomName,
           categoryId: 2,
           new: false,
           weight: 4000,
@@ -111,7 +115,7 @@ describe('Auction Test', () => {
           if (err) {
             done(err)
           } else {
-            console.log('isi res : ', res.body);
+            // console.log('isi res : ', res.body);
             res.should.have.status(200);
             res.should.be.json;
             res.body.success.should.to.equal(true)
@@ -145,7 +149,7 @@ describe('Auction Test', () => {
               }).then((responseAfterRemoveProduct) => {
                 // console.log('responseAfterRemoveProduct : ', responseAfterRemoveProduct.data);
                 models.Auction.findById(res.body.id).then(auction => {
-                  console.log('a auction : ', auction);
+                  // console.log('a auction : ', auction);
 
                   auction.destroy({
                     where: {
@@ -175,7 +179,7 @@ describe('Auction Test', () => {
         userId: '1',
         bukalapakId: process.env.BUKALAPAK_ID,
         token: process.env.BUKALAPAK_TOKEN,
-        title: 'Ini cuma testing ajsfsfaa  fsafs fsaasdjasdkjsadkadsdsaa sd saddfsdf sfafdfasf a ' + randomName,
+        title: 'Ini cuma testing ' + randomName,
         categoryId: 2,
         new: false,
         weight: 4000,
@@ -197,12 +201,12 @@ describe('Auction Test', () => {
         }
       });
     })
-    it('Should be return min_price = null when trying to create Auction with wrong paramater', (done) => {
+    it('Should be return min_price = 0 when trying to create Auction with wrong paramater', (done) => {
       chai.request(serverHost).post('/auctions').send({
         userId: '1',
         bukalapakId: process.env.BUKALAPAK_ID,
         token: process.env.BUKALAPAK_TOKEN,
-        title: 'Ini cuma testing ajsfsfaa  fsafs fsaasdjasdkjsadkadsdsaa sd saddfsdf sfafdfasf a ' + randomName,
+        title: 'Ini cuma testing Jangan beli produk ini ' + randomName,
         categoryId: 2,
         new: false,
         weight: 4000,
@@ -216,7 +220,7 @@ describe('Auction Test', () => {
         if (err) {
           done(err)
         } else {
-          console.log('isi res : ', res.body);
+          // console.log('isi res : ', res.body);
           res.should.have.status(200);
           res.should.be.json;
           should.equal(res.body.min_price, 0);
