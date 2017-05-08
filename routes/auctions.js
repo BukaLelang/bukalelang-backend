@@ -301,7 +301,7 @@ router.get('/:id', applyMidleware.authentication, auctionController.show)
 *        end_date: null
  *    }
  */
-router.get('/slug/:slug', applyMidleware.authentication, auctionController.show)
+router.get('/slug/:slug', applyMidleware.authentication, auctionController.findAuctionBySlug)
 
 /**
  * @api {get} /auctions/:id/bid-history get bid history
