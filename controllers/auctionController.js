@@ -199,6 +199,62 @@ module.exports = {
       res.json(finalResult)
     })
   },
+  searchByTitle: (req, res) => {
+    console.log('--------------', req.query.query);
+    let finalResult = {
+      status: false,
+      message: 'Fail get list of auctions',
+      auctions: []
+    }
+
+    models.Auction.findAll({
+      include:[{
+        model: models.Category
+      },{
+        model: models.User
+      },{
+        model: models.Bid
+      }],
+      where: {
+        title:{
+          $ilike:`%${req.query.query}%`
+        }
+      }
+    }).then(auctions => {
+      if (auctions.length == 0) {
+        finalResult.message = 'auction with title : ' + req.query.query + ' : not found'
+        res.json(finalResult)
+      }
+      let auctionsArr = JSON.parse(JSON.stringify(auctions));
+      auctionsArr = _.orderBy(auctionsArr, ['id'], ['desc'])
+      let takeLatestAuction = _.take(auctionsArr, 15)
+      const newAuctions = takeLatestAuction.map(auction => {
+        return Object.assign({}, auction, {
+          running: moment(auction.end_date).format() >= moment().format() ? true : false,
+          categoryName: auction.Category.name,
+          current_price: auction.Bids.length == 0 ? auction.min_price : _.maxBy(auction.Bids, 'current_bid').current_bid,
+          name: auction.User.name
+        })
+      });
+
+      for (var i = 0; i < newAuctions.length; i++) {
+        delete newAuctions[i].Category
+        delete newAuctions[i].User
+        delete newAuctions[i].Bids
+        delete newAuctions[i].categoryId
+        delete newAuctions[i].createdAt
+        delete newAuctions[i].updatedAt
+      }
+
+      finalResult.status = true
+      finalResult.message = 'success load list of auctions with title : ' + req.query.query + ' : found ' + auctions.length + ' auctions'
+      finalResult.auctions = newAuctions
+      res.json(finalResult)
+    }).catch(err => {
+      console.log('error when try list auction in localdb', err);
+      res.json(finalResult)
+    })
+  },
 
   show: (req, res) => {
     // init repsonse
