@@ -29,7 +29,7 @@ var randomName = faker.commerce.productName();
 
 describe('Auction Test', () => {
   describe('Create Auction', () => {
-    xit('Should be return status Success when trying to create new Auction', (done) => {
+    it('Should be return status Success when trying to create new Auction', (done) => {
       imageUploader.uploadToBukaLapak(
         process.env.BUKALAPAK_ID,
         process.env.BUKALAPAK_TOKEN).then((responseAfterUpload) => {
@@ -92,7 +92,7 @@ describe('Auction Test', () => {
         console.log('error di image uploader : ', err);
       })
     })
-    xit('Should be return all field / property when trying to create new Auction', (done) => {
+    it('Should be return all field / property when trying to create new Auction', (done) => {
       imageUploader.uploadToBukaLapak(
         process.env.BUKALAPAK_ID,
         process.env.BUKALAPAK_TOKEN).then((responseAfterUpload) => {
@@ -174,7 +174,7 @@ describe('Auction Test', () => {
         console.log('error di image uploader : ', err);
       })
     })
-    xit('Should be return status false when trying to create Auction with wrong paramater', (done) => {
+    it('Should be return status false when trying to create Auction with wrong paramater', (done) => {
       chai.request(serverHost).post('/auctions').send({
         userId: '1',
         bukalapakId: process.env.BUKALAPAK_ID,
@@ -201,7 +201,7 @@ describe('Auction Test', () => {
         }
       });
     })
-    xit('Should be return min_price = 0 when trying to create Auction with wrong paramater', (done) => {
+    it('Should be return min_price = 0 when trying to create Auction with wrong paramater', (done) => {
       chai.request(serverHost).post('/auctions').send({
         userId: '1',
         bukalapakId: process.env.BUKALAPAK_ID,
