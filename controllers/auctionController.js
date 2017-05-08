@@ -206,6 +206,7 @@ module.exports = {
       id: null,
       productId: null,
       title: null,
+      slug: null,
       images: null,
       categoryId: null,
       new: false,
@@ -225,6 +226,7 @@ module.exports = {
       finalResult.id = auction.id
       finalResult.productId = auction.productId
       finalResult.title = auction.title
+      finalResult.slug = auction.slug
       finalResult.images = auction.images
       finalResult.categoryId = auction.categoryId
       finalResult.new = auction.new
@@ -238,6 +240,56 @@ module.exports = {
       finalResult.success = true
       finalResult.userId = auction.userId
       finalResult.message = 'Sukses ngambil satu auction'
+      res.json(finalResult)
+    }).catch(err => {
+      console.log('error when try get one auction in localdb', err);
+      res.json(finalResult)
+    })
+  },
+  findAuctionBySlug: (req, res) => {
+    // init repsonse
+    var finalResult = {
+      id: null,
+      productId: null,
+      title: null,
+      slug: null,
+      images: null,
+      categoryId: null,
+      new: false,
+      weight: 0,
+      description: null,
+      min_price: 0,
+      max_price: 0,
+      kelipatan_bid: 0,
+      start_date: null,
+      end_date: null,
+      userId: null,
+      success: false,
+      message: 'Ambil satu auction gagal ):',
+    }
+
+    models.Auction.findOne({
+      where: {
+        slug: req.params.slug
+      }
+    }).then(auction => {
+      finalResult.id = auction.id
+      finalResult.productId = auction.productId
+      finalResult.title = auction.title
+      finalResult.slug = auction.slug
+      finalResult.images = auction.images
+      finalResult.categoryId = auction.categoryId
+      finalResult.new = auction.new
+      finalResult.weight = auction.weight
+      finalResult.description = auction.description
+      finalResult.min_price = auction.min_price
+      finalResult.max_price = auction.max_price
+      finalResult.kelipatan_bid = auction.kelipatan_bid
+      finalResult.start_date = auction.start_date
+      finalResult.end_date = auction.end_date
+      finalResult.success = true
+      finalResult.userId = auction.userId
+      finalResult.message = 'Sukses ngambil satu auction berdasarkan slug'
       res.json(finalResult)
     }).catch(err => {
       console.log('error when try get one auction in localdb', err);
