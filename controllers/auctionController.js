@@ -223,6 +223,10 @@ module.exports = {
     }
 
     models.Auction.findById(req.params.id).then(auction => {
+      if (!auction) {
+        finalResult.message = 'Lelang dengan id ' + req.params.id + ' tidak ditemukan'
+        res.json(finalResult)
+      }
       finalResult.id = auction.id
       finalResult.productId = auction.productId
       finalResult.title = auction.title
@@ -273,6 +277,10 @@ module.exports = {
         slug: req.params.slug
       }
     }).then(auction => {
+      if (!auction) {
+        finalResult.message = 'Lelang dengan slug ' + req.params.slug + ' tidak ditemukan'
+        res.json(finalResult)
+      }
       finalResult.id = auction.id
       finalResult.productId = auction.productId
       finalResult.title = auction.title
