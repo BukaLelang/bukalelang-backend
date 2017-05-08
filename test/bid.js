@@ -65,73 +65,18 @@ describe('Bid Test', () => {
                   if (res.body.message == 'Auction already ended') {
                     res.should.have.status(200);
                     res.should.be.json;
+                    res.body.should.have.property('id')
+                    res.body.should.have.property('auctionId')
+                    res.body.should.have.property('username')
+                    res.body.should.have.property('name')
+                    res.body.should.have.property('bidding_time')
+                    res.body.should.have.property('current_price')
+                    res.body.should.have.property('minimum_next_bidding')
+                    res.body.should.have.property('success')
+                    res.body.should.have.property('message')
                     res.body.success.should.to.equal(false)
                     done()
-                  } else {
-                    res.should.have.status(200);
-                    res.should.be.json;
-                    res.body.success.should.to.equal(true)
-                    // delete bid after test
-                    models.Bid.findById(res.body.id).then(bid => {
-                      if (bid) {
-                        bid.destroy({
-                          where: {
-                            id : bid.id
-                          }
-                        }).then(() => {
-                          console.log('delete bid after test success');
-                          done()
-
-                        })
-                      }
-                    })
-
-                  }
-                }
-              });
-
-          })
-
-        } else {
-          console.log('tidak ada auctions di DB');
-        }
-      })
-    })
-    it('Should be return all field / property when trying to bid an auction', (done) => {
-      models.Auction.findAll().then(auctions => {
-        let convertedAuctions = JSON.parse(JSON.stringify(auctions))
-        let auctionsLength = convertedAuctions.length
-        if (auctionsLength > 0) {
-          // find the highest bid for last auction
-          let lastAuction = convertedAuctions[auctionsLength - 1]
-
-          models.Bid.findAll({
-            where: {
-              auctionId: lastAuction.id
-            }
-          }).then(bids => {
-            let highestBid = {}
-            let nextBid = 0
-            if (bids.length > 0) {
-              highestBid = _.maxBy(JSON.parse(JSON.stringify(bids)), 'current_bid')
-              nextBid = highestBid.current_bid + lastAuction.kelipatan_bid
-            } else {
-              nextBid = lastAuction.min_price + lastAuction.kelipatan_bid
-            }
-              // console.log('ambil auction terakhir : ', convertedAuctions);
-              // console.log('id terakhir ? ', convertedAuctions[auctionsLength - 1].id);
-              chai.request(serverHost).post('/bids/')
-              .set('userid', process.env.USER_ID_IN_LOCAL)
-              .set('token', process.env.BUKALAPAK_TOKEN)
-              .send({
-                auctionId: lastAuction.id,
-                nextBid: nextBid
-              }).end((err, res) => {
-                if (err) {
-                  done(err)
-                } else {
-                  if (lastAuction.userId == process.env.USER_ID_IN_LOCAL) {
-                    console.log('kesini kan ? ');
+                  } else if (lastAuction.userId == process.env.USER_ID_IN_LOCAL) {
                     res.should.have.status(200);
                     res.should.be.json;
                     res.body.should.have.property('id')
@@ -143,20 +88,12 @@ describe('Bid Test', () => {
                     res.body.should.have.property('minimum_next_bidding')
                     res.body.should.have.property('success')
                     res.body.should.have.property('message')
+                    res.body.success.should.to.equal(false)
                     res.body.message.should.to.equal('Anda tidak dapat nge-bid auction anda sendiri.')
                     done()
                   } else {
                     res.should.have.status(200);
                     res.should.be.json;
-                    res.body.should.have.property('id')
-                    res.body.should.have.property('auctionId')
-                    res.body.should.have.property('username')
-                    res.body.should.have.property('name')
-                    res.body.should.have.property('bidding_time')
-                    res.body.should.have.property('current_price')
-                    res.body.should.have.property('minimum_next_bidding')
-                    res.body.should.have.property('success')
-                    res.body.should.have.property('message')
                     res.body.success.should.to.equal(true)
                     // delete bid after test
                     models.Bid.findById(res.body.id).then(bid => {
@@ -168,18 +105,13 @@ describe('Bid Test', () => {
                         }).then(() => {
                           console.log('delete bid after test success');
                           done()
-
                         })
                       }
                     })
-
                   }
-
                 }
               });
-
           })
-
         } else {
           console.log('tidak ada auctions di DB');
         }
