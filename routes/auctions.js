@@ -157,6 +157,63 @@ router.post('/', auctionController.create)
 router.get('/', auctionController.getAllAuctions)
 
 /**
+ * @api {get} /auctions/search?query=tamiya search auctions by title
+ * @apiGroup Auction
+
+ * @apiSuccess {String} message message from server
+ * @apiSuccess {Boolean} success is request success ?
+ * @apiSuccess {Object[]} auctions List of auctions.
+ * @apiSuccess {Integer} auctions.id id of the auction
+ * @apiSuccess {Integer} auctions.productId id of the product at BL
+ * @apiSuccess {String} auctions.title Title of auction
+ * @apiSuccess {String} auctions.images URL of images of auction
+ * @apiSuccess {Integer} auctions.category category of auction
+ * @apiSuccess {Boolean} auctions.new product is new or second ?
+ * @apiSuccess {Integer} auctions.weight weight of the product using gram
+ * @apiSuccess {String} auctions.description description of product
+ * @apiSuccess {Integer} auctions.min_price minimal / start price of auction
+ * @apiSuccess {Integer} auctions.current_price current price of the auction
+ * @apiSuccess {Integer} auctions.max_price maximal / buy now price of auction
+ * @apiSuccess {Integer} auctions.kelipatan_bid nominal lipatan of next bidding
+ * @apiSuccess {Date} auctions.start_date date of auction start, default is after published
+ * @apiSuccess {Date} auctions.end_date date end of auction, default is one week
+
+
+ * @apiSuccessExample {json} Success
+ *    HTTP/1.1 200 OK
+ *    {
+ *      "success": true,
+ *      "message": 'Success load list of auctions by title Tamiya',
+ *      "auctions": [
+ *            {
+ *             id: 23,
+ *             productId: '31fsa21',
+ *             title: 'Tamiya super cepat',
+ *             images: 'https://s0.bukalapak.com/system/images/1/6/7/6/6/8/0/large/IMG00475-20121105-1431.jpg?1352105447',
+ *             category: 'Mainan',
+ *             new: false,
+ *             weight: 1000,
+ *             description: 'Tamiya ini di rakit oleh ahli fisika, dengan memperhatikan dengan seksama gaya gesek dan kelembaman sehigga mengurangi kaya gesek dengan lintasan membuanya super cepat.',
+ *             min_price: 200000,
+ *             max_price: 3000000,
+ *             current_price: 600000,
+ *             kelipatan_bid: 20000,
+ *             start_date: '2017-04-16T18:22:54.846+07:00',
+ *             end_date: '2017-05-16T18:22:54.846+07:00'
+ *           }
+ *         ]
+ *    }
+ * @apiErrorExample {json} List error
+ *    HTTP/1.1 500 Internal Server Error
+ *    {
+ *      "success": false,
+ *      "message": 'Fail load list of auctions',
+ *      "auctions": []
+ *    }
+ */
+router.get('/search', auctionController.searchByTitle)
+
+/**
  * @api {get} /auctions/:id get auction by id
  * @apiGroup Auction
  * @apiHeaderExample {json} Header-Example:
