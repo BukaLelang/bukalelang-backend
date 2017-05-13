@@ -570,33 +570,6 @@
     "url": "/auctions/slug/:slug",
     "title": "get auction by slug",
     "group": "Auction",
-    "header": {
-      "examples": [
-        {
-          "title": "Header-Example:",
-          "content": "{\n  \"userid\": 2,\n  \"token\": \"IniToken\",\n}",
-          "type": "json"
-        }
-      ],
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "type": "Integer",
-            "optional": false,
-            "field": "userid",
-            "description": "<p>userId of user</p>"
-          },
-          {
-            "group": "Header",
-            "type": "String",
-            "optional": false,
-            "field": "token",
-            "description": "<p>token of logged in user</p>"
-          }
-        ]
-      }
-    },
     "success": {
       "fields": {
         "Success 200": [
