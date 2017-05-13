@@ -288,14 +288,6 @@ router.get('/:id', applyMidleware.authentication, auctionController.show)
 /**
  * @api {get} /auctions/slug/:slug get auction by slug
  * @apiGroup Auction
- * @apiHeaderExample {json} Header-Example:
- *     {
- *       "userid": 2,
- *       "token": "IniToken",
- *     }
- * @apiHeader {Integer} userid userId of user
- * @apiHeader {String} token token of logged in user
-
  * @apiSuccess {String} message message from server
  * @apiSuccess {Boolean} success is request success ?
  * @apiSuccess {Integer} id id of the auction
@@ -358,7 +350,7 @@ router.get('/:id', applyMidleware.authentication, auctionController.show)
 *        end_date: null
  *    }
  */
-router.get('/slug/:slug', applyMidleware.authentication, auctionController.findAuctionBySlug)
+router.get('/slug/:slug', auctionController.findAuctionBySlug)
 
 /**
  * @api {get} /auctions/:id/bid-history get bid history
