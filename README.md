@@ -6,6 +6,13 @@
 - Sequelize
 - WebSocket using Socket.IO
 
+#### Testing
+- Mocha
+- Chai
+
+#### CI
+- Travis
+
 ### Minimum Requirement
 - node v. 6.9.1
 - Postgres v. 9
