@@ -1,0 +1,36 @@
+[{
+    title: "TR-1 Hazel (Bonusan Dengeki Hobby)",
+    description: "Product : TR-1 Hazel (Bonusan Dengeki Hobby) Condition : MIB",
+    images: ["18486114_669838563219099_303880900680526503_n.jpg"],
+    minPrice: 50000,
+    maxPrice: 1000000,
+    kelipatanBid: 10000,
+    new: false,
+    weight: 1000,
+    categoryId: 338,
+}, {
+    title: "IPOD CLASSIC GEN 6 30gb",
+    description: "Kondisi lihat photo, lecet pemakaian
+    Hdd asli 80 gb ganti 30 gb
+    Baterai masih normal sehat di atas 10 jam
+    Test musik non stop 8 jam baterai masih ada 60 - 70 %
+    No badsector
+    Perlengkapan hanya ipod dan kabel data ",
+    images: ["18486344_1319235641494092_1561890293974377006_n.jpg", "18424236_1319235644827425_7154140858527332633_n.jpg", "18447322_1319235671494089_4044268933059006725_n.jpg", "18403141_1319235708160752_6033897577440079385_n.jpg"],
+    minPrice: 10000,
+    maxPrice: 1000000,
+    kelipatanBid: 10000,
+    new: false,
+    weight: 500,
+    categoryId: 205,
+}, {
+    title: "Bio solar Change Color Juara 1 Palembang",
+    description: "Bio solar Change Color Juara 1 Palembang ( small Item ), Ket : Meramaikan Kembali Dunia perbatuan ",
+    images: ["17972383_180458992473895_7683849013607688369_o.jpg"],
+    minPrice: 30000,
+    maxPrice: 4000000,
+    kelipatanBid: 10000,
+    new: false,
+    weight: 100,
+    categoryId: 1129,
+}]
