@@ -23,7 +23,7 @@ const applyMidleware = require('../helpers/authentication')
  *       "min_price": 50000,
  *       "max_price": 200000,
  *       "kelipatan_bid": 10000,
- *       "imagesId": 11122121,
+ *       "imagesId": [11122121, 11122333],
  *       "end_date": 2017-09-14T00:00:00Z,
  *     }
  * @apiParam {Integer} userId userId of user
@@ -37,7 +37,7 @@ const applyMidleware = require('../helpers/authentication')
  * @apiParam {Integer} min_price minimal / start price of auctions
  * @apiParam {Integer} max_price maximal / buy now price of auctions
  * @apiParam {Integer} kelipatan_bid nominal lipatan of next bidding
- * @apiParam {Integer} imagesId image_id after upload image to BL
+ * @apiParam {Array} imagesId image_id after upload image to BL (array of ids)
  * @apiParam {Date} end_date date end of auction, default is one week
 
  * @apiSuccess {Integer} id id of the auction
