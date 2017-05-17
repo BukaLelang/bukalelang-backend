@@ -31,7 +31,7 @@ $ npm run dev
 
 note :
 
-to run npm run dev, you need nodemon, if you don't it, install it globally :
+to run npm run dev, you need nodemon, if you don't have it, install it globally by :
 ```
 npm install -g nodemon
 ```
