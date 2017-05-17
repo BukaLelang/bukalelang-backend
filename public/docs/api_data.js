@@ -730,7 +730,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\n  \"userId\": 2,\n  \"bukalapakId\": 231232131,\n  \"token\": \"IniToken\",\n  \"title\": \"Lelang Gundam Langka & Istimewa\",\n  \"categoryId\": 145,\n  \"category\": 'Mainan',\n  \"new\": false,\n  \"weight\": 5000,\n  \"description\": \"Gundam dapet dari pembuatnya langsung lho\",\n  \"min_price\": 50000,\n  \"max_price\": 200000,\n  \"kelipatan_bid\": 10000,\n  \"imagesId\": [11122121, 11122333],\n  \"end_date\": 2017-09-14T00:00:00Z,\n}",
+          "content": "{\n  \"userId\": 2,\n  \"bukalapakId\": 231232131,\n  \"token\": \"IniToken\",\n  \"title\": \"Lelang Gundam Langka & Istimewa\",\n  \"categoryId\": 145,\n  \"category\": 'Mainan',\n  \"new\": false,\n  \"weight\": 5000,\n  \"description\": \"Gundam dapet dari pembuatnya langsung lho\",\n  \"min_price\": 50000,\n  \"max_price\": 200000,\n  \"kelipatan_bid\": 10000,\n  \"imagesId\": 11122121, 11122333,\n  \"end_date\": 2017-09-14T00:00:00Z,\n}",
           "type": "json"
         }
       ],
@@ -762,7 +762,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "title",
-            "description": "<p>Title of auction</p>"
+            "description": "<p>Title of auction, note : Nama barang hanya boleh berupa huruf, angka, spasi dan simbol &amp; . -,</p>"
           },
           {
             "group": "Parameter",

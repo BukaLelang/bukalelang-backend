@@ -23,13 +23,13 @@ const applyMidleware = require('../helpers/authentication')
  *       "min_price": 50000,
  *       "max_price": 200000,
  *       "kelipatan_bid": 10000,
- *       "imagesId": [11122121, 11122333],
+ *       "imagesId": 11122121, 11122333,
  *       "end_date": 2017-09-14T00:00:00Z,
  *     }
  * @apiParam {Integer} userId userId of user
  * @apiParam {Integer} bukalapakId bukalapakId of user
  * @apiParam {String} token token of logged in user
- * @apiParam {String} title Title of auction
+ * @apiParam {String} title Title of auction, note : Nama barang hanya boleh berupa huruf, angka, spasi dan simbol & . -, 
  * @apiParam {Integer} categoryId category ID
  * @apiParam {Boolean} new product is new or second ?
  * @apiParam {Integer} weight weight of the product using gram
