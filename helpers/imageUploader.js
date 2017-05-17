@@ -6,6 +6,7 @@ let blEndPoint = 'https://api.bukalapak.com/v2/images.json'
 
 module.exports = {
   uploadToBukaLapak: (bukalapakId, token, imagesName) => {
+    // console.log('imagesName : ', imagesName);
       let username = bukalapakId
       let password = token
       let url = 'https://' + username + ':' + password + '@api.bukalapak.com/v2/images.json';
