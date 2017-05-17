@@ -2,7 +2,7 @@ define({
   "name": "BukaLelang API Docs",
   "version": "1.0.0",
   "description": "Dokumentasi API BukaLelang",
-  "url": "http://api.bukalelang.id",
+  "url": "https://api.bukalelang.id",
   "sampleUrl": "http://localhost:3000",
   "template": {
     "forceLanguage": "en"
@@ -11,7 +11,7 @@ define({
   "apidoc": "0.3.0",
   "generator": {
     "name": "apidoc",
-    "time": "2017-05-16T19:12:40.764Z",
+    "time": "2017-05-17T06:56:27.207Z",
     "url": "http://apidocjs.com",
     "version": "0.17.5"
   }
