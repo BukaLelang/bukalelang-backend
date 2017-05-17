@@ -153,9 +153,15 @@ module.exports = {
   },
 
   getAllAuctions: (req, res) => {
+    let limitPerPage = req.query.limit || 10
+    let page = req.query.page || 1
+    let offset = (page - 1) * limitPerPage
+
     let finalResult = {
       status: false,
       message: 'Fail get list of auctions',
+      limit: null,
+      page: null,
       auctions: []
     }
 
@@ -166,11 +172,14 @@ module.exports = {
         model: models.User
       },{
         model: models.Bid
-      }]
+      }],
+      limit: limitPerPage,
+      offset: offset,
+      order: [['id', 'DESC']]
     }).then(auctions => {
       let auctionsArr = JSON.parse(JSON.stringify(auctions));
       auctionsArr = _.orderBy(auctionsArr, ['id'], ['desc'])
-      let takeLatestAuction = _.take(auctionsArr, 15)
+      let takeLatestAuction = _.take(auctionsArr, 10)
       const newAuctions = takeLatestAuction.map(auction => {
         return Object.assign({}, auction, {
           running: moment(auction.end_date).format() >= moment().format() ? true : false,
@@ -190,6 +199,8 @@ module.exports = {
       }
 
       finalResult.status = true
+      finalResult.limit = limitPerPage
+      finalResult.page = page
       finalResult.message = 'success load list of auctions'
       finalResult.auctions = newAuctions
       res.json(finalResult)

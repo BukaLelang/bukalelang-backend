@@ -29,7 +29,7 @@ const applyMidleware = require('../helpers/authentication')
  * @apiParam {Integer} userId userId of user
  * @apiParam {Integer} bukalapakId bukalapakId of user
  * @apiParam {String} token token of logged in user
- * @apiParam {String} title Title of auction, note : Nama barang hanya boleh berupa huruf, angka, spasi dan simbol & . -, 
+ * @apiParam {String} title Title of auction, note : Nama barang hanya boleh berupa huruf, angka, spasi dan simbol & . -,
  * @apiParam {Integer} categoryId category ID
  * @apiParam {Boolean} new product is new or second ?
  * @apiParam {Integer} weight weight of the product using gram
@@ -100,7 +100,7 @@ const applyMidleware = require('../helpers/authentication')
 router.post('/', auctionController.create)
 
 /**
- * @api {get} /auctions get all auctions
+ * @api {get} /auctions?limit=5&&page=2 get all auctions
  * @apiGroup Auction
 
  * @apiSuccess {String} message message from server
@@ -127,6 +127,8 @@ router.post('/', auctionController.create)
  *    {
  *      "success": true,
  *      "message": 'Success load list of auctions',
+ *      "page": 2,
+        "limit": 5,
  *      "auctions": [
  *            {
  *             id: 23,
@@ -151,6 +153,8 @@ router.post('/', auctionController.create)
  *    {
  *      "success": false,
  *      "message": 'Fail load list of auctions',
+        "page": null,
+        "limit": null,
  *      "auctions": []
  *    }
  */
