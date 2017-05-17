@@ -26,13 +26,15 @@ let min_price = roundHundred(getRandomInt(10000, 900000))
 let max_price = roundHundred(getRandomInt(1000000, 5000000))
 let end_date = moment().add(getRandomInt(1, 7), 'days').format()
 var randomName = faker.commerce.productName();
+let imagesName = ['18486344_1319235641494092_1561890293974377006_n.jpg', '18424236_1319235644827425_7154140858527332633_n.jpg']
 
 describe('Auction Test', () => {
   describe('Create Auction', () => {
     it('Should be return status Success when trying to create new Auction', (done) => {
       imageUploader.uploadToBukaLapak(
         process.env.BUKALAPAK_ID,
-        process.env.BUKALAPAK_TOKEN).then((responseAfterUpload) => {
+        process.env.BUKALAPAK_TOKEN,
+        imagesName).then((responseAfterUpload) => {
         // console.log('responseAfterUpload : ', responseAfterUpload.id);
         chai.request(serverHost).post('/auctions').send({
           userId: '1',
@@ -42,74 +44,11 @@ describe('Auction Test', () => {
           categoryId: 2,
           new: false,
           weight: 4000,
-          description: 'Ini cuma contoh deskripsi minimal 30 karakter lho, jika kurang akan error, maka nya saya banyak banyakain, masih kurang juga ?',
+          description: randomName + 'Ini cuma contoh deskripsi minimal 30 karakter lho, jika kurang akan error, maka nya saya banyak banyakain, masih kurang juga ?',
           min_price: min_price,
           max_price: max_price,
           kelipatan_bid: 10000,
-          imagesId: responseAfterUpload.id,
-          end_date: end_date
-        }).end((err, res) => {
-          if (err) {
-            done(err)
-          } else {
-            // console.log('isi res : ', res.body);
-            res.should.have.status(200);
-            res.should.be.json;
-            res.body.success.should.to.equal(true)
-            // after created we need to delete it
-            if (res.body.success) {
-              axios({
-                method: 'patch',
-                url: 'https://api.bukalapak.com/v2/products/' + res.body.productId + '/remove.json',
-                auth: {
-                  username: process.env.BUKALAPAK_ID,
-                  password: process.env.BUKALAPAK_TOKEN
-                }
-              }).then((responseAfterRemoveProduct) => {
-                // console.log('responseAfterRemoveProduct : ', responseAfterRemoveProduct.data);
-                models.Auction.findById(res.body.id).then(auction => {
-                  // console.log('a auction : ', auction);
-                  auction.destroy({
-                    where: {
-                      id: auction.id
-                    }
-                  }).then((afterDeleteProductInLocal) => {
-                    // console.log('After delete product in local : ', afterDeleteProductInLocal);
-                    done()
-
-                  }).catch(err => {
-                    console.log('error when trying to delete product in local : ', errr);
-                  })
-                })
-
-              }).catch((err) => {
-                console.log('error when trying to remove product : ', err);
-              })
-            }
-          }
-        });
-      }).catch((err) => {
-        console.log('error di image uploader : ', err);
-      })
-    })
-    it('Should be return all field / property when trying to create new Auction', (done) => {
-      imageUploader.uploadToBukaLapak(
-        process.env.BUKALAPAK_ID,
-        process.env.BUKALAPAK_TOKEN).then((responseAfterUpload) => {
-        // console.log('responseAfterUpload : ', responseAfterUpload.id);
-        chai.request(serverHost).post('/auctions').send({
-          userId: '1',
-          bukalapakId: process.env.BUKALAPAK_ID,
-          token: process.env.BUKALAPAK_TOKEN,
-          title: 'Ini cuma testing ' + randomName,
-          categoryId: 2,
-          new: false,
-          weight: 4000,
-          description: 'Ini cuma contoh deskripsi minimal 30 karakter lho, jika kurang akan error, maka nya saya banyak banyakain, masih kurang juga ?',
-          min_price: min_price,
-          max_price: max_price,
-          kelipatan_bid: 10000,
-          imagesId: responseAfterUpload.id,
+          imagesId: responseAfterUpload,
           end_date: end_date
         }).end((err, res) => {
           if (err) {
@@ -150,7 +89,6 @@ describe('Auction Test', () => {
                 // console.log('responseAfterRemoveProduct : ', responseAfterRemoveProduct.data);
                 models.Auction.findById(res.body.id).then(auction => {
                   // console.log('a auction : ', auction);
-
                   auction.destroy({
                     where: {
                       id: auction.id
