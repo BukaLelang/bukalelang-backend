@@ -57,8 +57,7 @@ module.exports = {
           weight: req.body.weight,
           stock: 1,
           description_bb: req.body.title + ' ini sedang di lelang di BukaLelang App, silahkan unduh aplikasi BukaLelang untuk mengikuti lelang sekarang! Deskripsi barang : ' + req.body.description,
-          product_detail_attributes: {
-          }
+          product_detail_attributes: {}
         },
         images: req.body.imagesId,
       }
