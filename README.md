@@ -1,4 +1,5 @@
 ## Backend for Buka Lelang
+[![Build Status](https://travis-ci.org/BukaLelang/bukalelang-backend.svg?branch=master)](https://travis-ci.org/BukaLelang/bukalelang-backend)
 
 ### Tech Stack
 - ExpressJS
@@ -77,5 +78,5 @@ npm install -g mocha
 - [Bambang Handoko](https://github.com/mrhandoko)
 - [Endy](https://github.com/pisanggoreng)
 
-### Build Status 
+### Build Status
 [![Build Status](https://travis-ci.org/BukaLelang/bukalelang-backend.svg?branch=master)](https://travis-ci.org/BukaLelang/bukalelang-backend)
