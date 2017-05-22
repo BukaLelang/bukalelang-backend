@@ -96,7 +96,7 @@ module.exports = {
               })
 
             } else {
-              finalResult.message = 'Auction already ended'
+              finalResult.message = 'auction has end'
               res.json(finalResult)
             }
           })
