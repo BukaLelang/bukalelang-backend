@@ -266,6 +266,34 @@ module.exports = {
     })
   },
 
+  timeLeft: (req, res) => {
+    // init repsonse
+    var finalResult = {
+      time_left: null,
+      end_date: null,
+      success: false,
+      message: 'Ambil satu auction gagal ):',
+    }
+
+    models.Auction.findById(req.params.id).then(auction => {
+      if (!auction) {
+        finalResult.message = 'Lelang dengan id ' + req.params.id + ' tidak ditemukan'
+        res.json(finalResult)
+      }
+      var endDate = new Date(auction.end_date);
+
+      console.log('isi ', endDate.getTime());
+      finalResult.time_left = endDate.getTime()
+
+      finalResult.end_date = auction.end_date
+      finalResult.success = true
+      finalResult.message = 'Sukses ngambil time left auction'
+      res.json(finalResult)
+    }).catch(err => {
+      console.log('error when try get one auction in localdb', err);
+      res.json(finalResult)
+    })
+  },
   show: (req, res) => {
     // init repsonse
     var finalResult = {
