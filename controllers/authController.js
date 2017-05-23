@@ -78,7 +78,6 @@ module.exports = {
                 // console.log('isi error saat ambil saldo : ', err);
                 finalResult.message = 'Error saat ambil saldo di Buka Dompet'
                 res.json(finalResult)
-
               })
             }).catch(err => {
               console.log('error when trying to create a new user : ', err);
@@ -93,7 +92,6 @@ module.exports = {
           })
           break;
         default:
-
       }
       //
     }).catch((err) => {
@@ -103,7 +101,6 @@ module.exports = {
       res.json(finalResult)
     })
   },
-
   login: (req, res) => {
     let finalResult = {
       id: null,
@@ -137,7 +134,6 @@ module.exports = {
           if (responseAfterLogin.data.user_id == null) {
             finalResult.message = 'Anda belum memiliki akun, silahkan register terlebih dahulu';
             res.json(finalResult)
-
           } else {
             // di BL udah ada ternyata, jadi kita bikin di local
             models.User.create({
@@ -170,12 +166,10 @@ module.exports = {
                   finalResult.success = true,
                   finalResult.message = 'login success'
                   res.json(finalResult)
-
               }).catch((err) => {
                 // console.log('isi error saat ambil saldo : ', err);
                 finalResult.message = 'Error saat ambil saldo di Buka Dompet'
                 res.json(finalResult)
-
               })
             })
           }
@@ -200,6 +194,7 @@ module.exports = {
             case 'OK':
               //Update token
               models.User.update({
+                password: req.body.password,
                 bl_token:responseAfterLogin.data.token
               },{
                 where:{
@@ -239,14 +234,10 @@ module.exports = {
             default:
               res.json(finalResult)
           }
-
-
-
         }).catch((err) => {
           console.log('isi error saat authenticate : ', err);
           finalResult.message = 'Error saat otentikasi'
           res.json(finalResult)
-
         })
       }
     })
