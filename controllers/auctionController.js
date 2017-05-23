@@ -19,7 +19,6 @@ module.exports = {
       slug: null,
       images: null,
       categoryId: null,
-      category: null,
       new: false,
       weight: 0,
       description: null,

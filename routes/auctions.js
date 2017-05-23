@@ -16,7 +16,6 @@ const applyMidleware = require('../helpers/authentication')
  *       "token": "IniToken",
  *       "title": "Lelang Gundam Langka & Istimewa",
  *       "categoryId": 145,
- *       "category": 'Mainan',
  *       "new": false,
  *       "weight": 5000,
  *       "description": "Gundam dapet dari pembuatnya langsung lho",
