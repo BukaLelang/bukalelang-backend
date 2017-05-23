@@ -282,6 +282,33 @@ router.get('/search', auctionController.searchByTitle)
 router.get('/:id', auctionController.show)
 
 /**
+ * @api {get} /auctions/:id/time-left get time left of the auction by id
+ * @apiGroup Auction
+ * @apiSuccess {String} message message from server
+ * @apiSuccess {Boolean} success is request success ?
+ * @apiSuccess {Integer} time_left time left of the auction
+ * @apiSuccess {Date} end_date date end of auction, default is one week
+
+ * @apiSuccessExample {json} Success
+ *    HTTP/1.1 200 OK
+ *    {
+ *       success: true,
+ *       message: 'Success load list of auctions',
+         time_left: 111000,
+*        end_date: '2017-05-16T18:22:54.846+07:00'
+ *    }
+ * @apiErrorExample {json} List error
+ *    HTTP/1.1 500 Internal Server Error
+ *    {
+ *       success: false,
+ *       message: 'Auction with id 3 doesnt exist',
+         time_left: null,
+*        end_date: null
+ *    }
+ */
+router.get('/:id/time-left', auctionController.timeLeft)
+
+/**
  * @api {get} /auctions/slug/:slug get auction by slug
  * @apiGroup Auction
  * @apiSuccess {String} message message from server
