@@ -282,8 +282,12 @@ module.exports = {
       }
       var endDate = new Date(auction.end_date);
 
-      console.log('isi ', endDate.getTime());
-      finalResult.time_left = endDate.getTime()
+      function getMinutesBetweenDates(startDate, endDate) {
+        var diff = endDate.getTime() - startDate.getTime();
+        return diff;
+      }
+
+      finalResult.time_left = getMinutesBetweenDates(new Date(), endDate)
 
       finalResult.end_date = auction.end_date
       finalResult.success = true
