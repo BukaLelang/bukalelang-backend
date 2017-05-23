@@ -184,10 +184,11 @@ module.exports = {
           running: moment(auction.end_date).format() >= moment().format() ? true : false,
           categoryName: auction.Category.name,
           current_price: auction.Bids.length == 0 ? auction.min_price : _.maxBy(auction.Bids, 'current_bid').current_bid,
-          name: auction.User.name
+          name: auction.User.name,
+          time_left: getMinutesBetweenDates(new Date(), new Date(auction.end_date))
         })
       });
-
+      // cleaning unnecessary data
       for (var i = 0; i < newAuctions.length; i++) {
         delete newAuctions[i].Category
         delete newAuctions[i].User
@@ -242,7 +243,8 @@ module.exports = {
           running: moment(auction.end_date).format() >= moment().format() ? true : false,
           categoryName: auction.Category.name,
           current_price: auction.Bids.length == 0 ? auction.min_price : _.maxBy(auction.Bids, 'current_bid').current_bid,
-          name: auction.User.name
+          name: auction.User.name,
+          time_left: getMinutesBetweenDates(new Date(), new Date(auction.end_date))
         })
       });
 
@@ -280,12 +282,6 @@ module.exports = {
         res.json(finalResult)
       }
       var endDate = new Date(auction.end_date);
-
-      function getMinutesBetweenDates(startDate, endDate) {
-        var diff = endDate.getTime() - startDate.getTime();
-        return diff;
-      }
-
       finalResult.time_left = getMinutesBetweenDates(new Date(), endDate)
 
       finalResult.end_date = auction.end_date
@@ -314,6 +310,7 @@ module.exports = {
       kelipatan_bid: 0,
       start_date: null,
       end_date: null,
+      time_left: null,
       userId: null,
       success: false,
       message: 'Ambil satu auction gagal ):',
@@ -338,6 +335,7 @@ module.exports = {
       finalResult.kelipatan_bid = auction.kelipatan_bid
       finalResult.start_date = auction.start_date
       finalResult.end_date = auction.end_date
+      finalResult.time_left = getMinutesBetweenDates(new Date(), new Date(auction.end_date))
       finalResult.success = true
       finalResult.userId = auction.userId
       finalResult.message = 'Sukses ngambil satu auction'
@@ -364,6 +362,7 @@ module.exports = {
       kelipatan_bid: 0,
       start_date: null,
       end_date: null,
+      time_left: null,
       userId: null,
       success: false,
       message: 'Ambil satu auction gagal ):',
@@ -392,6 +391,7 @@ module.exports = {
       finalResult.kelipatan_bid = auction.kelipatan_bid
       finalResult.start_date = auction.start_date
       finalResult.end_date = auction.end_date
+      finalResult.time_left = getMinutesBetweenDates(new Date(), new Date(auction.end_date))
       finalResult.success = true
       finalResult.userId = auction.userId
       finalResult.message = 'Sukses ngambil satu auction berdasarkan slug'
@@ -471,4 +471,10 @@ module.exports = {
       console.log('Error when try to get auction by id : ', err);
     })
   }
+}
+
+// to get milisecond of time left
+function getMinutesBetweenDates(startDate, endDate) {
+  var diff = endDate.getTime() - startDate.getTime();
+  return diff;
 }
