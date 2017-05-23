@@ -60,6 +60,27 @@ module.exports = {
         console.log('error when try get user by id : ', err);
         finalResult.message = `User with id ${req.params.id} not found`
       })
+  },
+  userDetail : (req, res) => {
+    let finalResult = {
+      success: false,
+      message: "User with id not found",
+      user_detail:{
+        id: null,
+        name: null,
+      }
+    }
+    models.User.findById(req.params.id).then(user => {
+        finalResult.success = true
+        finalResult.message = 'Success get user detail informations'
+        finalResult.user_detail.id = user.id
+        finalResult.user_detail.name = user.name
+        res.json(finalResult)
+      }).catch(err => {
+        console.log('error when try get user by id : ', err);
+        finalResult.message = `User with id ${req.params.id} not found`
+        res.json(finalResult)
+      })
   }
 }
 

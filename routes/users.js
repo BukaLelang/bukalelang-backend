@@ -11,14 +11,6 @@ router.get('/', function(req, res, next) {
 /**
  * @api {get} /users/:id/auctions-joined get list of auctions joined
  * @apiGroup Users
- * @apiHeaderExample {json} Header-Example:
- *     {
- *       "userid": 2,
- *       "token": "IniToken",
- *     }
- * @apiHeader {Integer} userid userId of user
- * @apiHeader {String} token token of logged in user
-
  * @apiSuccess {String} message message from server
  * @apiSuccess {Boolean} success is request success ?
 
@@ -60,7 +52,40 @@ router.get('/', function(req, res, next) {
  *       auctionsJoined: []
  *    }
  */
-router.get('/:id/auctions-joined', applyMidleware.authentication, userController.auctionsJoined)
+router.get('/:id/auctions-joined', userController.auctionsJoined)
+
+/**
+ * @api {get} /users/:id get user detail informations
+ * @apiGroup Users
+ * @apiSuccess {String} message message from server
+ * @apiSuccess {Boolean} success is request success ?
+
+ * @apiSuccessExample {json} Success
+ *    HTTP/1.1 200 OK
+ *    {
+ *       success: true,
+ *       message: 'Success load detail of user',
+         user_detail: {
+           id: 3,
+           name: 'Diky Arga',
+           auctionsJoinedCount: 5,
+           wonAuctionsCount: 2
+         }
+ *    }
+ * @apiErrorExample {json} List error
+ *    HTTP/1.1 500 Internal Server Error
+ *    {
+ *       success: false,
+ *       message: 'User with id 3 not found',
+         user_detail: {
+           id: null,
+           name: null,
+           auctionsJoinedCount: 0,
+           wonAuctionsCount: 0
+         }
+ *    }
+ */
+router.get('/:id', userController.userDetail)
 
 
 module.exports = router;
