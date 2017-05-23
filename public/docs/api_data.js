@@ -201,6 +201,71 @@ define({ "api": [
   },
   {
     "type": "get",
+    "url": "/auctions/:id/time-left",
+    "title": "get time left of the auction by id",
+    "group": "Auction",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>message from server</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "success",
+            "description": "<p>is request success ?</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "time_left",
+            "description": "<p>time left of the auction</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "end_date",
+            "description": "<p>date end of auction, default is one week</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success",
+          "content": "HTTP/1.1 200 OK\n{\n   success: true,\n   message: 'Success load list of auctions',\n      time_left: 111000,\n    end_date: '2017-05-16T18:22:54.846+07:00'\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "List error",
+          "content": "HTTP/1.1 500 Internal Server Error\n{\n   success: false,\n   message: 'Auction with id 3 doesnt exist',\n      time_left: null,\n    end_date: null\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/auctions.js",
+    "groupTitle": "Auction",
+    "name": "GetAuctionsIdTimeLeft",
+    "sampleRequest": [
+      {
+        "url": "http://localhost:3000/auctions/:id/time-left"
+      }
+    ]
+  },
+  {
+    "type": "get",
     "url": "/auctions?limit=5&&page=2",
     "title": "get all auctions",
     "group": "Auction",
@@ -1399,7 +1464,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success",
-          "content": "HTTP/1.1 200 OK\n{\n   success: true,\n   message: 'Success load detail of user',\n      user_detail: {\n        id: 3,\n        name: 'Diky Arga',\n        auctionsJoinedCount: 5,\n        wonAuctionsCount: 2\n      }\n}",
+          "content": "HTTP/1.1 200 OK\n{\n   success: true,\n   message: 'Success load detail of user',\n      user_detail: {\n        id: 3,\n        name: 'Diky Arga',\n      }\n}",
           "type": "json"
         }
       ]
@@ -1408,7 +1473,7 @@ define({ "api": [
       "examples": [
         {
           "title": "List error",
-          "content": "HTTP/1.1 500 Internal Server Error\n{\n   success: false,\n   message: 'User with id 3 not found',\n      user_detail: {\n        id: null,\n        name: null,\n        auctionsJoinedCount: 0,\n        wonAuctionsCount: 0\n      }\n}",
+          "content": "HTTP/1.1 500 Internal Server Error\n{\n   success: false,\n   message: 'User with id 3 not found',\n      user_detail: {\n        id: null,\n        name: null,\n      }\n}",
           "type": "json"
         }
       ]
