@@ -4,33 +4,6 @@ define({ "api": [
     "url": "/auctions/:id",
     "title": "get auction by id",
     "group": "Auction",
-    "header": {
-      "examples": [
-        {
-          "title": "Header-Example:",
-          "content": "{\n  \"userid\": 2,\n  \"token\": \"IniToken\",\n}",
-          "type": "json"
-        }
-      ],
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "type": "Integer",
-            "optional": false,
-            "field": "userid",
-            "description": "<p>userId of user</p>"
-          },
-          {
-            "group": "Header",
-            "type": "String",
-            "optional": false,
-            "field": "token",
-            "description": "<p>token of logged in user</p>"
-          }
-        ]
-      }
-    },
     "success": {
       "fields": {
         "Success 200": [
@@ -180,33 +153,6 @@ define({ "api": [
     "url": "/auctions/:id/bid-history",
     "title": "get bid history",
     "group": "Auction",
-    "header": {
-      "examples": [
-        {
-          "title": "Header-Example:",
-          "content": "{\n  \"userid\": 2,\n  \"token\": \"IniToken\",\n}",
-          "type": "json"
-        }
-      ],
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "type": "Integer",
-            "optional": false,
-            "field": "userid",
-            "description": "<p>userId of user</p>"
-          },
-          {
-            "group": "Header",
-            "type": "String",
-            "optional": false,
-            "field": "token",
-            "description": "<p>token of logged in user</p>"
-          }
-        ]
-      }
-    },
     "success": {
       "fields": {
         "Success 200": [
@@ -1428,36 +1374,60 @@ define({ "api": [
   },
   {
     "type": "get",
+    "url": "/users/:id",
+    "title": "get user detail informations",
+    "group": "Users",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>message from server</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "success",
+            "description": "<p>is request success ?</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success",
+          "content": "HTTP/1.1 200 OK\n{\n   success: true,\n   message: 'Success load detail of user',\n      user_detail: {\n        id: 3,\n        name: 'Diky Arga',\n        auctionsJoinedCount: 5,\n        wonAuctionsCount: 2\n      }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "List error",
+          "content": "HTTP/1.1 500 Internal Server Error\n{\n   success: false,\n   message: 'User with id 3 not found',\n      user_detail: {\n        id: null,\n        name: null,\n        auctionsJoinedCount: 0,\n        wonAuctionsCount: 0\n      }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/users.js",
+    "groupTitle": "Users",
+    "name": "GetUsersId",
+    "sampleRequest": [
+      {
+        "url": "http://localhost:3000/users/:id"
+      }
+    ]
+  },
+  {
+    "type": "get",
     "url": "/users/:id/auctions-joined",
     "title": "get list of auctions joined",
     "group": "Users",
-    "header": {
-      "examples": [
-        {
-          "title": "Header-Example:",
-          "content": "{\n  \"userid\": 2,\n  \"token\": \"IniToken\",\n}",
-          "type": "json"
-        }
-      ],
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "type": "Integer",
-            "optional": false,
-            "field": "userid",
-            "description": "<p>userId of user</p>"
-          },
-          {
-            "group": "Header",
-            "type": "String",
-            "optional": false,
-            "field": "token",
-            "description": "<p>token of logged in user</p>"
-          }
-        ]
-      }
-    },
     "success": {
       "fields": {
         "Success 200": [
