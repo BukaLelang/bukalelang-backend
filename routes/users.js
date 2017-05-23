@@ -68,8 +68,6 @@ router.get('/:id/auctions-joined', userController.auctionsJoined)
          user_detail: {
            id: 3,
            name: 'Diky Arga',
-           auctionsJoinedCount: 5,
-           wonAuctionsCount: 2
          }
  *    }
  * @apiErrorExample {json} List error
@@ -80,8 +78,6 @@ router.get('/:id/auctions-joined', userController.auctionsJoined)
          user_detail: {
            id: null,
            name: null,
-           auctionsJoinedCount: 0,
-           wonAuctionsCount: 0
          }
  *    }
  */
