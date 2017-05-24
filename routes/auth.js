@@ -37,6 +37,7 @@ let authController = require('../controllers/authController')
  *      "email": 'dikyarga.id@gmail.com',
  *      "saldo": 123000,
  *      "token": 'lalalalululululolololo',
+ *      "basic_token": 'basic fjksafjkajkdsfsjfkdsafksafksa=',
  *      "success": true,
  *      "message": 'login success',
  *    }
@@ -50,6 +51,7 @@ let authController = require('../controllers/authController')
  *      "email": null,
  *      "saldo": null,
  *      "token": null,
+ *      "basic_token": null,
  *      "success": false,
  *      "message": 'email sudah terdaftar',
  *    }
@@ -85,6 +87,7 @@ router.post('/register', authController.register)
  *      "username": "dikyarga",
  *      "email": 'dikyarga.id@gmail.com',
  *      "saldo": 123000,
+ *      "basic_token": 'basic fjksafjkajkdsfsjfkdsafksafksa=',
  *      "token": 'lalalalululululolololo',
  *      "success": true,
  *      "message": 'login success',
@@ -98,6 +101,7 @@ router.post('/register', authController.register)
  *      "username": null,
  *      "email": null,
  *      "saldo": null,
+ *      "basic_token": null,
  *      "token": null,
  *      "success": false,
  *      "message": 'email atau password salah',
