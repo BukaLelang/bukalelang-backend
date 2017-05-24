@@ -20,6 +20,7 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         Auction.hasMany(models.Bid, {foreignKey: 'auctionId'})
+        Auction.hasMany(models.ProductImage, {foreignKey: 'auctionId'})
         Auction.belongsTo(models.Category, {foreignKey: 'categoryId'})
         Auction.belongsTo(models.User, {foreignKey: 'userId'})
       }
