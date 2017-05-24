@@ -38,4 +38,24 @@
     "new": false,
     "weight": 200,
     "categoryId": 341
+}, {
+    "title": "M2m jack L silver coated",
+    "description": "M2M JACK L silvercoated | m2m dengan soundstage luas, detail yang bagus banget, mid dan high extend dan low rapi karakter warm to bright. barang second penggunaan pribadi | Garansi: Lifetime. ongkir tanggung pemenang Spesifikasi: -kabel silver coated 3 braid - jack L Gold Plated -timah oyaide -panjang tip to tip +-8cm ",
+    "images": ["18559028_1903773539846621_6932446845067089685_o.jpg", "18595382_1903773496513292_5376322023273567456_o.jpg", "18558734_1903773456513296_3446412296405670588_o.jpg", "18671491_1903773463179962_6940563918814893833_o.jpg"],
+    "minPrice": 25000,
+    "maxPrice": 1000000,
+    "kelipatanBid": 5000,
+    "new": false,
+    "weight": 100,
+    "categoryId": 396
+}, {
+    "title": "Nike air jordan 1 low retro",
+    "description": "Nike air jordan 1 low retro - Size 9/42 - Kondisi: like new 98% jarang pake minus kotor dikit",
+    "images": ["18588746_1017219825075796_2140217257318186404_o.jpg", "18556899_1017219821742463_5790414949416231657_o.jpg", "18556555_1017219828409129_8294567053499392197_o.jpg"],
+    "minPrice": 150000,
+    "maxPrice": 1500000,
+    "kelipatanBid": 10000,
+    "new": false,
+    "weight": 2000,
+    "categoryId": 2431
 }]
