@@ -17,7 +17,8 @@ module.exports = {
       productId: null,
       title: null,
       slug: null,
-      images: null,
+      images: [],
+      small_images: [],
       categoryId: null,
       new: false,
       weight: 0,
@@ -103,6 +104,22 @@ module.exports = {
               end_date: req.body.end_date,
               userId: req.body.userId
             }).then((auction) => {
+              // save all images one by one
+              let images = []
+              for (var i = 0; i < responseAfterCreateProduct.data.product_detail.images.length; i++) {
+                images.push({
+                  imageUrl: responseAfterCreateProduct.data.product_detail.images[i],
+                  smallImageUrl: responseAfterCreateProduct.data.product_detail.small_images[i],
+                  auctionId: auction.id
+                })
+              }
+              console.log('images : ', images);
+
+              models.ProductImage.bulkCreate(images).then(() => {
+                console.log('YEAH!');
+              })
+
+              console.log('only small images : ', _.takeRightWhile(images, 'smallImageUrl'));
 
               // ambil nama category nya
               models.Category.findById(auction.categoryId).then(category => {
@@ -111,7 +128,8 @@ module.exports = {
                   finalResult.productId = auction.productId
                   finalResult.title = auction.title
                   finalResult.slug = auction.slug
-                  finalResult.images = auction.images
+                  finalResult.images = responseAfterCreateProduct.data.product_detail.images
+                  finalResult.small_images = responseAfterCreateProduct.data.product_detail.small_images
                   finalResult.categoryId = auction.categoryId
                   finalResult.category = category.name
                   finalResult.new = auction.new
