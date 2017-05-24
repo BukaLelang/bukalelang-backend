@@ -58,4 +58,34 @@
     "new": false,
     "weight": 2000,
     "categoryId": 2431
+}, {
+    "title": "Tamiya STO 100",
+    "description": "Sto 100 part hg campur frp roler 12/13, 19 mesin ultra",
+    "images": ["18595351_1080537975423704_1599301220619307539_o.jpg", "18556862_1080537982090370_2725080892910667932_o.jpg", "18489849_1080537978757037_3560457130178166935_o.jpg", "18588800_1080537985423703_2582422248365286934_o.jpg", "18559011_1080537988757036_3501975879389272155_o.jpg"],
+    "minPrice": 100000,
+    "maxPrice": 1250000,
+    "kelipatanBid": 10000,
+    "new": false,
+    "weight": 1000,
+    "categoryId": 345
+}, {
+    "title": "Tamiya STO 100 - Dark Red",
+    "description": "Edisi BOSAN. | Tamiya STO 100 kondisi 98% dijamin utuh. Baru 2 kali turun lomba. plus dinamo ultra dash.",
+    "images": ["18527071_708411415997164_6737804865192121681_o.jpg", "18518131_708411409330498_439114669169820114_o.jpg", "18556775_708411412663831_8286573163833175615_o.jpg", "18557181_708411419330497_6554124459815122753_n.jpg"],
+    "minPrice": 50000,
+    "maxPrice": 900000,
+    "kelipatanBid": 5000,
+    "new": false,
+    "weight": 1000,
+    "categoryId": 345
+}, {
+    "title": "Takstar HD3000 / TS600",
+    "description": "2nd hand ex demo unit fisik 90% up (mint condition) fungsi 100% normal (tested) pad tidak bau (bebas rokok dan binatang) super jarang dipakai, minus ada tekukan di pad headband karena lama digantung  Kelengkapan : FULLSET beserta dus dan kelengkapan nya pouch BELUM pernah dipakai  Garansi : personal aja 1 minggu untuk cek fungsi dll",
+    "images": ["17190732_10208795683792449_8268129444718406148_n.jpg", "17239738_10208795683152433_8767893072936076662_o.jpg"],
+    "minPrice": 0,
+    "maxPrice": 950000,
+    "kelipatanBid": 10000,
+    "new": false,
+    "weight": 1500,
+    "categoryId": 178
 }]
