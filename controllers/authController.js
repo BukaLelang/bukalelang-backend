@@ -1,5 +1,6 @@
 let axios = require('axios')
 const models = require('../models')
+let { btoa } = require('Base64')
 
 blEndPoint = 'https://api.bukalapak.com/v2/'
 
@@ -13,6 +14,7 @@ module.exports = {
       email: null,
       saldo: null,
       token: null,
+      basic_token: null,
       success: false,
       message: ''
     }
@@ -70,6 +72,7 @@ module.exports = {
                   finalResult.username = req.body.username,
                   finalResult.email = responseAfterLogin.data.email,
                   finalResult.saldo = 250000,
+                  finalResult.basic_token = 'Basic ' + btoa(responseAfterLogin.data.user_id + ':' + responseAfterLogin.data.token),
                   finalResult.token = responseAfterLogin.data.token,
                   finalResult.success = true,
                   finalResult.message = 'login success'
@@ -110,6 +113,7 @@ module.exports = {
       email: null,
       saldo: null,
       token: null,
+      basic_token: null,
       success: false,
       message: ''
     }
@@ -163,6 +167,7 @@ module.exports = {
                   finalResult.email = responseAfterLogin.data.email,
                   finalResult.saldo = 250000,
                   finalResult.token = responseAfterLogin.data.token,
+                  finalResult.basic_token = 'Basic ' + btoa(responseAfterLogin.data.user_id + ':' + responseAfterLogin.data.token),
                   finalResult.success = true,
                   finalResult.message = 'login success'
                   res.json(finalResult)
@@ -217,6 +222,7 @@ module.exports = {
                   finalResult.email = user.email,
                   finalResult.saldo = 250000,
                   finalResult.token = responseAfterLogin.data.token,
+                  finalResult.basic_token = 'Basic ' + btoa(responseAfterLogin.data.user_id + ':' + responseAfterLogin.data.token),
                   finalResult.success = true,
                   finalResult.message = 'login success'
                   res.json(finalResult)
