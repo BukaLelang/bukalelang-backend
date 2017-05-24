@@ -189,17 +189,22 @@ module.exports = {
         model: models.User
       },{
         model: models.Bid
+      },{
+        model: models.ProductImage
       }],
       limit: limitPerPage,
       offset: offset,
       order: [['id', 'DESC']]
     }).then(auctions => {
+      // res.json(auctions)
       let auctionsArr = JSON.parse(JSON.stringify(auctions));
       auctionsArr = _.orderBy(auctionsArr, ['id'], ['desc'])
       let takeLatestAuction = _.take(auctionsArr, 10)
       const newAuctions = takeLatestAuction.map(auction => {
         return Object.assign({}, auction, {
           running: moment(auction.end_date).format() >= moment().format() ? true : false,
+          images: convertArrayOfObjectIntoArray(auction.ProductImages, 'imageUrl'),
+          small_images: convertArrayOfObjectIntoArray(auction.ProductImages, 'smallImageUrl'),
           categoryName: auction.Category.name,
           current_price: auction.Bids.length == 0 ? auction.min_price : _.maxBy(auction.Bids, 'current_bid').current_bid,
           name: auction.User.name,
@@ -211,6 +216,7 @@ module.exports = {
         delete newAuctions[i].Category
         delete newAuctions[i].User
         delete newAuctions[i].Bids
+        delete newAuctions[i].ProductImages
         delete newAuctions[i].categoryId
         delete newAuctions[i].createdAt
         delete newAuctions[i].updatedAt
@@ -495,4 +501,13 @@ module.exports = {
 function getMinutesBetweenDates(startDate, endDate) {
   var diff = endDate.getTime() - startDate.getTime();
   return diff;
+}
+
+function convertArrayOfObjectIntoArray(arrayOfImages, propertyName) {
+  let images = []
+  for (var i = 0; i < arrayOfImages.length; i++) {
+    images.push(arrayOfImages[i][propertyName])
+  }
+
+  return images
 }
