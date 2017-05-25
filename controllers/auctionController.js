@@ -202,6 +202,7 @@ module.exports = {
       let takeLatestAuction = _.take(auctionsArr, 10)
       const newAuctions = takeLatestAuction.map(auction => {
         return Object.assign({}, auction, {
+          isRunning: moment(auction.end_date).format() >= moment().format() ? 1 : 0,
           running: moment(auction.end_date).format() >= moment().format() ? true : false,
           images: convertArrayOfObjectIntoArray(auction.ProductImages, 'imageUrl'),
           small_images: convertArrayOfObjectIntoArray(auction.ProductImages, 'smallImageUrl'),
@@ -248,6 +249,8 @@ module.exports = {
         model: models.User
       },{
         model: models.Bid
+      },{
+        model: models.ProductImage
       }],
       where: {
         title:{
@@ -264,7 +267,10 @@ module.exports = {
       let takeLatestAuction = _.take(auctionsArr, 15)
       const newAuctions = takeLatestAuction.map(auction => {
         return Object.assign({}, auction, {
+          isRunning: moment(auction.end_date).format() >= moment().format() ? 1 : 0,
           running: moment(auction.end_date).format() >= moment().format() ? true : false,
+          images: convertArrayOfObjectIntoArray(auction.ProductImages, 'imageUrl'),
+          small_images: convertArrayOfObjectIntoArray(auction.ProductImages, 'smallImageUrl'),
           categoryName: auction.Category.name,
           current_price: auction.Bids.length == 0 ? auction.min_price : _.maxBy(auction.Bids, 'current_bid').current_bid,
           name: auction.User.name,
@@ -276,6 +282,7 @@ module.exports = {
         delete newAuctions[i].Category
         delete newAuctions[i].User
         delete newAuctions[i].Bids
+        delete newAuctions[i].ProductImages
         delete newAuctions[i].categoryId
         delete newAuctions[i].createdAt
         delete newAuctions[i].updatedAt
@@ -324,8 +331,10 @@ module.exports = {
       productId: null,
       title: null,
       slug: null,
-      images: null,
+      images: [],
+      small_images: [],
       categoryId: null,
+      categoryName: null,
       new: false,
       weight: 0,
       description: null,
@@ -334,13 +343,24 @@ module.exports = {
       kelipatan_bid: 0,
       start_date: null,
       end_date: null,
-      time_left: null,
+      time_left: 0,
+      isRunning: false,
       userId: null,
       success: false,
       message: 'Ambil satu auction gagal ):',
     }
 
-    models.Auction.findById(req.params.id).then(auction => {
+    models.Auction.findOne({
+      where: {
+        id: req.params.id
+      },
+      include: [{
+        model: models.ProductImage
+      }, {
+        model: models.Category
+      }]
+    }).then(auction => {
+      // console.log('isi auciton L --------', auction.Category);
       if (!auction) {
         finalResult.message = 'Lelang dengan id ' + req.params.id + ' tidak ditemukan'
         res.json(finalResult)
@@ -349,8 +369,10 @@ module.exports = {
       finalResult.productId = auction.productId
       finalResult.title = auction.title
       finalResult.slug = auction.slug
-      finalResult.images = auction.images
+      finalResult.images = convertArrayOfObjectIntoArray(auction.ProductImages, 'imageUrl')
+      finalResult.small_images = convertArrayOfObjectIntoArray(auction.ProductImages, 'smallImageUrl')
       finalResult.categoryId = auction.categoryId
+      finalResult.categoryName = auction.Category.name
       finalResult.new = auction.new
       finalResult.weight = auction.weight
       finalResult.description = auction.description
@@ -360,6 +382,8 @@ module.exports = {
       finalResult.start_date = auction.start_date
       finalResult.end_date = auction.end_date
       finalResult.time_left = getMinutesBetweenDates(new Date(), new Date(auction.end_date))
+      finalResult.running = moment(auction.end_date).format() >= moment().format() ? true : false
+      finalResult.isRunning = moment(auction.end_date).format() >= moment().format() ? 1 : 0
       finalResult.success = true
       finalResult.userId = auction.userId
       finalResult.message = 'Sukses ngambil satu auction'
@@ -376,8 +400,10 @@ module.exports = {
       productId: null,
       title: null,
       slug: null,
-      images: null,
+      images: [],
+      small_images: [],
       categoryId: null,
+      categoryName: null,
       new: false,
       weight: 0,
       description: null,
@@ -387,6 +413,7 @@ module.exports = {
       start_date: null,
       end_date: null,
       time_left: null,
+      isRunning: false,
       userId: null,
       success: false,
       message: 'Ambil satu auction gagal ):',
@@ -395,7 +422,12 @@ module.exports = {
     models.Auction.findOne({
       where: {
         slug: req.params.slug
-      }
+      },
+      include: [{
+        model: models.ProductImage
+      }, {
+        model: models.Category
+      }]
     }).then(auction => {
       if (!auction) {
         finalResult.message = 'Lelang dengan slug ' + req.params.slug + ' tidak ditemukan'
@@ -405,8 +437,10 @@ module.exports = {
       finalResult.productId = auction.productId
       finalResult.title = auction.title
       finalResult.slug = auction.slug
-      finalResult.images = auction.images
+      finalResult.images = convertArrayOfObjectIntoArray(auction.ProductImages, 'imageUrl')
+      finalResult.small_images = convertArrayOfObjectIntoArray(auction.ProductImages, 'smallImageUrl')
       finalResult.categoryId = auction.categoryId
+      finalResult.categoryName = auction.Category.name
       finalResult.new = auction.new
       finalResult.weight = auction.weight
       finalResult.description = auction.description
@@ -416,6 +450,8 @@ module.exports = {
       finalResult.start_date = auction.start_date
       finalResult.end_date = auction.end_date
       finalResult.time_left = getMinutesBetweenDates(new Date(), new Date(auction.end_date))
+      finalResult.running = moment(auction.end_date).format() >= moment().format() ? true : false
+      finalResult.isRunning = moment(auction.end_date).format() >= moment().format() ? 1 : 0
       finalResult.success = true
       finalResult.userId = auction.userId
       finalResult.message = 'Sukses ngambil satu auction berdasarkan slug'
