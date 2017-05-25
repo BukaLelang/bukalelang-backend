@@ -1500,6 +1500,64 @@ define({ "api": [
   },
   {
     "type": "get",
+    "url": "/categories/",
+    "title": "get all categories",
+    "group": "Category",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Success or not ?</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>message from server</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Array",
+            "optional": false,
+            "field": "categories",
+            "description": "<p>list categories of auction</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success",
+          "content": "HTTP/1.1 200 OK\n{\n  \"success\": true,\n  \"message\": 'login success',\n     \"categories\": [{\n         \"id\": 2266,\n         \"name\": \"Perawatan & Kecantikan\",\n         \"url\": \"/c/perawatan-kecantikan\",\n         \"children\": [\n             {\n                 \"id\": 2650,\n                 \"name\": \"Softlens\",\n                 \"url\": \"/c/perawatan-kecantikan/softlens\"\n             },..]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "List error",
+          "content": "HTTP/1.1 500 Internal Server Error\n{\n  \"success\": false,\n  \"message\": 'email atau password salah',\n     \"categories\": []\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/categories.js",
+    "groupTitle": "Category",
+    "name": "GetCategories",
+    "sampleRequest": [
+      {
+        "url": "http://localhost:3000/categories/"
+      }
+    ]
+  },
+  {
+    "type": "get",
     "url": "/ping",
     "title": "Ping server",
     "group": "Status",
