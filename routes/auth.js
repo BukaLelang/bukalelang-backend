@@ -25,6 +25,7 @@ let authController = require('../controllers/authController')
  * @apiSuccess {String} email Email of user
  * @apiSuccess {String} saldo Balance of user
  * @apiSuccess {Boolean} success Success or not ?
+ * @apiSuccess {Array} user_addresses array of addresses
  * @apiSuccess {String} token token for authorization
  * @apiSuccess {String} message message from server
  * @apiSuccessExample {json} Success
@@ -37,7 +38,22 @@ let authController = require('../controllers/authController')
  *      "email": 'dikyarga.id@gmail.com',
  *      "saldo": 123000,
  *      "token": 'lalalalululululolololo',
- *      "basic_token": 'basic fjksafjkajkdsfsjfkdsafksafksa=',
+ *      "user_addresses": [{
+          "id": 345,
+          "primary": false,
+          "title": "bukan utama1",
+          "name": "tetsdfsdf",
+          "phone": "085645262611",
+          "address_attributes": {
+            "id": 499,
+            "address": "Lalalalaa",
+            "area": "Kaliwungu",
+            "city": "Kendal",
+            "province": "Jawa Tengah",
+            "post_code": "51372"
+          }
+        }],
+ *      "basic_token": 'Basic fjksafjkajkdsfsjfkdsafksafksa=',
  *      "success": true,
  *      "message": 'login success',
  *    }
@@ -51,6 +67,7 @@ let authController = require('../controllers/authController')
  *      "email": null,
  *      "saldo": null,
  *      "token": null,
+        "user_addresses": [],
  *      "basic_token": null,
  *      "success": false,
  *      "message": 'email sudah terdaftar',
@@ -77,6 +94,7 @@ router.post('/register', authController.register)
  * @apiSuccess {String} saldo Balance of user
  * @apiSuccess {Boolean} success Success or not ?
  * @apiSuccess {String} token token for authorization
+ * @apiSuccess {Array} user_addresses array of addresses
  * @apiSuccess {String} message message from server
  * @apiSuccessExample {json} Success
  *    HTTP/1.1 200 OK
@@ -87,8 +105,23 @@ router.post('/register', authController.register)
  *      "username": "dikyarga",
  *      "email": 'dikyarga.id@gmail.com',
  *      "saldo": 123000,
- *      "basic_token": 'basic fjksafjkajkdsfsjfkdsafksafksa=',
+ *      "basic_token": 'Basic fjksafjkajkdsfsjfkdsafksafksa=',
  *      "token": 'lalalalululululolololo',
+ *      "user_addresses": [{
+          "id": 345,
+          "primary": false,
+          "title": "bukan utama1",
+          "name": "tetsdfsdf",
+          "phone": "085645262611",
+          "address_attributes": {
+            "id": 499,
+            "address": "Lalalalaa",
+            "area": "Kaliwungu",
+            "city": "Kendal",
+            "province": "Jawa Tengah",
+            "post_code": "51372"
+          }
+        }],
  *      "success": true,
  *      "message": 'login success',
  *    }
@@ -103,6 +136,7 @@ router.post('/register', authController.register)
  *      "saldo": null,
  *      "basic_token": null,
  *      "token": null,
+        "user_addresses": [],
  *      "success": false,
  *      "message": 'email atau password salah',
  *    }

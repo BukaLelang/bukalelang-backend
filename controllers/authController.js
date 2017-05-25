@@ -12,8 +12,10 @@ module.exports = {
       name: null,
       username: null,
       email: null,
+      confirmed: false,
       saldo: null,
       token: null,
+      user_addresses: [],
       basic_token: null,
       success: false,
       message: ''
@@ -46,6 +48,7 @@ module.exports = {
               password: req.body.password
             }
           }).then((responseAfterLogin) => {
+            // console.log('sudah confirmed ? ', responseAfterLogin.data);
             models.User.create({
               name: req.body.name,
               username: req.body.username,
@@ -65,18 +68,33 @@ module.exports = {
                   password: responseAfterLogin.data.token
                 }
               }).then((responseGetBalance) => {
-                // console.log('isi responseGetBalance : ', responseGetBalance.data, pindah sementara disini : responseGetBalance.data.balance);
-                  finalResult.id = newRegisteredUser.id,
-                  finalResult.bukalapakId = responseAfterLogin.data.user_id,
-                  finalResult.name = responseAfterLogin.data.user_name,
-                  finalResult.username = req.body.username,
-                  finalResult.email = responseAfterLogin.data.email,
-                  finalResult.saldo = 250000,
-                  finalResult.basic_token = 'Basic ' + btoa(responseAfterLogin.data.user_id + ':' + responseAfterLogin.data.token),
-                  finalResult.token = responseAfterLogin.data.token,
-                  finalResult.success = true,
-                  finalResult.message = 'login success'
+                axios({
+                  method: 'get',
+                  url: blEndPoint + 'user_addresses.json',
+                  auth: {
+                    username: responseAfterLogin.data.user_id,
+                    password: responseAfterLogin.data.token
+                  }
+                }).then((responseAfterGetAddresses) => {
+                  // console.log('isi responseGetBalance : ', responseGetBalance.data, pindah sementara disini : responseGetBalance.data.balance);
+                  finalResult.id = newRegisteredUser.id
+                  finalResult.bukalapakId = responseAfterLogin.data.user_id
+                  finalResult.name = responseAfterLogin.data.user_name
+                  finalResult.username = req.body.username
+                  finalResult.email = responseAfterLogin.data.email
+                  finalResult.confirmed = responseAfterLogin.data.confirmed
+                  finalResult.saldo = 250000
+                  finalResult.basic_token = 'Basic ' + btoa(responseAfterLogin.data.user_id + ':' + responseAfterLogin.data.token)
+                  finalResult.token = responseAfterLogin.data.token
+                  finalResult.user_addresses = responseAfterGetAddresses.data.user_addresses
+                  finalResult.success = true
+                  finalResult.message = 'login success after register success'
                   res.json(finalResult)
+                }).catch((err) => {
+                  // console.log('isi error saat ambil saldo : ', err);
+                  finalResult.message = 'Error saat ambil saldo di Buka Dompet'
+                  res.json(finalResult)
+                })
               }).catch((err) => {
                 // console.log('isi error saat ambil saldo : ', err);
                 finalResult.message = 'Error saat ambil saldo di Buka Dompet'
@@ -111,8 +129,10 @@ module.exports = {
       name: null,
       username: null,
       email: null,
+      confirmed: false,
       saldo: null,
       token: null,
+      user_addresses: [],
       basic_token: null,
       success: false,
       message: ''
@@ -133,7 +153,7 @@ module.exports = {
             password: req.body.password
           }
         }).then((responseAfterLogin) => {
-          // console.log('isi responseAfterLogin authenticate : ', responseAfterLogin.data);
+          console.log('isi responseAfterLogin authenticate : ', responseAfterLogin.data);
           // jika ternyata di BL belum ada juga
           if (responseAfterLogin.data.user_id == null) {
             finalResult.message = 'Anda belum memiliki akun, silahkan register terlebih dahulu';
@@ -160,17 +180,33 @@ module.exports = {
                 }
               }).then((responseGetBalance) => {
                 // console.log('isi responseGetBalance : ', responseGetBalance.data);
+                axios({
+                  method: 'get',
+                  url: blEndPoint + 'user_addresses.json',
+                  auth: {
+                    username: responseAfterLogin.data.user_id,
+                    password: responseAfterLogin.data.token
+                  }
+                }).then((responseAfterGetAddresses) => {
+                  // console.log('--------------', responseAfterGetAddresses);
                   finalResult.id = newRegisteredUser.id,
                   finalResult.bukalapakId = responseAfterLogin.data.user_id,
                   finalResult.name = responseAfterLogin.data.user_name,
                   finalResult.username = req.body.username,
                   finalResult.email = responseAfterLogin.data.email,
+                  finalResult.confirmed = responseAfterLogin.data.confirmed,
                   finalResult.saldo = 250000,
                   finalResult.token = responseAfterLogin.data.token,
+                  finalResult.user_addresses = responseAfterGetAddresses.data.user_addresses,
                   finalResult.basic_token = 'Basic ' + btoa(responseAfterLogin.data.user_id + ':' + responseAfterLogin.data.token),
                   finalResult.success = true,
                   finalResult.message = 'login success'
                   res.json(finalResult)
+                }).catch(err => {
+                  console.log('error saat ambil alamat di BL', err);
+                  finalResult.message = 'error saat ambil alamat di BL'
+                  res.json(finalResult)
+                })
               }).catch((err) => {
                 // console.log('isi error saat ambil saldo : ', err);
                 finalResult.message = 'Error saat ambil saldo di Buka Dompet'
@@ -195,12 +231,15 @@ module.exports = {
             password: req.body.password
           }
         }).then((responseAfterLogin) => {
+          console.log('isi responseAfterLogin authenticate : ', responseAfterLogin.data);
+
           switch (responseAfterLogin.data.status) {
             case 'OK':
               //Update token
               models.User.update({
                 password: req.body.password,
-                bl_token:responseAfterLogin.data.token
+                bl_token:responseAfterLogin.data.token,
+                confirmed: responseAfterLogin.data.confirmed
               },{
                 where:{
                   id:user.id
@@ -215,6 +254,15 @@ module.exports = {
                 }
               }).then((responseGetBalance) => {
                 // console.log('isi responseGetBalance : ', responseGetBalance.data);
+                axios({
+                  method: 'get',
+                  url: blEndPoint + 'user_addresses.json',
+                  auth: {
+                    username: responseAfterLogin.data.user_id,
+                    password: responseAfterLogin.data.token
+                  }
+                }).then((responseAfterGetAddresses) => {
+                  // console.log('--------------', responseAfterGetAddresses);
                   finalResult.id = user.id,
                   finalResult.bukalapakId = responseAfterLogin.data.user_id,
                   finalResult.name = user.name,
@@ -222,11 +270,17 @@ module.exports = {
                   finalResult.email = user.email,
                   finalResult.saldo = 250000,
                   finalResult.token = responseAfterLogin.data.token,
+                  finalResult.confirmed = responseAfterLogin.data.confirmed,
+                  finalResult.user_addresses = responseAfterGetAddresses.data.user_addresses,
                   finalResult.basic_token = 'Basic ' + btoa(responseAfterLogin.data.user_id + ':' + responseAfterLogin.data.token),
                   finalResult.success = true,
                   finalResult.message = 'login success'
                   res.json(finalResult)
-
+                }).catch(err => {
+                  console.log('error saat ambil alamat di BL', err);
+                  finalResult.message = 'error saat ambil alamat di BL'
+                  res.json(finalResult)
+                })
               }).catch((err) => {
                 // console.log('isi error saat ambil saldo : ', err);
                 finalResult.message = 'Error saat ambil saldo di Buka Dompet'
