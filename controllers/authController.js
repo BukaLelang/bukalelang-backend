@@ -147,6 +147,7 @@ module.exports = {
     }).then(user => {
       // kalo ngak ada, coba cek di BL
       if (user == null) {
+        console.log('isi req body : ', req.body);
         axios({
           method:'post',
           url: blEndPoint + 'authenticate.json',
@@ -155,7 +156,7 @@ module.exports = {
             password: req.body.password
           }
         }).then((responseAfterLogin) => {
-          console.log('isi responseAfterLogin authenticate : ', responseAfterLogin.data);
+          console.log('isi responseAfterLogin authenticate - : ', responseAfterLogin.data);
           // jika ternyata di BL belum ada juga
           if (responseAfterLogin.data.user_id == null) {
             finalResult.message = 'Anda belum memiliki akun, silahkan register terlebih dahulu';
