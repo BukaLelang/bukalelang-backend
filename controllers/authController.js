@@ -1,6 +1,8 @@
 let axios = require('axios')
-const models = require('../models')
 let { btoa } = require('Base64')
+const crypto = require('crypto');
+
+const models = require('../models')
 
 blEndPoint = 'https://api.bukalapak.com/v2/'
 
@@ -236,9 +238,12 @@ module.exports = {
           switch (responseAfterLogin.data.status) {
             case 'OK':
               //Update token
+              let cipher = crypto.createCipher('aes-256-ctr', process.env.SECRET_KEY)
+              let crypted = cipher.update(req.body.password,'utf8','hex')
+              crypted += cipher.final('hex');
               models.User.update({
-                password: req.body.password,
-                bl_token:responseAfterLogin.data.token,
+                password: crypted,
+                bl_token: responseAfterLogin.data.token,
                 confirmed: responseAfterLogin.data.confirmed
               },{
                 where:{
@@ -253,15 +258,15 @@ module.exports = {
                   password: responseAfterLogin.data.token
                 }
               }).then((responseGetBalance) => {
-                // console.log('isi responseGetBalance : ', responseGetBalance.data);
-                axios({
-                  method: 'get',
-                  url: blEndPoint + 'user_addresses.json',
-                  auth: {
-                    username: responseAfterLogin.data.user_id,
-                    password: responseAfterLogin.data.token
-                  }
-                }).then((responseAfterGetAddresses) => {
+                  // console.log('isi responseGetBalance : ', responseGetBalance.data);
+                  axios({
+                    method: 'get',
+                    url: blEndPoint + 'user_addresses.json',
+                    auth: {
+                      username: responseAfterLogin.data.user_id,
+                      password: responseAfterLogin.data.token
+                    }
+                  }).then((responseAfterGetAddresses) => {
                   // console.log('--------------', responseAfterGetAddresses);
                   finalResult.id = user.id,
                   finalResult.bukalapakId = responseAfterLogin.data.user_id,
