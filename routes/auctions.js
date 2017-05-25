@@ -22,7 +22,7 @@ const applyMidleware = require('../helpers/authentication')
  *       "min_price": 50000,
  *       "max_price": 200000,
  *       "kelipatan_bid": 10000,
- *       "imagesId": 11122121, 11122333,
+ *       "imagesId": "11122121, 11122333",
  *       "end_date": 2017-09-14T00:00:00Z,
  *     }
  * @apiParam {Integer} userId userId of user
@@ -42,7 +42,8 @@ const applyMidleware = require('../helpers/authentication')
  * @apiSuccess {Integer} id id of the auction
  * @apiSuccess {Integer} productId id of the product at BL
  * @apiSuccess {String} title Title of auction
- * @apiSuccess {String} images Url of image of auction
+ * @apiSuccess {Array} images array of URL of images of auction (full resolution)
+ * @apiSuccess {Array} small_images array of URL of images of auction (small resolution)
  * @apiSuccess {Integer} categoryId category ID
  * @apiSuccess {String} category category of the auction
  * @apiSuccess {Boolean} new product is new or second ?
@@ -62,7 +63,7 @@ const applyMidleware = require('../helpers/authentication')
  *      "productId": '42dfs34',
  *      "title": "Lelang Gundam Langka & Istimewa",
  *      "images": ["https://s0.bukalapak.com/system/images/1/6/7/6/6/8/0/large/IMG00475-20121105-1431.jpg?1352105447", "https://s0.bukalapak.com/system/images/1/6/7/6/6/8/0/large/lalalala.jpg?1352105447"],
-        "small_images: ["https://s0.bukalapak.com/system/images/1/6/7/6/6/8/0/small/IMG00475-20121105-1431.jpg?1352105447", "https://s0.bukalapak.com/system/images/1/6/7/6/6/8/0/small/lalalala.jpg?1352105447"]
+ *      "small_images: ["https://s0.bukalapak.com/system/images/1/6/7/6/6/8/0/small/IMG00475-20121105-1431.jpg", "https://s0.bukalapak.com/system/images/1/6/7/6/6/8/0/small/lalalala.jpg?1352105447"],
  *      "categoryId": 145,
  *      "category": 'Mainan',
  *      "new": false,
@@ -106,14 +107,20 @@ router.post('/', auctionController.create)
 
  * @apiSuccess {String} message message from server
  * @apiSuccess {Boolean} success is request success ?
+ * @apiSuccess {Integer} page page of pagination
+ * @apiSuccess {Integer} limit limit per page
  * @apiSuccess {Object[]} auctions List of auctions.
  * @apiSuccess {Integer} auctions.id id of the auction
  * @apiSuccess {Integer} auctions.productId id of the product at BL
  * @apiSuccess {String} auctions.title Title of auction
- * @apiSuccess {String} auctions.images URL of images of auction
- * @apiSuccess {Integer} auctions.category category of auction
+ * @apiSuccess {Array} auctions.images array of URL of images of auction (full resolution)
+ * @apiSuccess {Array} auctions.small_images array of URL of images of auction (small resolution)
+ * @apiSuccess {Integer} auctions.categorynNme category of auction
+ * @apiSuccess {Integer} auctions.time_left time left of the auction
  * @apiSuccess {Boolean} auctions.new product is new or second ?
  * @apiSuccess {Integer} auctions.weight weight of the product using gram
+ * @apiSuccess {String} auctions.name name of auction maker
+ * @apiSuccess {String} auctions.slug slug of the auction
  * @apiSuccess {String} auctions.description description of product
  * @apiSuccess {Integer} auctions.min_price minimal / start price of auction
  * @apiSuccess {Integer} auctions.current_price current price of the auction
@@ -134,9 +141,26 @@ router.post('/', auctionController.create)
  *            {
  *             id: 23,
  *             productId: '31fsa21',
- *             title: 'Tamiya super cepat',
- *             images: 'https://s0.bukalapak.com/system/images/1/6/7/6/6/8/0/large/IMG00475-20121105-1431.jpg?1352105447',
- *             category: 'Mainan',
+ *             title: 'Tamiya sto 100 cepat',
+               images: [
+                  "https://s1.bukalapak.com/img/6399443521/large/18559011_1080537988757036_3501975879389272155_o.jpg",
+                  "https://s1.bukalapak.com/img/1759443521/large/18588800_1080537985423703_2582422248365286934_o.jpg",
+                  "https://s1.bukalapak.com/img/1568443521/large/18489849_1080537978757037_3560457130178166935_o.jpg",
+                  "https://s1.bukalapak.com/img/6118443521/large/18556862_1080537982090370_2725080892910667932_o.jpg",
+                  "https://s1.bukalapak.com/img/6995143521/large/18595351_1080537975423704_1599301220619307539_o.jpg"
+               ],
+               running: true,
+               small_images: [
+                    "https://s1.bukalapak.com/img/6399443521/small/18559011_1080537988757036_3501975879389272155_o.jpg",
+                    "https://s1.bukalapak.com/img/1759443521/small/18588800_1080537985423703_2582422248365286934_o.jpg",
+                    "https://s1.bukalapak.com/img/1568443521/small/18489849_1080537978757037_3560457130178166935_o.jpg",
+                    "https://s1.bukalapak.com/img/6118443521/small/18556862_1080537982090370_2725080892910667932_o.jpg",
+                    "https://s1.bukalapak.com/img/6995143521/small/18595351_1080537975423704_1599301220619307539_o.jpg"
+               ],
+ *             categoryName: 'Mainan',
+               time_left: 423913828,
+               name: 'Diky Arga',
+               slug: 'tamiya-sto-100-8hdpi0'
  *             new: false,
  *             weight: 1000,
  *             description: 'Tamiya ini di rakit oleh ahli fisika, dengan memperhatikan dengan seksama gaya gesek dan kelembaman sehigga mengurangi kaya gesek dengan lintasan membuanya super cepat.',
@@ -171,6 +195,7 @@ router.get('/', auctionController.getAllAuctions)
  * @apiSuccess {Integer} auctions.id id of the auction
  * @apiSuccess {Integer} auctions.productId id of the product at BL
  * @apiSuccess {String} auctions.title Title of auction
+ * @apiSuccess {String} auctions.name name of auction maker
  * @apiSuccess {String} auctions.images URL of images of auction
  * @apiSuccess {Integer} auctions.category category of auction
  * @apiSuccess {Boolean} auctions.new product is new or second ?
@@ -194,8 +219,24 @@ router.get('/', auctionController.getAllAuctions)
  *             id: 23,
  *             productId: '31fsa21',
  *             title: 'Tamiya super cepat',
- *             images: 'https://s0.bukalapak.com/system/images/1/6/7/6/6/8/0/large/IMG00475-20121105-1431.jpg?1352105447',
+ *             name: 'Diky Arga',
+               images: [
+                  "https://s1.bukalapak.com/img/6399443521/large/18559011_1080537988757036_3501975879389272155_o.jpg",
+                  "https://s1.bukalapak.com/img/1759443521/large/18588800_1080537985423703_2582422248365286934_o.jpg",
+                  "https://s1.bukalapak.com/img/1568443521/large/18489849_1080537978757037_3560457130178166935_o.jpg",
+                  "https://s1.bukalapak.com/img/6118443521/large/18556862_1080537982090370_2725080892910667932_o.jpg",
+                  "https://s1.bukalapak.com/img/6995143521/large/18595351_1080537975423704_1599301220619307539_o.jpg"
+               ],
+               running: true,
+               small_images: [
+                    "https://s1.bukalapak.com/img/6399443521/small/18559011_1080537988757036_3501975879389272155_o.jpg",
+                    "https://s1.bukalapak.com/img/1759443521/small/18588800_1080537985423703_2582422248365286934_o.jpg",
+                    "https://s1.bukalapak.com/img/1568443521/small/18489849_1080537978757037_3560457130178166935_o.jpg",
+                    "https://s1.bukalapak.com/img/6118443521/small/18556862_1080537982090370_2725080892910667932_o.jpg",
+                    "https://s1.bukalapak.com/img/6995143521/small/18595351_1080537975423704_1599301220619307539_o.jpg"
+               ]
  *             category: 'Mainan',
+               time_left: 423913828,
  *             new: false,
  *             weight: 1000,
  *             description: 'Tamiya ini di rakit oleh ahli fisika, dengan memperhatikan dengan seksama gaya gesek dan kelembaman sehigga mengurangi kaya gesek dengan lintasan membuanya super cepat.',
@@ -226,10 +267,13 @@ router.get('/search', auctionController.searchByTitle)
  * @apiSuccess {Integer} id id of the auction
  * @apiSuccess {Integer} productId id of the product at BL
  * @apiSuccess {String} title Title of auction
- * @apiSuccess {String} images URL of image of auction
+ * @apiSuccess {String} name name of auction maker
+ * @apiSuccess {Array} images array of URL of images of auction (full resolution)
+ * @apiSuccess {Array} auctions.small_images array of URL of images of auction (small resolution)
  * @apiSuccess {Integer} category category of auction
  * @apiSuccess {Boolean} new product is new or second ?
  * @apiSuccess {Integer} weight weight of the product using gram
+ * @apiSuccess {String} slug slug of the auction
  * @apiSuccess {String} description description of product
  * @apiSuccess {Integer} min_price minimal / start price of auction
  * @apiSuccess {Integer} current_price current price of the auction
@@ -237,7 +281,7 @@ router.get('/search', auctionController.searchByTitle)
  * @apiSuccess {Integer} kelipatan_bid nominal lipatan of next bidding
  * @apiSuccess {Date} start_date date of auction start, default is after published
  * @apiSuccess {Date} end_date date end of auction, default is one week
-
+ * @apiSuccess {Integer} time_left time left of the auction
 
  * @apiSuccessExample {json} Success
  *    HTTP/1.1 200 OK
@@ -247,8 +291,24 @@ router.get('/search', auctionController.searchByTitle)
 *        id: 23,
 *        productId: '31fsa21',
 *        title: 'Tamiya super cepat',
-*        images: 'https://s0.bukalapak.com/system/images/1/6/7/6/6/8/0/large/IMG00475-20121105-1431.jpg?1352105447',
+          images: [
+             "https://s1.bukalapak.com/img/6399443521/large/18559011_1080537988757036_3501975879389272155_o.jpg",
+             "https://s1.bukalapak.com/img/1759443521/large/18588800_1080537985423703_2582422248365286934_o.jpg",
+             "https://s1.bukalapak.com/img/1568443521/large/18489849_1080537978757037_3560457130178166935_o.jpg",
+             "https://s1.bukalapak.com/img/6118443521/large/18556862_1080537982090370_2725080892910667932_o.jpg",
+             "https://s1.bukalapak.com/img/6995143521/large/18595351_1080537975423704_1599301220619307539_o.jpg"
+          ],
+          running: true,
+          small_images: [
+               "https://s1.bukalapak.com/img/6399443521/small/18559011_1080537988757036_3501975879389272155_o.jpg",
+               "https://s1.bukalapak.com/img/1759443521/small/18588800_1080537985423703_2582422248365286934_o.jpg",
+               "https://s1.bukalapak.com/img/1568443521/small/18489849_1080537978757037_3560457130178166935_o.jpg",
+               "https://s1.bukalapak.com/img/6118443521/small/18556862_1080537982090370_2725080892910667932_o.jpg",
+               "https://s1.bukalapak.com/img/6995143521/small/18595351_1080537975423704_1599301220619307539_o.jpg"
+          ]
 *        category: 'Mainan',
+         slug: 'tamiya-sto-100-8hdpi0',
+         name: 'Diky Arga',
 *        new: false,
 *        weight: 1000,
 *        description: 'Tamiya ini di rakit oleh ahli fisika, dengan memperhatikan dengan seksama gaya gesek dan kelembaman sehigga mengurangi kaya gesek dengan lintasan membuanya super cepat.',
@@ -257,7 +317,8 @@ router.get('/search', auctionController.searchByTitle)
 *        current_price: 600000,
 *        kelipatan_bid: 20000,
 *        start_date: '2017-04-16T18:22:54.846+07:00',
-*        end_date: '2017-05-16T18:22:54.846+07:00'
+*        end_date: '2017-05-16T18:22:54.846+07:00',
+         time_left: 423913828,
  *    }
  * @apiErrorExample {json} List error
  *    HTTP/1.1 500 Internal Server Error
@@ -267,8 +328,12 @@ router.get('/search', auctionController.searchByTitle)
 *        id: null,
 *        productId: null,
 *        title: null,
-*        images: null,
+         images: [],
+         running: false,
+         small_images: [],
 *        category: null,
+         slug: null,
+         name: null,
 *        new: false,
 *        weight: 0,
 *        description: null,
@@ -277,7 +342,8 @@ router.get('/search', auctionController.searchByTitle)
 *        current_price: 0,
 *        kelipatan_bid: 0,
 *        start_date: null,
-*        end_date: null
+*        end_date: null,
+         time_left: 0
  *    }
  */
 router.get('/:id', auctionController.show)
@@ -317,11 +383,14 @@ router.get('/:id/time-left', auctionController.timeLeft)
  * @apiSuccess {Integer} id id of the auction
  * @apiSuccess {Integer} productId id of the product at BL
  * @apiSuccess {String} title Title of auction
+ * @apiSuccess {String} name name of auction maker
  * @apiSuccess {String} slug Slug URL of auction
- * @apiSuccess {String} images URL of image of auction
- * @apiSuccess {Integer} category category of auction
+ * @apiSuccess {Array} images array of URL of images of auction (full resolution)
+ * @apiSuccess {Array} small_images array of URL of images of auction (small resolution)
+ * @apiSuccess {String} category category of auction
  * @apiSuccess {Boolean} new product is new or second ?
  * @apiSuccess {Integer} weight weight of the product using gram
+ * @apiSuccess {String} slug slug of the auction
  * @apiSuccess {String} description description of product
  * @apiSuccess {Integer} min_price minimal / start price of auction
  * @apiSuccess {Integer} current_price current price of the auction
@@ -329,8 +398,7 @@ router.get('/:id/time-left', auctionController.timeLeft)
  * @apiSuccess {Integer} kelipatan_bid nominal lipatan of next bidding
  * @apiSuccess {Date} start_date date of auction start, default is after published
  * @apiSuccess {Date} end_date date end of auction, default is one week
-
-
+ * @apiSuccess {Integer} time_left time left of the auction
  * @apiSuccessExample {json} Success
  *    HTTP/1.1 200 OK
  *    {
@@ -340,8 +408,24 @@ router.get('/:id/time-left', auctionController.timeLeft)
 *        productId: '31fsa21',
 *        title: 'Tamiya super cepat',
 *        slug: 'kamera-antik-jaman-belanda-8853e3',
-*        images: 'https://s0.bukalapak.com/system/images/1/6/7/6/6/8/0/large/IMG00475-20121105-1431.jpg?1352105447',
-*        category: 'Mainan',
+        images: [
+           "https://s1.bukalapak.com/img/6399443521/large/18559011_1080537988757036_3501975879389272155_o.jpg",
+           "https://s1.bukalapak.com/img/1759443521/large/18588800_1080537985423703_2582422248365286934_o.jpg",
+           "https://s1.bukalapak.com/img/1568443521/large/18489849_1080537978757037_3560457130178166935_o.jpg",
+           "https://s1.bukalapak.com/img/6118443521/large/18556862_1080537982090370_2725080892910667932_o.jpg",
+           "https://s1.bukalapak.com/img/6995143521/large/18595351_1080537975423704_1599301220619307539_o.jpg"
+        ],
+        running: true,
+        small_images: [
+             "https://s1.bukalapak.com/img/6399443521/small/18559011_1080537988757036_3501975879389272155_o.jpg",
+             "https://s1.bukalapak.com/img/1759443521/small/18588800_1080537985423703_2582422248365286934_o.jpg",
+             "https://s1.bukalapak.com/img/1568443521/small/18489849_1080537978757037_3560457130178166935_o.jpg",
+             "https://s1.bukalapak.com/img/6118443521/small/18556862_1080537982090370_2725080892910667932_o.jpg",
+             "https://s1.bukalapak.com/img/6995143521/small/18595351_1080537975423704_1599301220619307539_o.jpg"
+        ],
+         categoryName: 'Mainan',
+         time_left: 423913828,
+         name: 'Diky Arga',
 *        new: false,
 *        weight: 1000,
 *        description: 'Tamiya ini di rakit oleh ahli fisika, dengan memperhatikan dengan seksama gaya gesek dan kelembaman sehigga mengurangi kaya gesek dengan lintasan membuanya super cepat.',
@@ -361,8 +445,12 @@ router.get('/:id/time-left', auctionController.timeLeft)
 *        productId: null,
 *        title: null,
 *        slug: null,
-*        images: null,
-*        category: null,
+*        running: false,
+*        images: [],
+*        small_images: [],
+*        categoryName: null,
+         time_left: 0,
+         name: null,
 *        new: false,
 *        weight: 0,
 *        description: null,
