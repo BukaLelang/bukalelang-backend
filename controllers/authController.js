@@ -241,6 +241,7 @@ module.exports = {
               let cipher = crypto.createCipher('aes-256-ctr', process.env.SECRET_KEY)
               let crypted = cipher.update(req.body.password,'utf8','hex')
               crypted += cipher.final('hex');
+
               models.User.update({
                 password: crypted,
                 bl_token: responseAfterLogin.data.token,

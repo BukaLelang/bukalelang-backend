@@ -28,13 +28,6 @@ module.exports = function(sequelize, DataTypes) {
         let crypted = cipher.update(value.password,'utf8','hex')
         crypted += cipher.final('hex');
         value.password = crypted
-      },
-      beforeUpdate:function(value, option){
-        let cipher = crypto.createCipher('aes-256-ctr', process.env.SECRET_KEY)
-        let crypted = cipher.update(value.password,'utf8','hex')
-        crypted += cipher.final('hex');
-        console.log('ini jalan ngak sih ', crypted);
-        value.password = crypted
       }
     }
   });
