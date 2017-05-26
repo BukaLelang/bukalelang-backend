@@ -226,84 +226,131 @@ module.exports = {
       } else {
         // di tempat kita udah ada
         // console.log('udah ada cuy!');
+
+        // .:::::::::::: disable sementara karena suatu hal di BL API :::::::...
+
+        // axios({
+        //   method:'post',
+        //   url: blEndPoint + 'authenticate.json',
+        //   auth: {
+        //     username: req.body.username,
+        //     password: req.body.password
+        //   }
+        // }).then((responseAfterLogin) => {
+        //   console.log('isi responseAfterLogin authenticate : ', responseAfterLogin.data);
+        //
+        //   switch (responseAfterLogin.data.status) {
+        //     case 'OK':
+        //       //Update token
+        //       let cipher = crypto.createCipher('aes-256-ctr', process.env.SECRET_KEY)
+        //       let crypted = cipher.update(req.body.password,'utf8','hex')
+        //       crypted += cipher.final('hex');
+        //
+        //       models.User.update({
+        //         password: crypted,
+        //         bl_token: responseAfterLogin.data.token,
+        //         confirmed: responseAfterLogin.data.confirmed
+        //       },{
+        //         where:{
+        //           id:user.id
+        //       }})
+        //
+        //       axios({
+        //         method: 'get',
+        //         url: blEndPoint + 'dompet/history.json',
+        //         auth: {
+        //           username: responseAfterLogin.data.user_id,
+        //           password: responseAfterLogin.data.token
+        //         }
+        //       }).then((responseGetBalance) => {
+        //           // console.log('isi responseGetBalance : ', responseGetBalance.data);
+        //           axios({
+        //             method: 'get',
+        //             url: blEndPoint + 'user_addresses.json',
+        //             auth: {
+        //               username: responseAfterLogin.data.user_id,
+        //               password: responseAfterLogin.data.token
+        //             }
+        //           }).then((responseAfterGetAddresses) => {
+        //           // console.log('--------------', responseAfterGetAddresses);
+        //           finalResult.id = user.id,
+        //           finalResult.bukalapakId = responseAfterLogin.data.user_id,
+        //           finalResult.name = user.name,
+        //           finalResult.username = user.username,
+        //           finalResult.email = user.email,
+        //           finalResult.saldo = 250000,
+        //           finalResult.token = responseAfterLogin.data.token,
+        //           finalResult.confirmed = responseAfterLogin.data.confirmed,
+        //           finalResult.user_addresses = responseAfterGetAddresses.data.user_addresses,
+        //           finalResult.basic_token = 'Basic ' + btoa(responseAfterLogin.data.user_id + ':' + responseAfterLogin.data.token),
+        //           finalResult.success = true,
+        //           finalResult.message = 'login success'
+        //           res.json(finalResult)
+        //         }).catch(err => {
+        //           console.log('error saat ambil alamat di BL', err);
+        //           finalResult.message = 'error saat ambil alamat di BL'
+        //           res.json(finalResult)
+        //         })
+        //       }).catch((err) => {
+        //         // console.log('isi error saat ambil saldo : ', err);
+        //         finalResult.message = 'Error saat ambil saldo di Buka Dompet'
+        //         res.json(finalResult)
+        //       })
+        //       break;
+        //     case 'ERROR':
+        //       finalResult.message = responseAfterLogin.data.message
+        //       res.json(finalResult)
+        //       break;
+        //     default:
+        //       res.json(finalResult)
+        //   }
+        // }).catch((err) => {
+        //   console.log('isi error saat authenticate : ', err);
+        //   finalResult.message = 'Error saat otentikasi'
+        //   res.json(finalResult)
+        // })
+
+
+        // sambungannya ada disini
         axios({
-          method:'post',
-          url: blEndPoint + 'authenticate.json',
+          method: 'get',
+          url: blEndPoint + 'dompet/history.json',
           auth: {
-            username: req.body.username,
-            password: req.body.password
+            username: user.bukalapakId,
+            password: user.bl_token
           }
-        }).then((responseAfterLogin) => {
-          console.log('isi responseAfterLogin authenticate : ', responseAfterLogin.data);
-
-          switch (responseAfterLogin.data.status) {
-            case 'OK':
-              //Update token
-              let cipher = crypto.createCipher('aes-256-ctr', process.env.SECRET_KEY)
-              let crypted = cipher.update(req.body.password,'utf8','hex')
-              crypted += cipher.final('hex');
-
-              models.User.update({
-                password: crypted,
-                bl_token: responseAfterLogin.data.token,
-                confirmed: responseAfterLogin.data.confirmed
-              },{
-                where:{
-                  id:user.id
-              }})
-
-              axios({
-                method: 'get',
-                url: blEndPoint + 'dompet/history.json',
-                auth: {
-                  username: responseAfterLogin.data.user_id,
-                  password: responseAfterLogin.data.token
-                }
-              }).then((responseGetBalance) => {
-                  // console.log('isi responseGetBalance : ', responseGetBalance.data);
-                  axios({
-                    method: 'get',
-                    url: blEndPoint + 'user_addresses.json',
-                    auth: {
-                      username: responseAfterLogin.data.user_id,
-                      password: responseAfterLogin.data.token
-                    }
-                  }).then((responseAfterGetAddresses) => {
-                  // console.log('--------------', responseAfterGetAddresses);
-                  finalResult.id = user.id,
-                  finalResult.bukalapakId = responseAfterLogin.data.user_id,
-                  finalResult.name = user.name,
-                  finalResult.username = user.username,
-                  finalResult.email = user.email,
-                  finalResult.saldo = 250000,
-                  finalResult.token = responseAfterLogin.data.token,
-                  finalResult.confirmed = responseAfterLogin.data.confirmed,
-                  finalResult.user_addresses = responseAfterGetAddresses.data.user_addresses,
-                  finalResult.basic_token = 'Basic ' + btoa(responseAfterLogin.data.user_id + ':' + responseAfterLogin.data.token),
-                  finalResult.success = true,
-                  finalResult.message = 'login success'
-                  res.json(finalResult)
-                }).catch(err => {
-                  console.log('error saat ambil alamat di BL', err);
-                  finalResult.message = 'error saat ambil alamat di BL'
-                  res.json(finalResult)
-                })
-              }).catch((err) => {
-                // console.log('isi error saat ambil saldo : ', err);
-                finalResult.message = 'Error saat ambil saldo di Buka Dompet'
-                res.json(finalResult)
-              })
-              break;
-            case 'ERROR':
-              finalResult.message = responseAfterLogin.data.message
-              res.json(finalResult)
-              break;
-            default:
-              res.json(finalResult)
-          }
+        }).then((responseGetBalance) => {
+            // console.log('isi responseGetBalance : ', responseGetBalance.data);
+            axios({
+              method: 'get',
+              url: blEndPoint + 'user_addresses.json',
+              auth: {
+                username: user.bukalapakId,
+                password: user.bl_token
+              }
+            }).then((responseAfterGetAddresses) => {
+            // console.log('--------------', responseAfterGetAddresses);
+            finalResult.id = user.id,
+            finalResult.bukalapakId = user.bukalapakId,
+            finalResult.name = user.name,
+            finalResult.username = user.username,
+            finalResult.email = user.email,
+            finalResult.saldo = 250000,
+            finalResult.token = user.bl_token,
+            finalResult.confirmed = user.confirmed,
+            finalResult.user_addresses = responseAfterGetAddresses.data.user_addresses,
+            finalResult.basic_token = 'Basic ' + btoa(user.bukalapakId + ':' + user.bl_token),
+            finalResult.success = true,
+            finalResult.message = 'login success'
+            res.json(finalResult)
+          }).catch(err => {
+            console.log('error saat ambil alamat di BL', err);
+            finalResult.message = 'error saat ambil alamat di BL'
+            res.json(finalResult)
+          })
         }).catch((err) => {
-          console.log('isi error saat authenticate : ', err);
-          finalResult.message = 'Error saat otentikasi'
+          // console.log('isi error saat ambil saldo : ', err);
+          finalResult.message = 'Error saat ambil saldo di Buka Dompet'
           res.json(finalResult)
         })
       }
