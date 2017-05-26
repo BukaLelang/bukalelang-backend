@@ -88,4 +88,24 @@
     "new": false,
     "weight": 1500,
     "categoryId": 178
+}, {
+    "title": "Shf vegeta 2.0",
+    "description": "action figure vegeta original bandai - kondisi : MIB",
+    "images": ["17190732_10208795683792449_8268129444718406148_n.jpg", "17239738_10208795683152433_8767893072936076662_o.jpg"],
+    "minPrice": 10000,
+    "maxPrice": 900000,
+    "kelipatanBid": 10000,
+    "new": false,
+    "weight": 1500,
+    "categoryId": 338
+}, {
+    "title": "Transformers Deluxe Bumblebee AO",
+    "description": "Lelang Transformers Deluxe Bumblebee AOE from autobot united ori HASBRO Kondisi loose sangat bagus DI JAMIN",
+    "images": ["11042975_794365333975898_8984993362794612776_n.jpg"],
+    "minPrice": 5000,
+    "maxPrice": 1000000,
+    "kelipatanBid": 10000,
+    "new": false,
+    "weight": 1000,
+    "categoryId": 338
 }]

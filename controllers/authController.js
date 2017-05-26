@@ -159,7 +159,7 @@ module.exports = {
           console.log('isi responseAfterLogin authenticate - : ', responseAfterLogin.data);
           // jika ternyata di BL belum ada juga
           if (responseAfterLogin.data.user_id == null) {
-            finalResult.message = 'Anda belum memiliki akun, silahkan register terlebih dahulu';
+            finalResult.message = responseAfterLogin.data.message;
             res.json(finalResult)
           } else {
             // di BL udah ada ternyata, jadi kita bikin di local
