@@ -19,6 +19,7 @@ module.exports = {
       token: null,
       user_addresses: [],
       basic_token: null,
+      avatarUrl: null,
       success: false,
       status: "ERROR",
       message: ''
@@ -79,22 +80,55 @@ module.exports = {
                     password: responseAfterLogin.data.token
                   }
                 }).then((responseAfterGetAddresses) => {
-                  // console.log('isi responseGetBalance : ', responseGetBalance.data, pindah sementara disini : responseGetBalance.data.balance);
-                  finalResult.id = newRegisteredUser.id
-                  finalResult.bukalapakId = responseAfterLogin.data.user_id
-                  finalResult.name = responseAfterLogin.data.user_name
-                  finalResult.username = req.body.username
-                  finalResult.email = responseAfterLogin.data.email
-                  finalResult.confirmed = responseAfterLogin.data.confirmed
-                  finalResult.saldo = 1000000
-                  finalResult.basic_token = 'Basic ' + btoa(responseAfterLogin.data.user_id + ':' + responseAfterLogin.data.token)
-                  finalResult.token = responseAfterLogin.data.token
-                  finalResult.user_addresses = responseAfterGetAddresses.data.user_addresses
-                  finalResult.success = true
-                  finalResult.status = "OK",
 
-                  finalResult.message = 'login success after register success'
-                  res.json(finalResult)
+                  // console.log('isi responseGetBalance : ', responseGetBalance.data, pindah sementara disini : responseGetBalance.data.balance);
+
+                  axios({
+                    method: 'get',
+                    url: blEndPoint + 'users.json',
+                    auth: {
+                      username: responseAfterLogin.data.user_id,
+                      password: responseAfterLogin.data.token
+                    }
+                  }).then(responseAfterGetUserDetail => {
+                    models.User.update({
+                      phone: responseAfterGetUserDetail.data.user.phone,
+                      phone_confirmed: responseAfterGetUserDetail.data.user.phone_confirmed || false,
+                      avatarUrl: responseAfterGetUserDetail.data.user.avatar,
+                      avatarId: responseAfterGetUserDetail.data.user.avatar_id,
+                      birthday: responseAfterGetUserDetail.data.user.birthday,
+                      gender: responseAfterGetUserDetail.data.user.gender
+                    },{
+                      where:{
+                        id:newRegisteredUser.id
+                    }}).then(user => {
+                      console.log('berhasil update date profile');
+                    }).catch(err => {
+                      console.log('error when trying to update user detail', err);
+                    })
+
+                    finalResult.id = newRegisteredUser.id
+                    finalResult.bukalapakId = responseAfterLogin.data.user_id
+                    finalResult.name = responseAfterLogin.data.user_name
+                    finalResult.username = req.body.username
+                    finalResult.email = responseAfterLogin.data.email
+                    finalResult.avatarUrl = responseAfterGetUserDetail.data.user.avatar
+                    finalResult.confirmed = responseAfterLogin.data.confirmed
+                    finalResult.saldo = 1000000
+                    finalResult.basic_token = 'Basic ' + btoa(responseAfterLogin.data.user_id + ':' + responseAfterLogin.data.token)
+                    finalResult.token = responseAfterLogin.data.token
+                    finalResult.user_addresses = responseAfterGetAddresses.data.user_addresses
+                    finalResult.success = true
+                    finalResult.status = "OK",
+
+                    finalResult.message = 'login success after register success'
+                    res.json(finalResult)
+                  }).catch(err => {
+                    console.log('error when trying to get user detail', err);
+                    finalResult.message = 'error when trying to get user detail'
+                    res.json(finalResult)
+                  })
+
                 }).catch((err) => {
                   // console.log('isi error saat ambil saldo : ', err);
                   finalResult.message = 'Error saat ambil saldo di Buka Dompet'
@@ -139,6 +173,7 @@ module.exports = {
       token: null,
       user_addresses: [],
       basic_token: null,
+      avatarUrl: null,
       success: false,
       status: "ERROR",
       message: ''
@@ -196,20 +231,51 @@ module.exports = {
                   }
                 }).then((responseAfterGetAddresses) => {
                   // console.log('--------------', responseAfterGetAddresses);
-                  finalResult.id = newRegisteredUser.id,
-                  finalResult.bukalapakId = responseAfterLogin.data.user_id,
-                  finalResult.name = responseAfterLogin.data.user_name,
-                  finalResult.username = req.body.username,
-                  finalResult.email = responseAfterLogin.data.email,
-                  finalResult.confirmed = responseAfterLogin.data.confirmed,
-                  finalResult.saldo = 1000000,
-                  finalResult.token = responseAfterLogin.data.token,
-                  finalResult.user_addresses = responseAfterGetAddresses.data.user_addresses,
-                  finalResult.basic_token = 'Basic ' + btoa(responseAfterLogin.data.user_id + ':' + responseAfterLogin.data.token),
-                  finalResult.success = true,
-                  finalResult.status = "OK",
-                  finalResult.message = 'login success'
-                  res.json(finalResult)
+                  axios({
+                    method: 'get',
+                    url: blEndPoint + 'users.json',
+                    auth: {
+                      username: responseAfterLogin.data.user_id,
+                      password: responseAfterLogin.data.token
+                    }
+                  }).then(responseAfterGetUserDetail => {
+                    models.User.update({
+                      phone: responseAfterGetUserDetail.data.user.phone,
+                      phone_confirmed: responseAfterGetUserDetail.data.user.phone_confirmed || false,
+                      avatarUrl: responseAfterGetUserDetail.data.user.avatar,
+                      avatarId: responseAfterGetUserDetail.data.user.avatar_id,
+                      birthday: responseAfterGetUserDetail.data.user.birthday,
+                      gender: responseAfterGetUserDetail.data.user.gender
+                    },{
+                      where:{
+                        id:newRegisteredUser.id
+                    }}).then(user => {
+                      console.log('berhasil update date profile');
+                    }).catch(err => {
+                      console.log('error when trying to update user detail', err);
+                    })
+
+                    finalResult.id = newRegisteredUser.id
+                    finalResult.bukalapakId = responseAfterLogin.data.user_id
+                    finalResult.name = responseAfterLogin.data.user_name
+                    finalResult.username = req.body.username
+                    finalResult.email = responseAfterLogin.data.email
+                    finalResult.avatarUrl = responseAfterGetUserDetail.data.user.avatar
+                    finalResult.confirmed = responseAfterLogin.data.confirmed
+                    finalResult.saldo = 1000000
+                    finalResult.token = responseAfterLogin.data.token
+                    finalResult.user_addresses = responseAfterGetAddresses.data.user_addresses
+                    finalResult.basic_token = 'Basic ' + btoa(responseAfterLogin.data.user_id + ':' + responseAfterLogin.data.token)
+                    finalResult.success = true
+                    finalResult.status = "OK"
+                    finalResult.message = 'login success'
+                    res.json(finalResult)
+                  }).catch(err => {
+                    console.log('error when trying to get user detail', err);
+                    finalResult.message = 'error when trying to get user detail'
+                    res.json(finalResult)
+                  })
+
                 }).catch(err => {
                   console.log('error saat ambil alamat di BL', err);
                   finalResult.message = 'error saat ambil alamat di BL'
@@ -335,21 +401,51 @@ module.exports = {
                 password: user.bl_token
               }
             }).then((responseAfterGetAddresses) => {
-            // console.log('--------------', responseAfterGetAddresses);
-            finalResult.id = user.id,
-            finalResult.bukalapakId = user.bukalapakId,
-            finalResult.name = user.name,
-            finalResult.username = user.username,
-            finalResult.email = user.email,
-            finalResult.saldo = 1000000,
-            finalResult.token = user.bl_token,
-            finalResult.confirmed = user.confirmed,
-            finalResult.user_addresses = responseAfterGetAddresses.data.user_addresses,
-            finalResult.basic_token = 'Basic ' + btoa(user.bukalapakId + ':' + user.bl_token),
-            finalResult.success = true,
-            finalResult.status = "OK",
-            finalResult.message = 'login success'
-            res.json(finalResult)
+              // console.log('--------------', responseAfterGetAddresses);
+              axios({
+                method: 'get',
+                url: blEndPoint + 'users.json',
+                auth: {
+                  username: user.bukalapakId,
+                  password: user.bl_token
+                }
+              }).then(responseAfterGetUserDetail => {
+
+                models.User.update({
+                  phone: responseAfterGetUserDetail.data.user.phone,
+                  phone_confirmed: responseAfterGetUserDetail.data.user.phone_confirmed || false,
+                  avatarUrl: responseAfterGetUserDetail.data.user.avatar,
+                  avatarId: responseAfterGetUserDetail.data.user.avatar_id,
+                  birthday: responseAfterGetUserDetail.data.user.birthday,
+                  gender: responseAfterGetUserDetail.data.user.gender
+                },{
+                  where:{
+                    id:user.id
+                }}).then(user => {
+                }).catch(err => {
+                  console.log('error when trying to update user detail', err);
+                })
+
+                finalResult.id = user.id,
+                finalResult.bukalapakId = user.bukalapakId,
+                finalResult.name = user.name,
+                finalResult.username = user.username,
+                finalResult.email = user.email,
+                finalResult.avatarUrl = responseAfterGetUserDetail.data.user.avatar,
+                finalResult.saldo = 1000000,
+                finalResult.token = user.bl_token,
+                finalResult.confirmed = user.confirmed,
+                finalResult.user_addresses = responseAfterGetAddresses.data.user_addresses,
+                finalResult.basic_token = 'Basic ' + btoa(user.bukalapakId + ':' + user.bl_token),
+                finalResult.success = true,
+                finalResult.status = "OK",
+                finalResult.message = 'login success'
+                res.json(finalResult)
+              }).catch(err => {
+                console.log('error when trying to get user detail', err);
+                finalResult.message = 'error when trying to get user detail'
+                res.json(finalResult)
+              })
           }).catch(err => {
             console.log('error saat ambil alamat di BL', err);
             finalResult.message = 'error saat ambil alamat di BL'
