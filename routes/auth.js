@@ -23,6 +23,7 @@ let authController = require('../controllers/authController')
  * @apiSuccess {String} name Full Name of user
  * @apiSuccess {String} username Username of user
  * @apiSuccess {String} email Email of user
+ * @apiSuccess {String} avatarUrl url of avatar of user
  * @apiSuccess {String} saldo Balance of user
  * @apiSuccess {Boolean} success Success or not ?
  * @apiSuccess {String} status "OK or "ERROR"
@@ -37,6 +38,7 @@ let authController = require('../controllers/authController')
  *      "name": "Diky Arga",
  *      "username": "dikyarga",
  *      "email": 'dikyarga.id@gmail.com',
+ *      "avatarUrl": 'https://secure.gravatar.com/avatar/c8a0457bfc1b881755588e05a6ce55f0.png',
  *      "saldo": 123000,
  *      "token": 'lalalalululululolololo',
  *      "user_addresses": [{
@@ -67,6 +69,7 @@ let authController = require('../controllers/authController')
  *      "name": null,
  *      "username": null,
  *      "email": null,
+ *      "avatarUrl": null,
  *      "saldo": null,
  *      "token": null,
         "user_addresses": [],
@@ -94,6 +97,7 @@ router.post('/register', authController.register)
  * @apiSuccess {String} name Full Name of user
  * @apiSuccess {String} username Username of user
  * @apiSuccess {String} email Email of user
+ * @apiSuccess {String} avatarUrl url of avatar of user
  * @apiSuccess {String} saldo Balance of user
  * @apiSuccess {Boolean} success Success or not ?
  * @apiSuccess {String} status "OK or "ERROR"
@@ -108,6 +112,7 @@ router.post('/register', authController.register)
  *      "name": "Diky Arga",
  *      "username": "dikyarga",
  *      "email": 'dikyarga.id@gmail.com',
+ *      "avatarUrl": 'https://secure.gravatar.com/avatar/c8a0457bfc1b881755588e05a6ce55f0.png',
  *      "saldo": 123000,
  *      "basic_token": 'Basic fjksafjkajkdsfsjfkdsafksafksa=',
  *      "token": 'lalalalululululolololo',
@@ -138,6 +143,7 @@ router.post('/register', authController.register)
  *      "name": null,
  *      "username": null,
  *      "email": null,
+ *      "avatarUrl": null,
  *      "saldo": null,
  *      "basic_token": null,
  *      "token": null,
