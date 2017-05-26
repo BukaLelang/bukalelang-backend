@@ -24,6 +24,7 @@ const applyMidleware = require('../helpers/authentication')
  *       "kelipatan_bid": 10000,
  *       "imagesId": "11122121, 11122333",
  *       "end_date": 2017-09-14T00:00:00Z,
+ *       "endDateFromAndroid": 2017-09-14T00:00:00Z,
  *     }
  * @apiParam {Integer} userId userId of user
  * @apiParam {Integer} bukalapakId bukalapakId of user
@@ -38,6 +39,7 @@ const applyMidleware = require('../helpers/authentication')
  * @apiParam {Integer} kelipatan_bid nominal lipatan of next bidding
  * @apiParam {Array} imagesId image_id after upload image to BL (array of ids)
  * @apiParam {Date} end_date date end of auction, default is one week
+ * @apiParam {String} endDateFromAndroid date end of auction, default is one week
 
  * @apiSuccess {Integer} id id of the auction
  * @apiSuccess {Integer} productId id of the product at BL

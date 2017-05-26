@@ -839,7 +839,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\n  \"userId\": 2,\n  \"bukalapakId\": 231232131,\n  \"token\": \"IniToken\",\n  \"title\": \"Lelang Gundam Langka & Istimewa\",\n  \"categoryId\": 145,\n  \"new\": false,\n  \"weight\": 5000,\n  \"description\": \"Gundam dapet dari pembuatnya langsung lho\",\n  \"min_price\": 50000,\n  \"max_price\": 200000,\n  \"kelipatan_bid\": 10000,\n  \"imagesId\": \"11122121, 11122333\",\n  \"end_date\": 2017-09-14T00:00:00Z,\n}",
+          "content": "{\n  \"userId\": 2,\n  \"bukalapakId\": 231232131,\n  \"token\": \"IniToken\",\n  \"title\": \"Lelang Gundam Langka & Istimewa\",\n  \"categoryId\": 145,\n  \"new\": false,\n  \"weight\": 5000,\n  \"description\": \"Gundam dapet dari pembuatnya langsung lho\",\n  \"min_price\": 50000,\n  \"max_price\": 200000,\n  \"kelipatan_bid\": 10000,\n  \"imagesId\": \"11122121, 11122333\",\n  \"end_date\": 2017-09-14T00:00:00Z,\n  \"endDateFromAndroid\": 2017-09-14T00:00:00Z,\n}",
           "type": "json"
         }
       ],
@@ -934,6 +934,13 @@ define({ "api": [
             "type": "Date",
             "optional": false,
             "field": "end_date",
+            "description": "<p>date end of auction, default is one week</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "endDateFromAndroid",
             "description": "<p>date end of auction, default is one week</p>"
           }
         ]
@@ -1186,7 +1193,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success",
-          "content": "HTTP/1.1 200 OK\n{\n  \"id\": 1,\n  \"bukalapakId\": 123121,\n  \"name\": \"Diky Arga\",\n  \"username\": \"dikyarga\",\n  \"email\": 'dikyarga.id@gmail.com',\n  \"saldo\": 123000,\n  \"basic_token\": 'basic fjksafjkajkdsfsjfkdsafksafksa=',\n  \"token\": 'lalalalululululolololo',\n  \"user_addresses\": [{\n       \"id\": 345,\n       \"primary\": false,\n       \"title\": \"bukan utama1\",\n       \"name\": \"tetsdfsdf\",\n       \"phone\": \"085645262611\",\n       \"address_attributes\": {\n         \"id\": 499,\n         \"address\": \"Lalalalaa\",\n         \"area\": \"Kaliwungu\",\n         \"city\": \"Kendal\",\n         \"province\": \"Jawa Tengah\",\n         \"post_code\": \"51372\"\n       }\n     }],\n  \"success\": true,\n  \"message\": 'login success',\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"id\": 1,\n  \"bukalapakId\": 123121,\n  \"name\": \"Diky Arga\",\n  \"username\": \"dikyarga\",\n  \"email\": 'dikyarga.id@gmail.com',\n  \"saldo\": 123000,\n  \"basic_token\": 'Basic fjksafjkajkdsfsjfkdsafksafksa=',\n  \"token\": 'lalalalululululolololo',\n  \"user_addresses\": [{\n       \"id\": 345,\n       \"primary\": false,\n       \"title\": \"bukan utama1\",\n       \"name\": \"tetsdfsdf\",\n       \"phone\": \"085645262611\",\n       \"address_attributes\": {\n         \"id\": 499,\n         \"address\": \"Lalalalaa\",\n         \"area\": \"Kaliwungu\",\n         \"city\": \"Kendal\",\n         \"province\": \"Jawa Tengah\",\n         \"post_code\": \"51372\"\n       }\n     }],\n  \"success\": true,\n  \"message\": 'login success',\n}",
           "type": "json"
         }
       ]
@@ -1334,7 +1341,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success",
-          "content": "HTTP/1.1 200 OK\n{\n  \"id\": 1,\n  \"bukalapakId\": 123121,\n  \"name\": \"Diky Arga\",\n  \"username\": \"dikyarga\",\n  \"email\": 'dikyarga.id@gmail.com',\n  \"saldo\": 123000,\n  \"token\": 'lalalalululululolololo',\n  \"user_addresses\": [{\n       \"id\": 345,\n       \"primary\": false,\n       \"title\": \"bukan utama1\",\n       \"name\": \"tetsdfsdf\",\n       \"phone\": \"085645262611\",\n       \"address_attributes\": {\n         \"id\": 499,\n         \"address\": \"Lalalalaa\",\n         \"area\": \"Kaliwungu\",\n         \"city\": \"Kendal\",\n         \"province\": \"Jawa Tengah\",\n         \"post_code\": \"51372\"\n       }\n     }],\n  \"basic_token\": 'basic fjksafjkajkdsfsjfkdsafksafksa=',\n  \"success\": true,\n  \"message\": 'login success',\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"id\": 1,\n  \"bukalapakId\": 123121,\n  \"name\": \"Diky Arga\",\n  \"username\": \"dikyarga\",\n  \"email\": 'dikyarga.id@gmail.com',\n  \"saldo\": 123000,\n  \"token\": 'lalalalululululolololo',\n  \"user_addresses\": [{\n       \"id\": 345,\n       \"primary\": false,\n       \"title\": \"bukan utama1\",\n       \"name\": \"tetsdfsdf\",\n       \"phone\": \"085645262611\",\n       \"address_attributes\": {\n         \"id\": 499,\n         \"address\": \"Lalalalaa\",\n         \"area\": \"Kaliwungu\",\n         \"city\": \"Kendal\",\n         \"province\": \"Jawa Tengah\",\n         \"post_code\": \"51372\"\n       }\n     }],\n  \"basic_token\": 'Basic fjksafjkajkdsfsjfkdsafksafksa=',\n  \"success\": true,\n  \"message\": 'login success',\n}",
           "type": "json"
         }
       ]
