@@ -108,11 +108,20 @@
     "new": false,
     "weight": 1000,
     "categoryId": 338
-}]
 }, {
     "title": "Ipod touch 6 (16gb)",
     "description": "ipod touch 6 16gb karena tdk trpakai kondisi 98% ada dent kcil dpojok bawah, batrai masih awet kalau buat musikan sama nonton film, kelengkapan ipod, cas, headset(oem)",
     "images": ["18664178_1495759160444125_318517668593468858_n.jpg", "18739638_1495759143777460_536861654925296335_n.jpg", "18622149_1495759077110800_6937486577545302370_n.jpg", "18671174_1495759133777461_2568424787925639340_n.jpg", "18698284_1495759113777463_5535001148199035008_n.jpg"],
+    "minPrice": 5000,
+    "maxPrice": 2000000,
+    "kelipatanBid": 20000,
+    "new": false,
+    "weight": 1000,
+    "categoryId": 205
+}, {
+    "title": "DAP Benjie S5 ",
+    "description": "Pemakaian 2 bulan kurang (dari 1 April 2017) Kondisi 98% no lecet Firmware sudah pake AGPTek M20 terbaru lebih smooth dan suara lebih enak dari firmware bawaan  minus -no earbud dijual karena lebih banyak nganggur, seinget saya baru 3-4kali charge",
+    "images": ["18519905_10212668050521314_8529536077198037337_n.jpg", "18582639_10212668048321259_3307961296605345531_n.jpg", "18556295_10212668051241332_7096268100502416474_n.jpg", "18622379_10212668048401261_5500956926574144024_n.jpg", "18620868_10212668048441262_1194490779649412575_o.jpg"],
     "minPrice": 5000,
     "maxPrice": 2000000,
     "kelipatanBid": 20000,

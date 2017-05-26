@@ -91,8 +91,10 @@ module.exports = {
             console.log('isi endDateFromAndroid', req.body.endDateFromAndroid);
             let endDate = null
             if (req.body.endDateFromAndroid != null) {
+              console.log('apa kah di anggap null');
               endDate = moment(req.body.endDateFromAndroid,"DD-MM-YYYY HH:mm").utcOffset(420).format()
             } else {
+              console.log('kesini');
               endDate = req.body.end_date
             }
 
@@ -101,7 +103,7 @@ module.exports = {
               endDate = moment().add(2, 'days').format()
             }
 
-            console.log('endDate', endDate);
+            console.log('endDate : ', endDate);
             models.Auction.create({
               productId: responseAfterCreateProduct.data.product_detail.id,
               title: req.body.title,
