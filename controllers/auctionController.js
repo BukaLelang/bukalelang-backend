@@ -90,10 +90,14 @@ module.exports = {
             console.log('isi endDateFromAndroid', req.body.endDateFromAndroid);
             let endDate = null
             if (req.body.endDateFromAndroid != null) {
-              console.log('kemari');
               endDate = moment(req.body.endDateFromAndroid,"DD-MM-YYYY HH:mm").utcOffset(420).format()
             } else {
               endDate = req.body.end_date
+            }
+
+            if (endDate == null) {
+              console.log('kemari');
+              endDate = moment().add(2, 'days').format()
             }
 
             console.log('endDate', endDate);
