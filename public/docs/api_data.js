@@ -1157,6 +1157,13 @@ define({ "api": [
             "group": "Success 200",
             "type": "String",
             "optional": false,
+            "field": "avatarUrl",
+            "description": "<p>url of avatar of user</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
             "field": "saldo",
             "description": "<p>Balance of user</p>"
           },
@@ -1200,7 +1207,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success",
-          "content": "HTTP/1.1 200 OK\n{\n  \"id\": 1,\n  \"bukalapakId\": 123121,\n  \"name\": \"Diky Arga\",\n  \"username\": \"dikyarga\",\n  \"email\": 'dikyarga.id@gmail.com',\n  \"saldo\": 123000,\n  \"basic_token\": 'Basic fjksafjkajkdsfsjfkdsafksafksa=',\n  \"token\": 'lalalalululululolololo',\n  \"user_addresses\": [{\n       \"id\": 345,\n       \"primary\": false,\n       \"title\": \"bukan utama1\",\n       \"name\": \"tetsdfsdf\",\n       \"phone\": \"085645262611\",\n       \"address_attributes\": {\n         \"id\": 499,\n         \"address\": \"Lalalalaa\",\n         \"area\": \"Kaliwungu\",\n         \"city\": \"Kendal\",\n         \"province\": \"Jawa Tengah\",\n         \"post_code\": \"51372\"\n       }\n     }],\n  \"success\": true,\n  \"status\": \"OK\",\n  \"message\": 'login success',\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"id\": 1,\n  \"bukalapakId\": 123121,\n  \"name\": \"Diky Arga\",\n  \"username\": \"dikyarga\",\n  \"email\": 'dikyarga.id@gmail.com',\n  \"avatarUrl\": 'https://secure.gravatar.com/avatar/c8a0457bfc1b881755588e05a6ce55f0.png',\n  \"saldo\": 123000,\n  \"basic_token\": 'Basic fjksafjkajkdsfsjfkdsafksafksa=',\n  \"token\": 'lalalalululululolololo',\n  \"user_addresses\": [{\n       \"id\": 345,\n       \"primary\": false,\n       \"title\": \"bukan utama1\",\n       \"name\": \"tetsdfsdf\",\n       \"phone\": \"085645262611\",\n       \"address_attributes\": {\n         \"id\": 499,\n         \"address\": \"Lalalalaa\",\n         \"area\": \"Kaliwungu\",\n         \"city\": \"Kendal\",\n         \"province\": \"Jawa Tengah\",\n         \"post_code\": \"51372\"\n       }\n     }],\n  \"success\": true,\n  \"status\": \"OK\",\n  \"message\": 'login success',\n}",
           "type": "json"
         }
       ]
@@ -1209,7 +1216,7 @@ define({ "api": [
       "examples": [
         {
           "title": "List error",
-          "content": "HTTP/1.1 500 Internal Server Error\n{\n  \"id\": null,\n  \"bukalapakId\": null,\n  \"name\": null,\n  \"username\": null,\n  \"email\": null,\n  \"saldo\": null,\n  \"basic_token\": null,\n  \"token\": null,\n     \"user_addresses\": [],\n  \"success\": false,\n  \"status\": \"ERROR\",\n  \"message\": 'email atau password salah',\n}",
+          "content": "HTTP/1.1 500 Internal Server Error\n{\n  \"id\": null,\n  \"bukalapakId\": null,\n  \"name\": null,\n  \"username\": null,\n  \"email\": null,\n  \"avatarUrl\": null,\n  \"saldo\": null,\n  \"basic_token\": null,\n  \"token\": null,\n     \"user_addresses\": [],\n  \"success\": false,\n  \"status\": \"ERROR\",\n  \"message\": 'email atau password salah',\n}",
           "type": "json"
         }
       ]
@@ -1312,6 +1319,13 @@ define({ "api": [
             "group": "Success 200",
             "type": "String",
             "optional": false,
+            "field": "avatarUrl",
+            "description": "<p>url of avatar of user</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
             "field": "saldo",
             "description": "<p>Balance of user</p>"
           },
@@ -1355,7 +1369,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success",
-          "content": "HTTP/1.1 200 OK\n{\n  \"id\": 1,\n  \"bukalapakId\": 123121,\n  \"name\": \"Diky Arga\",\n  \"username\": \"dikyarga\",\n  \"email\": 'dikyarga.id@gmail.com',\n  \"saldo\": 123000,\n  \"token\": 'lalalalululululolololo',\n  \"user_addresses\": [{\n       \"id\": 345,\n       \"primary\": false,\n       \"title\": \"bukan utama1\",\n       \"name\": \"tetsdfsdf\",\n       \"phone\": \"085645262611\",\n       \"address_attributes\": {\n         \"id\": 499,\n         \"address\": \"Lalalalaa\",\n         \"area\": \"Kaliwungu\",\n         \"city\": \"Kendal\",\n         \"province\": \"Jawa Tengah\",\n         \"post_code\": \"51372\"\n       }\n     }],\n  \"basic_token\": 'Basic fjksafjkajkdsfsjfkdsafksafksa=',\n  \"success\": true,\n  \"status\": \"OK\",\n  \"message\": 'login success',\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"id\": 1,\n  \"bukalapakId\": 123121,\n  \"name\": \"Diky Arga\",\n  \"username\": \"dikyarga\",\n  \"email\": 'dikyarga.id@gmail.com',\n  \"avatarUrl\": 'https://secure.gravatar.com/avatar/c8a0457bfc1b881755588e05a6ce55f0.png',\n  \"saldo\": 123000,\n  \"token\": 'lalalalululululolololo',\n  \"user_addresses\": [{\n       \"id\": 345,\n       \"primary\": false,\n       \"title\": \"bukan utama1\",\n       \"name\": \"tetsdfsdf\",\n       \"phone\": \"085645262611\",\n       \"address_attributes\": {\n         \"id\": 499,\n         \"address\": \"Lalalalaa\",\n         \"area\": \"Kaliwungu\",\n         \"city\": \"Kendal\",\n         \"province\": \"Jawa Tengah\",\n         \"post_code\": \"51372\"\n       }\n     }],\n  \"basic_token\": 'Basic fjksafjkajkdsfsjfkdsafksafksa=',\n  \"success\": true,\n  \"status\": \"OK\",\n  \"message\": 'login success',\n}",
           "type": "json"
         }
       ]
@@ -1364,7 +1378,7 @@ define({ "api": [
       "examples": [
         {
           "title": "List error",
-          "content": "HTTP/1.1 500 Internal Server Error\n{\n  \"id\": null,\n  \"bukalapakId\": null,\n  \"name\": null,\n  \"username\": null,\n  \"email\": null,\n  \"saldo\": null,\n  \"token\": null,\n     \"user_addresses\": [],\n  \"basic_token\": null,\n  \"success\": false,\n  \"status\": \"ERROR\",\n  \"message\": 'email atau password tidak valid',\n}",
+          "content": "HTTP/1.1 500 Internal Server Error\n{\n  \"id\": null,\n  \"bukalapakId\": null,\n  \"name\": null,\n  \"username\": null,\n  \"email\": null,\n  \"avatarUrl\": null,\n  \"saldo\": null,\n  \"token\": null,\n     \"user_addresses\": [],\n  \"basic_token\": null,\n  \"success\": false,\n  \"status\": \"ERROR\",\n  \"message\": 'email atau password tidak valid',\n}",
           "type": "json"
         }
       ]
