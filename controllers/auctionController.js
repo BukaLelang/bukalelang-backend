@@ -127,13 +127,9 @@ module.exports = {
                   auctionId: auction.id
                 })
               }
-              console.log('images : ', images);
-
               models.ProductImage.bulkCreate(images).then(() => {
-                console.log('YEAH!');
+                console.log('YEAH! all images inserted');
               })
-
-              console.log('only small images : ', _.takeRightWhile(images, 'smallImageUrl'));
 
               // ambil nama category nya
               models.Category.findById(auction.categoryId).then(category => {
@@ -160,6 +156,9 @@ module.exports = {
                   finalResult.message = 'Sukses buat lelang!'
 
                   auctionWinnerJob.auctionWinnerJob(auction.id, auction.end_date) //Check winner every auction
+
+                  global.io.emit('new-auction', finalResult);
+
                   res.json(finalResult)
 
                 } else {
