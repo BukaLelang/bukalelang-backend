@@ -87,6 +87,16 @@ module.exports = {
             break;
           case 'OK':
             // create auction in local
+            console.log('isi endDateFromAndroid', req.body.endDateFromAndroid);
+            let endDate = null
+            if (req.body.endDateFromAndroid != null) {
+              console.log('kemari');
+              endDate = moment(req.body.endDateFromAndroid,"DD-MM-YYYY HH:mm").utcOffset(420).format()
+            } else {
+              endDate = req.body.end_date
+            }
+
+            console.log('endDate', endDate);
             models.Auction.create({
               productId: responseAfterCreateProduct.data.product_detail.id,
               title: req.body.title,
@@ -101,7 +111,7 @@ module.exports = {
               kelipatan_bid: req.body.kelipatan_bid,
               location: responseAfterCreateProduct.data.product_detail.city,
               start_date: new Date(),
-              end_date: req.body.end_date,
+              end_date: endDate,
               userId: req.body.userId
             }).then((auction) => {
               // save all images one by one
