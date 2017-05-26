@@ -14,7 +14,13 @@ module.exports = function(sequelize, DataTypes) {
     bl_token: DataTypes.STRING,
     bukalapakId:DataTypes.INTEGER,
     confirmed:DataTypes.BOOLEAN,
-    omnikey:DataTypes.STRING
+    omnikey:DataTypes.STRING,
+    gender:DataTypes.STRING,
+    birthday:DataTypes.STRING,
+    avatarUrl:DataTypes.STRING,
+    avatarId:DataTypes.INTEGER,
+    phone:DataTypes.STRING,
+    phone_confirmed:DataTypes.BOOLEAN,
   }, {
     classMethods: {
       associate: function(models) {
