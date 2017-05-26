@@ -20,6 +20,7 @@ module.exports = {
       user_addresses: [],
       basic_token: null,
       success: false,
+      status: "ERROR",
       message: ''
     }
 
@@ -90,6 +91,8 @@ module.exports = {
                   finalResult.token = responseAfterLogin.data.token
                   finalResult.user_addresses = responseAfterGetAddresses.data.user_addresses
                   finalResult.success = true
+                  finalResult.status = "OK",
+
                   finalResult.message = 'login success after register success'
                   res.json(finalResult)
                 }).catch((err) => {
@@ -137,6 +140,7 @@ module.exports = {
       user_addresses: [],
       basic_token: null,
       success: false,
+      status: "ERROR",
       message: ''
     }
     // cari dulu user nya udah ada di tempat kita belum
@@ -203,6 +207,7 @@ module.exports = {
                   finalResult.user_addresses = responseAfterGetAddresses.data.user_addresses,
                   finalResult.basic_token = 'Basic ' + btoa(responseAfterLogin.data.user_id + ':' + responseAfterLogin.data.token),
                   finalResult.success = true,
+                  finalResult.status = "OK",
                   finalResult.message = 'login success'
                   res.json(finalResult)
                 }).catch(err => {
@@ -284,6 +289,7 @@ module.exports = {
         //           finalResult.user_addresses = responseAfterGetAddresses.data.user_addresses,
         //           finalResult.basic_token = 'Basic ' + btoa(responseAfterLogin.data.user_id + ':' + responseAfterLogin.data.token),
         //           finalResult.success = true,
+        //           finalResult.status = "OK",
         //           finalResult.message = 'login success'
         //           res.json(finalResult)
         //         }).catch(err => {
@@ -341,6 +347,7 @@ module.exports = {
             finalResult.user_addresses = responseAfterGetAddresses.data.user_addresses,
             finalResult.basic_token = 'Basic ' + btoa(user.bukalapakId + ':' + user.bl_token),
             finalResult.success = true,
+            finalResult.status = "OK",
             finalResult.message = 'login success'
             res.json(finalResult)
           }).catch(err => {

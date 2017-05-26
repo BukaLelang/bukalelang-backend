@@ -25,6 +25,7 @@ let authController = require('../controllers/authController')
  * @apiSuccess {String} email Email of user
  * @apiSuccess {String} saldo Balance of user
  * @apiSuccess {Boolean} success Success or not ?
+ * @apiSuccess {String} status "OK or "ERROR"
  * @apiSuccess {Array} user_addresses array of addresses
  * @apiSuccess {String} token token for authorization
  * @apiSuccess {String} message message from server
@@ -55,6 +56,7 @@ let authController = require('../controllers/authController')
         }],
  *      "basic_token": 'Basic fjksafjkajkdsfsjfkdsafksafksa=',
  *      "success": true,
+ *      "status": "OK",
  *      "message": 'login success',
  *    }
  * @apiErrorExample {json} List error
@@ -70,7 +72,8 @@ let authController = require('../controllers/authController')
         "user_addresses": [],
  *      "basic_token": null,
  *      "success": false,
- *      "message": 'email sudah terdaftar',
+ *      "status": "ERROR",
+ *      "message": 'email atau password tidak valid',
  *    }
  */
 router.post('/register', authController.register)
@@ -93,6 +96,7 @@ router.post('/register', authController.register)
  * @apiSuccess {String} email Email of user
  * @apiSuccess {String} saldo Balance of user
  * @apiSuccess {Boolean} success Success or not ?
+ * @apiSuccess {String} status "OK or "ERROR"
  * @apiSuccess {String} token token for authorization
  * @apiSuccess {Array} user_addresses array of addresses
  * @apiSuccess {String} message message from server
@@ -123,6 +127,7 @@ router.post('/register', authController.register)
           }
         }],
  *      "success": true,
+ *      "status": "OK",
  *      "message": 'login success',
  *    }
  * @apiErrorExample {json} List error
@@ -138,6 +143,7 @@ router.post('/register', authController.register)
  *      "token": null,
         "user_addresses": [],
  *      "success": false,
+ *      "status": "ERROR",
  *      "message": 'email atau password salah',
  *    }
  */
