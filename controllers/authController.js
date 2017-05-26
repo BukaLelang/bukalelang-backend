@@ -94,7 +94,7 @@ module.exports = {
                     models.User.update({
                       phone: responseAfterGetUserDetail.data.user.phone,
                       phone_confirmed: responseAfterGetUserDetail.data.user.phone_confirmed || false,
-                      avatarUrl: responseAfterGetUserDetail.data.user.avatar,
+                      avatarUrl: responseAfterGetUserDetail.data.user.avatar || 'https://www.bukalapak.com/images/default_avatar/medium/default.jpg',
                       avatarId: responseAfterGetUserDetail.data.user.avatar_id,
                       birthday: responseAfterGetUserDetail.data.user.birthday,
                       gender: responseAfterGetUserDetail.data.user.gender
@@ -242,7 +242,7 @@ module.exports = {
                     models.User.update({
                       phone: responseAfterGetUserDetail.data.user.phone,
                       phone_confirmed: responseAfterGetUserDetail.data.user.phone_confirmed || false,
-                      avatarUrl: responseAfterGetUserDetail.data.user.avatar,
+                      avatarUrl: responseAfterGetUserDetail.data.user.avatar || 'https://www.bukalapak.com/images/default_avatar/medium/default.jpg',
                       avatarId: responseAfterGetUserDetail.data.user.avatar_id,
                       birthday: responseAfterGetUserDetail.data.user.birthday,
                       gender: responseAfterGetUserDetail.data.user.gender
@@ -414,7 +414,7 @@ module.exports = {
                 models.User.update({
                   phone: responseAfterGetUserDetail.data.user.phone,
                   phone_confirmed: responseAfterGetUserDetail.data.user.phone_confirmed || false,
-                  avatarUrl: responseAfterGetUserDetail.data.user.avatar,
+                  avatarUrl: responseAfterGetUserDetail.data.user.avatar || 'https://www.bukalapak.com/images/default_avatar/medium/default.jpg',
                   avatarId: responseAfterGetUserDetail.data.user.avatar_id,
                   birthday: responseAfterGetUserDetail.data.user.birthday,
                   gender: responseAfterGetUserDetail.data.user.gender
