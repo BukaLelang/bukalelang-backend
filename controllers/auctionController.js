@@ -31,6 +31,7 @@ module.exports = {
       end_date: null,
       userId: null,
       success: false,
+      status: "ERROR",
       message: 'Buat lelang gagal ):',
     }
     // console.log('isi request : ', req.body);
@@ -152,6 +153,7 @@ module.exports = {
                   finalResult.start_date = auction.start_date
                   finalResult.end_date = auction.end_date
                   finalResult.success = true
+                  finalResult.status = "OK"
                   finalResult.userId = auction.userId
                   finalResult.message = 'Sukses buat lelang!'
 
@@ -188,7 +190,8 @@ module.exports = {
     let offset = (page - 1) * limitPerPage
 
     let finalResult = {
-      status: false,
+      success: false,
+      status: "ERROR",
       message: 'Fail get list of auctions',
       limit: null,
       page: null,
@@ -236,7 +239,8 @@ module.exports = {
         delete newAuctions[i].updatedAt
       }
 
-      finalResult.status = true
+      finalResult.success = true
+      finalResult.status = "OK"
       finalResult.limit = limitPerPage
       finalResult.page = page
       finalResult.message = 'success load list of auctions'
@@ -250,7 +254,8 @@ module.exports = {
   searchByTitle: (req, res) => {
     console.log('--------------', req.query.query);
     let finalResult = {
-      status: false,
+      success: false,
+      status: "ERROR",
       message: 'Fail get list of auctions',
       auctions: []
     }
@@ -300,8 +305,8 @@ module.exports = {
         delete newAuctions[i].createdAt
         delete newAuctions[i].updatedAt
       }
-
-      finalResult.status = true
+      finalResult.success = true
+      finalResult.status = "OK"
       finalResult.message = 'success load list of auctions with title : ' + req.query.query + ' : found ' + auctions.length + ' auctions'
       finalResult.auctions = newAuctions
       res.json(finalResult)
@@ -317,6 +322,7 @@ module.exports = {
       time_left: null,
       end_date: null,
       success: false,
+      status: "ERROR",
       message: 'Ambil satu auction gagal ):',
     }
 
@@ -330,6 +336,7 @@ module.exports = {
 
       finalResult.end_date = auction.end_date
       finalResult.success = true
+      finalResult.status = "OK"
       finalResult.message = 'Sukses ngambil time left auction'
       res.json(finalResult)
     }).catch(err => {
@@ -360,6 +367,7 @@ module.exports = {
       isRunning: false,
       userId: null,
       success: false,
+      status: "ERROR",
       message: 'Ambil satu auction gagal ):',
     }
 
@@ -398,6 +406,7 @@ module.exports = {
       finalResult.running = moment(auction.end_date).format() >= moment().format() ? true : false
       finalResult.isRunning = moment(auction.end_date).format() >= moment().format() ? 1 : 0
       finalResult.success = true
+      finalResult.status = "OK"
       finalResult.userId = auction.userId
       finalResult.message = 'Sukses ngambil satu auction'
       res.json(finalResult)
@@ -429,6 +438,7 @@ module.exports = {
       isRunning: false,
       userId: null,
       success: false,
+      status: "ERROR",
       message: 'Ambil satu auction gagal ):',
     }
 
@@ -466,6 +476,7 @@ module.exports = {
       finalResult.running = moment(auction.end_date).format() >= moment().format() ? true : false
       finalResult.isRunning = moment(auction.end_date).format() >= moment().format() ? 1 : 0
       finalResult.success = true
+      finalResult.status = "OK"
       finalResult.userId = auction.userId
       finalResult.message = 'Sukses ngambil satu auction berdasarkan slug'
       res.json(finalResult)
@@ -479,6 +490,7 @@ module.exports = {
     console.log('isi request params', req.params);
     let finalResult = {
       success: false,
+      status: "ERROR",
       message: 'Fail to get list of bid history',
       auction_detail: {
         id: null,
@@ -525,6 +537,7 @@ module.exports = {
 
             finalResult.message = 'success get bid history'
             finalResult.success = true
+            finalResult.status = "OK"
             finalResult.auction_detail.id = auction.id
             finalResult.auction_detail.bid_count = bidsLength
             finalResult.auction_detail.title = auction.title

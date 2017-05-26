@@ -23,6 +23,13 @@
           },
           {
             "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>&quot;OK&quot; or &quot;ERROR&quot;</p>"
+          },
+          {
+            "group": "Success 200",
             "type": "Integer",
             "optional": false,
             "field": "id",
@@ -152,7 +159,7 @@
       "examples": [
         {
           "title": "Success",
-          "content": "HTTP/1.1 200 OK\n{\n   success: true,\n   message: 'Success load list of auctions',\n    id: 23,\n    productId: '31fsa21',\n    title: 'Tamiya super cepat',\n       images: [\n          \"https://s1.bukalapak.com/img/6399443521/large/18559011_1080537988757036_3501975879389272155_o.jpg\",\n          \"https://s1.bukalapak.com/img/1759443521/large/18588800_1080537985423703_2582422248365286934_o.jpg\",\n          \"https://s1.bukalapak.com/img/1568443521/large/18489849_1080537978757037_3560457130178166935_o.jpg\",\n          \"https://s1.bukalapak.com/img/6118443521/large/18556862_1080537982090370_2725080892910667932_o.jpg\",\n          \"https://s1.bukalapak.com/img/6995143521/large/18595351_1080537975423704_1599301220619307539_o.jpg\"\n       ],\n       running: true,\n       small_images: [\n            \"https://s1.bukalapak.com/img/6399443521/small/18559011_1080537988757036_3501975879389272155_o.jpg\",\n            \"https://s1.bukalapak.com/img/1759443521/small/18588800_1080537985423703_2582422248365286934_o.jpg\",\n            \"https://s1.bukalapak.com/img/1568443521/small/18489849_1080537978757037_3560457130178166935_o.jpg\",\n            \"https://s1.bukalapak.com/img/6118443521/small/18556862_1080537982090370_2725080892910667932_o.jpg\",\n            \"https://s1.bukalapak.com/img/6995143521/small/18595351_1080537975423704_1599301220619307539_o.jpg\"\n       ]\n    category: 'Mainan',\n      slug: 'tamiya-sto-100-8hdpi0',\n      name: 'Diky Arga',\n    new: false,\n    weight: 1000,\n    description: 'Tamiya ini di rakit oleh ahli fisika, dengan memperhatikan dengan seksama gaya gesek dan kelembaman sehigga mengurangi kaya gesek dengan lintasan membuanya super cepat.',\n    min_price: 200000,\n    max_price: 3000000,\n    current_price: 600000,\n    kelipatan_bid: 20000,\n    start_date: '2017-04-16T18:22:54.846+07:00',\n    end_date: '2017-05-16T18:22:54.846+07:00',\n      time_left: 423913828,\n}",
+          "content": "HTTP/1.1 200 OK\n{\n   success: true,\n   status: \"OK\",\n   message: 'Success load list of auctions',\n    id: 23,\n    productId: '31fsa21',\n    title: 'Tamiya super cepat',\n       images: [\n          \"https://s1.bukalapak.com/img/6399443521/large/18559011_1080537988757036_3501975879389272155_o.jpg\",\n          \"https://s1.bukalapak.com/img/1759443521/large/18588800_1080537985423703_2582422248365286934_o.jpg\",\n          \"https://s1.bukalapak.com/img/1568443521/large/18489849_1080537978757037_3560457130178166935_o.jpg\",\n          \"https://s1.bukalapak.com/img/6118443521/large/18556862_1080537982090370_2725080892910667932_o.jpg\",\n          \"https://s1.bukalapak.com/img/6995143521/large/18595351_1080537975423704_1599301220619307539_o.jpg\"\n       ],\n       running: true,\n       small_images: [\n            \"https://s1.bukalapak.com/img/6399443521/small/18559011_1080537988757036_3501975879389272155_o.jpg\",\n            \"https://s1.bukalapak.com/img/1759443521/small/18588800_1080537985423703_2582422248365286934_o.jpg\",\n            \"https://s1.bukalapak.com/img/1568443521/small/18489849_1080537978757037_3560457130178166935_o.jpg\",\n            \"https://s1.bukalapak.com/img/6118443521/small/18556862_1080537982090370_2725080892910667932_o.jpg\",\n            \"https://s1.bukalapak.com/img/6995143521/small/18595351_1080537975423704_1599301220619307539_o.jpg\"\n       ]\n    category: 'Mainan',\n      slug: 'tamiya-sto-100-8hdpi0',\n      name: 'Diky Arga',\n    new: false,\n    weight: 1000,\n    description: 'Tamiya ini di rakit oleh ahli fisika, dengan memperhatikan dengan seksama gaya gesek dan kelembaman sehigga mengurangi kaya gesek dengan lintasan membuanya super cepat.',\n    min_price: 200000,\n    max_price: 3000000,\n    current_price: 600000,\n    kelipatan_bid: 20000,\n    start_date: '2017-04-16T18:22:54.846+07:00',\n    end_date: '2017-05-16T18:22:54.846+07:00',\n      time_left: 423913828,\n}",
           "type": "json"
         }
       ]
@@ -161,7 +168,7 @@
       "examples": [
         {
           "title": "List error",
-          "content": "HTTP/1.1 500 Internal Server Error\n{\n   success: false,\n   message: 'Auction with id 3 doesnt exist',\n    id: null,\n    productId: null,\n    title: null,\n      images: [],\n      running: false,\n      small_images: [],\n    category: null,\n      slug: null,\n      name: null,\n    new: false,\n    weight: 0,\n    description: null,\n    min_price: 0,\n    max_price: 0,\n    current_price: 0,\n    kelipatan_bid: 0,\n    start_date: null,\n    end_date: null,\n      time_left: 0\n}",
+          "content": "HTTP/1.1 500 Internal Server Error\n{\n   success: false,\n   status: \"ERROR\",\n   message: 'Auction with id 3 doesnt exist',\n    id: null,\n    productId: null,\n    title: null,\n      images: [],\n      running: false,\n      small_images: [],\n    category: null,\n      slug: null,\n      name: null,\n    new: false,\n    weight: 0,\n    description: null,\n    min_price: 0,\n    max_price: 0,\n    current_price: 0,\n    kelipatan_bid: 0,\n    start_date: null,\n    end_date: null,\n      time_left: 0\n}",
           "type": "json"
         }
       ]
@@ -197,13 +204,20 @@
             "optional": false,
             "field": "success",
             "description": "<p>is request success ?</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>&quot;OK&quot; or &quot;ERROR&quot;</p>"
           }
         ]
       },
       "examples": [
         {
           "title": "Success",
-          "content": "HTTP/1.1 200 OK\n{\n   success: true,\n   message: 'Success load list of bid history',\n      auction_detail: {\n        id: 3,\n        title: 'Tamiya tanpa gaya gravitasi',\n        bid_count: 2\n      },\n   bid_history: [\n           {\n             name_of_bidder: 'Diky Arga',\n             avatarUrl: 'https://www.bukalapak.com/images/default_avatar/medium/default.jpg',\n             name_of_bidder: 'Diky Arga',\n             bid_nominal: 70000,\n             bidding_time: '2017-05-17T18:22:54.846+07:00'\n           },\n           {\n             name_of_bidder: 'Eri Selalu',\n             avatarUrl: 'https://www.bukalapak.com/images/default_avatar/medium/default.jpg',\n             bid_nominal: 60000,\n             bidding_time: '2017-05-16T18:22:54.846+07:00'\n           }\n         ]\n}",
+          "content": "HTTP/1.1 200 OK\n{\n   success: true,\n   status: \"OK\",\n   message: 'Success load list of bid history',\n      auction_detail: {\n        id: 3,\n        title: 'Tamiya tanpa gaya gravitasi',\n        bid_count: 2\n      },\n   bid_history: [\n           {\n             name_of_bidder: 'Diky Arga',\n             avatarUrl: 'https://www.bukalapak.com/images/default_avatar/medium/default.jpg',\n             name_of_bidder: 'Diky Arga',\n             bid_nominal: 70000,\n             bidding_time: '2017-05-17T18:22:54.846+07:00'\n           },\n           {\n             name_of_bidder: 'Eri Selalu',\n             avatarUrl: 'https://www.bukalapak.com/images/default_avatar/medium/default.jpg',\n             bid_nominal: 60000,\n             bidding_time: '2017-05-16T18:22:54.846+07:00'\n           }\n         ]\n}",
           "type": "json"
         }
       ]
@@ -212,7 +226,7 @@
       "examples": [
         {
           "title": "List error",
-          "content": "HTTP/1.1 500 Internal Server Error\n{\n   success: false,\n   message: 'Auction with id 3 doesnt exist',\n      auction_detail: {\n        id: null,\n        title: null,\n        bid_count: 0\n      },\n   bid_history: []\n}",
+          "content": "HTTP/1.1 500 Internal Server Error\n{\n   success: false,\n   status: \"ERROR\",\n   message: 'Auction with id 3 doesnt exist',\n      auction_detail: {\n        id: null,\n        title: null,\n        bid_count: 0\n      },\n   bid_history: []\n}",
           "type": "json"
         }
       ]
@@ -251,6 +265,13 @@
           },
           {
             "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>&quot;OK&quot; or &quot;ERROR&quot;</p>"
+          },
+          {
+            "group": "Success 200",
             "type": "Integer",
             "optional": false,
             "field": "time_left",
@@ -268,7 +289,7 @@
       "examples": [
         {
           "title": "Success",
-          "content": "HTTP/1.1 200 OK\n{\n   success: true,\n   message: 'Success load list of auctions',\n      time_left: 111000,\n    end_date: '2017-05-16T18:22:54.846+07:00'\n}",
+          "content": "HTTP/1.1 200 OK\n{\n   success: true,\n   status: \"OK\",\n   message: 'Success load list of auctions',\n      time_left: 111000,\n    end_date: '2017-05-16T18:22:54.846+07:00'\n}",
           "type": "json"
         }
       ]
@@ -277,7 +298,7 @@
       "examples": [
         {
           "title": "List error",
-          "content": "HTTP/1.1 500 Internal Server Error\n{\n   success: false,\n   message: 'Auction with id 3 doesnt exist',\n      time_left: null,\n    end_date: null\n}",
+          "content": "HTTP/1.1 500 Internal Server Error\n{\n   success: false,\n   status: \"ERROR\",\n   message: 'Auction with id 3 doesnt exist',\n      time_left: null,\n    end_date: null\n}",
           "type": "json"
         }
       ]
@@ -313,6 +334,13 @@
             "optional": false,
             "field": "success",
             "description": "<p>is request success ?</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>&quot;OK&quot; or &quot;ERROR&quot;</p>"
           },
           {
             "group": "Success 200",
@@ -466,7 +494,7 @@
       "examples": [
         {
           "title": "Success",
-          "content": "HTTP/1.1 200 OK\n{\n  \"success\": true,\n  \"message\": 'Success load list of auctions',\n  \"page\": 2,\n     \"limit\": 5,\n  \"auctions\": [\n        {\n         id: 23,\n         productId: '31fsa21',\n         title: 'Tamiya sto 100 cepat',\n            images: [\n               \"https://s1.bukalapak.com/img/6399443521/large/18559011_1080537988757036_3501975879389272155_o.jpg\",\n               \"https://s1.bukalapak.com/img/1759443521/large/18588800_1080537985423703_2582422248365286934_o.jpg\",\n               \"https://s1.bukalapak.com/img/1568443521/large/18489849_1080537978757037_3560457130178166935_o.jpg\",\n               \"https://s1.bukalapak.com/img/6118443521/large/18556862_1080537982090370_2725080892910667932_o.jpg\",\n               \"https://s1.bukalapak.com/img/6995143521/large/18595351_1080537975423704_1599301220619307539_o.jpg\"\n            ],\n            running: true,\n            small_images: [\n                 \"https://s1.bukalapak.com/img/6399443521/small/18559011_1080537988757036_3501975879389272155_o.jpg\",\n                 \"https://s1.bukalapak.com/img/1759443521/small/18588800_1080537985423703_2582422248365286934_o.jpg\",\n                 \"https://s1.bukalapak.com/img/1568443521/small/18489849_1080537978757037_3560457130178166935_o.jpg\",\n                 \"https://s1.bukalapak.com/img/6118443521/small/18556862_1080537982090370_2725080892910667932_o.jpg\",\n                 \"https://s1.bukalapak.com/img/6995143521/small/18595351_1080537975423704_1599301220619307539_o.jpg\"\n            ],\n         categoryName: 'Mainan',\n            time_left: 423913828,\n            name: 'Diky Arga',\n            slug: 'tamiya-sto-100-8hdpi0'\n         new: false,\n         weight: 1000,\n         description: 'Tamiya ini di rakit oleh ahli fisika, dengan memperhatikan dengan seksama gaya gesek dan kelembaman sehigga mengurangi kaya gesek dengan lintasan membuanya super cepat.',\n         min_price: 200000,\n         max_price: 3000000,\n         current_price: 600000,\n         kelipatan_bid: 20000,\n         start_date: '2017-04-16T18:22:54.846+07:00',\n         end_date: '2017-05-16T18:22:54.846+07:00'\n       }\n     ]\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"success\": true,\n  \"status\": \"OK\",\n  \"message\": 'Success load list of auctions',\n  \"page\": 2,\n     \"limit\": 5,\n  \"auctions\": [\n        {\n         id: 23,\n         productId: '31fsa21',\n         title: 'Tamiya sto 100 cepat',\n            images: [\n               \"https://s1.bukalapak.com/img/6399443521/large/18559011_1080537988757036_3501975879389272155_o.jpg\",\n               \"https://s1.bukalapak.com/img/1759443521/large/18588800_1080537985423703_2582422248365286934_o.jpg\",\n               \"https://s1.bukalapak.com/img/1568443521/large/18489849_1080537978757037_3560457130178166935_o.jpg\",\n               \"https://s1.bukalapak.com/img/6118443521/large/18556862_1080537982090370_2725080892910667932_o.jpg\",\n               \"https://s1.bukalapak.com/img/6995143521/large/18595351_1080537975423704_1599301220619307539_o.jpg\"\n            ],\n            running: true,\n            small_images: [\n                 \"https://s1.bukalapak.com/img/6399443521/small/18559011_1080537988757036_3501975879389272155_o.jpg\",\n                 \"https://s1.bukalapak.com/img/1759443521/small/18588800_1080537985423703_2582422248365286934_o.jpg\",\n                 \"https://s1.bukalapak.com/img/1568443521/small/18489849_1080537978757037_3560457130178166935_o.jpg\",\n                 \"https://s1.bukalapak.com/img/6118443521/small/18556862_1080537982090370_2725080892910667932_o.jpg\",\n                 \"https://s1.bukalapak.com/img/6995143521/small/18595351_1080537975423704_1599301220619307539_o.jpg\"\n            ],\n         categoryName: 'Mainan',\n            time_left: 423913828,\n            name: 'Diky Arga',\n            slug: 'tamiya-sto-100-8hdpi0'\n         new: false,\n         weight: 1000,\n         description: 'Tamiya ini di rakit oleh ahli fisika, dengan memperhatikan dengan seksama gaya gesek dan kelembaman sehigga mengurangi kaya gesek dengan lintasan membuanya super cepat.',\n         min_price: 200000,\n         max_price: 3000000,\n         current_price: 600000,\n         kelipatan_bid: 20000,\n         start_date: '2017-04-16T18:22:54.846+07:00',\n         end_date: '2017-05-16T18:22:54.846+07:00'\n       }\n     ]\n}",
           "type": "json"
         }
       ]
@@ -475,7 +503,7 @@
       "examples": [
         {
           "title": "List error",
-          "content": "HTTP/1.1 500 Internal Server Error\n{\n  \"success\": false,\n  \"message\": 'Fail load list of auctions',\n     \"page\": null,\n     \"limit\": null,\n  \"auctions\": []\n}",
+          "content": "HTTP/1.1 500 Internal Server Error\n{\n  \"success\": false,\n  \"status\": \"ERROR\",\n  \"message\": 'Fail load list of auctions',\n     \"page\": null,\n     \"limit\": null,\n  \"auctions\": []\n}",
           "type": "json"
         }
       ]
@@ -511,6 +539,13 @@
             "optional": false,
             "field": "success",
             "description": "<p>is request success ?</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>&quot;OK&quot; or &quot;ERROR&quot;</p>"
           },
           {
             "group": "Success 200",
@@ -629,7 +664,7 @@
       "examples": [
         {
           "title": "Success",
-          "content": "HTTP/1.1 200 OK\n{\n  \"success\": true,\n  \"message\": 'Success load list of auctions by title Tamiya',\n  \"auctions\": [\n        {\n         id: 23,\n         productId: '31fsa21',\n         title: 'Tamiya super cepat',\n         name: 'Diky Arga',\n            images: [\n               \"https://s1.bukalapak.com/img/6399443521/large/18559011_1080537988757036_3501975879389272155_o.jpg\",\n               \"https://s1.bukalapak.com/img/1759443521/large/18588800_1080537985423703_2582422248365286934_o.jpg\",\n               \"https://s1.bukalapak.com/img/1568443521/large/18489849_1080537978757037_3560457130178166935_o.jpg\",\n               \"https://s1.bukalapak.com/img/6118443521/large/18556862_1080537982090370_2725080892910667932_o.jpg\",\n               \"https://s1.bukalapak.com/img/6995143521/large/18595351_1080537975423704_1599301220619307539_o.jpg\"\n            ],\n            running: true,\n            small_images: [\n                 \"https://s1.bukalapak.com/img/6399443521/small/18559011_1080537988757036_3501975879389272155_o.jpg\",\n                 \"https://s1.bukalapak.com/img/1759443521/small/18588800_1080537985423703_2582422248365286934_o.jpg\",\n                 \"https://s1.bukalapak.com/img/1568443521/small/18489849_1080537978757037_3560457130178166935_o.jpg\",\n                 \"https://s1.bukalapak.com/img/6118443521/small/18556862_1080537982090370_2725080892910667932_o.jpg\",\n                 \"https://s1.bukalapak.com/img/6995143521/small/18595351_1080537975423704_1599301220619307539_o.jpg\"\n            ]\n         category: 'Mainan',\n            time_left: 423913828,\n         new: false,\n         weight: 1000,\n         description: 'Tamiya ini di rakit oleh ahli fisika, dengan memperhatikan dengan seksama gaya gesek dan kelembaman sehigga mengurangi kaya gesek dengan lintasan membuanya super cepat.',\n         min_price: 200000,\n         max_price: 3000000,\n         current_price: 600000,\n         kelipatan_bid: 20000,\n         start_date: '2017-04-16T18:22:54.846+07:00',\n         end_date: '2017-05-16T18:22:54.846+07:00'\n       }\n     ]\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"success\": true,\n  \"status\": \"OK\",\n  \"message\": 'Success load list of auctions by title Tamiya',\n  \"auctions\": [\n        {\n         id: 23,\n         productId: '31fsa21',\n         title: 'Tamiya super cepat',\n         name: 'Diky Arga',\n            images: [\n               \"https://s1.bukalapak.com/img/6399443521/large/18559011_1080537988757036_3501975879389272155_o.jpg\",\n               \"https://s1.bukalapak.com/img/1759443521/large/18588800_1080537985423703_2582422248365286934_o.jpg\",\n               \"https://s1.bukalapak.com/img/1568443521/large/18489849_1080537978757037_3560457130178166935_o.jpg\",\n               \"https://s1.bukalapak.com/img/6118443521/large/18556862_1080537982090370_2725080892910667932_o.jpg\",\n               \"https://s1.bukalapak.com/img/6995143521/large/18595351_1080537975423704_1599301220619307539_o.jpg\"\n            ],\n            running: true,\n            small_images: [\n                 \"https://s1.bukalapak.com/img/6399443521/small/18559011_1080537988757036_3501975879389272155_o.jpg\",\n                 \"https://s1.bukalapak.com/img/1759443521/small/18588800_1080537985423703_2582422248365286934_o.jpg\",\n                 \"https://s1.bukalapak.com/img/1568443521/small/18489849_1080537978757037_3560457130178166935_o.jpg\",\n                 \"https://s1.bukalapak.com/img/6118443521/small/18556862_1080537982090370_2725080892910667932_o.jpg\",\n                 \"https://s1.bukalapak.com/img/6995143521/small/18595351_1080537975423704_1599301220619307539_o.jpg\"\n            ]\n         category: 'Mainan',\n            time_left: 423913828,\n         new: false,\n         weight: 1000,\n         description: 'Tamiya ini di rakit oleh ahli fisika, dengan memperhatikan dengan seksama gaya gesek dan kelembaman sehigga mengurangi kaya gesek dengan lintasan membuanya super cepat.',\n         min_price: 200000,\n         max_price: 3000000,\n         current_price: 600000,\n         kelipatan_bid: 20000,\n         start_date: '2017-04-16T18:22:54.846+07:00',\n         end_date: '2017-05-16T18:22:54.846+07:00'\n       }\n     ]\n}",
           "type": "json"
         }
       ]
@@ -638,7 +673,7 @@
       "examples": [
         {
           "title": "List error",
-          "content": "HTTP/1.1 500 Internal Server Error\n{\n  \"success\": false,\n  \"message\": 'Fail load list of auctions',\n  \"auctions\": []\n}",
+          "content": "HTTP/1.1 500 Internal Server Error\n{\n  \"success\": false,\n  \"status\": \"ERROR\",\n  \"message\": 'Fail load list of auctions',\n  \"auctions\": []\n}",
           "type": "json"
         }
       ]
@@ -674,6 +709,13 @@
             "optional": false,
             "field": "success",
             "description": "<p>is request success ?</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>&quot;OK&quot; or &quot;ERROR&quot;</p>"
           },
           {
             "group": "Success 200",
@@ -806,7 +848,7 @@
       "examples": [
         {
           "title": "Success",
-          "content": "HTTP/1.1 200 OK\n{\n   success: true,\n   message: 'Success load list of auctions',\n    id: 23,\n    productId: '31fsa21',\n    title: 'Tamiya super cepat',\n    slug: 'kamera-antik-jaman-belanda-8853e3',\n     images: [\n        \"https://s1.bukalapak.com/img/6399443521/large/18559011_1080537988757036_3501975879389272155_o.jpg\",\n        \"https://s1.bukalapak.com/img/1759443521/large/18588800_1080537985423703_2582422248365286934_o.jpg\",\n        \"https://s1.bukalapak.com/img/1568443521/large/18489849_1080537978757037_3560457130178166935_o.jpg\",\n        \"https://s1.bukalapak.com/img/6118443521/large/18556862_1080537982090370_2725080892910667932_o.jpg\",\n        \"https://s1.bukalapak.com/img/6995143521/large/18595351_1080537975423704_1599301220619307539_o.jpg\"\n     ],\n     running: true,\n     small_images: [\n          \"https://s1.bukalapak.com/img/6399443521/small/18559011_1080537988757036_3501975879389272155_o.jpg\",\n          \"https://s1.bukalapak.com/img/1759443521/small/18588800_1080537985423703_2582422248365286934_o.jpg\",\n          \"https://s1.bukalapak.com/img/1568443521/small/18489849_1080537978757037_3560457130178166935_o.jpg\",\n          \"https://s1.bukalapak.com/img/6118443521/small/18556862_1080537982090370_2725080892910667932_o.jpg\",\n          \"https://s1.bukalapak.com/img/6995143521/small/18595351_1080537975423704_1599301220619307539_o.jpg\"\n     ],\n      categoryName: 'Mainan',\n      time_left: 423913828,\n      name: 'Diky Arga',\n    new: false,\n    weight: 1000,\n    description: 'Tamiya ini di rakit oleh ahli fisika, dengan memperhatikan dengan seksama gaya gesek dan kelembaman sehigga mengurangi kaya gesek dengan lintasan membuanya super cepat.',\n    min_price: 200000,\n    max_price: 3000000,\n    current_price: 600000,\n    kelipatan_bid: 20000,\n    start_date: '2017-04-16T18:22:54.846+07:00',\n    end_date: '2017-05-16T18:22:54.846+07:00'\n}",
+          "content": "HTTP/1.1 200 OK\n{\n   success: true,\n   status: \"OK\",\n   message: 'Success load list of auctions',\n    id: 23,\n    productId: '31fsa21',\n    title: 'Tamiya super cepat',\n    slug: 'kamera-antik-jaman-belanda-8853e3',\n     images: [\n        \"https://s1.bukalapak.com/img/6399443521/large/18559011_1080537988757036_3501975879389272155_o.jpg\",\n        \"https://s1.bukalapak.com/img/1759443521/large/18588800_1080537985423703_2582422248365286934_o.jpg\",\n        \"https://s1.bukalapak.com/img/1568443521/large/18489849_1080537978757037_3560457130178166935_o.jpg\",\n        \"https://s1.bukalapak.com/img/6118443521/large/18556862_1080537982090370_2725080892910667932_o.jpg\",\n        \"https://s1.bukalapak.com/img/6995143521/large/18595351_1080537975423704_1599301220619307539_o.jpg\"\n     ],\n     running: true,\n     small_images: [\n          \"https://s1.bukalapak.com/img/6399443521/small/18559011_1080537988757036_3501975879389272155_o.jpg\",\n          \"https://s1.bukalapak.com/img/1759443521/small/18588800_1080537985423703_2582422248365286934_o.jpg\",\n          \"https://s1.bukalapak.com/img/1568443521/small/18489849_1080537978757037_3560457130178166935_o.jpg\",\n          \"https://s1.bukalapak.com/img/6118443521/small/18556862_1080537982090370_2725080892910667932_o.jpg\",\n          \"https://s1.bukalapak.com/img/6995143521/small/18595351_1080537975423704_1599301220619307539_o.jpg\"\n     ],\n      categoryName: 'Mainan',\n      time_left: 423913828,\n      name: 'Diky Arga',\n    new: false,\n    weight: 1000,\n    description: 'Tamiya ini di rakit oleh ahli fisika, dengan memperhatikan dengan seksama gaya gesek dan kelembaman sehigga mengurangi kaya gesek dengan lintasan membuanya super cepat.',\n    min_price: 200000,\n    max_price: 3000000,\n    current_price: 600000,\n    kelipatan_bid: 20000,\n    start_date: '2017-04-16T18:22:54.846+07:00',\n    end_date: '2017-05-16T18:22:54.846+07:00'\n}",
           "type": "json"
         }
       ]
@@ -815,7 +857,7 @@
       "examples": [
         {
           "title": "List error",
-          "content": "HTTP/1.1 500 Internal Server Error\n{\n   success: false,\n   message: 'Auction with id 3 doesnt exist',\n    id: null,\n    productId: null,\n    title: null,\n    slug: null,\n    running: false,\n    images: [],\n    small_images: [],\n    categoryName: null,\n      time_left: 0,\n      name: null,\n    new: false,\n    weight: 0,\n    description: null,\n    min_price: 0,\n    max_price: 0,\n    current_price: 0,\n    kelipatan_bid: 0,\n    start_date: null,\n    end_date: null\n}",
+          "content": "HTTP/1.1 500 Internal Server Error\n{\n   success: false,\n   status: \"ERROR\",\n   message: 'Auction with id 3 doesnt exist',\n    id: null,\n    productId: null,\n    title: null,\n    slug: null,\n    running: false,\n    images: [],\n    small_images: [],\n    categoryName: null,\n      time_left: 0,\n      name: null,\n    new: false,\n    weight: 0,\n    description: null,\n    min_price: 0,\n    max_price: 0,\n    current_price: 0,\n    kelipatan_bid: 0,\n    start_date: null,\n    end_date: null\n}",
           "type": "json"
         }
       ]
@@ -1053,13 +1095,34 @@
             "optional": false,
             "field": "end_date",
             "description": "<p>date end of auction, default is two days after published</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "success",
+            "description": "<p>is request success ?</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>&quot;OK&quot; or &quot;ERROR&quot;</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>message from server</p>"
           }
         ]
       },
       "examples": [
         {
           "title": "Success",
-          "content": "HTTP/1.1 200 OK\n{\n  \"id\": 23,\n  \"productId\": '42dfs34',\n  \"title\": \"Lelang Gundam Langka & Istimewa\",\n  \"images\": [\"https://s0.bukalapak.com/system/images/1/6/7/6/6/8/0/large/IMG00475-20121105-1431.jpg?1352105447\", \"https://s0.bukalapak.com/system/images/1/6/7/6/6/8/0/large/lalalala.jpg?1352105447\"],\n  \"small_images: [\"https://s0.bukalapak.com/system/images/1/6/7/6/6/8/0/small/IMG00475-20121105-1431.jpg\", \"https://s0.bukalapak.com/system/images/1/6/7/6/6/8/0/small/lalalala.jpg?1352105447\"],\n  \"categoryId\": 145,\n  \"category\": 'Mainan',\n  \"new\": false,\n  \"weight\": 5000,\n  \"description\": \"Gundam dapet dari pembuatnya langsung lho\",\n  \"min_price\": 50000,\n  \"max_price\": 200000,\n  \"kelipatan_bid\": 10000,\n  \"end_date\": 2017-09-14T00:00:00Z,\n  \"userId\": 2,\n  \"success\": true,\n  \"message\": 'buat lelang berhasil',\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"id\": 23,\n  \"productId\": '42dfs34',\n  \"title\": \"Lelang Gundam Langka & Istimewa\",\n  \"images\": [\"https://s0.bukalapak.com/system/images/1/6/7/6/6/8/0/large/IMG00475-20121105-1431.jpg?1352105447\", \"https://s0.bukalapak.com/system/images/1/6/7/6/6/8/0/large/lalalala.jpg?1352105447\"],\n  \"small_images: [\"https://s0.bukalapak.com/system/images/1/6/7/6/6/8/0/small/IMG00475-20121105-1431.jpg\", \"https://s0.bukalapak.com/system/images/1/6/7/6/6/8/0/small/lalalala.jpg?1352105447\"],\n  \"categoryId\": 145,\n  \"category\": 'Mainan',\n  \"new\": false,\n  \"weight\": 5000,\n  \"description\": \"Gundam dapet dari pembuatnya langsung lho\",\n  \"min_price\": 50000,\n  \"max_price\": 200000,\n  \"kelipatan_bid\": 10000,\n  \"end_date\": 2017-09-14T00:00:00Z,\n  \"userId\": 2,\n  \"success\": true,\n  \"status\": \"OK\",\n  \"message\": 'buat lelang berhasil',\n}",
           "type": "json"
         }
       ]
@@ -1068,7 +1131,7 @@
       "examples": [
         {
           "title": "List error",
-          "content": "HTTP/1.1 500 Internal Server Error\n{\n   \"id\": null,\n   \"productId\": null,\n  \"title\": null,\n  \"images\": [],\n     \"small_images\": [],\n  \"categoryId\": null,\n  \"category\": null,\n  \"new\": false,\n  \"weight\": 0,\n  \"description\": null,\n  \"min_price\": 0,\n  \"max_price\": 0,\n  \"kelipatan_bid\": 0,\n  \"end_date\": null,\n  \"userId\": null,\n  \"success\": false,\n  \"message\": 'Buat lelang gagal ):',\n}",
+          "content": "HTTP/1.1 500 Internal Server Error\n{\n   \"id\": null,\n   \"productId\": null,\n  \"title\": null,\n  \"images\": [],\n     \"small_images\": [],\n  \"categoryId\": null,\n  \"category\": null,\n  \"new\": false,\n  \"weight\": 0,\n  \"description\": null,\n  \"min_price\": 0,\n  \"max_price\": 0,\n  \"kelipatan_bid\": 0,\n  \"end_date\": null,\n  \"userId\": null,\n  \"success\": false,\n  \"status\": \"ERROR\",\n  \"message\": 'Buat lelang gagal ):',\n}",
           "type": "json"
         }
       ]

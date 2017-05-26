@@ -56,7 +56,9 @@ const applyMidleware = require('../helpers/authentication')
  * @apiSuccess {Integer} kelipatan_bid nominal lipatan of next bidding
  * @apiSuccess {Date} start_date date of auction start, default is after published
  * @apiSuccess {Date} end_date date end of auction, default is two days after published
-
+ * @apiSuccess {Boolean} success is request success ?
+ * @apiSuccess {String} status "OK" or "ERROR"
+ * @apiSuccess {String} message message from server
 
  * @apiSuccessExample {json} Success
  *    HTTP/1.1 200 OK
@@ -77,6 +79,7 @@ const applyMidleware = require('../helpers/authentication')
  *      "end_date": 2017-09-14T00:00:00Z,
  *      "userId": 2,
  *      "success": true,
+ *      "status": "OK",
  *      "message": 'buat lelang berhasil',
  *    }
  * @apiErrorExample {json} List error
@@ -98,6 +101,7 @@ const applyMidleware = require('../helpers/authentication')
  *      "end_date": null,
  *      "userId": null,
  *      "success": false,
+ *      "status": "ERROR",
  *      "message": 'Buat lelang gagal ):',
  *    }
  */
@@ -109,6 +113,7 @@ router.post('/', auctionController.create)
 
  * @apiSuccess {String} message message from server
  * @apiSuccess {Boolean} success is request success ?
+ * @apiSuccess {String} status "OK" or "ERROR"
  * @apiSuccess {Integer} page page of pagination
  * @apiSuccess {Integer} limit limit per page
  * @apiSuccess {Object[]} auctions List of auctions.
@@ -136,6 +141,7 @@ router.post('/', auctionController.create)
  *    HTTP/1.1 200 OK
  *    {
  *      "success": true,
+ *      "status": "OK",
  *      "message": 'Success load list of auctions',
  *      "page": 2,
         "limit": 5,
@@ -179,6 +185,7 @@ router.post('/', auctionController.create)
  *    HTTP/1.1 500 Internal Server Error
  *    {
  *      "success": false,
+ *      "status": "ERROR",
  *      "message": 'Fail load list of auctions',
         "page": null,
         "limit": null,
@@ -193,6 +200,7 @@ router.get('/', auctionController.getAllAuctions)
 
  * @apiSuccess {String} message message from server
  * @apiSuccess {Boolean} success is request success ?
+ * @apiSuccess {String} status "OK" or "ERROR"
  * @apiSuccess {Object[]} auctions List of auctions.
  * @apiSuccess {Integer} auctions.id id of the auction
  * @apiSuccess {Integer} auctions.productId id of the product at BL
@@ -215,6 +223,7 @@ router.get('/', auctionController.getAllAuctions)
  *    HTTP/1.1 200 OK
  *    {
  *      "success": true,
+ *      "status": "OK",
  *      "message": 'Success load list of auctions by title Tamiya',
  *      "auctions": [
  *            {
@@ -255,6 +264,7 @@ router.get('/', auctionController.getAllAuctions)
  *    HTTP/1.1 500 Internal Server Error
  *    {
  *      "success": false,
+ *      "status": "ERROR",
  *      "message": 'Fail load list of auctions',
  *      "auctions": []
  *    }
@@ -266,6 +276,7 @@ router.get('/search', auctionController.searchByTitle)
  * @apiGroup Auction
  * @apiSuccess {String} message message from server
  * @apiSuccess {Boolean} success is request success ?
+ * @apiSuccess {String} status "OK" or "ERROR"
  * @apiSuccess {Integer} id id of the auction
  * @apiSuccess {Integer} productId id of the product at BL
  * @apiSuccess {String} title Title of auction
@@ -289,6 +300,7 @@ router.get('/search', auctionController.searchByTitle)
  *    HTTP/1.1 200 OK
  *    {
  *       success: true,
+ *       status: "OK",
  *       message: 'Success load list of auctions',
 *        id: 23,
 *        productId: '31fsa21',
@@ -326,6 +338,7 @@ router.get('/search', auctionController.searchByTitle)
  *    HTTP/1.1 500 Internal Server Error
  *    {
  *       success: false,
+ *       status: "ERROR",
  *       message: 'Auction with id 3 doesnt exist',
 *        id: null,
 *        productId: null,
@@ -355,6 +368,7 @@ router.get('/:id', auctionController.show)
  * @apiGroup Auction
  * @apiSuccess {String} message message from server
  * @apiSuccess {Boolean} success is request success ?
+ * @apiSuccess {String} status "OK" or "ERROR"
  * @apiSuccess {Integer} time_left time left of the auction
  * @apiSuccess {Date} end_date date end of auction, default is one week
 
@@ -362,6 +376,7 @@ router.get('/:id', auctionController.show)
  *    HTTP/1.1 200 OK
  *    {
  *       success: true,
+ *       status: "OK",
  *       message: 'Success load list of auctions',
          time_left: 111000,
 *        end_date: '2017-05-16T18:22:54.846+07:00'
@@ -370,6 +385,7 @@ router.get('/:id', auctionController.show)
  *    HTTP/1.1 500 Internal Server Error
  *    {
  *       success: false,
+ *       status: "ERROR",
  *       message: 'Auction with id 3 doesnt exist',
          time_left: null,
 *        end_date: null
@@ -382,6 +398,7 @@ router.get('/:id/time-left', auctionController.timeLeft)
  * @apiGroup Auction
  * @apiSuccess {String} message message from server
  * @apiSuccess {Boolean} success is request success ?
+ * @apiSuccess {String} status "OK" or "ERROR"
  * @apiSuccess {Integer} id id of the auction
  * @apiSuccess {Integer} productId id of the product at BL
  * @apiSuccess {String} title Title of auction
@@ -405,6 +422,7 @@ router.get('/:id/time-left', auctionController.timeLeft)
  *    HTTP/1.1 200 OK
  *    {
  *       success: true,
+ *       status: "OK",
  *       message: 'Success load list of auctions',
 *        id: 23,
 *        productId: '31fsa21',
@@ -442,6 +460,7 @@ router.get('/:id/time-left', auctionController.timeLeft)
  *    HTTP/1.1 500 Internal Server Error
  *    {
  *       success: false,
+ *       status: "ERROR",
  *       message: 'Auction with id 3 doesnt exist',
 *        id: null,
 *        productId: null,
@@ -471,10 +490,12 @@ router.get('/slug/:slug', auctionController.findAuctionBySlug)
  * @apiGroup Auction
  * @apiSuccess {String} message message from server
  * @apiSuccess {Boolean} success is request success ?
+ * @apiSuccess {String} status "OK" or "ERROR"
  * @apiSuccessExample {json} Success
  *    HTTP/1.1 200 OK
  *    {
  *       success: true,
+ *       status: "OK",
  *       message: 'Success load list of bid history',
          auction_detail: {
            id: 3,
@@ -501,6 +522,7 @@ router.get('/slug/:slug', auctionController.findAuctionBySlug)
  *    HTTP/1.1 500 Internal Server Error
  *    {
  *       success: false,
+ *       status: "ERROR",
  *       message: 'Auction with id 3 doesnt exist',
          auction_detail: {
            id: null,
