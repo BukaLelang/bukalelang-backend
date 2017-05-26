@@ -507,6 +507,7 @@ module.exports = {
             const newBidHistory = bidHistoryArr.map(bid => {
               return Object.assign({}, bid, {
                 name_of_bidder: bid.User.name,
+                avatarUrl: bid.User.avatarUrl,
                 bid_nominal: bid.current_bid,
                 bidding_time: bid.createdAt
               })
@@ -558,6 +559,5 @@ function convertArrayOfObjectIntoArray(arrayOfImages, propertyName) {
   for (var i = 0; i < arrayOfImages.length; i++) {
     images.push(arrayOfImages[i][propertyName])
   }
-
   return images
 }

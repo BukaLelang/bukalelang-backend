@@ -484,12 +484,15 @@ router.get('/slug/:slug', auctionController.findAuctionBySlug)
  *       bid_history: [
               {
                 name_of_bidder: 'Diky Arga',
+                avatarUrl: 'https://www.bukalapak.com/images/default_avatar/medium/default.jpg',
+                name_of_bidder: 'Diky Arga',
                 bid_nominal: 70000,
                 bidding_time: '2017-05-17T18:22:54.846+07:00'
               },
               {
                 name_of_bidder: 'Eri Selalu',
-                bid_nominal: 60000,s
+                avatarUrl: 'https://www.bukalapak.com/images/default_avatar/medium/default.jpg',
+                bid_nominal: 60000,
                 bidding_time: '2017-05-16T18:22:54.846+07:00'
               }
             ]
