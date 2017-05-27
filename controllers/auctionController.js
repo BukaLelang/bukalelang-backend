@@ -29,6 +29,7 @@ module.exports = {
       description: null,
       location: null,
       current_price: null,
+      bidderCount: 0,
       min_price: 0,
       max_price: 0,
       kelipatan_bid: 0,
@@ -157,6 +158,7 @@ module.exports = {
                   finalResult.description = auction.description
                   finalResult.location = responseAfterCreateProduct.data.product_detail.city
                   finalResult.current_price = auction.min_price
+                  finalResult.bidderCount = 0
                   finalResult.min_price = auction.min_price
                   finalResult.max_price = auction.max_price
                   finalResult.kelipatan_bid = auction.kelipatan_bid
@@ -237,6 +239,7 @@ module.exports = {
           small_images: convertArrayOfObjectIntoArray(auction.ProductImages, 'smallImageUrl'),
           categoryName: auction.Category.name,
           current_price: auction.Bids.length == 0 ? auction.min_price : _.maxBy(auction.Bids, 'current_bid').current_bid,
+          bidderCount: auction.Bids.length == 0 ? 0 : auction.Bids.length,
           name: auction.User.name,
           avatarUrl: auction.User.avatarUrl || 'https://www.bukalapak.com/images/default_avatar/medium/default.jpg',
           time_left: getMinutesBetweenDates(new Date(), new Date(auction.end_date))
@@ -305,6 +308,7 @@ module.exports = {
           small_images: convertArrayOfObjectIntoArray(auction.ProductImages, 'smallImageUrl'),
           categoryName: auction.Category.name,
           current_price: auction.Bids.length == 0 ? auction.min_price : _.maxBy(auction.Bids, 'current_bid').current_bid,
+          bidderCount: auction.Bids.length == 0 ? 0 : auction.Bids.length,
           name: auction.User.name,
           avatarUrl: auction.User.avatarUrl || 'https://www.bukalapak.com/images/default_avatar/medium/default.jpg',
           time_left: getMinutesBetweenDates(new Date(), new Date(auction.end_date))
@@ -395,6 +399,8 @@ module.exports = {
       new: false,
       weight: 0,
       description: null,
+      current_price: 0,
+      bidderCount: 0,
       min_price: 0,
       max_price: 0,
       kelipatan_bid: 0,
@@ -418,6 +424,8 @@ module.exports = {
         model: models.Category
       }, {
         model: models.User
+      }, {
+        model: models.Bid
       }]
     }).then(auction => {
       console.log('isi auciton L --------', auction.User);
@@ -437,6 +445,8 @@ module.exports = {
       finalResult.new = auction.new
       finalResult.weight = auction.weight
       finalResult.description = auction.description
+      finalResult.current_price = auction.Bids.length == 0 ? auction.min_price : _.maxBy(auction.Bids, 'current_bid').current_bid
+      finalResult.bidderCount = auction.Bids.length == 0 ? 0 : auction.Bids.length
       finalResult.min_price = auction.min_price
       finalResult.max_price = auction.max_price
       finalResult.kelipatan_bid = auction.kelipatan_bid
@@ -470,6 +480,8 @@ module.exports = {
       new: false,
       weight: 0,
       description: null,
+      current_price: 0,
+      bidderCount: 0,
       min_price: 0,
       max_price: 0,
       kelipatan_bid: 0,
@@ -493,6 +505,8 @@ module.exports = {
         model: models.Category
       }, {
         model: models.User
+      }, {
+        model: models.Bid
       }]
     }).then(auction => {
       if (!auction) {
@@ -511,6 +525,8 @@ module.exports = {
       finalResult.new = auction.new
       finalResult.weight = auction.weight
       finalResult.description = auction.description
+      finalResult.current_price = auction.Bids.length == 0 ? auction.min_price : _.maxBy(auction.Bids, 'current_bid').current_bid
+      finalResult.bidderCount = auction.Bids.length == 0 ? 0 : auction.Bids.length
       finalResult.min_price = auction.min_price
       finalResult.max_price = auction.max_price
       finalResult.kelipatan_bid = auction.kelipatan_bid
