@@ -235,8 +235,8 @@ module.exports = {
         return Object.assign({}, auction, {
           isRunning: moment(auction.end_date).format() >= moment().format() ? 1 : 0,
           running: moment(auction.end_date).format() >= moment().format() ? true : false,
-          images: convertArrayOfObjectIntoArray(auction.ProductImages, 'imageUrl'),
-          small_images: convertArrayOfObjectIntoArray(auction.ProductImages, 'smallImageUrl'),
+          images: convertArrayOfObjectIntoArray(_.orderBy(auction.ProductImages, ['id'], ['asc']), 'imageUrl'),
+          small_images: convertArrayOfObjectIntoArray(_.orderBy(auction.ProductImages, ['id'], ['asc']), 'smallImageUrl'),
           categoryName: auction.Category.name,
           current_price: auction.Bids.length == 0 ? auction.min_price : _.maxBy(auction.Bids, 'current_bid').current_bid,
           bidderCount: auction.Bids.length == 0 ? 0 : auction.Bids.length,
