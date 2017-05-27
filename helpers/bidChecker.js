@@ -119,16 +119,19 @@ module.exports = {
       where: {
         auctionId: auctionId
       },
-      include: {
+      include: [{
         model: models.User
-      }
+      }, {
+        model: models.Auction
+      }]
     }).then(bids => {
+      console.log('isi bids ', bids);
       let bidsLength = bids.length
       if (bidsLength > 0) {
         let sortedBidsByHighestPrice = _.orderBy(JSON.parse(JSON.stringify(bids)), ['current_bid'], ['desc'])
         let theWinnerDetail = sortedBidsByHighestPrice[0]
+        console.log('ini bener pemenangnya ? ', theWinnerDetail);
         // remove highest bids from list
-        sortedBidsByHighestPrice.pop()
         // remove same user with that bidder, supaya ngak kasih notif ke diri sendiri
         let removedThatBidder = _.remove(sortedBidsByHighestPrice, function(bid){
           return bid.userId != bidderId
@@ -138,19 +141,16 @@ module.exports = {
 
         let bidderArr = []
         for (var i = 0; i < uniqBidder.length; i++) {
-          console.log('isi tiap bid : ', uniqBidder[i]);
+          // console.log('isi tiap bid : ', uniqBidder[i]);
           bidderArr.push({
             name: uniqBidder[i].User.name,
             email: uniqBidder[i].User.email,
-
           })
         }
         // gak perlu kirim email kalo ngak ada
         if (bidderArr.length > 0) {
           emailSender.sendEmailToUserAfterBidLose(bidderArr, theWinnerDetail)
-
         }
-
       } else {
         console.log('no bids with id ' + auctionId + ' and do nothing');
       }

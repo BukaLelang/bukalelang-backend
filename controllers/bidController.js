@@ -2,7 +2,7 @@ let axios = require('axios')
 
 const models = require('../models')
 let imageUploader = require('../helpers/imageUploader')
-let bidChacker = require('../helpers/bidChecker')
+let bidChecker = require('../helpers/bidChecker')
 
 let blEndPoint = 'https://api.bukalapak.com/v2/'
 
@@ -35,19 +35,19 @@ module.exports = {
         } else {
           // console.log('masuk sini kan dengan auction : ', auction);
           // cek auction nya masih running ngak
-          bidChacker.isAuctionRunning(req.body.auctionId).then(responseAfterCheckIsAuctionRunning => {
+          bidChecker.isAuctionRunning(req.body.auctionId).then(responseAfterCheckIsAuctionRunning => {
             if (responseAfterCheckIsAuctionRunning) {
               // kalo ada dan masih running, baru cek saldonya
               models.User.findById(req.headers.userid).then(user => {
                 if (user) {
-                  bidChacker.checkBalance(user.bukalapakId, user.bl_token).then(checkBalance => {
+                  bidChecker.checkBalance(user.bukalapakId, user.bl_token).then(checkBalance => {
                     // console.log('isi saldo pengguna : ', checkBalance.balance);
                     // cek saldonya lebih tinggi dari bid yang udah ada belum
-                    bidChacker.highestBidOfTheAuction(req.body.auctionId).then(highestBidOfTheAuction => {
+                    bidChecker.highestBidOfTheAuction(req.body.auctionId).then(highestBidOfTheAuction => {
                       // cek saldonya cukup ngak ya
                       if (checkBalance.balance > highestBidOfTheAuction) {
                         // console.log('highestBidOfTheAuction : ', highestBidOfTheAuction);
-                        bidChacker.isMoreThanHighestBid(highestBidOfTheAuction, req.body.nextBid).then(responseAfterIsMoreThanHighestBid => {
+                        bidChecker.isMoreThanHighestBid(highestBidOfTheAuction, req.body.nextBid).then(responseAfterIsMoreThanHighestBid => {
                           // console.log('responseAfterIsMoreThanHighestBid : ', responseAfterIsMoreThanHighestBid);
                           // ketika oke, lebih besar dari yang lain
                           if (responseAfterIsMoreThanHighestBid.status) {
@@ -74,7 +74,7 @@ module.exports = {
                               global.io.emit('auctions', finalResult);
 
                               // notify other auction participant
-                              bidChacker.notifyOtherAuctionParticipant(req.body.auctionId, req.body.userId)
+                              bidChecker.notifyOtherAuctionParticipant(req.body.auctionId, req.headers.userid)
                               res.json(finalResult)
                             })
                           } else {
@@ -83,7 +83,7 @@ module.exports = {
                             res.json(finalResult)
                           }
                         }).catch(err => {
-                          console.log('got error from bidChacker.isMoreThanHighestBid -----', err);
+                          console.log('got error from bidChecker.isMoreThanHighestBid -----', err);
                         })
                       } else {
                         finalResult.message = 'Saldo tidak cukup untuk nge-bid auction ini, isi saldo Rp. ' + checkBalance.balance + ' bid tertinggi kali ini : Rp. ' + highestBidOfTheAuction
@@ -91,7 +91,7 @@ module.exports = {
                       }
                     })
                   }).catch((err) => {
-                    console.log('got error from bidChacker.checkBalance() --- ', err);
+                    console.log('got error from bidChecker.checkBalance() --- ', err);
                   })
                 } else {
                   console.log('user with id ' + req.headers.userid + ' not found');
