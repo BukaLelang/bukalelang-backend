@@ -17,6 +17,7 @@ module.exports = {
       id: null,
       auctionId: null,
       username: null,
+      avatarUrl: null,
       name: null,
       bidding_time: null,
       categoryId: null,
@@ -62,11 +63,13 @@ module.exports = {
                               finalResult.id = bid.id
                               finalResult.auctionId = bid.auctionId
                               finalResult.username = user.username
+                              finalResult.avatarUrl = user.avatarUrl
                               finalResult.name = user.name
                               finalResult.bidding_time = bid.createdAt
                               finalResult.categoryId = auction.categoryId
                               finalResult.current_price = bid.current_bid
                               finalResult.minimum_next_bidding = bid.current_bid + auction.kelipatan_bid
+
                               global.io.emit('auction-' + req.body.auctionId, finalResult);
                               global.io.emit('auctions', finalResult);
 
