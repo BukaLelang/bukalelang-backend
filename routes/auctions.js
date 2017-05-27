@@ -377,7 +377,7 @@ router.get('/:id', auctionController.show)
  *    {
  *       success: true,
  *       status: "OK",
- *       message: 'Success load list of auctions',
+ *       message: 'Success load time left of auction',
          time_left: 111000,
 *        end_date: '2017-05-16T18:22:54.846+07:00'
  *    }
@@ -392,6 +392,33 @@ router.get('/:id', auctionController.show)
  *    }
  */
 router.get('/:id/time-left', auctionController.timeLeft)
+
+/**
+ * @api {get} /auctions/:id/current-price get current price of the auction by id
+ * @apiGroup Auction
+ * @apiSuccess {String} message message from server
+ * @apiSuccess {Boolean} success is request success ?
+ * @apiSuccess {String} status "OK" or "ERROR"
+ * @apiSuccess {Integer} currentPrice the lastest updated current price of auction
+
+ * @apiSuccessExample {json} Success
+ *    HTTP/1.1 200 OK
+ *    {
+ *       success: true,
+ *       status: "OK",
+ *       currentPrice: 150000,
+ *       message: 'Success load current price of auction',
+ *    }
+ * @apiErrorExample {json} List error
+ *    HTTP/1.1 500 Internal Server Error
+ *    {
+ *       success: false,
+ *       status: "ERROR",
+ *       currentPrice: null,
+ *       message: 'Auction with id 3 doesnt exist',
+ *    }
+ */
+router.get('/:id/current-price', auctionController.currentPrice)
 
 /**
  * @api {get} /auctions/slug/:slug get auction by slug

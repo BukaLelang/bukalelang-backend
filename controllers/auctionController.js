@@ -6,6 +6,7 @@ var slug = require('slug')
 const models = require('../models')
 let imageUploader = require('../helpers/imageUploader')
 let auctionWinnerJob = require('../helpers/auctionWinnerJob')
+let bidChecker = require('../helpers/bidChecker')
 
 let blEndPoint = 'https://api.bukalapak.com/v2/'
 
@@ -340,6 +341,27 @@ module.exports = {
       res.json(finalResult)
     }).catch(err => {
       console.log('error when try get one auction in localdb', err);
+      res.json(finalResult)
+    })
+  },
+  currentPrice: (req, res) => {
+    console.log('ini jalan');
+    // init repsonse
+    var finalResult = {
+      currentPrice: null,
+      success: false,
+      status: "ERROR",
+      message: 'Ambil satu auction gagal ):',
+    }
+    bidChecker.highestBidOfTheAuction(req.params.id).then(highestBidOfTheAuction => {
+      finalResult.success = true
+      finalResult.status = "OK"
+      finalResult.currentPrice = highestBidOfTheAuction
+      finalResult.message = 'Sukses ngambil current price of auction : ' + req.params.id
+      res.json(finalResult)
+    }).catch(err => {
+      console.log('error saat ambil current price : ', err);
+      finalResult.message = 'error saat ambil current price'
       res.json(finalResult)
     })
   },

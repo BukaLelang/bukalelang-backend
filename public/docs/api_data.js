@@ -243,6 +243,71 @@ define({ "api": [
   },
   {
     "type": "get",
+    "url": "/auctions/:id/current-price",
+    "title": "get current price of the auction by id",
+    "group": "Auction",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>message from server</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "success",
+            "description": "<p>is request success ?</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>&quot;OK&quot; or &quot;ERROR&quot;</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "currentPrice",
+            "description": "<p>the lastest updated current price of auction</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success",
+          "content": "HTTP/1.1 200 OK\n{\n   success: true,\n   status: \"OK\",\n   currentPrice: 150000,\n   message: 'Success load current price of auction',\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "List error",
+          "content": "HTTP/1.1 500 Internal Server Error\n{\n   success: false,\n   status: \"ERROR\",\n   currentPrice: null,\n   message: 'Auction with id 3 doesnt exist',\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/auctions.js",
+    "groupTitle": "Auction",
+    "name": "GetAuctionsIdCurrentPrice",
+    "sampleRequest": [
+      {
+        "url": "http://localhost:3000/auctions/:id/current-price"
+      }
+    ]
+  },
+  {
+    "type": "get",
     "url": "/auctions/:id/time-left",
     "title": "get time left of the auction by id",
     "group": "Auction",
@@ -289,7 +354,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success",
-          "content": "HTTP/1.1 200 OK\n{\n   success: true,\n   status: \"OK\",\n   message: 'Success load list of auctions',\n      time_left: 111000,\n    end_date: '2017-05-16T18:22:54.846+07:00'\n}",
+          "content": "HTTP/1.1 200 OK\n{\n   success: true,\n   status: \"OK\",\n   message: 'Success load time left of auction',\n      time_left: 111000,\n    end_date: '2017-05-16T18:22:54.846+07:00'\n}",
           "type": "json"
         }
       ]
