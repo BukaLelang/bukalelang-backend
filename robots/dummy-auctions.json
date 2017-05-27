@@ -128,4 +128,14 @@
     "new": false,
     "weight": 1000,
     "categoryId": 205
+}, {
+    "title": "Reginlaze Julia HG Gundam Model Kits",
+    "description": "Manufacturer : Bandai Scale : 1/144 Series : HG Iron-Blooded Orphans , 034 Original : Mobile Suit Gundam Release Date : Mid Feb., 2017",
+    "images": ["10437098a.jpg", "10437098a2.jpg", "10437098p.jpg", "10437098a11.jpg", "10437098k2.jpg"],
+    "minPrice": 10000,
+    "maxPrice": 350000,
+    "kelipatanBid": 5000,
+    "new": false,
+    "weight": 1500,
+    "categoryId": 338
 }]
