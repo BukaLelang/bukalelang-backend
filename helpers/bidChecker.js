@@ -139,17 +139,9 @@ module.exports = {
         // make sure bidder uniq
         let uniqBidder = _.uniqBy(removedThatBidder, 'userId')
 
-        let bidderArr = []
-        for (var i = 0; i < uniqBidder.length; i++) {
-          // console.log('isi tiap bid : ', uniqBidder[i]);
-          bidderArr.push({
-            name: uniqBidder[i].User.name,
-            email: uniqBidder[i].User.email,
-          })
-        }
         // gak perlu kirim email kalo ngak ada
-        if (bidderArr.length > 0) {
-          emailSender.sendEmailToUserAfterBidLose(bidderArr, theWinnerDetail)
+        if (uniqBidder.length > 0) {
+          emailSender.sendEmailToUserAfterBidLose(uniqBidder, theWinnerDetail)
         }
       } else {
         console.log('no bids with id ' + auctionId + ' and do nothing');

@@ -1,5 +1,10 @@
+var EmailTemplate = require('email-templates').EmailTemplate
+var path = require('path')
 var ses = require('node-ses')
 require('dotenv').config()
+
+var templateDir = path.join(__dirname, 'email-templates', 'lose-bid')
+var loseBid = new EmailTemplate(templateDir)
 
 var client = ses.createClient({
   key: process.env.AWS_SECRET_KEY,
@@ -24,23 +29,38 @@ module.exports = {
       });
     },
     sendEmailToUserAfterBidLose: (listOfBidder, highestBidDetail) => {
-      // listOfBidder isi nya musti nya array
       console.log('kasih tau yang lain kalo ada yang nge-bid dengan nominal yang lebih tinggi : ', highestBidDetail.User.name);
       let listOfBidderLength = listOfBidder.length
       for (var i = 0; i < listOfBidderLength; i++) {
-            client.sendEmail({
-              to: listOfBidder[i].email
-            , from: 'bukalelang@gmail.com'
-            , subject: 'Gawat nih ' + listOfBidder[i].name + '! Ada yang nge-bid lebih tinggi dari kamu!'
-            , message: 'Gawat! ' + highestBidDetail.User.name + ' menawar lebih tinggi dari kamu, yaitu : ' + highestBidDetail.current_bid + ', jangan biarkan dia memenangkan barang yang kamu incar, Ayo bid lebih tinggi lagi!'
-            , altText: 'plain text'
-           }, function (err, data, res) {
-            //  console.log('ada err ? -=', err);
-            //  console.log('ngak tau isi datanya apa ? ', data);
-            //  console.log('res nya isinya apa ya kalo berhasil ', res);
-           });
+        let infoForEmail = {
+          self: listOfBidder[i],
+          highestBidder: highestBidDetail
         }
+
+        loseBid.render(infoForEmail, function (err, result) {
+          if (err) {
+            console.log('EROOOR : ', err);
+          }
+          module.exports.sendEmailClean(infoForEmail, result.html)
+        })
+
+      }
+      // listOfBidder isi nya musti nya array
+
       },
+      sendEmailClean: (infoForEmail, content) => {
+        client.sendEmail({
+          to: infoForEmail.self.User.email
+        , from: 'bukalelang@gmail.com'
+        , subject: 'Gawat nih ' + infoForEmail.self.User.name + '! Ada yang nge-bid lebih tinggi dari kamu!'
+        , message: content
+        , altText: 'Gawat! ' + infoForEmail.highestBidder.User.name + ' menawar lebih tinggi dari kamu, yaitu : ' + infoForEmail.highestBidder.current_bid + ', jangan biarkan dia memenangkan barang yang kamu incar, Ayo bid lebih tinggi lagi!'
+       }, function (err, data, res) {
+         console.log('ada err ? -=', err);
+        //  console.log('ngak tau isi datanya apa ? ', data);
+        //  console.log('res nya isinya apa ya kalo berhasil ', res);
+       });
+     },
     testEmail: (name, emailTo, content) => {
       // listOfBidder isi nya musti nya array
         console.log('test email jalan : ', name + 'to ', emailTo);
