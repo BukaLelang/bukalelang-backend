@@ -70,6 +70,7 @@ module.exports = {
         }
 
         finalResult.success = true
+        finalResult.status = "OK"
         finalResult.message = 'Success load list of auction joined'
         finalResult.user_detail.auctionsJoinedCount = auctionsJoinedCount.length
         finalResult.user_detail.id = user.id
