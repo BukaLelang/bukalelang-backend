@@ -4,12 +4,15 @@ const _ = require('lodash')
 
 module.exports = {
   auctionsJoined : (req, res) => {
+    console.log('isi req', req.params);
     let finalResult = {
       success: false,
+      status: "ERROR",
       message: "User with id not found",
       user_detail:{
         id: null,
         name: null,
+        avatarUrl: null,
         auctionsJoinedCount: 0,
         wonAuctionsCount: 0
       },
@@ -23,6 +26,7 @@ module.exports = {
         }
       }]
     }).then(user => {
+      console.log('isi user ', user.Bids);
         let auctionsJoinedCount = _.uniqBy(user.Bids, 'auctionId')
         let AuctionsJoined = JSON.parse(JSON.stringify(user.Bids))
             AuctionsJoined = _.uniqBy(AuctionsJoined, 'auctionId')
@@ -32,9 +36,11 @@ module.exports = {
             auctionId: data.Auction.id,
             title: data.Auction.title,
             running: new Date(data.Auction.end_date) > new Date() ? true : false,
+            isRunning: new Date(data.Auction.end_date) > new Date() ? 1 : 0,
             images: data.Auction.images,
             description: data.Auction.description,
-            end_date: data.Auction.end_date
+            end_date: data.Auction.end_date,
+            time_left:  getMinutesBetweenDates(new Date(), new Date(data.Auction.end_date))
           })
         })
 
@@ -52,6 +58,7 @@ module.exports = {
         finalResult.user_detail.auctionsJoinedCount = auctionsJoinedCount.length
         finalResult.user_detail.id = user.id
         finalResult.user_detail.name = user.name
+        finalResult.user_detail.avatarUrl = user.avatarUrl || 'https://www.bukalapak.com/images/default_avatar/medium/default.jpg'
         finalResult.user_detail.wonAuctionsCount = 0
         finalResult.auctionsJoined = newAuctionsJoined
 
@@ -59,6 +66,7 @@ module.exports = {
       }).catch(err => {
         console.log('error when try get user by id : ', err);
         finalResult.message = `User with id ${req.params.id} not found`
+        res.json(finalResult)
       })
   },
   userDetail : (req, res) => {
@@ -103,4 +111,13 @@ function isThisUserTheWinnerOfThisAuction(userId, auctionId) {
       return 0
     }
   })
+}
+
+function getMinutesBetweenDates(startDate, endDate) {
+  var diff = endDate.getTime() - startDate.getTime();
+  // jika kurang dari nol, ya sudah buat nol aja
+  if (diff <= 0) {
+    diff = 0
+  }
+  return diff;
 }

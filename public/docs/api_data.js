@@ -1863,13 +1863,76 @@ define({ "api": [
             "optional": false,
             "field": "success",
             "description": "<p>is request success ?</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>&quot;OK&quot; or &quot;ERROR&quot;</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "user_detail",
+            "description": "<p>user detail information</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "user_detail.id",
+            "description": "<p>id of the user</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "user_detail.name",
+            "description": "<p>name of the user</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "user_detail.username",
+            "description": "<p>username of the user</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "user_detail.avatarUrl",
+            "description": "<p>url of avatar of the user</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "user_detail.auctionsJoinedCount",
+            "description": "<p>counter of auction that joined by user</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "user_detail.wonAuctionsCount",
+            "description": "<p>counter of how many user won the auction joined</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Array",
+            "optional": false,
+            "field": "user_detail.auctionsJoined",
+            "description": "<p>counter of how many user won the auction joined</p>"
           }
         ]
       },
       "examples": [
         {
           "title": "Success",
-          "content": "HTTP/1.1 200 OK\n{\n   success: true,\n   message: 'Success load list of auction joined',\n      user_detail: {\n        id: 3,\n        name: 'Diky Arga',\n        auctionsJoinedCount: 5,\n        wonAuctionsCount: 2\n      },\n   auctionsJoined: [\n           {\n             auctionId: 2,\n             running: true,\n             title: 'Gundam ukuran asli'\n           },\n           {\n             auctionId: 3,\n             running: false,\n             title: 'Tamiya tanp gravitasi'\n           },\n         ]\n}",
+          "content": "HTTP/1.1 200 OK\n{\n   success: true,\n   status: \"OK\",\n   message: 'Success load list of auction joined',\n      user_detail: {\n        id: 3,\n        name: 'Diky Arga',\n        username: 'dikyarga',\n        avatarUrl: 'https://www.bukalapak.com/images/default_avatar/medium/default.jpg',\n        auctionsJoinedCount: 5,\n        wonAuctionsCount: 2\n      },\n   auctionsJoined: [\n           {\n             auctionId: 2,\n             running: true,\n             isRunning: 1,\n             time_left: 109090998,\n             title: 'Gundam ukuran asli'\n           },\n           {\n             auctionId: 3,\n             running: false,\n             isRunning: 0,\n             time_left: 0,\n             title: 'Tamiya tanpa gravitasi'\n           },\n         ]\n}",
           "type": "json"
         }
       ]
@@ -1878,7 +1941,7 @@ define({ "api": [
       "examples": [
         {
           "title": "List error",
-          "content": "HTTP/1.1 500 Internal Server Error\n{\n   success: false,\n   message: 'User with id 3 not found',\n      user_detail: {\n        id: null,\n        name: null,\n        auctionsJoinedCount: 0,\n        wonAuctionsCount: 0\n      },\n   auctionsJoined: []\n}",
+          "content": "HTTP/1.1 500 Internal Server Error\n{\n   success: false,\n   status: \"ERROR\",\n   message: 'User with id 3 not found',\n      user_detail: {\n        id: null,\n        username: null,\n        name: null,\n        avatarUrl: null,\n        auctionsJoinedCount: 0,\n        wonAuctionsCount: 0\n      },\n   auctionsJoined: []\n}",
           "type": "json"
         }
       ]

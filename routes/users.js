@@ -13,15 +13,27 @@ router.get('/', function(req, res, next) {
  * @apiGroup Users
  * @apiSuccess {String} message message from server
  * @apiSuccess {Boolean} success is request success ?
+ * @apiSuccess {String} status "OK" or "ERROR"
+ * @apiSuccess {Object[]} user_detail user detail information
+ * @apiSuccess {Integer} user_detail.id id of the user
+ * @apiSuccess {String} user_detail.name name of the user
+ * @apiSuccess {String} user_detail.username username of the user
+ * @apiSuccess {String} user_detail.avatarUrl url of avatar of the user
+ * @apiSuccess {Integer} user_detail.auctionsJoinedCount counter of auction that joined by user
+ * @apiSuccess {Integer} user_detail.wonAuctionsCount counter of how many user won the auction joined
+ * @apiSuccess {Array} user_detail.auctionsJoined counter of how many user won the auction joined
 
  * @apiSuccessExample {json} Success
  *    HTTP/1.1 200 OK
  *    {
  *       success: true,
+ *       status: "OK",
  *       message: 'Success load list of auction joined',
          user_detail: {
            id: 3,
            name: 'Diky Arga',
+           username: 'dikyarga',
+           avatarUrl: 'https://www.bukalapak.com/images/default_avatar/medium/default.jpg',
            auctionsJoinedCount: 5,
            wonAuctionsCount: 2
          },
@@ -29,12 +41,16 @@ router.get('/', function(req, res, next) {
               {
                 auctionId: 2,
                 running: true,
+                isRunning: 1,
+                time_left: 109090998,
                 title: 'Gundam ukuran asli'
               },
               {
                 auctionId: 3,
                 running: false,
-                title: 'Tamiya tanp gravitasi'
+                isRunning: 0,
+                time_left: 0,
+                title: 'Tamiya tanpa gravitasi'
               },
             ]
  *    }
@@ -42,10 +58,13 @@ router.get('/', function(req, res, next) {
  *    HTTP/1.1 500 Internal Server Error
  *    {
  *       success: false,
+ *       status: "ERROR",
  *       message: 'User with id 3 not found',
          user_detail: {
            id: null,
+           username: null,
            name: null,
+           avatarUrl: null,
            auctionsJoinedCount: 0,
            wonAuctionsCount: 0
          },
