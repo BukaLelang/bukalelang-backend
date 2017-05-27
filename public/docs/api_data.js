@@ -1569,6 +1569,13 @@ define({ "api": [
           },
           {
             "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>&quot;OK&quot; or &quot;ERROR&quot;</p>"
+          },
+          {
+            "group": "Success 200",
             "type": "Integer",
             "optional": false,
             "field": "current_price",
@@ -1586,7 +1593,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success",
-          "content": "HTTP/1.1 200 OK\n{\n  \"message\": 'bidding success',\n  \"success\": true,\n  \"id\": 2345,\n  \"auctionId\": 101,\n  \"username\": 'dikyarga',\n  \"name\": 'Diky Arga',\n  \"bidding_time\": '2017-04-16 17:12:40.126+08',\n  \"current_price\": 40000,\n  \"minimum_next_bidding\": 50000,\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"message\": 'bidding success',\n  \"success\": true,\n  \"status\": \"OK\",\n  \"id\": 2345,\n  \"auctionId\": 101,\n  \"username\": 'dikyarga',\n  \"name\": 'Diky Arga',\n  \"bidding_time\": '2017-04-16 17:12:40.126+08',\n  \"current_price\": 40000,\n  \"minimum_next_bidding\": 50000,\n}",
           "type": "json"
         }
       ]
@@ -1595,7 +1602,7 @@ define({ "api": [
       "examples": [
         {
           "title": "List error",
-          "content": "HTTP/1.1 500 Internal Server Error\n{\n  \"message\": 'bidding fail',\n  \"success\": false,\n  \"id\": null,\n  \"username\": null,\n  \"name\": null,\n  \"id\": null,\n  \"bidding_time\": null,\n  \"current_price\": null,\n  \"minimum_next_bidding\": null,\n}",
+          "content": "HTTP/1.1 500 Internal Server Error\n{\n  \"message\": 'bidding fail',\n  \"success\": false,\n  \"status\": \"ERROR\",\n  \"id\": null,\n  \"username\": null,\n  \"name\": null,\n  \"id\": null,\n  \"bidding_time\": null,\n  \"current_price\": null,\n  \"minimum_next_bidding\": null,\n}",
           "type": "json"
         }
       ]
@@ -1629,6 +1636,13 @@ define({ "api": [
             "group": "Success 200",
             "type": "String",
             "optional": false,
+            "field": "status",
+            "description": "<p>'OK' or 'ERROR'</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
             "field": "message",
             "description": "<p>message from server</p>"
           },
@@ -1644,7 +1658,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success",
-          "content": "HTTP/1.1 200 OK\n{\n  \"success\": true,\n  \"message\": 'login success',\n     \"categories\": [{\n         \"id\": 2266,\n         \"name\": \"Perawatan & Kecantikan\",\n         \"url\": \"/c/perawatan-kecantikan\",\n         \"children\": [\n             {\n                 \"id\": 2650,\n                 \"name\": \"Softlens\",\n                 \"url\": \"/c/perawatan-kecantikan/softlens\"\n             },..]\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"success\": true,\n  \"status\": \"OK\",\n  \"message\": 'login success',\n     \"categories\": [{\n         \"id\": 2266,\n         \"name\": \"Perawatan & Kecantikan\",\n         \"url\": \"/c/perawatan-kecantikan\",\n         \"children\": [\n             {\n                 \"id\": 2650,\n                 \"name\": \"Softlens\",\n                 \"url\": \"/c/perawatan-kecantikan/softlens\"\n             },..]\n}",
           "type": "json"
         }
       ]
@@ -1653,7 +1667,7 @@ define({ "api": [
       "examples": [
         {
           "title": "List error",
-          "content": "HTTP/1.1 500 Internal Server Error\n{\n  \"success\": false,\n  \"message\": 'email atau password salah',\n     \"categories\": []\n}",
+          "content": "HTTP/1.1 500 Internal Server Error\n{\n  \"success\": false,\n  \"status\": \"ERROR\",\n  \"message\": 'gagal load categories karena : file not found',\n     \"categories\": []\n}",
           "type": "json"
         }
       ]

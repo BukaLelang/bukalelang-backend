@@ -13,6 +13,7 @@ module.exports = {
     var finalResult = {
       message: 'bidding fail',
       success: false,
+      status: "ERROR",
       id: null,
       auctionId: null,
       username: null,
@@ -55,8 +56,9 @@ module.exports = {
                               current_bid: req.body.nextBid
                             }).then(bid => {
                               console.log('bid sukses');
-                              finalResult.message = 'sukses nge-bid'
+                              finalResult.message = 'Sukses nge-bid'
                               finalResult.success = true
+                              finalResult.status = "OK"
                               finalResult.id = bid.id
                               finalResult.auctionId = bid.auctionId
                               finalResult.username = user.username

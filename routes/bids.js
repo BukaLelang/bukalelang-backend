@@ -31,6 +31,7 @@ let auth = require('../helpers/authentication')
  * @apiSuccess {String} message message from server
  * @apiSuccess {Date} bidding_time time of bidding
  * @apiSuccess {Boolean} success is bidding process success ?
+ * @apiSuccess {String} status "OK" or "ERROR"
  * @apiSuccess {Integer} current_price currently highest bid
  * @apiSuccess {Integer} minimum_next_bidding minimum nominal for the next bidding
 
@@ -39,6 +40,7 @@ let auth = require('../helpers/authentication')
  *    {
  *      "message": 'bidding success',
  *      "success": true,
+ *      "status": "OK",
  *      "id": 2345,
  *      "auctionId": 101,
  *      "username": 'dikyarga',
@@ -52,6 +54,7 @@ let auth = require('../helpers/authentication')
  *    {
  *      "message": 'bidding fail',
  *      "success": false,
+ *      "status": "ERROR",
  *      "id": null,
  *      "username": null,
  *      "name": null,
