@@ -16,20 +16,26 @@ module.exports = {
     var finalResult = {
       id: null,
       productId: null,
+      name: null,
       title: null,
       slug: null,
       images: [],
       small_images: [],
       categoryId: null,
+      categoryName: null,
       new: false,
       weight: 0,
       description: null,
       location: null,
+      current_price: null,
       min_price: 0,
       max_price: 0,
       kelipatan_bid: 0,
       start_date: null,
       end_date: null,
+      time_left: null,
+      isRunning: 0,
+      running: false,
       userId: null,
       success: false,
       status: "ERROR",
@@ -81,7 +87,7 @@ module.exports = {
         },
         data: productData
       }).then((responseAfterCreateProduct) => {
-        // console.log('response dari BL setelah coba create product : ', responseAfterCreateProduct.data);
+        console.log('response dari BL setelah coba create product : ', responseAfterCreateProduct.data);
         switch (responseAfterCreateProduct.data.status) {
           case 'ERROR':
             finalResult.message = responseAfterCreateProduct.data.message
@@ -92,7 +98,7 @@ module.exports = {
             // console.log('isi endDateFromAndroid', req.body.endDateFromAndroid);
             let endDate = null
             if (req.body.endDateFromAndroid != '') {
-              endDate = moment(req.body.endDateFromAndroid,"DD-MM-YYYY HH:mm").utcOffset(420).format()
+              endDate = moment(req.body.endDateFromAndroid,"DD-MM-YYYYHH:mm").utcOffset(420).format()
             } else {
               endDate = req.body.end_date
             }
@@ -137,21 +143,26 @@ module.exports = {
                 if (category) {
                   finalResult.id = auction.id
                   finalResult.productId = auction.productId
+                  finalResult.name = responseAfterCreateProduct.data.product_detail.seller_name
                   finalResult.title = auction.title
                   finalResult.slug = auction.slug
                   finalResult.images = responseAfterCreateProduct.data.product_detail.images
                   finalResult.small_images = responseAfterCreateProduct.data.product_detail.small_images
                   finalResult.categoryId = auction.categoryId
-                  finalResult.category = category.name
+                  finalResult.categoryName = category.name
                   finalResult.new = auction.new
                   finalResult.weight = auction.weight
                   finalResult.description = auction.description
                   finalResult.location = responseAfterCreateProduct.data.product_detail.city
+                  finalResult.current_price = auction.min_price
                   finalResult.min_price = auction.min_price
                   finalResult.max_price = auction.max_price
                   finalResult.kelipatan_bid = auction.kelipatan_bid
                   finalResult.start_date = auction.start_date
                   finalResult.end_date = auction.end_date
+                  finalResult.time_left = getMinutesBetweenDates(new Date(), new Date(auction.end_date))
+                  finalResult.running = moment(auction.end_date).format() >= moment().format() ? true : false
+                  finalResult.isRunning = moment(auction.end_date).format() >= moment().format() ? 1 : 0
                   finalResult.success = true
                   finalResult.status = "OK"
                   finalResult.userId = auction.userId
