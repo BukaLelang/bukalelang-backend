@@ -17,6 +17,7 @@ module.exports = {
       id: null,
       productId: null,
       name: null,
+      avatarUrl: 'https://www.bukalapak.com/images/default_avatar/medium/default.jpg',
       title: null,
       slug: null,
       images: [],
@@ -144,6 +145,7 @@ module.exports = {
                   finalResult.id = auction.id
                   finalResult.productId = auction.productId
                   finalResult.name = responseAfterCreateProduct.data.product_detail.seller_name
+                  finalResult.avatarUrl = responseAfterCreateProduct.data.product_detail.seller_avatar
                   finalResult.title = auction.title
                   finalResult.slug = auction.slug
                   finalResult.images = responseAfterCreateProduct.data.product_detail.images
@@ -236,6 +238,7 @@ module.exports = {
           categoryName: auction.Category.name,
           current_price: auction.Bids.length == 0 ? auction.min_price : _.maxBy(auction.Bids, 'current_bid').current_bid,
           name: auction.User.name,
+          avatarUrl: auction.User.avatarUrl || 'https://www.bukalapak.com/images/default_avatar/medium/default.jpg',
           time_left: getMinutesBetweenDates(new Date(), new Date(auction.end_date))
         })
       });
@@ -303,6 +306,7 @@ module.exports = {
           categoryName: auction.Category.name,
           current_price: auction.Bids.length == 0 ? auction.min_price : _.maxBy(auction.Bids, 'current_bid').current_bid,
           name: auction.User.name,
+          avatarUrl: auction.User.avatarUrl || 'https://www.bukalapak.com/images/default_avatar/medium/default.jpg',
           time_left: getMinutesBetweenDates(new Date(), new Date(auction.end_date))
         })
       });
@@ -383,6 +387,7 @@ module.exports = {
       productId: null,
       title: null,
       slug: null,
+      avatarUrl: 'https://www.bukalapak.com/images/default_avatar/medium/default.jpg',
       images: [],
       small_images: [],
       categoryId: null,
@@ -411,9 +416,11 @@ module.exports = {
         model: models.ProductImage
       }, {
         model: models.Category
+      }, {
+        model: models.User
       }]
     }).then(auction => {
-      // console.log('isi auciton L --------', auction.Category);
+      console.log('isi auciton L --------', auction.User);
       if (!auction) {
         finalResult.message = 'Lelang dengan id ' + req.params.id + ' tidak ditemukan'
         res.json(finalResult)
@@ -421,6 +428,7 @@ module.exports = {
       finalResult.id = auction.id
       finalResult.productId = auction.productId
       finalResult.title = auction.title
+      finalResult.avatarUrl =auction.User.avatarUrl
       finalResult.slug = auction.slug
       finalResult.images = convertArrayOfObjectIntoArray(auction.ProductImages, 'imageUrl')
       finalResult.small_images = convertArrayOfObjectIntoArray(auction.ProductImages, 'smallImageUrl')
@@ -453,6 +461,7 @@ module.exports = {
       id: null,
       productId: null,
       title: null,
+      avatarUrl: 'https://www.bukalapak.com/images/default_avatar/medium/default.jpg',
       slug: null,
       images: [],
       small_images: [],
@@ -482,6 +491,8 @@ module.exports = {
         model: models.ProductImage
       }, {
         model: models.Category
+      }, {
+        model: models.User
       }]
     }).then(auction => {
       if (!auction) {
@@ -492,6 +503,7 @@ module.exports = {
       finalResult.productId = auction.productId
       finalResult.title = auction.title
       finalResult.slug = auction.slug
+      finalResult.avatarUrl = auction.User.avatarUrl
       finalResult.images = convertArrayOfObjectIntoArray(auction.ProductImages, 'imageUrl')
       finalResult.small_images = convertArrayOfObjectIntoArray(auction.ProductImages, 'smallImageUrl')
       finalResult.categoryId = auction.categoryId
