@@ -22,11 +22,16 @@ module.exports = {
       include:[{
         model: models.Bid,
         include:{
-          model:models.Auction
+          model:models.Auction,
+          include: [{
+            model:models.Category
+          }, {
+            model: models.ProductImage
+          }]
         }
       }]
     }).then(user => {
-      console.log('isi user ', user.Bids);
+      // console.log('isi user ', user.Bids[0].Auction.ProductImages);
         let auctionsJoinedCount = _.uniqBy(user.Bids, 'auctionId')
         let AuctionsJoined = JSON.parse(JSON.stringify(user.Bids))
             AuctionsJoined = _.uniqBy(AuctionsJoined, 'auctionId')
@@ -35,10 +40,23 @@ module.exports = {
           return Object.assign({}, data, {
             auctionId: data.Auction.id,
             title: data.Auction.title,
+            description: data.Auction.description,
+            slug: data.Auction.slug,
+            categoryId: data.Auction.Category.id,
+            categoryName: data.Auction.Category.name,
+            new: data.Auction.new,
+            weight: data.Auction.weight,
+            productId: data.Auction.productId,
+            min_price: data.Auction.min_price,
+            max_price: data.Auction.max_price,
+            kelipatan_bid: data.Auction.kelipatan_bid,
+            location: data.Auction.location,
             running: new Date(data.Auction.end_date) > new Date() ? true : false,
             isRunning: new Date(data.Auction.end_date) > new Date() ? 1 : 0,
-            images: data.Auction.images,
+            images: convertArrayOfObjectIntoArray(data.Auction.ProductImages, 'imageUrl'),
+            small_images: convertArrayOfObjectIntoArray(data.Auction.ProductImages, 'smallImageUrl'),
             description: data.Auction.description,
+            start_date: data.Auction.start_date,
             end_date: data.Auction.end_date,
             time_left:  getMinutesBetweenDates(new Date(), new Date(data.Auction.end_date))
           })
@@ -46,8 +64,6 @@ module.exports = {
 
         for (var i = 0; i < newAuctionsJoined.length; i++) {
           // wonCount = isThisUserTheWinnerOfThisAuction(user.id, newAuctionsJoined[i].id)
-          delete newAuctionsJoined[i].id
-          delete newAuctionsJoined[i].userId
           delete newAuctionsJoined[i].updatedAt
           delete newAuctionsJoined[i].createdAt
           delete newAuctionsJoined[i].Auction
@@ -120,4 +136,12 @@ function getMinutesBetweenDates(startDate, endDate) {
     diff = 0
   }
   return diff;
+}
+
+function convertArrayOfObjectIntoArray(arrayOfImages, propertyName) {
+  let images = []
+  for (var i = 0; i < arrayOfImages.length; i++) {
+    images.push(arrayOfImages[i][propertyName])
+  }
+  return images
 }
