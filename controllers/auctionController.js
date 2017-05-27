@@ -584,6 +584,10 @@ module.exports = {
 // to get milisecond of time left
 function getMinutesBetweenDates(startDate, endDate) {
   var diff = endDate.getTime() - startDate.getTime();
+  // jika kurang dari nol, ya sudah buat nol aja
+  if (diff <= 0) {
+    diff = 0
+  }
   return diff;
 }
 
