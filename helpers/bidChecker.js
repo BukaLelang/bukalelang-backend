@@ -6,6 +6,7 @@ let emailSender = require('./emailSender')
 let models = require('../models')
 
 let blEndPoint = 'https://api.bukalapak.com/v2/'
+let localEndPoint = 'http://localhost:3000/'
 
 module.exports = {
   isMoreThanHighestBid: (highestBidOfTheAuction, nextBid) => {
@@ -41,7 +42,9 @@ module.exports = {
         message: 'error when trying to get balance in bidChacker :'
       }
       // cek saldo nya
-      let urlGetBalance = blEndPoint + 'dompet/history.json'
+      // disable untuk hemat request ke BL
+      // let urlGetBalance = blEndPoint + 'dompet/history.json'
+      let urlGetBalance = localEndPoint + 'fake/get-fake-balance'
       axios({
         method: 'get',
         url: urlGetBalance,
@@ -51,7 +54,6 @@ module.exports = {
         }
       }).then((responseGetBalance) => {
         if (responseGetBalance.data.status == 'OK') {
-
           // for development purposed only, biar saldonya ngak kosong
           if (process.env.NODE_ENV != 'development') {
             finalResult.balance = responseGetBalance.data.balance
@@ -59,7 +61,7 @@ module.exports = {
             finalResult.balance = 1000000
           } else {
             // development
-            finalResult.balance = 1500000
+            finalResult.balance = 1000000
           }
 
           finalResult.message = 'get balance success'
@@ -130,7 +132,6 @@ module.exports = {
       if (bidsLength > 0) {
         let sortedBidsByHighestPrice = _.orderBy(JSON.parse(JSON.stringify(bids)), ['current_bid'], ['desc'])
         let theWinnerDetail = sortedBidsByHighestPrice[0]
-        console.log('ini bener pemenangnya ? ', theWinnerDetail);
         // remove highest bids from list
         // remove same user with that bidder, supaya ngak kasih notif ke diri sendiri
         let removedThatBidder = _.remove(sortedBidsByHighestPrice, function(bid){

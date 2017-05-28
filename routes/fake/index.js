@@ -8,7 +8,7 @@ let fakeURLEndpoint = 'http://localhost:3000/fake/'
 
 router.get('/get-fake-balance', function(req, res, next){
   let finalResult = { status: 'OK',
-      balance: 1500000,
+      balance: 1000000,
       topup_history: [],
       withdrawal_history: [],
       mutation_history: [],

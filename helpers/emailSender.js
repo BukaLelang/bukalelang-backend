@@ -14,7 +14,6 @@ var client = ses.createClient({
 
 module.exports = {
     sendEmailToWinner: (detailWinner, auction) => {
-      console.log('send email jalan, detail user : ', detailWinner);
       // Give SES the details and let it construct the message for you.
       client.sendEmail({
          to: detailWinner.email
