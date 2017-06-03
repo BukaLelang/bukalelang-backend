@@ -11,16 +11,21 @@ admin.initializeApp({
 module.exports = {
   sendPushNotificationToUserAfterBidLose: (listOfBidder, highestBidDetail) => {
 
-    console.log('list of bidder : ', listOfBidder);
     // This registration token comes from the client FCM SDKs.
-    var registrationToken = "bk3RNwTe3H0:CI2k_HHwgIpoDKCIZvvDMExUdFQ3P1...";
+    var registrationToken = []
+
+    let listOfBidderLength = listOfBidder.length
+    for (var i = 0; i < listOfBidderLength; i++) {
+      registrationToken.push(listOfBidder[i].User.fcmRegistrationToken)
+    }
 
     // See the "Defining the message payload" section above for details
     // on how to define a message payload.
     var payload = {
       notification: {
         title: "Ada yang nge-bid lebih tinggi dari kamu!",
-        body: "Ayo bid lebih tinggi lagi!"
+        body: "Ada yang nge-bid lebih tinggi dari kamu!",
+        slug: highestBidDetail.Auction.slug
       }
     };
 
