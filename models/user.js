@@ -21,6 +21,7 @@ module.exports = function(sequelize, DataTypes) {
     avatarId:DataTypes.INTEGER,
     phone:DataTypes.STRING,
     phone_confirmed:DataTypes.BOOLEAN,
+    fcmRegistrationToken:DataTypes.STRING
   }, {
     classMethods: {
       associate: function(models) {
