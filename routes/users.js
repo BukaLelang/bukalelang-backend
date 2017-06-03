@@ -102,5 +102,35 @@ router.get('/:id/auctions-joined', userController.auctionsJoined)
  */
 router.get('/:id', userController.userDetail)
 
+/**
+ * @api {post} /users/fcm-registration-token store FCM registration token
+ * @apiGroup Users
+ * @apiSuccess {String} message message from server
+ * @apiSuccess {Boolean} success is request success ?
+ * @apiSuccess {String} status "OK" or "ERROR"
+ * @apiParamExample {json} Request-Example:
+ *     {
+ *       "bukalapakId": 38233231,
+*        "fcmRegistrationToken": "3Sad:DAdAD:ASLDA:DADA"
+ *     }
+ * @apiParam {String} bukalapakId bukalapakId of user
+ * @apiParam {String} fcmRegistrationToken FCM registration token of user
+
+ * @apiSuccessExample {json} Success
+ *    HTTP/1.1 200 OK
+ *    {
+ *       success: true,
+ *       status: "OK",
+ *       message: 'Success store FCM registration token of the user',
+ *    }
+ * @apiErrorExample {json} List error
+ *    HTTP/1.1 500 Internal Server Error
+ *    {
+ *       success: false,
+ *       status: "ERROR",
+ *       message: 'User with bukalapakId 3 not found',
+ *    }
+ */
+router.post('/fcm-registration-token', userController.fcmRegistrationToken)
 
 module.exports = router;
