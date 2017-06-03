@@ -1,4 +1,5 @@
 var admin = require("firebase-admin");
+let _ = require('lodash')
 require('dotenv').config()
 
 var serviceAccount = require("../config/serviceAccountKey.json");
@@ -16,7 +17,9 @@ module.exports = {
 
     let listOfBidderLength = listOfBidder.length
     for (var i = 0; i < listOfBidderLength; i++) {
-      registrationToken.push(listOfBidder[i].User.fcmRegistrationToken)
+      if (listOfBidder[i].User.fcmRegistrationToken != null) {
+        registrationToken.push(listOfBidder[i].User.fcmRegistrationToken)
+      }
     }
 
     // See the "Defining the message payload" section above for details
@@ -24,7 +27,10 @@ module.exports = {
     var payload = {
       notification: {
         title: "Ada yang nge-bid lebih tinggi dari kamu!",
-        body: "Ada yang nge-bid lebih tinggi dari kamu!"
+        body: "Gawat! " + _.truncate(highestBidDetail.Auction.title, {
+            length: 20,
+            separator: ' '
+          }) + " di bid lebih tinggi!"
       },
       data: {
         slug: highestBidDetail.Auction.slug
@@ -47,4 +53,8 @@ module.exports = {
         console.log("Error sending message:", error);
     });
   }
+}
+
+function titleTrimmer(title) {
+
 }
