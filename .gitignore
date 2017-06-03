@@ -4,6 +4,8 @@ public/javascript/config.js
 DS_Store
 .DS_Store
 npm-debug.log
+package-lock.json
+serviceAccountKey.json
 
 
 # Elastic Beanstalk Files
