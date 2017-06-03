@@ -24,7 +24,9 @@ module.exports = {
     var payload = {
       notification: {
         title: "Ada yang nge-bid lebih tinggi dari kamu!",
-        body: "Ada yang nge-bid lebih tinggi dari kamu!",
+        body: "Ada yang nge-bid lebih tinggi dari kamu!"
+      },
+      data: {
         slug: highestBidDetail.Auction.slug
       }
     };
