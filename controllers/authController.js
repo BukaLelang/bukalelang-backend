@@ -44,6 +44,8 @@ module.exports = {
           break;
         case 'OK':
           // buat user baru di DB
+          // disini di check lagi udah ada belum di DB :
+          console.log('------------ apakah tetep kesana -------------------', esponseAfterRegisterToBukaLapak.data);
           axios({
             method:'post',
             url: blEndPoint + 'authenticate.json',
