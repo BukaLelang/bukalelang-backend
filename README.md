@@ -25,6 +25,9 @@ $ git clone https://github.com/BukaLelang/bukalelang-backend.git
 $ cd bukalelang-backend
 $ npm install
 $ cp .env.example .env
+- firebase config
+$ cd config
+$ cp serviceAccountKey.json.example serviceAccountKey.json
 - get config from admin
 $ npm run dev
 ```
