@@ -6,7 +6,6 @@ let bidChecker = require('../helpers/bidChecker')
 
 let blEndPoint = 'https://api.bukalapak.com/v2/'
 
-
 module.exports = {
   bid: (req, res) => {
     // init repsonse
@@ -75,6 +74,7 @@ module.exports = {
 
                               // notify other auction participant
                               bidChecker.notifyOtherAuctionParticipant(req.body.auctionId, req.headers.userid)
+
                               res.json(finalResult)
                             })
                           } else {

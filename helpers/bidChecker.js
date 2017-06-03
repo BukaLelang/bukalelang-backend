@@ -3,6 +3,7 @@ let axios = require('axios')
 require('dotenv').config()
 
 let emailSender = require('./emailSender')
+let pushNotificationSender = require('./pushNotificationSender')
 let models = require('../models')
 
 let blEndPoint = 'https://api.bukalapak.com/v2/'
@@ -127,7 +128,7 @@ module.exports = {
         model: models.Auction
       }]
     }).then(bids => {
-      console.log('isi bids ', bids);
+      // console.log('isi bids ', bids);
       let bidsLength = bids.length
       if (bidsLength > 0) {
         let sortedBidsByHighestPrice = _.orderBy(JSON.parse(JSON.stringify(bids)), ['current_bid'], ['desc'])
@@ -143,10 +144,13 @@ module.exports = {
         // gak perlu kirim email kalo ngak ada
         if (uniqBidder.length > 0) {
           emailSender.sendEmailToUserAfterBidLose(uniqBidder, theWinnerDetail)
+          pushNotificationSender.sendPushNotificationToUserAfterBidLose(uniqBidder, theWinnerDetail)
         }
       } else {
         console.log('no bids with id ' + auctionId + ' and do nothing');
       }
+    }).catch(err => {
+      console.log('errrow when trying to notify other participant :', err.message);
     })
   }
 }
