@@ -1955,5 +1955,90 @@
         "url": "http://localhost:3000/users/:id/auctions-joined"
       }
     ]
+  },
+  {
+    "type": "post",
+    "url": "/users/fcm-registration-token",
+    "title": "store FCM registration token",
+    "group": "Users",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>message from server</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "success",
+            "description": "<p>is request success ?</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>&quot;OK&quot; or &quot;ERROR&quot;</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success",
+          "content": "HTTP/1.1 200 OK\n{\n   success: true,\n   status: \"OK\",\n   message: 'Success store FCM registration token of the user',\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n  \"bukalapakId\": 38233231,\n   \"fcmRegistrationToken\": \"3Sad:DAdAD:ASLDA:DADA\"\n}",
+          "type": "json"
+        }
+      ],
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "bukalapakId",
+            "description": "<p>bukalapakId of user</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "fcmRegistrationToken",
+            "description": "<p>FCM registration token of user</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "List error",
+          "content": "HTTP/1.1 500 Internal Server Error\n{\n   success: false,\n   status: \"ERROR\",\n   message: 'User with bukalapakId 3 not found',\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/users.js",
+    "groupTitle": "Users",
+    "name": "PostUsersFcmRegistrationToken",
+    "sampleRequest": [
+      {
+        "url": "http://localhost:3000/users/fcm-registration-token"
+      }
+    ]
   }
 ]
