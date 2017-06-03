@@ -20,7 +20,7 @@ module.exports = {
        , from: 'bukalelang@gmail.com'
        , subject: 'Selamat ' + detailWinner.name + ', kamu memenangkan lelang!'
        , message: 'Kamu berhasil memenangkan lelang : ' + auction.title + '! Pelelang langsung membukuskan barang lelang mu, klik disini untuk berkomunikasi dengan Pelelang'
-       , altText: 'plain text'
+       , altText: 'Kamu berhasil memenangkan lelang : ' + auction.title + '! Pelelang langsung membukuskan barang lelang mu, klik disini untuk berkomunikasi dengan Pelelang'
       }, function (err, data, res) {
         // console.log('ada err ? -=', err.Message);
         // console.log('ngak tau isi datanya apa ? ', data.Message);
