@@ -106,6 +106,31 @@ module.exports = {
         finalResult.message = `User with id ${req.params.id} not found`
         res.json(finalResult)
       })
+  },
+  fcmRegistrationToken : (req, res) => {
+    let finalResult = {
+      success: false,
+      status: "ERROR",
+      message: "User with bukalapakId not found",
+    }
+    console.log('adfjsafjas ', req.body.fcmRegistrationToken, req.body.bukalapakId);
+
+    models.User.update(
+    { fcmRegistrationToken: req.body.fcmRegistrationToken },
+    { where: {
+        bukalapakId: req.body.bukalapakId
+      }
+    }).then(user => {
+      console.log('user : ', user);
+      finalResult.success = true
+      finalResult.status = "OK"
+      finalResult.message = "'Success store FCM registration token of the user"
+      res.json(finalResult)
+    }).catch(err => {
+      console.log('error when try to update FCM registration token : ', err);
+      finalResult.message = "error when try to update FCM registration token : " + err.message
+      res.json(finalResult)
+    })
   }
 }
 
