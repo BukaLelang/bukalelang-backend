@@ -108,6 +108,95 @@ const applyMidleware = require('../helpers/authentication')
 router.post('/', auctionController.create)
 
 /**
+ * @api {post} /auctions/from-existing-product create auctions from existing product
+ * @apiGroup Auction
+ * @apiParamExample {json} Request-Example:
+ *     {
+ *       "userId": 2,
+ *       "bukalapakId": 231232131,
+ *       "token": "IniToken",
+ *       "productId": "8rew31",
+ *       "min_price": 50000,
+ *       "kelipatan_bid": 10000,
+ *       "end_date": 2017-09-14T00:00:00Z,
+ *       "endDateFromAndroid": '25/05/2017 23:50',
+ *     }
+ * @apiParam {Integer} userId userId of user
+ * @apiParam {Integer} bukalapakId bukalapakId of user
+ * @apiParam {String} token token of logged in user
+ * @apiParam {String} productId id of product in lapak
+ * @apiParam {Integer} min_price minimal / start price of auctions
+ * @apiParam {Integer} kelipatan_bid nominal lipatan of next bidding
+ * @apiParam {Date} end_date date end of auction, default is two day
+ * @apiParam {String} endDateFromAndroid date end of auction, default is two day
+
+ * @apiSuccess {Integer} id id of the auction
+ * @apiSuccess {Integer} productId id of the product at BL
+ * @apiSuccess {String} title Title of auction
+ * @apiSuccess {Array} images array of URL of images of auction (full resolution)
+ * @apiSuccess {Array} small_images array of URL of images of auction (small resolution)
+ * @apiSuccess {Integer} categoryId category ID
+ * @apiSuccess {String} category category of the auction
+ * @apiSuccess {Boolean} new product is new or second ?
+ * @apiSuccess {Integer} weight weight of the product using gram
+ * @apiSuccess {String} description description of product
+ * @apiSuccess {Integer} min_price minimal / start price of auctions
+ * @apiSuccess {Integer} max_price maximal / buy now price of auctions
+ * @apiSuccess {Integer} kelipatan_bid nominal lipatan of next bidding
+ * @apiSuccess {Date} start_date date of auction start, default is after published
+ * @apiSuccess {Date} end_date date end of auction, default is two days after published
+ * @apiSuccess {Boolean} success is request success ?
+ * @apiSuccess {String} status "OK" or "ERROR"
+ * @apiSuccess {String} message message from server
+
+ * @apiSuccessExample {json} Success
+ *    HTTP/1.1 200 OK
+ *    {
+ *      "id": 23,
+ *      "productId": '42dfs34',
+ *      "title": "Lelang Gundam Langka & Istimewa",
+ *      "images": ["https://s0.bukalapak.com/system/images/1/6/7/6/6/8/0/large/IMG00475-20121105-1431.jpg?1352105447", "https://s0.bukalapak.com/system/images/1/6/7/6/6/8/0/large/lalalala.jpg?1352105447"],
+ *      "small_images: ["https://s0.bukalapak.com/system/images/1/6/7/6/6/8/0/small/IMG00475-20121105-1431.jpg", "https://s0.bukalapak.com/system/images/1/6/7/6/6/8/0/small/lalalala.jpg?1352105447"],
+ *      "categoryId": 145,
+ *      "category": 'Mainan',
+ *      "new": false,
+ *      "weight": 5000,
+ *      "description": "Gundam dapet dari pembuatnya langsung lho",
+ *      "min_price": 50000,
+ *      "max_price": 200000,
+ *      "kelipatan_bid": 10000,
+ *      "end_date": 2017-09-14T00:00:00Z,
+ *      "userId": 2,
+ *      "success": true,
+ *      "status": "OK",
+ *      "message": 'buat lelang berhasil',
+ *    }
+ * @apiErrorExample {json} List error
+ *    HTTP/1.1 500 Internal Server Error
+ *    {
+*       "id": null,
+*       "productId": null,
+ *      "title": null,
+ *      "images": [],
+        "small_images": [],
+ *      "categoryId": null,
+ *      "category": null,
+ *      "new": false,
+ *      "weight": 0,
+ *      "description": null,
+ *      "min_price": 0,
+ *      "max_price": 0,
+ *      "kelipatan_bid": 0,
+ *      "end_date": null,
+ *      "userId": null,
+ *      "success": false,
+ *      "status": "ERROR",
+ *      "message": 'Buat lelang gagal ):',
+ *    }
+ */
+router.post('/from-existing-product', auctionController.createAuctionFromExistingProduct)
+
+/**
  * @api {get} /auctions?limit=5&&page=2 get all auctions
  * @apiGroup Auction
 
