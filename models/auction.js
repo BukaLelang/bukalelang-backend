@@ -15,7 +15,9 @@ module.exports = function(sequelize, DataTypes) {
     description:DataTypes.STRING,
     weight:DataTypes.INTEGER,
     productId:DataTypes.STRING,
-    images:DataTypes.STRING
+    images:DataTypes.STRING,
+    running:DataTypes.BOOLEAN,
+    doneAt: DataTypes.DATE
   }, {
     classMethods: {
       associate: function(models) {
