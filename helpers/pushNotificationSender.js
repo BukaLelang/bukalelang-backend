@@ -54,8 +54,6 @@ module.exports = {
     });
   },
   sendPNToWinner: (user, auction) => {
-    console.log('user : ', user);
-    console.log('auction : ', auction);
     let registrationToken = user.fcmRegistrationToken
     var payload = {
       notification: {
