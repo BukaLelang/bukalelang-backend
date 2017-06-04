@@ -1957,6 +1957,71 @@
     ]
   },
   {
+    "type": "get",
+    "url": "/users/:id/existing-products-from-lapak",
+    "title": "get list of product from existing lapak",
+    "group": "Users",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>message from server</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "success",
+            "description": "<p>is request success ?</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>&quot;OK&quot; or &quot;ERROR&quot;</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Array",
+            "optional": false,
+            "field": "products",
+            "description": "<p>products from existing lapak without product that already pick in BukaLelang</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success",
+          "content": "HTTP/1.1 200 OK\n{\n   success: true,\n   status: \"OK\",\n   message: 'Success load product list of user lapak',\n   products: [\n        {\n              \"id\": \"mab5\",\n              \"category\": \"Suspension\",\n              \"category_id\": 78\n              \"category_structure\": [\"Sepeda\", \"Fork & Suspension\", \"Suspension\"],\n              \"name\": \"Testing BL App\",\n              \"active\": true,\n              \"city\": \"Jakarta Selatan\",\n              \"province\": \"DKI Jakarta\",\n              \"price\": 1250000,\n              \"weight\": \"1000\",\n              \"courier\": [\"JNE REG\"],\n              \"force_insurance\": false,\n              \"image_ids\": [2532736],\n              \"images\": [\n                \"https://s1.bukalapak.com/system/images/2/5/3/2/7/3/6/large/IMG_0205.JPG?1371219033\"\n              ],\n              \"small_images\": [\n                \"https://s1.bukalapak.com/system/images/2/5/3/2/7/3/6/small/IMG_0205.JPG?1371219033\"\n              ],\n              \"url\": \"https://www.bukalapak.com/p/sepeda/fork-suspension/suspension/mab5_-testing-bl-app\",\n              \"desc\": \"Test upload from BL App, please ignore\",\n              \"condition\": \"new\",\n              \"nego\": true,\n              \"seller_username\": \"meow\",\n              \"seller_name\": \"Me Oww\",\n              \"seller_id\": 15,\n              \"seller_avatar\": \"https://www.bukalapak.com/system/avatars/055/f87/412/9cf/0ec/36837/medium/xkcd.png?1387424302\",\n              \"seller_level\": \"Pedagang\",\n              \"seller_level_badge_url\": \"https://www.bukalapak.com/images/badge/seller/xhdpi/level-5.png\",\n              \"seller_positive_feedback\": 46,\n              \"seller_negative_feedback\": 31,\n              \"seller_term_condition\": \"Barang yang di beli tidak dapat dikembalikan.\",\n              \"seller_alert\": null,\n              \"payment_ready\": true,\n              \"specs\": {\n                \"merk_shock\": null,\n                \"size_shock\": null,\n                \"spring\": null\n              },\n              \"state_description\": [],\n              \"minimum_negotiable\": null,\n              \"for_sale\": true,\n              \"favorited\": false,\n              \"free_shipping_coverage\": [],\n              \"deal_info\": {\n                \"original_price\": 850000,\n                \"discount_price\": 765000,\n                \"discount_percentage\": 10,\n                \"state\": \"pending\"\n              },\n              \"deal_request_state\": \"can edit\",\n              \"product_sin\":  [\"Deskripsi tidak tepat\", \"Spesifikasi tidak tepat\"]\n            }\n         ]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "List error",
+          "content": "HTTP/1.1 500 Internal Server Error\n{\n   success: false,\n   status: \"ERROR\",\n   message: 'User with id 3 not found',\n   products: []\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/users.js",
+    "groupTitle": "Users",
+    "name": "GetUsersIdExistingProductsFromLapak",
+    "sampleRequest": [
+      {
+        "url": "http://localhost:3000/users/:id/existing-products-from-lapak"
+      }
+    ]
+  },
+  {
     "type": "post",
     "url": "/users/fcm-registration-token",
     "title": "store FCM registration token",
