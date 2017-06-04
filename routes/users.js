@@ -72,6 +72,87 @@ router.get('/', function(req, res, next) {
  *    }
  */
 router.get('/:id/auctions-joined', userController.auctionsJoined)
+/**
+ * @api {get} /users/:id/existing-products-from-lapak get list of product from existing lapak
+ * @apiGroup Users
+ * @apiSuccess {String} message message from server
+ * @apiSuccess {Boolean} success is request success ?
+ * @apiSuccess {String} status "OK" or "ERROR"
+ * @apiSuccess {Array} products products from existing lapak without product that already pick in BukaLelang
+
+ * @apiSuccessExample {json} Success
+ *    HTTP/1.1 200 OK
+ *    {
+ *       success: true,
+ *       status: "OK",
+ *       message: 'Success load product list of user lapak',
+ *       products: [
+           {
+                 "id": "mab5",
+                 "category": "Suspension",
+                 "category_id": 78
+                 "category_structure": ["Sepeda", "Fork & Suspension", "Suspension"],
+                 "name": "Testing BL App",
+                 "active": true,
+                 "city": "Jakarta Selatan",
+                 "province": "DKI Jakarta",
+                 "price": 1250000,
+                 "weight": "1000",
+                 "courier": ["JNE REG"],
+                 "force_insurance": false,
+                 "image_ids": [2532736],
+                 "images": [
+                   "https://s1.bukalapak.com/system/images/2/5/3/2/7/3/6/large/IMG_0205.JPG?1371219033"
+                 ],
+                 "small_images": [
+                   "https://s1.bukalapak.com/system/images/2/5/3/2/7/3/6/small/IMG_0205.JPG?1371219033"
+                 ],
+                 "url": "https://www.bukalapak.com/p/sepeda/fork-suspension/suspension/mab5_-testing-bl-app",
+                 "desc": "Test upload from BL App, please ignore",
+                 "condition": "new",
+                 "nego": true,
+                 "seller_username": "meow",
+                 "seller_name": "Me Oww",
+                 "seller_id": 15,
+                 "seller_avatar": "https://www.bukalapak.com/system/avatars/055/f87/412/9cf/0ec/36837/medium/xkcd.png?1387424302",
+                 "seller_level": "Pedagang",
+                 "seller_level_badge_url": "https://www.bukalapak.com/images/badge/seller/xhdpi/level-5.png",
+                 "seller_positive_feedback": 46,
+                 "seller_negative_feedback": 31,
+                 "seller_term_condition": "Barang yang di beli tidak dapat dikembalikan.",
+                 "seller_alert": null,
+                 "payment_ready": true,
+                 "specs": {
+                   "merk_shock": null,
+                   "size_shock": null,
+                   "spring": null
+                 },
+                 "state_description": [],
+                 "minimum_negotiable": null,
+                 "for_sale": true,
+                 "favorited": false,
+                 "free_shipping_coverage": [],
+                 "deal_info": {
+                   "original_price": 850000,
+                   "discount_price": 765000,
+                   "discount_percentage": 10,
+                   "state": "pending"
+                 },
+                 "deal_request_state": "can edit",
+                 "product_sin":  ["Deskripsi tidak tepat", "Spesifikasi tidak tepat"]
+               }
+            ]
+ *    }
+ * @apiErrorExample {json} List error
+ *    HTTP/1.1 500 Internal Server Error
+ *    {
+ *       success: false,
+ *       status: "ERROR",
+ *       message: 'User with id 3 not found',
+ *       products: []
+ *    }
+ */
+router.get('/:id/existing-products-from-lapak', userController.getExistingProductFromLapak)
 
 /**
  * @api {get} /users/:id get user detail informations
