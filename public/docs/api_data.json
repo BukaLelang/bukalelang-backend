@@ -1213,6 +1213,238 @@
   },
   {
     "type": "post",
+    "url": "/auctions/from-existing-product",
+    "title": "create auctions from existing product",
+    "group": "Auction",
+    "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n  \"userId\": 2,\n  \"bukalapakId\": 231232131,\n  \"token\": \"IniToken\",\n  \"productId\": \"8rew31\",\n  \"min_price\": 50000,\n  \"kelipatan_bid\": 10000,\n  \"end_date\": 2017-09-14T00:00:00Z,\n  \"endDateFromAndroid\": '25/05/2017 23:50',\n}",
+          "type": "json"
+        }
+      ],
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "userId",
+            "description": "<p>userId of user</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "bukalapakId",
+            "description": "<p>bukalapakId of user</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "token",
+            "description": "<p>token of logged in user</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "productId",
+            "description": "<p>id of product in lapak</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "min_price",
+            "description": "<p>minimal / start price of auctions</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "kelipatan_bid",
+            "description": "<p>nominal lipatan of next bidding</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Date",
+            "optional": false,
+            "field": "end_date",
+            "description": "<p>date end of auction, default is two day</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "endDateFromAndroid",
+            "description": "<p>date end of auction, default is two day</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "id",
+            "description": "<p>id of the auction</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "productId",
+            "description": "<p>id of the product at BL</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "title",
+            "description": "<p>Title of auction</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Array",
+            "optional": false,
+            "field": "images",
+            "description": "<p>array of URL of images of auction (full resolution)</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Array",
+            "optional": false,
+            "field": "small_images",
+            "description": "<p>array of URL of images of auction (small resolution)</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "categoryId",
+            "description": "<p>category ID</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "category",
+            "description": "<p>category of the auction</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "new",
+            "description": "<p>product is new or second ?</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "weight",
+            "description": "<p>weight of the product using gram</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "description",
+            "description": "<p>description of product</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "min_price",
+            "description": "<p>minimal / start price of auctions</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "max_price",
+            "description": "<p>maximal / buy now price of auctions</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "kelipatan_bid",
+            "description": "<p>nominal lipatan of next bidding</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "start_date",
+            "description": "<p>date of auction start, default is after published</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "end_date",
+            "description": "<p>date end of auction, default is two days after published</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "success",
+            "description": "<p>is request success ?</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>&quot;OK&quot; or &quot;ERROR&quot;</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>message from server</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success",
+          "content": "HTTP/1.1 200 OK\n{\n  \"id\": 23,\n  \"productId\": '42dfs34',\n  \"title\": \"Lelang Gundam Langka & Istimewa\",\n  \"images\": [\"https://s0.bukalapak.com/system/images/1/6/7/6/6/8/0/large/IMG00475-20121105-1431.jpg?1352105447\", \"https://s0.bukalapak.com/system/images/1/6/7/6/6/8/0/large/lalalala.jpg?1352105447\"],\n  \"small_images: [\"https://s0.bukalapak.com/system/images/1/6/7/6/6/8/0/small/IMG00475-20121105-1431.jpg\", \"https://s0.bukalapak.com/system/images/1/6/7/6/6/8/0/small/lalalala.jpg?1352105447\"],\n  \"categoryId\": 145,\n  \"category\": 'Mainan',\n  \"new\": false,\n  \"weight\": 5000,\n  \"description\": \"Gundam dapet dari pembuatnya langsung lho\",\n  \"min_price\": 50000,\n  \"max_price\": 200000,\n  \"kelipatan_bid\": 10000,\n  \"end_date\": 2017-09-14T00:00:00Z,\n  \"userId\": 2,\n  \"success\": true,\n  \"status\": \"OK\",\n  \"message\": 'buat lelang berhasil',\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "List error",
+          "content": "HTTP/1.1 500 Internal Server Error\n{\n   \"id\": null,\n   \"productId\": null,\n  \"title\": null,\n  \"images\": [],\n     \"small_images\": [],\n  \"categoryId\": null,\n  \"category\": null,\n  \"new\": false,\n  \"weight\": 0,\n  \"description\": null,\n  \"min_price\": 0,\n  \"max_price\": 0,\n  \"kelipatan_bid\": 0,\n  \"end_date\": null,\n  \"userId\": null,\n  \"success\": false,\n  \"status\": \"ERROR\",\n  \"message\": 'Buat lelang gagal ):',\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/auctions.js",
+    "groupTitle": "Auction",
+    "name": "PostAuctionsFromExistingProduct",
+    "sampleRequest": [
+      {
+        "url": "http://localhost:3000/auctions/from-existing-product"
+      }
+    ]
+  },
+  {
+    "type": "post",
     "url": "/auth/login",
     "title": "login",
     "group": "Auth",
