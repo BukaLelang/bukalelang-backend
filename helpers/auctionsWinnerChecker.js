@@ -28,6 +28,7 @@ module.exports = () => {
       }
     })
   }, null, true, 'Asia/Jakarta');
+  
   // ngecek, dengan membandingkan selisih menitnya
   function getMinutesBetweenDates(startDate, endDate) {
     var diff = endDate.getTime() - startDate.getTime();

@@ -4,6 +4,7 @@ let _ = require('lodash')
 
 let models = require('../models')
 let emailSender = require('./emailSender')
+let pushNotificationSender = require('./pushNotificationSender')
 
 module.exports = {
   auctionWinnerJob: (auctionId, endDate) =>{
@@ -36,6 +37,7 @@ function theWinnerIs(auctionId) {
           models.Auction.findById(highestBidOfTheAuction.auctionId).then(auction => {
             if (auction) {
               emailSender.sendEmailToWinner(user, auction)
+              pushNotificationSender.sendPNToWinner(user, auction)
               // global.io.emit('auction-winner-' + auction.id, user);
 
             } else {
