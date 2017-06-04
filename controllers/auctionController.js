@@ -324,6 +324,7 @@ module.exports = {
         delete newAuctions[i].createdAt
         delete newAuctions[i].updatedAt
       }
+      
       finalResult.success = true
       finalResult.status = "OK"
       finalResult.message = 'success load list of auctions with title : ' + req.query.query + ' : found ' + auctions.length + ' auctions'

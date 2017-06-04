@@ -1,6 +1,10 @@
 'use strict'
-const models = require('../models');
 const _ = require('lodash')
+let axios = require('axios')
+
+const models = require('../models');
+
+let blEndPoint = 'https://api.bukalapak.com/v2/'
 
 module.exports = {
   auctionsJoined : (req, res) => {
@@ -85,6 +89,82 @@ module.exports = {
         finalResult.message = `User with id ${req.params.id} not found`
         res.json(finalResult)
       })
+  },
+  getExistingProductFromLapak : (req, res) => {
+    console.log('isi req', req.params);
+    let finalResult = {
+      success: false,
+      status: "ERROR",
+      message: "User with id not found",
+      products:[]
+    }
+
+    models.User.findOne({
+      where: {
+        id: req.params.id
+      },
+      include: [{
+        model: models.Auction
+      }]
+    }).then(user => {
+      if (!user) {
+        finalResult.message = 'user with Id : ' + req.params.id + ' is not found'
+        res.json(finalResult)
+      }
+
+      console.log('isi list of auction nya : ', user.Auctions);
+      let userAuctions = []
+      for (var i = 0; i < user.Auctions.length; i++) {
+        userAuctions.push(user.Auctions[i].productId)
+      }
+
+      axios({
+        method: 'get',
+        url: blEndPoint + 'products/mylapak.json',
+        auth: {
+          username: user.bukalapakId,
+          password: user.bl_token
+        }
+      }).then(responseGetLapak => {
+        console.log('dapat product apa aja : ', responseGetLapak.data.products);
+        let products = responseGetLapak.data.products
+        let productsWithoutAlreadyJoinedAuction = products.filter(function(product) {
+          return userAuctions.indexOf(product.id) == -1
+        })
+
+        console.log('lalu apa jadi nya : ', productsWithoutAlreadyJoinedAuction);
+
+        // cleaning
+        for (var i = 0; i < productsWithoutAlreadyJoinedAuction.length; i++) {
+          delete productsWithoutAlreadyJoinedAuction[i].installment
+          delete productsWithoutAlreadyJoinedAuction[i].min_installment_price
+          delete productsWithoutAlreadyJoinedAuction[i].deal_info
+          delete productsWithoutAlreadyJoinedAuction[i].deal_request_state
+          delete productsWithoutAlreadyJoinedAuction[i].seller_level_badge_url
+          delete productsWithoutAlreadyJoinedAuction[i].seller_delivery_time
+          delete productsWithoutAlreadyJoinedAuction[i].seller_positive_feedback
+          delete productsWithoutAlreadyJoinedAuction[i].seller_negative_feedback
+          delete productsWithoutAlreadyJoinedAuction[i].seller_term_condition
+          delete productsWithoutAlreadyJoinedAuction[i].seller_alert
+          delete productsWithoutAlreadyJoinedAuction[i].last_order_schedule
+          delete productsWithoutAlreadyJoinedAuction[i].top_merchant
+          delete productsWithoutAlreadyJoinedAuction[i].premium_account
+          delete productsWithoutAlreadyJoinedAuction[i].state_description
+        }
+
+        finalResult.status = "OK"
+        finalResult.success = true
+        finalResult.message = 'success get products from lapak'
+        finalResult.products = productsWithoutAlreadyJoinedAuction
+        res.json(finalResult)
+
+      }).catch(err => {
+        console.log('Error when trying to get product from my lapak', err.message);
+        finalResult.message = 'Error when trying to get product from my lapak'
+        res.json(finalResult)
+      })
+
+    })
   },
   userDetail : (req, res) => {
     let finalResult = {
