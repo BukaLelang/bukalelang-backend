@@ -24,6 +24,7 @@ module.exports = {
       status: "ERROR",
       message: ''
     }
+    let username = req.body.username.toLowerCase()
 
     // register to BL
     axios.post(blEndPoint + '/users.json', {
@@ -31,7 +32,7 @@ module.exports = {
       email: req.body.email,
       password: req.body.password,
       password_confirmation: req.body.password,
-      username: req.body.username,
+      username: username,
       policy: '1'
     }).then((responseAfterRegisterToBukaLapak) => {
       // console.log('berhasil kah : ', responseAfterRegisterToBukaLapak.data);
@@ -45,19 +46,19 @@ module.exports = {
         case 'OK':
           // buat user baru di DB
           // disini di check lagi udah ada belum di DB :
-          console.log('------------ apakah tetep kesana -------------------', esponseAfterRegisterToBukaLapak.data);
+          console.log('------------ apakah tetep kesana -------------------', responseAfterRegisterToBukaLapak.data);
           axios({
             method:'post',
             url: blEndPoint + 'authenticate.json',
             auth: {
-              username: req.body.username,
+              username: username,
               password: req.body.password
             }
           }).then((responseAfterLogin) => {
             // console.log('sudah confirmed ? ', responseAfterLogin.data);
             models.User.create({
               name: req.body.name,
-              username: req.body.username,
+              username: username,
               password: req.body.password,
               bukalapakId: responseAfterRegisterToBukaLapak.data.user_id,
               confirmed: false,
@@ -112,7 +113,7 @@ module.exports = {
                     finalResult.id = newRegisteredUser.id
                     finalResult.bukalapakId = responseAfterLogin.data.user_id
                     finalResult.name = responseAfterLogin.data.user_name
-                    finalResult.username = req.body.username
+                    finalResult.username = username
                     finalResult.email = responseAfterLogin.data.email
                     finalResult.avatarUrl = responseAfterGetUserDetail.data.user.avatar
                     finalResult.confirmed = responseAfterLogin.data.confirmed
@@ -180,10 +181,12 @@ module.exports = {
       status: "ERROR",
       message: ''
     }
+    let username = req.body.username.toLowerCase()
     // cari dulu user nya udah ada di tempat kita belum
+
     models.User.findOne({
       where:{
-        username:req.body.username
+        username:username
       }
     }).then(user => {
       // kalo ngak ada, coba cek di BL
@@ -193,7 +196,7 @@ module.exports = {
           method:'post',
           url: blEndPoint + 'authenticate.json',
           auth: {
-            username: req.body.username,
+            username: username,
             password: req.body.password
           }
         }).then((responseAfterLogin) => {
@@ -206,7 +209,7 @@ module.exports = {
             // di BL udah ada ternyata, jadi kita bikin di local
             models.User.create({
               name: responseAfterLogin.data.user_name,
-              username: req.body.username,
+              username: username,
               password: req.body.password,
               bukalapakId: responseAfterLogin.data.user_id,
               confirmed: responseAfterLogin.data.confirmed,
@@ -260,7 +263,7 @@ module.exports = {
                     finalResult.id = newRegisteredUser.id
                     finalResult.bukalapakId = responseAfterLogin.data.user_id
                     finalResult.name = responseAfterLogin.data.user_name
-                    finalResult.username = req.body.username
+                    finalResult.username = username
                     finalResult.email = responseAfterLogin.data.email
                     finalResult.avatarUrl = responseAfterGetUserDetail.data.user.avatar
                     finalResult.confirmed = responseAfterLogin.data.confirmed
