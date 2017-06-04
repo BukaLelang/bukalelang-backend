@@ -102,7 +102,9 @@ module.exports = {
             if (req.body.endDateFromAndroid != '') {
               endDate = moment(req.body.endDateFromAndroid,"DD-MM-YYYYHH:mm").utcOffset(420).format()
             } else {
-              endDate = req.body.end_date
+              if (req.body.end_date != '') {
+                endDate = req.body.end_date
+              }
             }
 
             if (endDate == null) {
@@ -192,13 +194,159 @@ module.exports = {
         }
       }).catch((err) => {
         console.log('error when trying to create product to BL : ', err);
+        finalResult.message = 'error when trying to create product to BL'
         res.json(finalResult)
       })
     }).catch((err) => {
       console.log('error when try to get attributes : ', err);
+      finalResult.message = 'error when try to get attributes '
+      res.json(finalResult)
     })
   },
+  createAuctionFromExistingProduct: (req, res) => {
+    // init repsonse
+    var finalResult = {
+      id: null,
+      productId: null,
+      name: null,
+      avatarUrl: 'https://www.bukalapak.com/images/default_avatar/medium/default.jpg',
+      title: null,
+      slug: null,
+      images: [],
+      small_images: [],
+      categoryId: null,
+      categoryName: null,
+      new: false,
+      weight: 0,
+      description: null,
+      location: null,
+      current_price: null,
+      bidderCount: 0,
+      min_price: 0,
+      max_price: 0,
+      kelipatan_bid: 0,
+      start_date: null,
+      end_date: null,
+      time_left: null,
+      isRunning: 0,
+      running: false,
+      userId: null,
+      success: false,
+      status: "ERROR",
+      message: 'Buat lelang gagal ):',
+    }
+    // Check usernya ada ngak, sekalian ngecheck tokenya
+    models.User.findOne({
+      where: {
+        bukalapakId: req.body.bukalapakId
+      }
+    }).then(user => {
+      if (!user) {
+        finalResult.message = 'user not found'
+        res.json(finalResult)
+      }
 
+      axios({
+        method: 'get',
+        url: blEndPoint + 'products/' + req.body.productId + '.json',
+        auth: {
+          username: req.body.bukalapakId,
+          password: req.body.token
+        }
+      }).then(responseGetDetailProduct => {
+        console.log('responseGetDetailProduct : ', responseGetDetailProduct.data);
+        if (responseGetDetailProduct.data.status == 'OK') {
+          // set endDate
+          let endDate = null
+          if (req.body.endDateFromAndroid != '') {
+            endDate = moment(req.body.endDateFromAndroid,"DD-MM-YYYYHH:mm").utcOffset(420).format()
+          } else {
+            if (req.body.end_date != '') {
+              endDate = req.body.end_date
+            }
+          }
+
+          if (endDate == null) {
+            endDate = moment().add(2, 'days').format()
+          }
+          console.log('endDate : ', endDate);
+
+          models.Auction.create({
+            productId: responseGetDetailProduct.data.product.id,
+            title: responseGetDetailProduct.data.product.name,
+            slug: slug(responseGetDetailProduct.data.product.name + ' ' + responseGetDetailProduct.data.product.id, {lower: true}),
+            categoryId: responseGetDetailProduct.data.product.category_id,
+            min_price: req.body.min_price,
+            max_price: responseGetDetailProduct.data.product.price,
+            kelipatan_bid: req.body.kelipatan_bid,
+            description: responseGetDetailProduct.data.product.desc,
+            new: responseGetDetailProduct.data.product.condition == 'used' ? false : true,
+            weight: responseGetDetailProduct.data.product.weight,
+            location:  responseGetDetailProduct.data.product.city,
+            start_date: new Date(),
+            end_date: endDate,
+            userId: user.id
+          }).then(auction => {
+            // save all images bulk insert
+            let images = []
+            for (var i = 0; i < responseGetDetailProduct.data.product.images.length; i++) {
+              images.push({
+                imageUrl: responseGetDetailProduct.data.product.images[i],
+                smallImageUrl: responseGetDetailProduct.data.product.small_images[i],
+                auctionId: auction.id
+              })
+            }
+            models.ProductImage.bulkCreate(images).then(() => {
+              console.log('YEAH! all images inserted');
+            })
+
+
+            finalResult.id = auction.id
+            finalResult.productId = responseGetDetailProduct.data.product.id
+            finalResult.name = user.name
+            finalResult.avatarUrl = responseGetDetailProduct.data.product.seller_avatar
+            finalResult.title = auction.title
+            finalResult.slug = auction.slug
+            finalResult.images = responseGetDetailProduct.data.product.images
+            finalResult.small_images = responseGetDetailProduct.data.product.small_images
+            finalResult.categoryId = auction.categoryId
+            finalResult.categoryName =  responseGetDetailProduct.data.product.category
+            finalResult.new = auction.new
+            finalResult.weight = auction.weight
+            finalResult.description = auction.description
+            finalResult.location = auction.location
+            finalResult.current_price = auction.min_price
+            finalResult.bidderCount = 0
+            finalResult.min_price = auction.min_price
+            finalResult.max_price = auction.max_price
+            finalResult.kelipatan_bid = auction.kelipatan_bid
+            finalResult.start_date = auction.start_date
+            finalResult.end_date = auction.end_date
+            finalResult.time_left = getMinutesBetweenDates(new Date(), new Date(auction.end_date))
+            finalResult.running = moment(auction.end_date).format() >= moment().format() ? true : false
+            finalResult.isRunning = moment(auction.end_date).format() >= moment().format() ? 1 : 0
+            finalResult.success = true
+            finalResult.status = "OK"
+            finalResult.userId = auction.userId
+            finalResult.message = 'Sukses buat lelang!'
+            res.json(finalResult)
+          })
+        } else {
+          finalResult.message = responseGetDetailProduct.data.message
+          res.json(finalResult)
+        }
+      }).catch(err => {
+        console.log('error when trying to get detail product : ', err.message);
+        finalResult.message = 'error when trying to get detail product'
+        res.json(finalResult)
+      })
+
+    }).catch(err => {
+      console.log('error when trying to get user detail in table : ', err.message);
+      finalResult.message = 'error when trying to get user detail in table '
+      res.json(finalResult)
+    })
+  },
   getAllAuctions: (req, res) => {
     let limitPerPage = req.query.limit || 10
     let page = req.query.page || 1
@@ -324,7 +472,7 @@ module.exports = {
         delete newAuctions[i].createdAt
         delete newAuctions[i].updatedAt
       }
-      
+
       finalResult.success = true
       finalResult.status = "OK"
       finalResult.message = 'success load list of auctions with title : ' + req.query.query + ' : found ' + auctions.length + ' auctions'
