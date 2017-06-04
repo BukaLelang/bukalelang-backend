@@ -107,6 +107,7 @@ module.exports = {
     })
   },
   isAuctionRunning: (auctionId) => {
+    // deprecated 
     return new Promise((resolve, reject) => {
       models.Auction.findById(auctionId).then(auction => {
         let isStillRunning = new Date(auction.end_date) > new Date() ? true : false

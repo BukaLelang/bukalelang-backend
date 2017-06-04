@@ -9,7 +9,7 @@ let pushNotificationSender = require('./pushNotificationSender')
 module.exports = {
   auctionWinnerJob: (auctionId, endDate) =>{
     new CronJob(endDate, function() {
-      console.log('Node cron untuk cek pemenang = jalan');
+      console.log('Node cron untuk cek pemenang jalan, cek auction dengan id : ', auctionId);
       theWinnerIs(auctionId)
     }, null, true, 'Asia/Jakarta');
   },
@@ -24,11 +24,10 @@ function theWinnerIs(auctionId) {
     where: {
       auctionId: auctionId
     }
-  }).then(auctions => {
-    let auctionsLength = auctions.length
-    if (auctionsLength != 0) {
+  }).then(bids => {
+    if (bids.length > 0) {
       // cari yang tertinggi
-      let highestBidOfTheAuction = _.maxBy(auctions, 'current_bid')
+      let highestBidOfTheAuction = _.maxBy(bids, 'current_bid')
       console.log('the winner of this auction is : ', highestBidOfTheAuction);
       // dapeting detail user nya
       models.User.findById(highestBidOfTheAuction.userId).then(user => {
@@ -36,6 +35,20 @@ function theWinnerIs(auctionId) {
           // daepetin detail usernya
           models.Auction.findById(highestBidOfTheAuction.auctionId).then(auction => {
             if (auction) {
+              models.Auction.update({
+                running: false,
+                doneAt: new Date()
+              }, {
+                where: {
+                  id: auction.id
+                }
+              }).then(auction => {
+                console.log('update running status and add doneAt : success');
+              }).catch(err => {
+                console.log('update running status and add doneAt : failed ');
+                console.log('because : ---- ', err.message);
+              })
+
               emailSender.sendEmailToWinner(user, auction)
               pushNotificationSender.sendPNToWinner(user, auction)
               // global.io.emit('auction-winner-' + auction.id, user);

@@ -127,7 +127,8 @@ module.exports = {
               location: responseAfterCreateProduct.data.product_detail.city,
               start_date: new Date(),
               end_date: endDate,
-              userId: req.body.userId
+              userId: req.body.userId,
+              running: true,
             }).then((auction) => {
               // save all images one by one
               let images = []
@@ -167,8 +168,8 @@ module.exports = {
                   finalResult.start_date = auction.start_date
                   finalResult.end_date = auction.end_date
                   finalResult.time_left = getMinutesBetweenDates(new Date(), new Date(auction.end_date))
-                  finalResult.running = moment(auction.end_date).format() >= moment().format() ? true : false
-                  finalResult.isRunning = moment(auction.end_date).format() >= moment().format() ? 1 : 0
+                  finalResult.running = true
+                  finalResult.isRunning = 1
                   finalResult.success = true
                   finalResult.status = "OK"
                   finalResult.userId = auction.userId
@@ -285,7 +286,8 @@ module.exports = {
             location:  responseGetDetailProduct.data.product.city,
             start_date: new Date(),
             end_date: endDate,
-            userId: user.id
+            userId: user.id,
+            running: true
           }).then(auction => {
             // save all images bulk insert
             let images = []
@@ -323,8 +325,8 @@ module.exports = {
             finalResult.start_date = auction.start_date
             finalResult.end_date = auction.end_date
             finalResult.time_left = getMinutesBetweenDates(new Date(), new Date(auction.end_date))
-            finalResult.running = moment(auction.end_date).format() >= moment().format() ? true : false
-            finalResult.isRunning = moment(auction.end_date).format() >= moment().format() ? 1 : 0
+            finalResult.running = true
+            finalResult.isRunning = 1
             finalResult.success = true
             finalResult.status = "OK"
             finalResult.userId = auction.userId
@@ -381,8 +383,8 @@ module.exports = {
       let takeLatestAuction = _.take(auctionsArr, 10)
       const newAuctions = takeLatestAuction.map(auction => {
         return Object.assign({}, auction, {
-          isRunning: moment(auction.end_date).format() >= moment().format() ? 1 : 0,
-          running: moment(auction.end_date).format() >= moment().format() ? true : false,
+          isRunning: auction.running == true ? 1 : 0,
+          running: auction.running,
           images: convertArrayOfObjectIntoArray(_.orderBy(auction.ProductImages, ['id'], ['asc']), 'imageUrl'),
           small_images: convertArrayOfObjectIntoArray(_.orderBy(auction.ProductImages, ['id'], ['asc']), 'smallImageUrl'),
           categoryName: auction.Category.name,
@@ -450,8 +452,8 @@ module.exports = {
       let takeLatestAuction = _.take(auctionsArr, 15)
       const newAuctions = takeLatestAuction.map(auction => {
         return Object.assign({}, auction, {
-          isRunning: moment(auction.end_date).format() >= moment().format() ? 1 : 0,
-          running: moment(auction.end_date).format() >= moment().format() ? true : false,
+          isRunning: auction.running == true ? 1 : 0,
+          running: auction.running,
           images: convertArrayOfObjectIntoArray(auction.ProductImages, 'imageUrl'),
           small_images: convertArrayOfObjectIntoArray(auction.ProductImages, 'smallImageUrl'),
           categoryName: auction.Category.name,
@@ -602,8 +604,8 @@ module.exports = {
       finalResult.start_date = auction.start_date
       finalResult.end_date = auction.end_date
       finalResult.time_left = getMinutesBetweenDates(new Date(), new Date(auction.end_date))
-      finalResult.running = moment(auction.end_date).format() >= moment().format() ? true : false
-      finalResult.isRunning = moment(auction.end_date).format() >= moment().format() ? 1 : 0
+      finalResult.running = auction.running
+      finalResult.isRunning = auction.running == true ? 1 : 0
       finalResult.success = true
       finalResult.status = "OK"
       finalResult.userId = auction.userId
@@ -682,8 +684,8 @@ module.exports = {
       finalResult.start_date = auction.start_date
       finalResult.end_date = auction.end_date
       finalResult.time_left = getMinutesBetweenDates(new Date(), new Date(auction.end_date))
-      finalResult.running = moment(auction.end_date).format() >= moment().format() ? true : false
-      finalResult.isRunning = moment(auction.end_date).format() >= moment().format() ? 1 : 0
+      finalResult.running = auction.running
+      finalResult.isRunning = auction.running == true ? 1 : 0
       finalResult.success = true
       finalResult.status = "OK"
       finalResult.userId = auction.userId
