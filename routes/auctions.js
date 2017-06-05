@@ -284,6 +284,136 @@ router.post('/from-existing-product', auctionController.createAuctionFromExistin
 router.get('/', auctionController.getAllAuctions)
 
 /**
+ * @api {get} /auctions/:id/checkout-information get information detail for checkout the auction
+ * @apiGroup Auction
+ * @apiSuccess {String} message message from server
+ * @apiSuccess {Boolean} success is request success ?
+ * @apiSuccess {String} status "OK" or "ERROR"
+ * @apiSuccess {Object[]} auction List of auctions.
+ * @apiSuccess {Integer} auction.id id of the auction
+ * @apiSuccess {Integer} auction.productId id of the product at BL
+ * @apiSuccess {String} auction.title Title of auction
+ * @apiSuccess {Array} auction.images array of URL of images of auction (full resolution)
+ * @apiSuccess {Array} auction.small_images array of URL of images of auction (small resolution)
+ * @apiSuccess {Integer} auction.categorynNme category of auction
+ * @apiSuccess {Integer} auction.time_left time left of the auction
+ * @apiSuccess {Boolean} auction.new product is new or second ?
+ * @apiSuccess {Integer} auction.weight weight of the product using gram
+ * @apiSuccess {String} auction.name name of auction maker
+ * @apiSuccess {String} auction.slug slug of the auction
+ * @apiSuccess {String} auction.description description of product
+ * @apiSuccess {Integer} auction.min_price minimal / start price of auction
+ * @apiSuccess {Integer} auction.current_price current price of the auction
+ * @apiSuccess {Integer} auction.max_price maximal / buy now price of auction
+ * @apiSuccess {Integer} auction.kelipatan_bid nominal lipatan of next bidding
+ * @apiSuccess {Date} auction.start_date date of auction start, default is after published
+ * @apiSuccess {Date} auction.end_date date end of auction, default is one week
+ * @apiSuccess {Integer} finalPrice is the final price of the auction
+ * @apiSuccess {String} winnerName winner name of the auction
+ * @apiSuccess {Object[]} addresses List of addresses of user, select as first / default when primary true
+ * @apiSuccess {Object[]} shipping shipping available for this auction
+ * @apiSuccessExample {json} Success
+ *    HTTP/1.1 200 OK
+ *    {
+ *      "success": true,
+ *      "status": "OK",
+ *      "message": 'Success load checkout information detail',
+ *      "auction": {
+ *             id: 23,
+ *             productId: '31fsa21',
+ *             title: 'Tamiya sto 100 cepat',
+               images: [
+                  "https://s1.bukalapak.com/img/6399443521/large/18559011_1080537988757036_3501975879389272155_o.jpg",
+                  "https://s1.bukalapak.com/img/1759443521/large/18588800_1080537985423703_2582422248365286934_o.jpg",
+                  "https://s1.bukalapak.com/img/1568443521/large/18489849_1080537978757037_3560457130178166935_o.jpg",
+                  "https://s1.bukalapak.com/img/6118443521/large/18556862_1080537982090370_2725080892910667932_o.jpg",
+                  "https://s1.bukalapak.com/img/6995143521/large/18595351_1080537975423704_1599301220619307539_o.jpg"
+               ],
+               running: true,
+               small_images: [
+                    "https://s1.bukalapak.com/img/6399443521/small/18559011_1080537988757036_3501975879389272155_o.jpg",
+                    "https://s1.bukalapak.com/img/1759443521/small/18588800_1080537985423703_2582422248365286934_o.jpg",
+                    "https://s1.bukalapak.com/img/1568443521/small/18489849_1080537978757037_3560457130178166935_o.jpg",
+                    "https://s1.bukalapak.com/img/6118443521/small/18556862_1080537982090370_2725080892910667932_o.jpg",
+                    "https://s1.bukalapak.com/img/6995143521/small/18595351_1080537975423704_1599301220619307539_o.jpg"
+               ],
+ *             categoryName: 'Mainan',
+               time_left: 423913828,
+               name: 'Diky Arga',
+               slug: 'tamiya-sto-100-8hdpi0'
+ *             new: false,
+ *             weight: 1000,
+ *             description: 'Tamiya ini di rakit oleh ahli fisika, dengan memperhatikan dengan seksama gaya gesek dan kelembaman sehigga mengurangi kaya gesek dengan lintasan membuanya super cepat.',
+ *             min_price: 200000,
+ *             max_price: 3000000,
+ *             current_price: 600000,
+ *             kelipatan_bid: 20000,
+ *             start_date: '2017-04-16T18:22:54.846+07:00',
+ *             end_date: '2017-05-16T18:22:54.846+07:00'
+ *           },
+          "finalPrice": 600000,
+          "winnerName": 'Lalala',
+          "addresses": [
+            {
+              "id": 345,
+              "primary": false,
+              "title": "bukan utama1",
+              "name": "tetsdfsdf",
+              "phone": "085645262611",
+              "address_attributes": {
+                "id": 499,
+                "address": "bukan utama bali",
+                "area": "Abiansemal",
+                "city": "Badung",
+                "province": "Bali",
+                "post_code": "80352"
+              }
+            },
+            {
+              "id": 346,
+              "primary": true,
+              "title": "utama",
+              "name": "yunus",
+              "phone": "085645272715",
+              "address_attributes": {
+                "id": 500,
+                "address": "alamat utama",
+                "area": "Babakan Madang",
+                "city": "Kab. Bogor",
+                "province": "Jawa Barat",
+                "post_code": "16810"
+              }
+            }
+          ],
+          "shipping": [
+                  {
+                      "courier_name": "jne",
+                      "couriers": [
+                          {
+                              "service": "JNE REG",
+                              "price": 36000,
+                              "eta": "2"
+                          }
+                      ]
+                  }
+          ]
+ *    }
+ * @apiErrorExample {json} List error
+ *    HTTP/1.1 500 Internal Server Error
+ *    {
+ *      "success": false,
+ *      "status": "ERROR",
+ *      "message": 'Fail load checkout information detail',
+ *      "auction": {},
+         "finalPrice": null,
+         "winnerName": null,
+         "addresses": [],
+         "shipping": []
+ *    }
+ */
+router.get('/:id/checkout-information', auctionController.checkoutInformation)
+
+/**
  * @api {get} /auctions/search?query=tamiya search auctions by title
  * @apiGroup Auction
 

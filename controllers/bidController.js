@@ -81,7 +81,7 @@ module.exports = {
                             current_bid: req.body.nextBid
                           }).then(bid => {
                             console.log('bid sukses');
-                            finalResult.message = 'Sukses nge-BID'
+                            finalResult.message = 'Berhasil nge-BID'
                             finalResult.success = true
                             finalResult.status = "OK"
                             finalResult.id = bid.id
@@ -101,7 +101,7 @@ module.exports = {
                             if (!isBin) {
                               bidChecker.notifyOtherAuctionParticipant(req.body.auctionId, req.headers.userid)
                             } else {
-                              finalResult.message = 'sukses nge-BIN'
+                              finalResult.message = 'Berhasil nge-BIN'
                             }
 
                             res.json(finalResult)
