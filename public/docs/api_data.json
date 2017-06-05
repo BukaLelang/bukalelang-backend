@@ -243,6 +243,225 @@
   },
   {
     "type": "get",
+    "url": "/auctions/:id/checkout-information",
+    "title": "get information detail for checkout the auction",
+    "group": "Auction",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>message from server</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "success",
+            "description": "<p>is request success ?</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>&quot;OK&quot; or &quot;ERROR&quot;</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "auction",
+            "description": "<p>List of auctions.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "auction.id",
+            "description": "<p>id of the auction</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "auction.productId",
+            "description": "<p>id of the product at BL</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "auction.title",
+            "description": "<p>Title of auction</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Array",
+            "optional": false,
+            "field": "auction.images",
+            "description": "<p>array of URL of images of auction (full resolution)</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Array",
+            "optional": false,
+            "field": "auction.small_images",
+            "description": "<p>array of URL of images of auction (small resolution)</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "auction.categorynNme",
+            "description": "<p>category of auction</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "auction.time_left",
+            "description": "<p>time left of the auction</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "auction.new",
+            "description": "<p>product is new or second ?</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "auction.weight",
+            "description": "<p>weight of the product using gram</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "auction.name",
+            "description": "<p>name of auction maker</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "auction.slug",
+            "description": "<p>slug of the auction</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "auction.description",
+            "description": "<p>description of product</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "auction.min_price",
+            "description": "<p>minimal / start price of auction</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "auction.current_price",
+            "description": "<p>current price of the auction</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "auction.max_price",
+            "description": "<p>maximal / buy now price of auction</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "auction.kelipatan_bid",
+            "description": "<p>nominal lipatan of next bidding</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "auction.start_date",
+            "description": "<p>date of auction start, default is after published</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "auction.end_date",
+            "description": "<p>date end of auction, default is one week</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "finalPrice",
+            "description": "<p>is the final price of the auction</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "winnerName",
+            "description": "<p>winner name of the auction</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "addresses",
+            "description": "<p>List of addresses of user, select as first / default when primary true</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "shipping",
+            "description": "<p>shipping available for this auction</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success",
+          "content": "HTTP/1.1 200 OK\n{\n  \"success\": true,\n  \"status\": \"OK\",\n  \"message\": 'Success load checkout information detail',\n  \"auction\": {\n         id: 23,\n         productId: '31fsa21',\n         title: 'Tamiya sto 100 cepat',\n            images: [\n               \"https://s1.bukalapak.com/img/6399443521/large/18559011_1080537988757036_3501975879389272155_o.jpg\",\n               \"https://s1.bukalapak.com/img/1759443521/large/18588800_1080537985423703_2582422248365286934_o.jpg\",\n               \"https://s1.bukalapak.com/img/1568443521/large/18489849_1080537978757037_3560457130178166935_o.jpg\",\n               \"https://s1.bukalapak.com/img/6118443521/large/18556862_1080537982090370_2725080892910667932_o.jpg\",\n               \"https://s1.bukalapak.com/img/6995143521/large/18595351_1080537975423704_1599301220619307539_o.jpg\"\n            ],\n            running: true,\n            small_images: [\n                 \"https://s1.bukalapak.com/img/6399443521/small/18559011_1080537988757036_3501975879389272155_o.jpg\",\n                 \"https://s1.bukalapak.com/img/1759443521/small/18588800_1080537985423703_2582422248365286934_o.jpg\",\n                 \"https://s1.bukalapak.com/img/1568443521/small/18489849_1080537978757037_3560457130178166935_o.jpg\",\n                 \"https://s1.bukalapak.com/img/6118443521/small/18556862_1080537982090370_2725080892910667932_o.jpg\",\n                 \"https://s1.bukalapak.com/img/6995143521/small/18595351_1080537975423704_1599301220619307539_o.jpg\"\n            ],\n         categoryName: 'Mainan',\n            time_left: 423913828,\n            name: 'Diky Arga',\n            slug: 'tamiya-sto-100-8hdpi0'\n         new: false,\n         weight: 1000,\n         description: 'Tamiya ini di rakit oleh ahli fisika, dengan memperhatikan dengan seksama gaya gesek dan kelembaman sehigga mengurangi kaya gesek dengan lintasan membuanya super cepat.',\n         min_price: 200000,\n         max_price: 3000000,\n         current_price: 600000,\n         kelipatan_bid: 20000,\n         start_date: '2017-04-16T18:22:54.846+07:00',\n         end_date: '2017-05-16T18:22:54.846+07:00'\n       },\n       \"finalPrice\": 600000,\n       \"winnerName\": 'Lalala',\n       \"addresses\": [\n         {\n           \"id\": 345,\n           \"primary\": false,\n           \"title\": \"bukan utama1\",\n           \"name\": \"tetsdfsdf\",\n           \"phone\": \"085645262611\",\n           \"address_attributes\": {\n             \"id\": 499,\n             \"address\": \"bukan utama bali\",\n             \"area\": \"Abiansemal\",\n             \"city\": \"Badung\",\n             \"province\": \"Bali\",\n             \"post_code\": \"80352\"\n           }\n         },\n         {\n           \"id\": 346,\n           \"primary\": true,\n           \"title\": \"utama\",\n           \"name\": \"yunus\",\n           \"phone\": \"085645272715\",\n           \"address_attributes\": {\n             \"id\": 500,\n             \"address\": \"alamat utama\",\n             \"area\": \"Babakan Madang\",\n             \"city\": \"Kab. Bogor\",\n             \"province\": \"Jawa Barat\",\n             \"post_code\": \"16810\"\n           }\n         }\n       ],\n       \"shipping\": [\n               {\n                   \"courier_name\": \"jne\",\n                   \"couriers\": [\n                       {\n                           \"service\": \"JNE REG\",\n                           \"price\": 36000,\n                           \"eta\": \"2\"\n                       }\n                   ]\n               }\n       ]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "List error",
+          "content": "HTTP/1.1 500 Internal Server Error\n{\n  \"success\": false,\n  \"status\": \"ERROR\",\n  \"message\": 'Fail load checkout information detail',\n  \"auction\": {},\n      \"finalPrice\": null,\n      \"winnerName\": null,\n      \"addresses\": [],\n      \"shipping\": []\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/auctions.js",
+    "groupTitle": "Auction",
+    "name": "GetAuctionsIdCheckoutInformation",
+    "sampleRequest": [
+      {
+        "url": "http://localhost:3000/auctions/:id/checkout-information"
+      }
+    ]
+  },
+  {
+    "type": "get",
     "url": "/auctions/:id/current-price",
     "title": "get current price of the auction by id",
     "group": "Auction",
