@@ -616,6 +616,111 @@ module.exports = {
       res.json(finalResult)
     })
   },
+  checkoutInformation: (req, res) => {
+    // init repsonse
+    var finalResult = {
+      success: false,
+      status: "ERROR",
+      message: 'Ambil satu auction gagal ):',
+      auction: {},
+      finalPrice: null,
+      winnerName: null,
+      addresses: [],
+      shipping: []
+    }
+
+    models.Auction.findOne({
+      where: {
+        id: req.params.id
+      },
+      include: [{
+        model: models.ProductImage
+      }, {
+        model: models.Category
+      }, {
+        model: models.User
+      }, {
+        model: models.Bid,
+        include: [{
+          model: models.User
+        }]
+      }]
+    }).then(auction => {
+      // console.log('isi auciton L --------', auction.User);
+      if (!auction) {
+        finalResult.message = 'Lelang dengan id ' + req.params.id + ' tidak ditemukan'
+        res.json(finalResult)
+      }
+      let auctionWinner = _.maxBy(auction.Bids, 'current_bid')
+      // get user addresses
+      axios({
+        method: 'get',
+        url: blEndPoint + 'user_addresses.json',
+        auth: {
+          username: auctionWinner.User.bukalapakId,
+          password: auctionWinner.User.bl_token
+        }
+      }).then((responseAfterGetAddresses) => {
+        // check shipping courier and fee
+        axios({
+          method: 'get',
+          url: blEndPoint + 'products/' + auction.productId + '/shipping_list.json?to=' + responseAfterGetAddresses.data.user_addresses[0].address_attributes.city + '&to_area=' + responseAfterGetAddresses.data.user_addresses[0].address_attributes.area
+        }).then(responseGetDetailProduct => {
+
+          finalResult.auction.id = auction.id
+          finalResult.auction.productId = auction.productId
+          finalResult.auction.title = auction.title
+          finalResult.auction.avatarUrl =auction.User.avatarUrl
+          finalResult.auction.slug = auction.slug
+          finalResult.auction.images = convertArrayOfObjectIntoArray(auction.ProductImages, 'imageUrl')
+          finalResult.auction.small_images = convertArrayOfObjectIntoArray(auction.ProductImages, 'smallImageUrl')
+          finalResult.auction.categoryId = auction.categoryId
+          finalResult.auction.categoryName = auction.Category.name
+          finalResult.auction.new = auction.new
+          finalResult.auction.weight = auction.weight
+          finalResult.auction.description = auction.description
+          finalResult.auction.current_price = auction.Bids.length == 0 ? auction.min_price : auctionWinner.current_bid
+          finalResult.auction.bidderCount = auction.Bids.length == 0 ? 0 : auction.Bids.length
+          finalResult.auction.min_price = auction.min_price
+          finalResult.auction.max_price = auction.max_price
+          finalResult.auction.kelipatan_bid = auction.kelipatan_bid
+          finalResult.auction.start_date = auction.start_date
+          finalResult.auction.end_date = auction.end_date
+          finalResult.auction.time_left = getMinutesBetweenDates(new Date(), new Date(auction.end_date))
+          finalResult.auction.running = auction.running
+          finalResult.auction.isRunning = auction.running == true ? 1 : 0
+          finalResult.auction.success = true
+          finalResult.auction.status = "OK"
+          finalResult.auction.userId = auction.userId
+
+          finalResult.finalPrice = auctionWinner.current_bid
+          finalResult.winnerName = auctionWinner.User.name
+
+          finalResult.addresses = responseAfterGetAddresses.data.user_addresses
+
+          finalResult.shipping = responseGetDetailProduct.data.fee_list
+
+          finalResult.message = 'Sukses ngambil satu auction'
+          finalResult.success = true
+          finalResult.status = "OK"
+          res.json(finalResult)
+        }).catch(err => {
+          console.log('error when trying to get detail product : ', err.message);
+          finalResult.message = 'error when trying to get detail product'
+          res.json(finalResult)
+        })
+
+      }).catch(err => {
+        console.log('error saat ambil alamat di BL', err);
+        finalResult.message = 'error saat ambil alamat di BL'
+        res.json(finalResult)
+      })
+    }).catch(err => {
+      console.log('error when try get one auction in localdb', err);
+      finalResult.message = 'error when try get one auction in localdb'
+      res.json(finalResult)
+    })
+  },
   findAuctionBySlug: (req, res) => {
     // init repsonse
     var finalResult = {
