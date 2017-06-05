@@ -13,6 +13,7 @@ var auth = require('./routes/auth');
 var auctions = require('./routes/auctions');
 var bids = require('./routes/bids');
 var categories = require('./routes/categories');
+var dompet = require('./routes/dompet');
 // for development purpose only
 var fakeRoute = require('./routes/fake/');
 
@@ -62,6 +63,7 @@ app.use('/auth', auth);
 app.use('/auctions/', auctions);
 app.use('/bids/', bids);
 app.use('/categories/', categories);
+app.use('/dompet/', dompet);
 app.use('/fake/', fakeRoute);
 
 // catch 404 and forward to error handler
