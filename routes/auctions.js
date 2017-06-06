@@ -456,6 +456,35 @@ router.get('/', auctionController.getAllAuctions)
 router.get('/:id/checkout-information', auctionController.checkoutInformation)
 
 /**
+ * @api {get} /auctions/:auctionid/checkout-status/:userid get checkout status related with user
+ * @apiGroup Auction
+ * @apiSuccess {String} message message from server
+ * @apiSuccess {Boolean} success is request success ?
+ * @apiSuccess {String} status "OK" or "ERROR"
+ * @apiSuccess {Integer} isWin is the winner of the auction is this user
+ * @apiSuccess {Integer} isCheckedOut is the winner user of the auction is this user
+ * @apiSuccessExample {json} Success
+ *    HTTP/1.1 200 OK
+ *    {
+ *      "success": true,
+ *      "status": "OK",
+ *      "message": 'Success load checkout status',
+ *      "isWin": 1,
+ *      "isCheckedOut": 1,
+ *    }
+ * @apiErrorExample {json} List error
+ *    HTTP/1.1 500 Internal Server Error
+ *    {
+ *      "success": false,
+ *      "status": "ERROR",
+ *      "message": 'Fail load checkout status',
+ *      "isWin": 0,
+ *      "isCheckedOut": 0,
+ *    }
+ */
+router.get('/:auctionid/checkout-status/:userid', auctionController.checkoutStatus)
+
+/**
  * @api {get} /auctions/search?query=tamiya search auctions by title
  * @apiGroup Auction
 
