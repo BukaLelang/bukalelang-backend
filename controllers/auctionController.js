@@ -498,6 +498,63 @@ module.exports = {
       res.json(finalResult)
     })
   },
+  checkoutStatus: (req, res) => {
+    console.log('isi params : ', req.params);
+    let finalResult = {
+      success: false,
+      status: "ERROR",
+      message: 'Fail load checkout status',
+      isWin: 0,
+      isCheckedOut: 0,
+    }
+
+    models.Auction.findOne({
+      where: {
+        id: req.params.auctionid
+      },
+      include: [{
+        model: models.User
+      }, {
+        model: models.Bid,
+        include: [{
+          model: models.User
+        }]
+      }, {
+        model: models.Checkout
+      }]
+    }).then(auction => {
+      if (!auction) {
+        finalResult.message = 'Lelang dengan id ' + req.params.auctionid + ' tidak ditemukan'
+        res.json(finalResult)
+      }
+      if (auction.running == true) {
+        finalResult.message = 'Lelang masih berjalan'
+        res.json(finalResult)
+      }
+
+      let auctionWinner = _.maxBy(auction.Bids, 'current_bid')
+      // cek dulu yang menang sama dengan userid yang di maksud ngak
+      if (auctionWinner.User.id == req.params.userid) {
+        if (auction.Checkout) {
+            finalResult.isCheckedOut = 1
+        }
+
+        finalResult.isWin = 1
+        finalResult.message = 'Success load checkout status'
+        finalResult.status = "OK"
+        finalResult.success = true
+        res.json(finalResult)
+
+      } else {
+        finalResult.message = 'yang menang auction ini bukan user dengan id : ' + req.params.userid
+        res.json(finalResult)
+      }
+    }).catch(err => {
+      console.log('error when try to get auction by id', err);
+      finalResult.message = 'error when try to get auction by id'
+      res.json(finalResult)
+    })
+  },
   getAllAuctions: (req, res) => {
     let limitPerPage = req.query.limit || 10
     let page = req.query.page || 1
