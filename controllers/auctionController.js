@@ -7,6 +7,7 @@ const models = require('../models')
 let imageUploader = require('../helpers/imageUploader')
 let auctionWinnerJob = require('../helpers/auctionWinnerJob')
 let bidChecker = require('../helpers/bidChecker')
+let decryptorHelper = require('../helpers/decryptor')
 
 let blEndPoint = 'https://api.bukalapak.com/v2/'
 
@@ -346,6 +347,154 @@ module.exports = {
     }).catch(err => {
       console.log('error when trying to get user detail in table : ', err.message);
       finalResult.message = 'error when trying to get user detail in table '
+      res.json(finalResult)
+    })
+  },
+  checkout: (req, res) => {
+    // init repsonse
+    var finalResult = {
+      success: false,
+      status: "ERROR",
+      message: 'Ambil satu auction gagal ):',
+    }
+
+    models.Auction.findOne({
+      where: {
+        id: req.body.auctionId
+      },
+      include: [{
+        model: models.User
+      }, {
+        model: models.Bid,
+        include: [{
+          model: models.User
+        }]
+      }]
+    }).then(auction => {
+      if (!auction) {
+        finalResult.message = 'Lelang dengan id ' + req.body.auctionId + ' tidak ditemukan'
+        res.json(finalResult)
+      }
+      let auctionWinner = _.maxBy(auction.Bids, 'current_bid')
+      // masukin ke cart
+      axios({
+        method: 'post',
+        url: blEndPoint + 'carts/add_product/' + auction.productId + '.json',
+        auth: {
+          username: auctionWinner.User.bukalapakId,
+          password: auctionWinner.User.bl_token
+        }
+      }).then(responseAfterAddToCart => {
+        // console.log('isi nya responseAfterAddToCart', responseAfterAddToCart.data.cart);
+        if (responseAfterAddToCart.data.status == 'OK') {
+          let selectedCart = {}
+          for (var i = 0; i < responseAfterAddToCart.data.cart.length; i++) {
+            if (responseAfterAddToCart.data.cart[i].seller.id == auction.User.bukalapakId) {
+              selectedCart = responseAfterAddToCart.data.cart[i]
+              break
+            }
+          }
+          console.log('selectedCart : ', selectedCart);
+          // get user addresses
+          axios({
+            method: 'get',
+            url: blEndPoint + 'user_addresses.json',
+            auth: {
+              username: auctionWinner.User.bukalapakId,
+              password: auctionWinner.User.bl_token
+            }
+          }).then((responseAfterGetAddresses) => {
+            let shippingAddress = {}
+            for (var i = 0; i < responseAfterGetAddresses.data.user_addresses.length; i++) {
+              if (responseAfterGetAddresses.data.user_addresses[i].id == req.body.addressId) {
+                shippingAddress = responseAfterGetAddresses.data.user_addresses[i]
+                break
+              }
+            }
+            // check shipping courier and fee
+            let invoiceData = {
+              payment_invoice: {
+                shipping_name: shippingAddress.name,
+                phone: shippingAddress.phone,
+                address: {
+                  province: shippingAddress.address_attributes.province,
+                  city: shippingAddress.address_attributes.city,
+                  area: shippingAddress.address_attributes.area,
+                  address: shippingAddress.address_attributes.address,
+                  post_code: shippingAddress.address_attributes.post_code
+                },
+                transactions_attributes: [{
+                  seller_id: auction.User.bukalapakId,
+                  courier: req.body.courierName,
+                  buyer_notes: 'Transaksi melalui BukaLelang (:',
+                  item_ids: [selectedCart.items[0].id]
+                }]
+              },
+              payment_method: "deposit",
+              deposit_password: decryptorHelper.decryptor(auctionWinner.User.password),
+              cart_id: responseAfterAddToCart.data.cart_id
+            }
+
+            axios({
+              method: 'post',
+              url: blEndPoint + 'invoices.json',
+              auth: {
+                username: auctionWinner.User.bukalapakId,
+                password: auctionWinner.User.bl_token
+              },
+              data: invoiceData
+            }).then(responseAfterCreateInvoice => {
+              // sementara only
+              // save it to checkout table
+              models.Checkout.create({
+                auctionId: auction.id,
+                userId: req.body.userId,
+                addressId: req.body.addressId,
+                finalPrice: auctionWinner.current_bid,
+                courierFee: req.body.courierFee,
+                courierName: req.body.courierService,
+                cardId: responseAfterAddToCart.data.cart_id,
+                itemIdInCart: selectedCart.items[0].id,
+                sent: false
+              }).then(checkout => {
+                console.log('sukses simpan data checkout di table')
+              }).catch(err => {
+                console.log('gagal simpan data checkout di tabel : ', err)
+              })
+
+              if(responseAfterCreateInvoice.data.status == 'OK'){
+
+
+                finalResult.message = 'Sukses checkout produk di Bukalapak'
+                finalResult.success = true
+                finalResult.status = "OK"
+                res.json(finalResult)
+              } else {
+                finalResult.message = responseAfterCreateInvoice.data.message
+                res.json(finalResult)
+              }
+            }).catch(err => {
+              console.log('error saat create invoce', err);
+              finalResult.message = 'error saat create invoce : ' + err.message
+              res.json(finalResult)
+            })
+          }).catch(err => {
+            console.log('error saat ambil alamat di BL', err);
+            finalResult.message = 'error saat ambil alamat di BL'
+            res.json(finalResult)
+          })
+        } else {
+          finalResult.message = responseAfterAddToCart.data.message
+          res.json(finalResult)
+        }
+      }).catch(err => {
+        console.log('error when try add product to cart', err);
+        finalResult.message = 'error when try add product to cart'
+        res.json(finalResult)
+      })
+    }).catch(err => {
+      console.log('error when try get one auction in localdb', err);
+      finalResult.message = 'error when try get one auction in localdb'
       res.json(finalResult)
     })
   },
@@ -706,7 +855,7 @@ module.exports = {
 
           finalResult.shipping = responseGetDetailProduct.data.fee_list
 
-          finalResult.message = 'Sukses ngambil satu auction'
+          finalResult.message = 'Sukses ambil data checkout'
           finalResult.success = true
           finalResult.status = "OK"
           res.json(finalResult)
