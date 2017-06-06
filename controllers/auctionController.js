@@ -696,7 +696,13 @@ module.exports = {
           finalResult.finalPrice = auctionWinner.current_bid
           finalResult.winnerName = auctionWinner.User.name
 
-          finalResult.addresses = responseAfterGetAddresses.data.user_addresses
+          let userAddressesArr = responseAfterGetAddresses.data.user_addresses.map(address => {
+            return Object.assign({}, address, {
+              isPrimary: address.primary == true ? 1 : 0,
+            })
+          });
+
+          finalResult.addresses = userAddressesArr
 
           finalResult.shipping = responseGetDetailProduct.data.fee_list
 
