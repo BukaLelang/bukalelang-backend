@@ -197,6 +197,48 @@ router.post('/', auctionController.create)
 router.post('/from-existing-product', auctionController.createAuctionFromExistingProduct)
 
 /**
+ * @api {post} /auctions/checkout checkout product after win the auction
+ * @apiGroup Auction
+ * @apiParamExample {json} Request-Example:
+ *     {
+ *       "userId": 2,
+ *       "bukalapakId": 231232131,
+ *       "token": "IniToken",
+ *       "aucitonId": 66,
+        "courierService": 'JNE REG',
+        "courierFee": 18000,
+        "addressId": 5116772,
+ *     }
+ * @apiParam {Integer} userId userId of user the winner
+ * @apiParam {Integer} bukalapakId bukalapakId of user
+ * @apiParam {String} token token of logged in user
+ * @apiParam {Integer} auctionId id of the auction
+ * @apiParam {String} courierService example JNE REG or JNE YES, not only jne
+ * @apiParam {Integer} courierFee shipping fee
+ * @apiParam {Integer} addressId id of address
+
+ * @apiSuccess {Boolean} success is request success ?
+ * @apiSuccess {String} status "OK" or "ERROR"
+ * @apiSuccess {String} message message from server
+
+ * @apiSuccessExample {json} Success
+ *    HTTP/1.1 200 OK
+ *    {
+ *      "success": true,
+ *      "status": "OK",
+ *      "message": 'Berhasil checkout',
+ *    }
+ * @apiErrorExample {json} List error
+ *    HTTP/1.1 500 Internal Server Error
+ *    {
+ *      "success": false,
+ *      "status": "ERROR",
+ *      "message": 'Gagal checkout karena : product dengan id 83dfsa tidak di temukan',
+ *    }
+ */
+router.post('/checkout', auctionController.checkout)
+
+/**
  * @api {get} /auctions?limit=5&&page=2 get all auctions
  * @apiGroup Auction
 
