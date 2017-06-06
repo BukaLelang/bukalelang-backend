@@ -1,6 +1,78 @@
 define({ "api": [
   {
     "type": "get",
+    "url": "/auctions/:auctionid/checkout-status/:userid",
+    "title": "get checkout status related with user",
+    "group": "Auction",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>message from server</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "success",
+            "description": "<p>is request success ?</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>&quot;OK&quot; or &quot;ERROR&quot;</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "isWin",
+            "description": "<p>is the winner of the auction is this user</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "isCheckedOut",
+            "description": "<p>is the winner user of the auction is this user</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success",
+          "content": "HTTP/1.1 200 OK\n{\n  \"success\": true,\n  \"status\": \"OK\",\n  \"message\": 'Success load checkout status',\n  \"isWin\": 1,\n  \"isCheckedOut\": 1,\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "List error",
+          "content": "HTTP/1.1 500 Internal Server Error\n{\n  \"success\": false,\n  \"status\": \"ERROR\",\n  \"message\": 'Fail load checkout status',\n  \"isWin\": 0,\n  \"isCheckedOut\": 0,\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/auctions.js",
+    "groupTitle": "Auction",
+    "name": "GetAuctionsAuctionidCheckoutStatusUserid",
+    "sampleRequest": [
+      {
+        "url": "http://localhost:3000/auctions/:auctionid/checkout-status/:userid"
+      }
+    ]
+  },
+  {
+    "type": "get",
     "url": "/auctions/:id",
     "title": "get auction by id",
     "group": "Auction",
