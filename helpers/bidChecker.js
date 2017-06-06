@@ -107,7 +107,7 @@ module.exports = {
     })
   },
   isAuctionRunning: (auctionId) => {
-    // deprecated 
+    // deprecated
     return new Promise((resolve, reject) => {
       models.Auction.findById(auctionId).then(auction => {
         let isStillRunning = new Date(auction.end_date) > new Date() ? true : false
@@ -144,7 +144,7 @@ module.exports = {
 
         // gak perlu kirim email kalo ngak ada
         if (uniqBidder.length > 0) {
-          emailSender.sendEmailToUserAfterBidLose(uniqBidder, theWinnerDetail)
+          // emailSender.sendEmailToUserAfterBidLose(uniqBidder, theWinnerDetail)
           pushNotificationSender.sendPushNotificationToUserAfterBidLose(uniqBidder, theWinnerDetail)
         }
       } else {
