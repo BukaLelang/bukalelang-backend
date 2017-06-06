@@ -1432,6 +1432,126 @@
   },
   {
     "type": "post",
+    "url": "/auctions/checkout",
+    "title": "checkout product after win the auction",
+    "group": "Auction",
+    "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n  \"userId\": 2,\n  \"bukalapakId\": 231232131,\n  \"token\": \"IniToken\",\n  \"aucitonId\": 66,\n    \"courierService\": 'JNE REG',\n    \"courierFee\": 18000,\n    \"addressId\": 5116772,\n}",
+          "type": "json"
+        }
+      ],
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "userId",
+            "description": "<p>userId of user the winner</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "bukalapakId",
+            "description": "<p>bukalapakId of user</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "token",
+            "description": "<p>token of logged in user</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "auctionId",
+            "description": "<p>id of the auction</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "courierService",
+            "description": "<p>example JNE REG or JNE YES, not only jne</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "courierFee",
+            "description": "<p>shipping fee</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "addressId",
+            "description": "<p>id of address</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "success",
+            "description": "<p>is request success ?</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>&quot;OK&quot; or &quot;ERROR&quot;</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>message from server</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success",
+          "content": "HTTP/1.1 200 OK\n{\n  \"success\": true,\n  \"status\": \"OK\",\n  \"message\": 'Berhasil checkout',\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "List error",
+          "content": "HTTP/1.1 500 Internal Server Error\n{\n  \"success\": false,\n  \"status\": \"ERROR\",\n  \"message\": 'Gagal checkout karena : product dengan id 83dfsa tidak di temukan',\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/auctions.js",
+    "groupTitle": "Auction",
+    "name": "PostAuctionsCheckout",
+    "sampleRequest": [
+      {
+        "url": "http://localhost:3000/auctions/checkout"
+      }
+    ]
+  },
+  {
+    "type": "post",
     "url": "/auctions/from-existing-product",
     "title": "create auctions from existing product",
     "group": "Auction",
