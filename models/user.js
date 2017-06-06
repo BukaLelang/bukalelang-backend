@@ -27,6 +27,7 @@ module.exports = function(sequelize, DataTypes) {
       associate: function(models) {
         User.hasMany(models.Bid, {foreignKey: 'userId'})
         User.hasMany(models.Auction, {foreignKey: 'userId'})
+        User.hasMany(models.Checkout, {foreignKey: 'userId'})
       }
     },
     hooks:{
