@@ -160,19 +160,19 @@ module.exports = {
         })
 
         for (var i = 0; i < newAuctionsJoined.length; i++) {
-          // wonCount = isThisUserTheWinnerOfThisAuction(user.id, newAuctionsJoined[i].id)
-            if (!newAuctionsJoined[i]) {
-                newAuctionsJoined.splice(i, 1)
-            } else {
+            if (newAuctionsJoined[i] == false) {
+              newAuctionsJoined.splice(i, 1)
+            }
+        }
+        for (var i = 0; i < newAuctionsJoined.length; i++) {
               delete newAuctionsJoined[i].updatedAt
               delete newAuctionsJoined[i].createdAt
               delete newAuctionsJoined[i].Auction
-            }
         }
 
         finalResult.success = true
         finalResult.status = "OK"
-        finalResult.message = 'Success load list of auction joined'
+        finalResult.message = 'Success load list of auction won'
         finalResult.user_detail.auctionsJoinedCount = auctionsJoinedCount.length
         finalResult.user_detail.id = user.id
         finalResult.user_detail.name = user.name
