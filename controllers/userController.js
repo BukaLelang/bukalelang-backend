@@ -90,6 +90,103 @@ module.exports = {
         res.json(finalResult)
       })
   },
+  auctionsWon : (req, res) => {
+    console.log('isi req', req.params);
+    let finalResult = {
+      success: false,
+      status: "ERROR",
+      message: "User with id not found",
+      user_detail:{
+        id: null,
+        name: null,
+        avatarUrl: null,
+        auctionsJoinedCount: 0,
+        wonAuctionsCount: 0
+      },
+      auctionsJoined:[]
+    }
+    models.User.findById(req.params.id, {
+      include:[{
+        model: models.Bid,
+        include:{
+          model:models.Auction,
+          include: [{
+            model:models.Category
+          }, {
+            model: models.ProductImage
+          }, {
+            model: models.Bid
+          }]
+        }
+      }]
+    }).then(user => {
+      // console.log('isi user ', user.Bids[0].Auction.ProductImages);
+        let auctionsJoinedCount = _.uniqBy(user.Bids, 'auctionId')
+        let AuctionsJoined = JSON.parse(JSON.stringify(user.Bids))
+            AuctionsJoined = _.uniqBy(AuctionsJoined, 'auctionId')
+
+        let newAuctionsJoined =  AuctionsJoined.map(data => {
+          // console.log('isi data :', data);
+          let auctionWinner = _.maxBy(data.Auction.Bids, 'current_bid')
+          // console.log('auctionWinner', auctionWinner);
+          if (auctionWinner.userId == req.params.id) {
+            return Object.assign({}, data, {
+              auctionId: data.Auction.id,
+              title: data.Auction.title,
+              description: data.Auction.description,
+              slug: data.Auction.slug,
+              categoryId: data.Auction.Category.id,
+              categoryName: data.Auction.Category.name,
+              new: data.Auction.new,
+              weight: data.Auction.weight,
+              productId: data.Auction.productId,
+              min_price: data.Auction.min_price,
+              max_price: data.Auction.max_price,
+              kelipatan_bid: data.Auction.kelipatan_bid,
+              location: data.Auction.location,
+              running: new Date(data.Auction.end_date) > new Date() ? true : false,
+              isRunning: new Date(data.Auction.end_date) > new Date() ? 1 : 0,
+              images: convertArrayOfObjectIntoArray(data.Auction.ProductImages, 'imageUrl'),
+              small_images: convertArrayOfObjectIntoArray(data.Auction.ProductImages, 'smallImageUrl'),
+              description: data.Auction.description,
+              start_date: data.Auction.start_date,
+              end_date: data.Auction.end_date,
+              isWon: 1,
+              time_left:  getMinutesBetweenDates(new Date(), new Date(data.Auction.end_date))
+            })
+          } else {
+            return false
+          }
+        })
+
+        for (var i = 0; i < newAuctionsJoined.length; i++) {
+          // wonCount = isThisUserTheWinnerOfThisAuction(user.id, newAuctionsJoined[i].id)
+            if (!newAuctionsJoined[i]) {
+                newAuctionsJoined.splice(i, 1)
+            } else {
+              delete newAuctionsJoined[i].updatedAt
+              delete newAuctionsJoined[i].createdAt
+              delete newAuctionsJoined[i].Auction
+            }
+        }
+
+        finalResult.success = true
+        finalResult.status = "OK"
+        finalResult.message = 'Success load list of auction joined'
+        finalResult.user_detail.auctionsJoinedCount = auctionsJoinedCount.length
+        finalResult.user_detail.id = user.id
+        finalResult.user_detail.name = user.name
+        finalResult.user_detail.avatarUrl = user.avatarUrl || 'https://www.bukalapak.com/images/default_avatar/medium/default.jpg'
+        finalResult.user_detail.wonAuctionsCount = 0
+        finalResult.auctionsJoined = newAuctionsJoined
+
+        res.json(finalResult)
+      }).catch(err => {
+        console.log('error when try get user by id : ', err);
+        finalResult.message = `User with id ${req.params.id} not found`
+        res.json(finalResult)
+      })
+  },
   getExistingProductFromLapak : (req, res) => {
     console.log('isi req', req.params);
     let finalResult = {

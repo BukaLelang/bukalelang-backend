@@ -72,6 +72,92 @@ router.get('/', function(req, res, next) {
  *    }
  */
 router.get('/:id/auctions-joined', userController.auctionsJoined)
+
+/**
+ * @api {get} /users/:id/auctions-won get auctions that this user won
+ * @apiGroup Users
+ * @apiSuccess {String} message message from server
+ * @apiSuccess {Boolean} success is request success ?
+ * @apiSuccess {String} status "OK" or "ERROR"
+ * @apiSuccess {Object[]} user_detail user detail information
+ * @apiSuccess {Integer} user_detail.id id of the user
+ * @apiSuccess {String} user_detail.name name of the user
+ * @apiSuccess {String} user_detail.username username of the user
+ * @apiSuccess {String} user_detail.avatarUrl url of avatar of the user
+ * @apiSuccess {Integer} user_detail.auctionsJoinedCount counter of auction that joined by user
+ * @apiSuccess {Integer} user_detail.wonAuctionsCount counter of how many user won the auction joined
+ * @apiSuccess {Array} user_detail.auctionsJoined counter of how many user won the auction joined
+
+ * @apiSuccessExample {json} Success
+ *    HTTP/1.1 200 OK
+ *    {
+ *       success: true,
+ *       status: "OK",
+ *       message: 'Success load list of auction joined',
+         user_detail: {
+           id: 3,
+           name: 'Diky Arga',
+           username: 'dikyarga',
+           avatarUrl: 'https://www.bukalapak.com/images/default_avatar/medium/default.jpg',
+           auctionsJoinedCount: 5,
+           wonAuctionsCount: 2
+         },
+ *       auctionsJoined: [
+              {
+              *            {
+              *             id: 23,
+              *             productId: '31fsa21',
+              *             title: 'Tamiya sto 100 cepat',
+                            images: [
+                               "https://s1.bukalapak.com/img/6399443521/large/18559011_1080537988757036_3501975879389272155_o.jpg",
+                               "https://s1.bukalapak.com/img/1759443521/large/18588800_1080537985423703_2582422248365286934_o.jpg",
+                               "https://s1.bukalapak.com/img/1568443521/large/18489849_1080537978757037_3560457130178166935_o.jpg",
+                               "https://s1.bukalapak.com/img/6118443521/large/18556862_1080537982090370_2725080892910667932_o.jpg",
+                               "https://s1.bukalapak.com/img/6995143521/large/18595351_1080537975423704_1599301220619307539_o.jpg"
+                            ],
+                            running: true,
+                            small_images: [
+                                 "https://s1.bukalapak.com/img/6399443521/small/18559011_1080537988757036_3501975879389272155_o.jpg",
+                                 "https://s1.bukalapak.com/img/1759443521/small/18588800_1080537985423703_2582422248365286934_o.jpg",
+                                 "https://s1.bukalapak.com/img/1568443521/small/18489849_1080537978757037_3560457130178166935_o.jpg",
+                                 "https://s1.bukalapak.com/img/6118443521/small/18556862_1080537982090370_2725080892910667932_o.jpg",
+                                 "https://s1.bukalapak.com/img/6995143521/small/18595351_1080537975423704_1599301220619307539_o.jpg"
+                            ],
+              *             categoryName: 'Mainan',
+                            time_left: 423913828,
+                            name: 'Diky Arga',
+                            slug: 'tamiya-sto-100-8hdpi0'
+              *             new: false,
+              *             weight: 1000,
+              *             description: 'Tamiya ini di rakit oleh ahli fisika, dengan memperhatikan dengan seksama gaya gesek dan kelembaman sehigga mengurangi kaya gesek dengan lintasan membuanya super cepat.',
+              *             min_price: 200000,
+              *             max_price: 3000000,
+              *             current_price: 600000,
+              *             kelipatan_bid: 20000,
+              *             start_date: '2017-04-16T18:22:54.846+07:00',
+              *             end_date: '2017-05-16T18:22:54.846+07:00'
+              },
+            ]
+ *    }
+ * @apiErrorExample {json} List error
+ *    HTTP/1.1 500 Internal Server Error
+ *    {
+ *       success: false,
+ *       status: "ERROR",
+ *       message: 'User with id 3 not found',
+         user_detail: {
+           id: null,
+           username: null,
+           name: null,
+           avatarUrl: null,
+           auctionsJoinedCount: 0,
+           wonAuctionsCount: 0
+         },
+ *       auctionsJoined: []
+ *    }
+ */
+router.get('/:id/auctions-won', userController.auctionsWon)
+
 /**
  * @api {get} /users/:id/existing-products-from-lapak get list of product from existing lapak
  * @apiGroup Users
