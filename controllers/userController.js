@@ -103,7 +103,7 @@ module.exports = {
         auctionsJoinedCount: 0,
         wonAuctionsCount: 0
       },
-      auctionsJoined:[]
+      auctionsWon:[]
     }
     models.User.findById(req.params.id, {
       include:[{
@@ -116,6 +116,8 @@ module.exports = {
             model: models.ProductImage
           }, {
             model: models.Bid
+          }, {
+            model: models.User
           }]
         }
       }]
@@ -125,14 +127,19 @@ module.exports = {
         let AuctionsJoined = JSON.parse(JSON.stringify(user.Bids))
             AuctionsJoined = _.uniqBy(AuctionsJoined, 'auctionId')
 
-        let newAuctionsJoined =  AuctionsJoined.map(data => {
+        let newAuctionWon =  AuctionsJoined.map(data => {
           // console.log('isi data :', data);
           let auctionWinner = _.maxBy(data.Auction.Bids, 'current_bid')
-          // console.log('auctionWinner', auctionWinner);
+
           if (auctionWinner.userId == req.params.id) {
+            console.log('data.name', data.Auction.User.name);
             return Object.assign({}, data, {
               auctionId: data.Auction.id,
               title: data.Auction.title,
+              name: data.Auction.User.name,
+              avatarUrl: data.Auction.User.avatarUrl,
+              current_price: auctionWinner.current_bid,
+              bidderCount: data.Auction.Bids.length,
               description: data.Auction.description,
               slug: data.Auction.slug,
               categoryId: data.Auction.Category.id,
@@ -151,7 +158,6 @@ module.exports = {
               description: data.Auction.description,
               start_date: data.Auction.start_date,
               end_date: data.Auction.end_date,
-              isWon: 1,
               time_left:  getMinutesBetweenDates(new Date(), new Date(data.Auction.end_date))
             })
           } else {
@@ -159,15 +165,15 @@ module.exports = {
           }
         })
 
-        for (var i = 0; i < newAuctionsJoined.length; i++) {
-            if (newAuctionsJoined[i] == false) {
-              newAuctionsJoined.splice(i, 1)
+        for (var i = 0; i < newAuctionWon.length; i++) {
+            if (newAuctionWon[i] == false) {
+              newAuctionWon.splice(i, 1)
             }
         }
-        for (var i = 0; i < newAuctionsJoined.length; i++) {
-              delete newAuctionsJoined[i].updatedAt
-              delete newAuctionsJoined[i].createdAt
-              delete newAuctionsJoined[i].Auction
+        for (var i = 0; i < newAuctionWon.length; i++) {
+              delete newAuctionWon[i].updatedAt
+              delete newAuctionWon[i].createdAt
+              delete newAuctionWon[i].Auction
         }
 
         finalResult.success = true
@@ -178,7 +184,7 @@ module.exports = {
         finalResult.user_detail.name = user.name
         finalResult.user_detail.avatarUrl = user.avatarUrl || 'https://www.bukalapak.com/images/default_avatar/medium/default.jpg'
         finalResult.user_detail.wonAuctionsCount = 0
-        finalResult.auctionsJoined = newAuctionsJoined
+        finalResult.auctionsWon = newAuctionWon
 
         res.json(finalResult)
       }).catch(err => {
