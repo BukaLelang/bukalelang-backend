@@ -167,6 +167,7 @@ module.exports = {
 
         for (var i = 0; i < newAuctionWon.length; i++) {
             if (newAuctionWon[i] == false) {
+              console.log('yes, i will remove you');
               newAuctionWon.splice(i, 1)
             }
         }
