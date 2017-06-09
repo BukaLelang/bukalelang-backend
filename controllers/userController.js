@@ -196,6 +196,98 @@ module.exports = {
         res.json(finalResult)
       })
   },
+  myAuctions : (req, res) => {
+    console.log('isi req', req.params);
+    let finalResult = {
+      success: false,
+      status: "ERROR",
+      message: "User with id not found",
+      user_detail:{
+        id: null,
+        name: null,
+        avatarUrl: null,
+        auctionsJoinedCount: 0,
+        wonAuctionsCount: 0
+      },
+      myAuctions:[]
+    }
+    models.User.findById(req.params.id, {
+      include:[{
+        model: models.Auction,
+        include: [{
+          model: models.User
+        }, {
+          model: models.Bid
+        }, {
+          model: models.Category
+        }, {
+          model: models.ProductImage
+        }]
+      }]
+    }).then(user => {
+      // console.log('isi user ', user.Bids[0].Auction.ProductImages);
+        let myAuctions = JSON.parse(JSON.stringify(user.Auctions))
+
+        let newMyAuctions =  myAuctions.map(data => {
+          // console.log('isi data :', data);
+            let auctionWinner = _.maxBy(data.Bids, 'current_bid')
+            // console.log('auctionWinner', auctionWinner);
+            return Object.assign({}, data, {
+              userId: data.userId,
+              auctionId: data.id,
+              title: data.title,
+              name: data.User.name,
+              avatarUrl: data.User.avatarUrl,
+              current_price: data.Bids.length == 0 ? data.min_price :auctionWinner.current_bid,
+              bidderCount: data.Bids.length,
+              description: data.description,
+              slug: data.slug,
+              categoryId: data.Category.id,
+              categoryName: data.Category.name,
+              new: data.new,
+              weight: data.weight,
+              productId: data.productId,
+              min_price: data.min_price,
+              max_price: data.max_price,
+              kelipatan_bid: data.kelipatan_bid,
+              location: data.location,
+              running: new Date(data.end_date) > new Date() ? true : false,
+              isRunning: new Date(data.end_date) > new Date() ? 1 : 0,
+              images: convertArrayOfObjectIntoArray(data.ProductImages, 'imageUrl'),
+              small_images: convertArrayOfObjectIntoArray(data.ProductImages, 'smallImageUrl'),
+              description: data.description,
+              start_date: data.start_date,
+              end_date: data.end_date,
+              time_left:  getMinutesBetweenDates(new Date(), new Date(data.end_date))
+            })
+        })
+
+        for (var i = 0; i < newMyAuctions.length; i++) {
+              delete newMyAuctions[i].updatedAt
+              delete newMyAuctions[i].createdAt
+              delete newMyAuctions[i].User
+              delete newMyAuctions[i].Category
+              delete newMyAuctions[i].Bids
+              delete newMyAuctions[i].ProductImages
+        }
+
+        finalResult.success = true
+        finalResult.status = "OK"
+        finalResult.message = 'Success load list of auction won'
+        finalResult.user_detail.auctionsJoinedCount = myAuctions.length
+        finalResult.user_detail.id = user.id
+        finalResult.user_detail.name = user.name
+        finalResult.user_detail.avatarUrl = user.avatarUrl || 'https://www.bukalapak.com/images/default_avatar/medium/default.jpg'
+        finalResult.user_detail.wonAuctionsCount = 0
+        finalResult.myAuctions = newMyAuctions
+
+        res.json(finalResult)
+      }).catch(err => {
+        console.log('error when try get user by id : ', err);
+        finalResult.message = `User with id ${req.params.id} not found`
+        res.json(finalResult)
+      })
+  },
   getExistingProductFromLapak : (req, res) => {
     console.log('isi req', req.params);
     let finalResult = {
