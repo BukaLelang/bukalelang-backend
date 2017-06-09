@@ -2779,6 +2779,120 @@
     ]
   },
   {
+    "type": "get",
+    "url": "/users/:id/my-auctions",
+    "title": "get auctions created by this user",
+    "group": "Users",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>message from server</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "success",
+            "description": "<p>is request success ?</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>&quot;OK&quot; or &quot;ERROR&quot;</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "user_detail",
+            "description": "<p>user detail information</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "user_detail.id",
+            "description": "<p>id of the user</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "user_detail.name",
+            "description": "<p>name of the user</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "user_detail.username",
+            "description": "<p>username of the user</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "user_detail.avatarUrl",
+            "description": "<p>url of avatar of the user</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "user_detail.auctionsJoinedCount",
+            "description": "<p>counter of auction that joined by user</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "user_detail.wonAuctionsCount",
+            "description": "<p>counter of how many user won the auction joined</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Array",
+            "optional": false,
+            "field": "user_detail.auctionsJoined",
+            "description": "<p>counter of how many user won the auction joined</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success",
+          "content": "HTTP/1.1 200 OK\n{\n   success: true,\n   status: \"OK\",\n   message: 'Success load list of auction joined',\n      user_detail: {\n        id: 3,\n        name: 'Diky Arga',\n        username: 'dikyarga',\n        avatarUrl: 'https://www.bukalapak.com/images/default_avatar/medium/default.jpg',\n        auctionsJoinedCount: 5,\n        wonAuctionsCount: 2\n      },\n   auctionsJoined: [\n           {\n        {\n         id: 23,\n         productId: '31fsa21',\n         title: 'Tamiya sto 100 cepat',\n                         images: [\n                            \"https://s1.bukalapak.com/img/6399443521/large/18559011_1080537988757036_3501975879389272155_o.jpg\",\n                            \"https://s1.bukalapak.com/img/1759443521/large/18588800_1080537985423703_2582422248365286934_o.jpg\",\n                            \"https://s1.bukalapak.com/img/1568443521/large/18489849_1080537978757037_3560457130178166935_o.jpg\",\n                            \"https://s1.bukalapak.com/img/6118443521/large/18556862_1080537982090370_2725080892910667932_o.jpg\",\n                            \"https://s1.bukalapak.com/img/6995143521/large/18595351_1080537975423704_1599301220619307539_o.jpg\"\n                         ],\n                         running: true,\n                         small_images: [\n                              \"https://s1.bukalapak.com/img/6399443521/small/18559011_1080537988757036_3501975879389272155_o.jpg\",\n                              \"https://s1.bukalapak.com/img/1759443521/small/18588800_1080537985423703_2582422248365286934_o.jpg\",\n                              \"https://s1.bukalapak.com/img/1568443521/small/18489849_1080537978757037_3560457130178166935_o.jpg\",\n                              \"https://s1.bukalapak.com/img/6118443521/small/18556862_1080537982090370_2725080892910667932_o.jpg\",\n                              \"https://s1.bukalapak.com/img/6995143521/small/18595351_1080537975423704_1599301220619307539_o.jpg\"\n                         ],\n         categoryName: 'Mainan',\n                         time_left: 423913828,\n                         name: 'Diky Arga',\n                         slug: 'tamiya-sto-100-8hdpi0'\n         new: false,\n         weight: 1000,\n         description: 'Tamiya ini di rakit oleh ahli fisika, dengan memperhatikan dengan seksama gaya gesek dan kelembaman sehigga mengurangi kaya gesek dengan lintasan membuanya super cepat.',\n         min_price: 200000,\n         max_price: 3000000,\n         current_price: 600000,\n         kelipatan_bid: 20000,\n         start_date: '2017-04-16T18:22:54.846+07:00',\n         end_date: '2017-05-16T18:22:54.846+07:00'\n           },\n         ]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "List error",
+          "content": "HTTP/1.1 500 Internal Server Error\n{\n   success: false,\n   status: \"ERROR\",\n   message: 'User with id 3 not found',\n      user_detail: {\n        id: null,\n        username: null,\n        name: null,\n        avatarUrl: null,\n        auctionsJoinedCount: 0,\n        wonAuctionsCount: 0\n      },\n   auctionsJoined: []\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/users.js",
+    "groupTitle": "Users",
+    "name": "GetUsersIdMyAuctions",
+    "sampleRequest": [
+      {
+        "url": "http://localhost:3000/users/:id/my-auctions"
+      }
+    ]
+  },
+  {
     "type": "post",
     "url": "/users/fcm-registration-token",
     "title": "store FCM registration token",
