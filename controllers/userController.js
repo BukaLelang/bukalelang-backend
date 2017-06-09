@@ -165,12 +165,13 @@ module.exports = {
           }
         })
 
-        for (var i = 0; i < newAuctionWon.length; i++) {
-            if (newAuctionWon[i] == false) {
-              console.log('yes, i will remove you');
-              newAuctionWon.splice(i, 1)
-            }
+        let  newAuctionWonLength = newAuctionWon.length
+        while (newAuctionWonLength --) {
+          if (newAuctionWon[newAuctionWonLength] == false) {
+            newAuctionWon.splice(newAuctionWonLength, 1)
+          }
         }
+
         for (var i = 0; i < newAuctionWon.length; i++) {
               delete newAuctionWon[i].updatedAt
               delete newAuctionWon[i].createdAt
