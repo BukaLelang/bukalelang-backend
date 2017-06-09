@@ -134,6 +134,7 @@ module.exports = {
           if (auctionWinner.userId == req.params.id) {
             console.log('data.name', data.Auction.User.name);
             return Object.assign({}, data, {
+              userId: data.Auction.userId,
               auctionId: data.Auction.id,
               title: data.Auction.title,
               name: data.Auction.User.name,
